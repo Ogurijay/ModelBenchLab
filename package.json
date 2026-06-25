@@ -4,6 +4,20 @@
   "private": true,
   "type": "module",
   "description": "AI 模型能力测试合集 — 不同模型生成的 3D 场景对比",
+  "workspaces": [
+    "claudeopus4.8-ocean-webgpu",
+    "doubao2.1-ocean-weather",
+    "gpt5.5-ocean-webgpu",
+    "gpt5.5-ocean-skill",
+    "claudefable5-ocean-realistic",
+    "geminiflash3.5-ocean-realistic",
+    "gpt5.5-ocean-realistic",
+    "grok4.3-ocean-realistic",
+    "antigravity-ocean-storm",
+    "claudefable5-kart-circuit",
+    "geminiflash3.5-kart-circuit",
+    "gpt5.5-kart-circuit"
+  ],
   "scripts": {
     "dev": "concurrently -k -n portal,claude48,doubao,gpt-wgpu,gpt-skill,fable-ocean,gemini-ocean,gpt-ocean,grok-ocean,antigravity,fable-kart,gemini-kart,gpt-kart -c cyan,magenta,yellow,green,blue,red,white,cyan,magenta,yellow,green,blue,red \"vite --port 3000\" \"vite --port 3001 claudeopus4.8-ocean-webgpu\" \"vite --port 3002 doubao2.1-ocean-weather\" \"vite --port 3003 gpt5.5-ocean-webgpu\" \"vite --port 3004 gpt5.5-ocean-skill\" \"vite --port 3005 claudefable5-ocean-realistic\" \"vite --port 3006 geminiflash3.5-ocean-realistic\" \"vite --port 3007 gpt5.5-ocean-realistic\" \"vite --port 3008 grok4.3-ocean-realistic\" \"vite --port 3012 antigravity-ocean-storm\" \"vite --port 3009 claudefable5-kart-circuit\" \"vite --port 3010 geminiflash3.5-kart-circuit\" \"vite --port 3011 gpt5.5-kart-circuit\"",
     "dev:claude": "vite claudeopus4.8-ocean-webgpu",
