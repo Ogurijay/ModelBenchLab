@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web3D Test — AI 模型 3D 场景对比</title>
+  <title>ModelBenchLab — AI 模型 3D 场景对比</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -28,6 +28,16 @@
       color: #888;
       font-size: 0.95rem;
       margin-bottom: 3rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #aaa;
+      margin: 2rem 0 1rem;
+      width: 100%;
+      max-width: 1200px;
+      border-bottom: 1px solid #2a2a35;
+      padding-bottom: 0.5rem;
     }
     .grid {
       display: grid;
@@ -90,8 +100,11 @@
   </style>
 </head>
 <body>
-  <h1>Web3D Test</h1>
-  <p class="subtitle">不同 AI 模型生成的 3D 海洋场景对比测试</p>
+  <h1>ModelBenchLab</h1>
+  <p class="subtitle">不同 AI 模型生成的 3D 场景对比测试</p>
+
+  <!-- ========== 海洋模拟 ========== -->
+  <h2 class="section-title">Ocean — 海洋模拟</h2>
   <div class="grid">
 
     <a class="card" href="http://localhost:3001" target="_blank">
@@ -136,14 +149,91 @@
 
     <a class="card" href="http://localhost:3005" target="_blank">
       <div class="card-header">
+        <span class="badge badge-model">Claude Fable 5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 写实渲染</div>
+      <div class="card-desc">真实海浪与天空渲染，lil-gui 参数调试面板</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3005</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3006" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Gemini Flash 3.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 写实渲染</div>
+      <div class="card-desc">浮体物理与海面交互</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3006</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3007" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 写实渲染</div>
+      <div class="card-desc">海面着色与参数联动，lil-gui 调试面板</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3007</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3008" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Grok 4.3</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 写实渲染</div>
+      <div class="card-desc">浮标与物体物理演示，lil-gui 调试面板</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3008</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3012" target="_blank">
+      <div class="card-header">
         <span class="badge badge-model">Antigravity</span>
-        <span class="badge badge-api">WebGL 物理</span>
+        <span class="badge badge-api webgl">WebGL</span>
       </div>
       <div class="card-title">海洋模拟 — 极端天气系统</div>
-      <div class="card-desc">多重 Gerstner 物理波谱，写实深水渲染与浪尖泡沫。支持暴雨、扭转龙卷风及闪电暴闪极端天气，以及浮力木船交互。</div>
-      <div class="card-tech">Three.js 0.160 · Vite 5 · JavaScript <span class="port">:3005</span></div>
+      <div class="card-desc">多重 Gerstner 物理波谱，写实深水渲染与浪尖泡沫，暴雨/龙卷风/闪电 + 浮力木船交互</div>
+      <div class="card-tech">Three.js 0.160 · Vite 5 · JavaScript <span class="port">:3012</span></div>
     </a>
 
   </div>
+
+  <!-- ========== 卡丁车赛道 ========== -->
+  <h2 class="section-title">Kart — 卡丁车赛道</h2>
+  <div class="grid">
+
+    <a class="card" href="http://localhost:3009" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Claude Fable 5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">卡丁车竞速赛道</div>
+      <div class="card-desc">卡丁车竞速赛道</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3009</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3010" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Gemini Flash 3.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">卡丁车竞速赛道</div>
+      <div class="card-desc">赛道与车辆控制</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3010</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3011" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">卡丁车竞速赛道</div>
+      <div class="card-desc">霓虹赛道与音效</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3011</span></div>
+    </a>
+
+  </div>
+
 </body>
 </html>
