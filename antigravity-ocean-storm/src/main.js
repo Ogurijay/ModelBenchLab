@@ -220,6 +220,15 @@ function bindUIEvents() {
   });
 
   // 小船交互
+    // 场景亮度控制
+  const lightSlider = document.getElementById('slider-light-intensity');
+  const lightVal = document.getElementById('val-light-intensity');
+  lightSlider.addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    lightVal.innerText = val.toFixed(1) + 'x';
+    weatherSystem.lightMultiplier = val;
+  });
+
   const btnResetBoat = document.getElementById('btn-reset-boat');
   btnResetBoat.addEventListener('click', () => {
     boat.reset();
@@ -269,6 +278,13 @@ function syncSlidersToParams() {
   });
 
   // 同步天气数值
+    // 同步场景亮度
+  const lightSlider = document.getElementById('slider-light-intensity');
+  if (lightSlider && weatherSystem) {
+    lightSlider.value = weatherSystem.lightMultiplier;
+    document.getElementById('val-light-intensity').innerText = weatherSystem.lightMultiplier.toFixed(1) + 'x';
+  }
+
   const preset = weatherSystem.currentPreset;
   
   const rainSlider = document.getElementById('slider-rain-density');
@@ -298,6 +314,26 @@ function animate() {
 
   // 1. 更新海洋
   ocean.update(elapsedTime, camera);
+  if (weatherSystem && weatherSystem.lights) {
+    const mult = weatherSystem.lightMultiplier;
+    // 动态同步全局亮度系数到水体基色和天空反射色中
+    ocean.uniforms.uDeepColor.value.copy(ocean.params.deepColor).multiplyScalar(mult);
+    ocean.uniforms.uShallowColor.value.copy(ocean.params.shallowColor).multiplyScalar(mult);
+    ocean.uniforms.uSkyReflectColor.value.copy(ocean.params.skyReflectColor).multiplyScalar(mult);
+
+    // 动态同步当前光照环境（包含闪电暴闪和天气阴沉变化）到 Shader 内部，使其感知外界光照
+    const amb = weatherSystem.lights.ambient;
+    const dir = weatherSystem.lights.directional;
+    ocean.uniforms.uAmbientLightColor.value.copy(amb.color).multiplyScalar(amb.intensity);
+    ocean.uniforms.uLightColor.value.copy(dir.color).multiplyScalar(dir.intensity);
+    ocean.uniforms.uLightDirection.value.copy(dir.position).normalize();
+    
+    // 动态同步风暴雾效
+    if (scene.fog) {
+      ocean.uniforms.uFogColor.value.copy(scene.fog.color);
+      ocean.uniforms.uFogDensity.value = scene.fog.density;
+    }
+  }
 
   // 2. 更新天气
   weatherSystem.update(delta, elapsedTime);

@@ -80,14 +80,39 @@ const WEATHER_PRESETS = {
   }
 };
 
+// 辅助函数，用来深拷贝预设并保留 THREE.Color 的实例方法
+function clonePreset(preset) {
+  return {
+    waveHeightMultiplier: preset.waveHeightMultiplier,
+    waveLengthMultiplier: preset.waveLengthMultiplier,
+    waveSpeedMultiplier: preset.waveSpeedMultiplier,
+    sharpness: preset.sharpness,
+    deepColor: preset.deepColor.clone(),
+    shallowColor: preset.shallowColor.clone(),
+    skyReflectColor: preset.skyReflectColor.clone(),
+    
+    ambientLightColor: preset.ambientLightColor.clone(),
+    dirLightColor: preset.dirLightColor.clone(),
+    dirLightIntensity: preset.dirLightIntensity,
+    fogColor: preset.fogColor.clone(),
+    fogDensity: preset.fogDensity,
+    
+    targetRainCount: preset.targetRainCount,
+    lightningFreq: preset.lightningFreq,
+    tornadoStrength: preset.tornadoStrength
+  };
+}
+
 export class WeatherSystem {
   constructor(scene, ocean, lights) {
     this.scene = scene;
     this.ocean = ocean;
     this.lights = lights; // 包含 ambientLight 和 dirLight
     
-    this.currentPreset = JSON.parse(JSON.stringify(WEATHER_PRESETS.sunny));
+    this.currentPreset = clonePreset(WEATHER_PRESETS.sunny);
     this.targetPresetName = 'sunny';
+    this.lightMultiplier = 1.0;
+    this.lightMultiplier = 1.0;
     this.transitionProgress = 1.0; // 0.0 ~ 1.0
     
     // 初始化子天气模块
@@ -268,6 +293,7 @@ export class WeatherSystem {
     if (WEATHER_PRESETS[presetName]) {
       this.targetPresetName = presetName;
       this.transitionProgress = 0.0;
+      this.currentPreset = clonePreset(this.currentPreset);
     }
   }
 
@@ -310,14 +336,14 @@ export class WeatherSystem {
 
       // 在过渡结束时，固化预设
       if (this.transitionProgress === 1.0) {
-        this.currentPreset = JSON.parse(JSON.stringify(pEnd));
+        this.currentPreset = clonePreset(pEnd);
       }
     }
 
     // 2. 将环境插值结果应用到场景
-    this.lights.ambient.color.copy(this.currentPreset.ambientLightColor);
+    this.lights.ambient.color.copy(this.currentPreset.ambientLightColor).multiplyScalar(this.lightMultiplier);
     this.lights.directional.color.copy(this.currentPreset.dirLightColor);
-    this.lights.directional.intensity = this.currentPreset.dirLightIntensity;
+    this.lights.directional.intensity = this.currentPreset.dirLightIntensity * this.lightMultiplier;
     
     // 更新雾效
     this.scene.fog.color.copy(this.currentPreset.fogColor);
@@ -472,9 +498,9 @@ export class WeatherSystem {
         this.scene.fog.color.setRGB(0.5, 0.6, 0.7);
       } else {
         // 恢复原有插值环境
-        this.lights.ambient.color.copy(this.currentPreset.ambientLightColor);
+        this.lights.ambient.color.copy(this.currentPreset.ambientLightColor).multiplyScalar(this.lightMultiplier);
         this.lights.directional.color.copy(this.currentPreset.dirLightColor);
-        this.lights.directional.intensity = this.currentPreset.dirLightIntensity;
+        this.lights.directional.intensity = this.currentPreset.dirLightIntensity * this.lightMultiplier;
         this.scene.fog.color.copy(this.currentPreset.fogColor);
       }
     }

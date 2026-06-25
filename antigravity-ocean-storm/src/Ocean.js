@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
-// 8重 Gerstner 波默认参数
+// 8�?Gerstner 波默认参�?
 // 每个波的参数: [directionX, directionZ, amplitude, wavelength, speed, Q_steepness]
-// Q 值需要满足所有波的 sum(Q * A * k) < 1.0 以防海面自相交产生尖刺
+// Q 值需要满足所有波�?sum(Q * A * k) < 1.0 以防海面自相交产生尖�?
 const DEFAULT_WAVES = [
   { dir: new THREE.Vector2(1.0, 0.1).normalize(), amp: 0.6, len: 35.0, speed: 1.6, Q: 0.35 },
   { dir: new THREE.Vector2(0.2, 0.9).normalize(), amp: 0.4, len: 18.0, speed: 2.2, Q: 0.4 },
@@ -25,16 +25,16 @@ export class Ocean {
       waveHeightMultiplier: 1.0,   // 波高倍数
       waveLengthMultiplier: 1.0,   // 波长倍数
       waveSpeedMultiplier: 1.0,    // 波速倍数
-      sharpness: 0.4,              // 陡峭度调节
-      deepColor: new THREE.Color('#031020'),  // 深水色
-      shallowColor: new THREE.Color('#0a4454'), // 浅水色/海底散射色
+      sharpness: 0.4,              // 陡峭度调�?
+      deepColor: new THREE.Color('#031020'),  // 深水�?
+      shallowColor: new THREE.Color('#0a4454'), // 浅水�?海底散射�?
       foamColor: new THREE.Color('#ffffff'),
-      skyReflectColor: new THREE.Color('#102030'), // 天空反射色
+      skyReflectColor: new THREE.Color('#102030'), // 天空反射�?
       roughness: 0.15,
       metalness: 0.1
     };
 
-    this.waves = JSON.parse(JSON.stringify(DEFAULT_WAVES));
+    this.waves = DEFAULT_WAVES.map(w => ({ dir: w.dir.clone(), amp: w.amp, len: w.len, speed: w.speed, Q: w.Q }));
     this.time = 0;
 
     this.initGeometry();
@@ -43,14 +43,14 @@ export class Ocean {
   }
 
   initGeometry() {
-    // 采用高精度平面网格
+    // 采用高精度平面网�?
     this.geometry = new THREE.PlaneGeometry(this.size, this.size, this.segments, this.segments);
     // 旋转让它水平躺下
     this.geometry.rotateX(-Math.PI / 2);
   }
 
   initMaterial() {
-    // 创建自定义 Uniforms
+    // 创建自定�?Uniforms
     this.uniforms = {
       uTime: { value: 0 },
       uWaveHeightMultiplier: { value: this.params.waveHeightMultiplier },
@@ -71,7 +71,7 @@ export class Ocean {
       uFogDensity: { value: 0.015 }
     };
 
-    // 顶点着色器：计算多重 Gerstner 波形偏移与解析法线
+    // 顶点着色器：计算多�?Gerstner 波形偏移与解析法�?
     const vertexShader = `
       uniform float uTime;
       uniform float uWaveHeightMultiplier;
@@ -138,10 +138,10 @@ export class Ocean {
           
           // 波数 k = 2pi / L
           float k = 6.283185 / len;
-          // 角频率 w = sqrt(g * k)
+          // 角频�?w = sqrt(g * k)
           float omega = speed * k;
           
-          // 陡峭度控制 Q
+          // 陡峭度控�?Q
           float Q = w.Q * uSharpness;
           
           // 投影方向 dir
@@ -188,7 +188,7 @@ export class Ocean {
         vec3 normal = normalize(cross(binormal, tangent));
         vNormal = normal;
 
-        // 泡沫度计算：根据波顶高度以及波谷陡度产生的挤压程度
+        // 泡沫度计算：根据波顶高度以及波谷陡度产生的挤压程�?
         // 当顶点被横向挤压剧烈时（即QkA很大），泡沫增加
         float choppiness = (dxdx + dzdz) * 0.8;
         vFoamFactor = clamp((displaced.y * 0.4 + choppiness * 0.6), 0.0, 1.0);
@@ -200,7 +200,7 @@ export class Ocean {
       }
     `;
 
-    // 片元着色器：菲涅尔、水下散射、高动态高光及动态程序噪声泡沫
+    // 片元着色器：菲涅尔、水下散射、高动态高光及动态程序噪声泡�?
     const fragmentShader = `
       uniform float uTime;
       uniform vec3 uDeepColor;
@@ -220,7 +220,7 @@ export class Ocean {
       varying vec3 vNormal;
       varying float vFoamFactor;
 
-      // 简易 3D 噪声函数，用以产生程序化细密海面波纹和白浪泡沫
+      // 简�?3D 噪声函数，用以产生程序化细密海面波纹和白浪泡�?
       float hash(float n) { return fract(sin(n) * 43758.5453123); }
       
       float noise(in vec3 x) {
@@ -245,21 +245,24 @@ export class Ocean {
 
       void main() {
         vec3 normal = normalize(vNormal);
+        if (normal.y < 0.0) normal = -normal;
         vec3 viewDir = normalize(uCameraPosition - vWorldPosition);
         
-        // 菲涅尔效应计算 (Fresnel)
+        // 菲涅尔效应计�?(Fresnel)
         // 视线与法线夹角越小（直视），菲涅尔反射越低，透出水底色；夹角越大（平视），反射天空光越强
         float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 5.0);
         fresnel = clamp(fresnel, 0.0, 0.9);
 
         // 半透光海底散射 (Subsurface Scattering)
         // 波峰附近水体较薄且被光照亮，颜色较浅；波谷及暗部水色深沉
-        // 光照在法线反向上的投影作为散射强度
+        // 光照在法线反向上的投影作为散射强�?
         float sss = max(dot(normal, uLightDirection), 0.0) * 0.35;
         vec3 waterBaseColor = mix(uDeepColor, uShallowColor, vFoamFactor * 0.5 + sss);
+        vec3 lightFactor = uLightColor * 0.35 + uAmbientLightColor * 1.5;
+        waterBaseColor *= lightFactor;
 
         // 天空镜面反射
-        vec3 reflectionColor = uSkyReflectColor;
+        vec3 reflectionColor = uSkyReflectColor * lightFactor;
 
         // 混合水体底色与天空反射色
         vec3 finalColor = mix(waterBaseColor, reflectionColor, fresnel);
@@ -273,11 +276,11 @@ export class Ocean {
         finalColor += uAmbientLightColor * (1.0 - fresnel * 0.5);
         finalColor += specular;
 
-        // 浪尖程序化白浪泡沫 (Foam) 渲染
-        // 根据 vFoamFactor (高度和形变系数) 触发泡沫阈值
+        // 浪尖程序化白浪泡�?(Foam) 渲染
+        // 根据 vFoamFactor (高度和形变系�? 触发泡沫阈�?
         float foamThreshold = 0.45;
         if (vFoamFactor > foamThreshold) {
-          // 利用 FBM 噪声在波峰生成细密的网格状白色泡沫
+          // 利用 FBM 噪声在波峰生成细密的网格状白色泡�?
           vec3 foamCoord = vWorldPosition * 0.4 + vec3(0.0, 0.0, uTime * 0.2);
           float n = fbm(foamCoord * 3.0);
           
@@ -288,7 +291,7 @@ export class Ocean {
           finalColor = mix(finalColor, uFoamColor, foamPattern * 0.8);
         }
 
-        // 添加基于距离的指数雾效 (Fog)
+        // 添加基于距离的指数雾�?(Fog)
         float depth = length(uCameraPosition - vWorldPosition);
         float fogFactor = 1.0 - exp(-depth * uFogDensity);
         fogFactor = clamp(fogFactor, 0.0, 1.0);
@@ -312,9 +315,9 @@ export class Ocean {
     this.scene.add(this.mesh);
   }
 
-  // 物理海洋参数缓动修改 API（供天气切换使用）
+  // 物理海洋参数缓动修改 API（供天气切换使用�?
   setParams(newParams, duration = 2.0) {
-    // 缓动在 main.js 的 tick 循环中由过渡器接管，此处更新目标参数
+    // 缓动�?main.js �?tick 循环中由过渡器接管，此处更新目标参数
     Object.assign(this.params, newParams);
   }
 
@@ -328,7 +331,7 @@ export class Ocean {
     this.uniforms.uWaveSpeedMultiplier.value = this.params.waveSpeedMultiplier;
     this.uniforms.uSharpness.value = this.params.sharpness;
 
-    // 动态插值颜色
+    // 动态插值颜�?
     this.uniforms.uDeepColor.value.copy(this.params.deepColor);
     this.uniforms.uShallowColor.value.copy(this.params.shallowColor);
     this.uniforms.uSkyReflectColor.value.copy(this.params.skyReflectColor);
@@ -344,7 +347,7 @@ export class Ocean {
   // 给定世界水平坐标 (x, z)，返回精确的海面高度 y 与法向量 normal
   // 由于 Gerstner 波包含水平位移，给定最终位移后坐标 x, z 需要通过数值迭代求出原始点坐标 x0, z0
   getBuoyancyData(x, z, time) {
-    // 1. 初始化原始平面坐标猜测值
+    // 1. 初始化原始平面坐标猜测�?
     let x0 = x;
     let z0 = z;
     
@@ -376,12 +379,12 @@ export class Ocean {
         dispZ += Q * amp * w.dir.y * Math.cos(theta);
       }
 
-      // 根据位移偏差反向修正猜测点
+      // 根据位移偏差反向修正猜测�?
       x0 = x - dispX;
       z0 = z - dispZ;
     }
 
-    // 3. 计算最终物理坐标 y，并在此坐标求出精确切线与法线
+    // 3. 计算最终物理坐�?y，并在此坐标求出精确切线与法�?
     let y = 0;
     let tangent = new THREE.Vector3(1, 0, 0);
     let binormal = new THREE.Vector3(0, 0, 1);
@@ -421,9 +424,10 @@ export class Ocean {
     tangent.set(1.0 - dxdx, dxdy, -dxdz);
     binormal.set(-dxdz, dydz, 1.0 - dzdz);
 
-    // 叉乘求得解析法向量
+    // 叉乘求得解析法向�?
     const normal = new THREE.Vector3().crossVectors(binormal, tangent).normalize();
 
     return { y, normal };
   }
 }
+
