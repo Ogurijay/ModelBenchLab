@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物理海洋模拟与极端天气系统 — Antigravity</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 3D 渲染 Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- 极端天气警告标识 (动态暴闪效果) -->
+  <div id="storm-alert" class="alert-banner hidden">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <div class="alert-title">极端天气警报</div>
+      <div class="alert-desc">当前海域正遭遇特大暴风雨及强龙卷风袭击，请注意安全！</div>
+    </div>
+  </div>
+
+  <!-- 毛玻璃中文控制面板 -->
+  <div class="dashboard">
+    <header class="db-header">
+      <div class="db-brand">
+        <span class="brand-logo">⚓</span>
+        <div>
+          <h1>海洋与极端天气系统</h1>
+          <p class="subtitle">物理仿真与特效引擎 (Antigravity)</p>
+        </div>
+      </div>
+      <div class="status-indicator">
+        <span class="status-dot green"></span>
+        <span id="status-text">系统正常</span>
+      </div>
+    </header>
+
+    <!-- 天气快捷切换 (核心) -->
+    <section class="panel-section">
+      <h2 class="section-title">🌤️ 天气环境切换</h2>
+      <div class="weather-grid">
+        <button class="weather-btn active" id="weather-sunny">
+          <span class="btn-icon">☀️</span>
+          <span class="btn-name">风平浪静</span>
+        </button>
+        <button class="weather-btn" id="weather-cloudy">
+          <span class="btn-icon">☁️</span>
+          <span class="btn-name">阴云密布</span>
+        </button>
+        <button class="weather-btn" id="weather-rainy">
+          <span class="btn-icon">⛈️</span>
+          <span class="btn-name">狂风骤雨</span>
+        </button>
+        <button class="weather-btn" id="weather-tornado">
+          <span class="btn-icon">🌪️</span>
+          <span class="btn-name">终极飓风</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 海面物理参数 -->
+    <section class="panel-section">
+      <h2 class="section-title">🌊 物理海洋参数</h2>
+      
+      <div class="control-group">
+        <div class="control-label">
+          <span>基础波高 (Amplitude)</span>
+          <span class="control-value" id="val-wave-height">1.2m</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-wave-height" min="0.1" max="5.0" step="0.1" value="1.2">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>海浪周期/波长 (Wavelength)</span>
+          <span class="control-value" id="val-wave-length">12.0m</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-wave-length" min="5.0" max="40.0" step="0.5" value="15.0">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>海流传播速度 (Speed)</span>
+          <span class="control-value" id="val-wave-speed">1.5m/s</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-wave-speed" min="0.2" max="6.0" step="0.1" value="1.5">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>海浪陡峭度 (Sharpness/Q)</span>
+          <span class="control-value" id="val-wave-sharp">0.4</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-wave-sharp" min="0.0" max="1.0" step="0.05" value="0.4">
+      </div>
+    </section>
+
+    <!-- 极端天气参数 -->
+    <section class="panel-section">
+      <h2 class="section-title">⚡ 极端天气强度</h2>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>降雨量密度 (Rain Density)</span>
+          <span class="control-value" id="val-rain-density">0%</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-rain-density" min="0" max="5000" step="100" value="0">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>闪电发生频率 (Lightning)</span>
+          <span class="control-value" id="val-lightning-freq">极低</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-lightning-freq" min="0" max="100" step="5" value="0">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>风暴雾气浓度 (Fog Density)</span>
+          <span class="control-value" id="val-fog-density">0.01</span>
+        </div>
+        <input type="range" class="control-slider" id="slider-fog-density" min="0.002" max="0.06" step="0.002" value="0.015">
+      </div>
+    </section>
+
+    <!-- 交互式浮力小船 -->
+    <section class="panel-section">
+      <h2 class="section-title">⛵ 互动物理小船</h2>
+      <div class="boat-status">
+        <div class="status-row">
+          <span>船体状态:</span>
+          <span class="status-text-val highlight" id="boat-state">安全漂浮中</span>
+        </div>
+        <div class="status-row">
+          <span>当前坐标:</span>
+          <span class="status-text-val" id="boat-pos">(0.00, 0.00)</span>
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="action-btn" id="btn-reset-boat">⚓ 重置小船位置</button>
+        <button class="action-btn" id="btn-camera-boat">🎥 锁定视角</button>
+      </div>
+    </section>
+
+    <footer class="db-footer">
+      <p>ESC 或鼠标右键释放相机控制 ｜ WASD 移动镜头</p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

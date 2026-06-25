@@ -1,0 +1,421 @@
+/* style.css */
+:root {
+  --bg-color: #050508;
+  --panel-bg: rgba(18, 18, 28, 0.65);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --accent-color: #3b82f6;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  
+  /* 天气主题色 */
+  --color-sunny: #f59e0b;
+  --color-cloudy: #64748b;
+  --color-rainy: #0ea5e9;
+  --color-tornado: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+#webgl-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 极端天气警告条 */
+.alert-banner {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.3);
+  animation: pulse-border 2s infinite ease-in-out;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.alert-banner.hidden {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+  animation: shake 1.5s infinite;
+}
+
+.alert-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fca5a5;
+  letter-spacing: 1px;
+}
+
+.alert-desc {
+  font-size: 0.8rem;
+  color: #fecdd3;
+  margin-top: 0.1rem;
+}
+
+/* 控制面板 */
+.dashboard {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  width: 380px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-radius: 16px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.dashboard::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dashboard::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* 头部样式 */
+.db-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  font-size: 1.75rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(96, 165, 250, 0.3));
+}
+
+.db-header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.db-header .subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-dot.green {
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.status-dot.red {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: blink 1s infinite alternate;
+}
+
+/* 栏目样式 */
+.panel-section {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* 天气按钮网格 */
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.weather-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-primary);
+}
+
+.weather-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s;
+}
+
+.weather-btn:hover .btn-icon {
+  transform: scale(1.15);
+}
+
+.btn-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* 激活状态 */
+#weather-sunny.active {
+  border-color: var(--color-sunny);
+  background: rgba(245, 158, 11, 0.15);
+  box-shadow: inset 0 0 10px rgba(245, 158, 11, 0.1);
+  color: var(--color-sunny);
+}
+
+#weather-cloudy.active {
+  border-color: var(--color-cloudy);
+  background: rgba(100, 116, 139, 0.15);
+  box-shadow: inset 0 0 10px rgba(100, 116, 139, 0.1);
+  color: #cbd5e1;
+}
+
+#weather-rainy.active {
+  border-color: var(--color-rainy);
+  background: rgba(14, 165, 233, 0.15);
+  box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.1);
+  color: var(--color-rainy);
+}
+
+#weather-tornado.active {
+  border-color: var(--color-tornado);
+  background: rgba(239, 68, 68, 0.15);
+  box-shadow: inset 0 0 10px rgba(239, 68, 68, 0.1);
+  color: var(--color-tornado);
+}
+
+/* 滑动条控制 */
+.control-group {
+  margin-bottom: 1.1rem;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.control-value {
+  color: var(--text-primary);
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.control-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  transition: background 0.3s;
+}
+
+.control-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  transition: transform 0.1s, background-color 0.3s;
+}
+
+.control-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+#slider-wave-height:focus::-webkit-slider-thumb, #slider-wave-length:focus::-webkit-slider-thumb {
+  background: #60a5fa;
+}
+
+/* 小船状态区 */
+.boat-status {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.status-row:last-child {
+  margin-bottom: 0;
+}
+
+.status-text-val {
+  color: var(--text-primary);
+  font-family: monospace;
+}
+
+.status-text-val.highlight {
+  color: #10b981;
+}
+
+.button-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.action-btn.active {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+/* 页脚 */
+.db-footer {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+/* 动画定义 */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 5px 15px -5px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 10px 25px 0px rgba(239, 68, 68, 0.4);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  20%, 60% { transform: rotate(-8deg); }
+  40%, 80% { transform: rotate(8deg); }
+}
+
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes storm-flash {
+  0%, 100% { background: #000; }
+  45% { background: #000; }
+  50% { background: #fff; }
+  52% { background: #444; }
+  54% { background: #fff; }
+  58% { background: #000; }
+}

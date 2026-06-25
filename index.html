@@ -27,17 +27,7 @@
     .subtitle {
       color: #888;
       font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      width: 100%;
-      max-width: 1200px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin: 2.25rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #2a2a35;
+      margin-bottom: 3rem;
     }
     .grid {
       display: grid;
@@ -101,9 +91,7 @@
 </head>
 <body>
   <h1>Web3D Test</h1>
-  <p class="subtitle">不同 AI 模型生成的 3D 场景对比测试 · 海洋模拟 &amp; 卡丁车竞速</p>
-
-  <h2>🌊 海洋模拟 Ocean</h2>
+  <p class="subtitle">不同 AI 模型生成的 3D 海洋场景对比测试</p>
   <div class="grid">
 
     <a class="card" href="http://localhost:3001" target="_blank">
@@ -148,77 +136,12 @@
 
     <a class="card" href="http://localhost:3005" target="_blank">
       <div class="card-header">
-        <span class="badge badge-model">Claude Fable 5</span>
-        <span class="badge badge-api webgl">WebGL</span>
+        <span class="badge badge-model">Antigravity</span>
+        <span class="badge badge-api">WebGL 物理</span>
       </div>
-      <div class="card-title">海洋模拟 — 写实波浪</div>
-      <div class="card-desc">Gerstner 12 波，CPU/GPU 同源参数，菲涅尔反射 + 程序天空 + 浪尖泡沫，陡度安全归一化</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3005</span></div>
-    </a>
-
-    <a class="card" href="http://localhost:3006" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">Gemini Flash 3.5</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">海洋模拟 — 物理浮力</div>
-      <div class="card-desc">解析求导法线，CPU 定点反解浮力采样，四元数姿态对齐，4 种时段大气散射</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3006</span></div>
-    </a>
-
-    <a class="card" href="http://localhost:3007" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">GPT 5.5</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">海洋模拟 — 写实海面</div>
-      <div class="card-desc">GPU 着色器海浪/泡沫/高光，波浪数学·材质·UI 分层，Vitest 纯逻辑测试</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3007</span></div>
-    </a>
-
-    <a class="card" href="http://localhost:3008" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">Grok 4.3</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">海洋模拟 — 浮体交互</div>
-      <div class="card-desc">Gerstner 12 波，点击投放可交互物体 + 入水飞溅，浮力/水阻/法线对齐，4 浮标 + 演示船</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3008</span></div>
-    </a>
-
-  </div>
-
-  <h2>🏎️ 卡丁车竞速 Kart</h2>
-  <div class="grid">
-
-    <a class="card" href="http://localhost:3009" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">Claude Fable 5</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">卡丁车竞速 — 漂移涡轮</div>
-      <div class="card-desc">Catmull-Rom 样条赛道，漂移迷你涡轮（橙/蓝双档），3 AI 对手 3 圈赛，小地图 + 道具</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3009</span></div>
-    </a>
-
-    <a class="card" href="http://localhost:3010" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">Gemini Flash 3.5</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">卡丁车竞速 — 赛博气垫</div>
-      <div class="card-desc">反重力气垫悬浮，漂移侧偏角物理，纯代码 Web Audio 音效，霓虹胎痕 + 磨砂 HUD</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3010</span></div>
-    </a>
-
-    <a class="card" href="http://localhost:3011" target="_blank">
-      <div class="card-header">
-        <span class="badge badge-model">GPT 5.5</span>
-        <span class="badge badge-api webgl">WebGL</span>
-      </div>
-      <div class="card-title">卡丁车竞速 — 模拟分层</div>
-      <div class="card-desc">模拟与渲染严格分离，追车相机，检查点 + boost 环，漂移小喷，Vitest 可测</div>
-      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3011</span></div>
+      <div class="card-title">海洋模拟 — 极端天气系统</div>
+      <div class="card-desc">多重 Gerstner 物理波谱，写实深水渲染与浪尖泡沫。支持暴雨、扭转龙卷风及闪电暴闪极端天气，以及浮力木船交互。</div>
+      <div class="card-tech">Three.js 0.160 · Vite 5 · JavaScript <span class="port">:3005</span></div>
     </a>
 
   </div>
