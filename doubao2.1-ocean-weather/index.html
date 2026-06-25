@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海面天气模拟 - Ocean Weather Simulation</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene"></canvas>
+    <div id="control-panel">
+      <h2>天气控制</h2>
+      <div class="weather-buttons">
+        <button class="weather-btn active" data-weather="clear">
+          <span class="icon">☀️</span>
+          <span>晴朗</span>
+        </button>
+        <button class="weather-btn" data-weather="fog">
+          <span class="icon">🌫️</span>
+          <span>大雾</span>
+        </button>
+        <button class="weather-btn" data-weather="rain">
+          <span class="icon">🌧️</span>
+          <span>暴雨</span>
+        </button>
+        <button class="weather-btn" data-weather="storm">
+          <span class="icon">⛈️</span>
+          <span>雷暴</span>
+        </button>
+        <button class="weather-btn" data-weather="tornado">
+          <span class="icon">🌪️</span>
+          <span>龙卷风</span>
+        </button>
+      </div>
+      <div class="info-panel">
+        <p>当前天气: <span id="current-weather">晴朗</span></p>
+        <p>帧率: <span id="fps">60</span> FPS</p>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

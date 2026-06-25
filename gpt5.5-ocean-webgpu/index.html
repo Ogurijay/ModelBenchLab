@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGPU Ocean Lab</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <main id="app">
+      <section class="stage" aria-label="WebGPU Ocean Lab">
+        <div id="viewport" class="viewport"></div>
+
+        <header class="brand">
+          <div>
+            <p class="eyeline">WebGPU Ocean Lab</p>
+            <h1>实时海面模拟</h1>
+          </div>
+          <span class="gpu-pill" id="gpuStatus">GPU</span>
+        </header>
+
+        <aside class="panel" aria-label="海面参数">
+          <div class="panel__head">
+            <span>Simulation</span>
+            <strong id="fps">-- FPS</strong>
+          </div>
+
+          <label class="control">
+            <span>Wave Height <b id="heightValue">1.30</b></span>
+            <input id="height" type="range" min="0.2" max="3" value="1.05" step="0.05" />
+          </label>
+
+          <label class="control">
+            <span>Wind <b id="windValue">0.85</b></span>
+            <input id="wind" type="range" min="0.1" max="2.2" value="1.25" step="0.05" />
+          </label>
+
+          <label class="control">
+            <span>Foam <b id="foamValue">0.62</b></span>
+            <input id="foam" type="range" min="0" max="1" value="0.65" step="0.01" />
+          </label>
+
+          <div class="button-row">
+            <button id="pause" type="button">Pause</button>
+            <button id="reset" type="button">Reset View</button>
+          </div>
+        </aside>
+
+        <footer class="status">
+          <span class="status__dot"></span>
+          <span id="statusText">WebGPU renderer initializing...</span>
+        </footer>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

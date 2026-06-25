@@ -1,0 +1,18 @@
+{
+  "name": "web3d-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web3D 技术测试合集 — 不同 AI 模型生成的 3D 场景对比",
+  "scripts": {
+    "dev": "concurrently -k -n portal,claude,doubao,gpt-webgpu,gpt-skill -c cyan,magenta,yellow,green,blue \"vite --port 3000\" \"vite --port 3001 claudeopus4.8-ocean-webgpu\" \"vite --port 3002 doubao2.1-ocean-weather\" \"vite --port 3003 gpt5.5-ocean-webgpu\" \"vite --port 3004 gpt5.5-ocean-skill\"",
+    "dev:claude": "vite claudeopus4.8-ocean-webgpu",
+    "dev:doubao": "vite doubao2.1-ocean-weather",
+    "dev:gpt-webgpu": "vite gpt5.5-ocean-webgpu",
+    "dev:gpt-skill": "vite gpt5.5-ocean-skill"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "vite": "^8.0.16"
+  }
+}

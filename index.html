@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web3D Test — AI 模型 3D 场景对比</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, "Segoe UI", sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .card {
+      background: #16161e;
+      border: 1px solid #2a2a35;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      border-color: #60a5fa;
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .badge-model { background: #1e293b; color: #93c5fd; }
+    .badge-api { background: #1a2e1a; color: #86efac; }
+    .badge-api.webgl { background: #2e2a1a; color: #fcd34d; }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.5;
+    }
+    .card-tech {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #2a2a35;
+      font-size: 0.75rem;
+      color: #666;
+    }
+    .port {
+      float: right;
+      color: #60a5fa;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Web3D Test</h1>
+  <p class="subtitle">不同 AI 模型生成的 3D 海洋场景对比测试</p>
+  <div class="grid">
+
+    <a class="card" href="http://localhost:3001" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Claude Opus 4.8</span>
+        <span class="badge badge-api">WebGPU</span>
+      </div>
+      <div class="card-title">海洋模拟 — WebGPU 方案</div>
+      <div class="card-desc">TSL 节点着色器，8 Gerstner 波 GPU 全算，26万顶点 60fps，随机种子波谱</div>
+      <div class="card-tech">Three.js 0.184 · Vite 8 · JavaScript <span class="port">:3001</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3002" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Doubao 2.1</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 天气系统</div>
+      <div class="card-desc">GLSL 着色器 5 Gerstner 波，晴/雾/雨/暴风/龙卷风 5 种天气切换</div>
+      <div class="card-tech">Three.js 0.160 · Vite 5 · JavaScript <span class="port">:3002</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3003" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.5</span>
+        <span class="badge badge-api">WebGPU</span>
+      </div>
+      <div class="card-title">海洋模拟 — WebGPU 方案</div>
+      <div class="card-desc">官方 WaterMesh + 法线贴图，泡沫粒子、海底地形、天穹系统</div>
+      <div class="card-tech">Three.js 0.184 · Vite 8 · JavaScript <span class="port">:3003</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3004" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 物理建模</div>
+      <div class="card-desc">Pierson-Moskowitz 12 波谱，弹簧阻尼浮标浮力，模块化 TypeScript 架构</div>
+      <div class="card-tech">Three.js 0.184 · Vite 8 · TypeScript <span class="port">:3004</span></div>
+    </a>
+
+  </div>
+</body>
+</html>

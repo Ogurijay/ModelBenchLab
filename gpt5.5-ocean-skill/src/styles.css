@@ -1,0 +1,273 @@
+:root {
+  color: #f4f8f7;
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: #071116;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  min-height: 34px;
+  color: #f8fbf7;
+  background: rgba(18, 32, 35, 0.78);
+  border: 1px solid rgba(229, 190, 122, 0.28);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+button:hover,
+button.active {
+  border-color: rgba(255, 217, 151, 0.72);
+  background: rgba(117, 77, 45, 0.76);
+}
+
+.webgl-canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.hud {
+  position: fixed;
+  inset: 16px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.status-stack,
+.controls-wrap {
+  min-width: 0;
+  pointer-events: auto;
+}
+
+.status-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: min(380px, calc(100vw - 32px));
+}
+
+.status-chip,
+.metrics,
+.control-panel,
+.panel-toggle {
+  border: 1px solid rgba(216, 238, 229, 0.14);
+  background: rgba(7, 17, 22, 0.72);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.status-chip {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.status-chip strong,
+.status-chip span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-chip strong {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.status-subline {
+  margin-top: 2px;
+  color: rgba(226, 236, 229, 0.67);
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  background: #ffcb79;
+  box-shadow: 0 0 16px rgba(255, 197, 112, 0.9);
+}
+
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.metrics span {
+  min-width: 74px;
+  padding: 5px 7px;
+  color: rgba(243, 249, 246, 0.78);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.controls-wrap {
+  width: min(338px, calc(100vw - 32px));
+}
+
+.panel-toggle {
+  display: block;
+  width: 112px;
+  margin-left: auto;
+  padding: 0 12px;
+}
+
+.control-panel {
+  display: grid;
+  gap: 13px;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.control-panel[hidden] {
+  display: none;
+}
+
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.preset-row button {
+  width: 100%;
+  padding: 0 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.ghost-button {
+  color: #f3d9b2;
+}
+
+.range-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 54px minmax(92px, 1fr) 68px;
+  align-items: center;
+  gap: 8px;
+  min-height: 26px;
+  color: rgba(245, 250, 247, 0.78);
+  font-size: 12px;
+}
+
+.control-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.control-row output {
+  color: #ffe1ad;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+input[type="range"] {
+  width: 100%;
+  min-width: 0;
+  accent-color: #e7b96a;
+}
+
+.warning {
+  padding: 8px;
+  color: #ffe1ad;
+  background: rgba(117, 41, 38, 0.58);
+  border: 1px solid rgba(255, 191, 141, 0.35);
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .hud {
+    inset: 10px;
+    align-items: stretch;
+  }
+
+  .status-stack {
+    max-width: calc(100vw - 20px);
+  }
+
+  .metrics {
+    max-width: calc(100vw - 20px);
+  }
+
+  .metrics span {
+    min-width: 64px;
+  }
+
+  .controls-wrap {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: auto;
+  }
+
+  .control-panel {
+    max-height: min(54vh, 430px);
+    overflow: auto;
+  }
+
+  .control-row {
+    grid-template-columns: 48px minmax(90px, 1fr) 60px;
+  }
+
+  .preset-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

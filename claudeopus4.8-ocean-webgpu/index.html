@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>WebGPU Ocean · GPU 海面模拟</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <main id="app">
+      <div id="viewport" class="viewport"></div>
+
+      <div class="loading" id="loading">
+        <div class="loading__ring"></div>
+        <p class="loading__text">初始化 WebGPU 渲染器…</p>
+      </div>
+
+      <header class="brand">
+        <div class="brand__mark">🌊</div>
+        <div class="brand__text">
+          <p class="brand__eyeline">Three.js · TSL · WebGPURenderer</p>
+          <h1 class="brand__title">GPU 实时海面模拟</h1>
+        </div>
+        <span class="pill" id="gpuStatus">检测中…</span>
+      </header>
+
+      <aside class="panel" aria-label="海面参数">
+        <div class="panel__head">
+          <span class="panel__title">Simulation</span>
+          <strong class="panel__fps" id="fps">-- FPS</strong>
+        </div>
+
+        <label class="control">
+          <span class="control__label">浪高 <b id="heightValue">1.40</b></span>
+          <input id="height" type="range" min="0.1" max="4.5" value="1.4" step="0.02" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">风速 <b id="windValue">1.00</b></span>
+          <input id="wind" type="range" min="0.0" max="3.0" value="1.0" step="0.02" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">陡度 <b id="chopValue">1.00</b></span>
+          <input id="chop" type="range" min="0" max="2.6" value="1.0" step="0.02" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">海沫 <b id="foamValue">0.55</b></span>
+          <input id="foam" type="range" min="0" max="1" value="0.55" step="0.01" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">日照角度 <b id="sunValue">18°</b></span>
+          <input id="sun" type="range" min="2" max="80" value="18" step="1" />
+        </label>
+
+        <div class="button-row">
+          <button id="pause" type="button" class="btn btn--primary">暂停</button>
+          <button id="reset" type="button" class="btn">重置视角</button>
+        </div>
+
+        <div class="button-row">
+          <button id="regen" type="button" class="btn btn--regen">🎲 重新生成随机波浪</button>
+        </div>
+
+        <div class="readout">
+          <div class="readout__row"><span>顶点数</span><b id="vertCount">—</b></div>
+          <div class="readout__row"><span>波数 · 相位</span><b class="accent">8 波 · 随机谱</b></div>
+          <div class="readout__row"><span>计算位置</span><b class="accent">GPU · TSL</b></div>
+        </div>
+      </aside>
+
+      <footer class="status">
+        <span class="status__dot" id="statusDot"></span>
+        <span id="statusText">准备中…</span>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
