@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a1420;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+#app,
+#app canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(8, 20, 32, 0.62);
+  backdrop-filter: blur(6px);
+  color: #d8e8f4;
+  font-size: 13px;
+  line-height: 1.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hud-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  min-width: 130px;
+}
+
+.hud-label {
+  color: #8fb3c9;
+}
+
+/* 窄屏：HUD 缩小、避免与 lil-gui 重叠 */
+@media (max-width: 600px) {
+  #hud {
+    left: 8px;
+    bottom: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .lil-gui.root {
+    --width: 210px;
+    font-size: 11px;
+  }
+}
+
+/* 新增：物理落体统计面板（左上） + 通用 panel 样式 */
+.panel {
+  position: fixed;
+  z-index: 10;
+  color: #eaf4ff;
+  background: rgba(8, 22, 38, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(120, 180, 255, 0.18);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#stats {
+  top: 14px;
+  left: 14px;
+  min-width: 220px;
+}
+
+#stats h2 {
+  font-size: 13px;
+  color: #8fd0ff;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+#stats .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+#stats .row .v {
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+#stats .hint {
+  font-size: 11px;
+  color: #88a8c8;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.crosshair {
+  color: #ffd86b;
+}

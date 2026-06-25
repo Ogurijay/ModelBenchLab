@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Cyberpunk Hoverkart Circuit</title>
+  <!-- 引入现代字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <!-- 3D Canvas 容器 -->
+  <div id="canvas-container"></div>
+
+  <!-- 速度感速度线特效层 (CSS动画) -->
+  <div id="speed-vignette" class="speed-vignette"></div>
+
+  <!-- 游戏加载与操作引导遮罩 -->
+  <div id="start-overlay" class="overlay">
+    <div class="overlay-content glass-card">
+      <div class="logo-area">
+        <span class="logo-sub">GEMINI RACING PRESENTS</span>
+        <h1 class="logo-main">CYBERKART</h1>
+        <span class="logo-desc">霓虹气垫赛车模拟器</span>
+      </div>
+
+      <div class="instructions">
+        <h3>驾驶按键指南</h3>
+        <div class="keys-grid">
+          <div class="key-item"><kbd>W</kbd> / <kbd>↑</kbd> <span>加速推进</span></div>
+          <div class="key-item"><kbd>S</kbd> / <kbd>↓</kbd> <span>减速倒车</span></div>
+          <div class="key-item"><kbd>A</kbd> / <kbd>D</kbd> <span>向左/向右转向</span></div>
+          <div class="key-item"><kbd>Space</kbd> <span>侧偏漂移蓄力</span></div>
+          <div class="key-item"><kbd>R</kbd> <span>赛车复位重置</span></div>
+        </div>
+        <p class="pro-tip">💡 技巧：在高速转向时**长按空格键**进入甩尾漂移！车尾火花颜色会从<span class="color-blue">蓝色（1段）</span>蓄力升级到<span class="color-purple">紫色（2段）</span>，松开空格即可获得强力氮气喷气（Mini-Turbo）！</p>
+      </div>
+
+      <button id="btn-start" class="btn-glow">启动引擎 (START)</button>
+    </div>
+  </div>
+
+  <!-- 完赛成绩结算弹窗 -->
+  <div id="finish-overlay" class="overlay hidden">
+    <div class="overlay-content glass-card finish-card">
+      <h2 class="finish-title">FINISH!</h2>
+      <div class="finish-stats">
+        <div class="stat-box">
+          <span class="stat-lbl">总用时</span>
+          <span class="stat-num" id="finish-total-time">00:00.00</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-lbl">最佳圈速</span>
+          <span class="stat-num" id="finish-best-lap">00:00.00</span>
+        </div>
+      </div>
+      <button id="btn-restart" class="btn-glow">重新挑战</button>
+    </div>
+  </div>
+
+  <!-- 屏幕漂浮文本/大字特效层 -->
+  <div id="boost-alert" class="boost-alert hidden">BOOST!</div>
+
+  <!-- 游戏 HUD 仪表盘 -->
+  <div id="game-hud" class="hud hidden">
+    <!-- 左上角：比赛进度 -->
+    <div class="hud-item glass-card hud-top-left">
+      <div class="hud-row">
+        <span class="hud-label">LAP</span>
+        <span class="hud-value" id="hud-lap">1<span class="hud-slash">/</span>3</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-label">TIME</span>
+        <span class="hud-value font-mono" id="hud-time">00.00</span>
+      </div>
+    </div>
+
+    <!-- 右上角：圈速监控 -->
+    <div class="hud-item glass-card hud-top-right">
+      <div class="hud-row">
+        <span class="hud-label">BEST LAP</span>
+        <span class="hud-value font-mono" id="hud-best-lap">--.--</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-label">GATE</span>
+        <span class="hud-value" id="hud-gate">0<span class="hud-slash">/</span>6</span>
+      </div>
+    </div>
+
+    <!-- 底部中心：圆弧时速表与漂移蓄力槽 -->
+    <div class="hud-bottom-center">
+      <div class="speedometer-container glass-card">
+        <div class="charge-gauge-bg"></div>
+        <div class="charge-gauge-fill" id="hud-charge-bar"></div>
+        
+        <div class="speed-digits">
+          <span class="speed-num" id="hud-speed">0</span>
+          <span class="speed-unit">KM/H</span>
+        </div>
+        
+        <!-- 漂移蓄力段数标记 -->
+        <div class="drift-level-badge" id="hud-drift-badge">DRIFT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主逻辑入口 -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grok Realistic Ocean</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- 左下 HUD：海况 / FPS / 顶点 -->
+    <div id="hud" aria-live="polite">
+      <div class="hud-row"><span class="hud-label">海况</span><span id="hud-sea">--</span></div>
+      <div class="hud-row"><span class="hud-label">FPS</span><span id="hud-fps">--</span></div>
+      <div class="hud-row"><span class="hud-label">顶点</span><span id="hud-verts">--</span></div>
+    </div>
+
+    <!-- 左上 落体物理测试数据（增强物理效果后新增） -->
+    <div id="stats" class="panel">
+      <h2>🧪 最近落体测试</h2>
+      <div class="row"><span>形状</span><span class="v" id="s-shape">—</span></div>
+      <div class="row"><span>下落高度</span><span class="v" id="s-height">—</span></div>
+      <div class="row"><span>入水时间</span><span class="v" id="s-time">—</span></div>
+      <div class="row"><span>入水速度</span><span class="v" id="s-speed">—</span></div>
+      <div class="row"><span>理论自由落体 √(2h/g)</span><span class="v" id="s-theo">—</span></div>
+      <div class="hint">提示：点击海面投放物体。入水后受浮力与波浪作用。</div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

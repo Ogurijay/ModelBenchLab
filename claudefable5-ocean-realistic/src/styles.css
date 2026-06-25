@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a1420;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+#app,
+#app canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(8, 20, 32, 0.62);
+  backdrop-filter: blur(6px);
+  color: #d8e8f4;
+  font-size: 13px;
+  line-height: 1.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hud-row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  min-width: 130px;
+}
+
+.hud-label {
+  color: #8fb3c9;
+}
+
+/* 窄屏：HUD 缩小、避免与 lil-gui 重叠 */
+@media (max-width: 600px) {
+  #hud {
+    left: 8px;
+    bottom: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .lil-gui.root {
+    --width: 210px;
+    font-size: 11px;
+  }
+}
