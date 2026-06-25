@@ -11,7 +11,7 @@
 示例：
 - `claudeopus4.8-ocean-webgpu` — Claude Opus 4.8 生成的海洋模拟，WebGPU 方案
 - `gpt-ocean-skill` — GPT Skill 模式生成的海洋模拟
-- `doubao2.1-ocean-weather` — 豆包 2.1 生成的海洋模拟，含天气系统
+- `doubao2.1-ocean-webgpu` — 豆包 2.1 生成的海洋模拟，WebGPU 方案
 
 规则说明：
 - **LLM**：模型名称 + 版本号，如 `claudeopus4.8`、`gpt`、`doubao2.1`
@@ -60,8 +60,8 @@
 |------|----------|
 | 3000 | （门户首页 index.html） |
 | 3001 | claudeopus4.8-ocean-webgpu |
-| 3002 | doubao2.1-ocean-weather |
-| 3003 | gpt5.5-ocean-webgpu |
+| 3002 | gpt5.5-ocean-weather |
+| 3003 | doubao2.1-ocean-webgpu |
 | 3004 | gpt5.5-ocean-skill |
 | 3005 | claudefable5-ocean-realistic |
 | 3006 | geminiflash3.5-ocean-realistic |

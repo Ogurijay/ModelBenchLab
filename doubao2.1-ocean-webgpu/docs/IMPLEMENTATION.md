@@ -1,6 +1,6 @@
 # WebGPU Ocean Lab 实现说明
 
-这个示例用 Three.js 的 `WebGPURenderer`（WebGPU 渲染器）承载实时海面效果，目录命名为 `gpt-webgpu-ocean`。
+这个示例用 Three.js 的 `WebGPURenderer`（WebGPU 渲染器）承载实时海面效果，目录命名为 `doubao2.1-ocean-webgpu`。
 
 ## 技术结构
 
