@@ -71,3 +71,8 @@
 | 3010 | geminiflash3.5-kart-circuit |
 | 3011 | gpt5.5-kart-circuit |
 | 3012 | antigravity-ocean-storm |
+| 3013 | gpt5.5-ocean-webgpu |
+| 3014 | claudeopus4.8-gsapthreetest |
+| 3015 | claudesonnet5-ocean-storm |
+| 3016 | gpt5.5-tank3D |
+| 3017 | claudesonnet5-tank3D |

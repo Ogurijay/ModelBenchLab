@@ -1,0 +1,25 @@
+{
+  "name": "claudeopus4.8-gsapthreetest",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "GSAP ScrollTrigger 驱动 Three.js 相机随滚动飞行 — React Three Fiber 实现与最佳实践",
+  "scripts": {
+    "dev": "vite --port 3014",
+    "build": "vite build",
+    "preview": "vite preview --port 3014"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "gsap": "^3.15.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "three": "^0.185.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "vite": "^8.1.0"
+  }
+}

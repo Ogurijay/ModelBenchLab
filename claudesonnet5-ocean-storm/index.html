@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>移动台风 · 海洋天气模拟 — Claude Sonnet 5</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div id="hud">
+    <div class="hud-row"><span class="hud-label">天气</span><span id="hud-state">晴朗</span></div>
+    <div class="hud-row"><span class="hud-label">风速</span><span id="hud-wind">0.0 m/s</span></div>
+    <div class="hud-row"><span class="hud-label">浪高</span><span id="hud-wave">0.0 m</span></div>
+    <div class="hud-row"><span class="hud-label">最近台风</span><span id="hud-storm">无</span></div>
+  </div>
+
+  <div id="compass">
+    <div id="compass-needle"></div>
+  </div>
+
+  <button id="audio-toggle" title="开启/关闭环境音效（需要一次点击以解锁浏览器音频）">
+    🔇 开启声音
+  </button>
+
+  <div id="loading">
+    <div class="loading-title">正在生成海洋与大气 …</div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT 5.5 Ocean WebGPU</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <main id="app">
+      <section class="stage" aria-label="GPT 5.5 Ocean WebGPU">
+        <div id="viewport" class="viewport"></div>
+
+        <div id="loading" class="loading" aria-live="polite">
+          <div class="loading__ring"></div>
+          <p>Initializing WebGPU ocean</p>
+        </div>
+
+        <header class="topbar">
+          <div class="brand">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <div>
+              <h1>GPT 5.5 Ocean WebGPU</h1>
+              <p>实时海面天气模拟</p>
+            </div>
+          </div>
+
+          <div class="topbar__metrics" aria-label="运行状态">
+            <span id="gpuStatus">WebGPU</span>
+            <span id="weatherLabel">Storm</span>
+            <span id="fpsLabel">-- FPS</span>
+          </div>
+        </header>
+
+        <aside class="control-rail" aria-label="天气控制">
+          <div class="rail-section">
+            <div class="section-title">Weather</div>
+            <div class="weather-grid" role="group" aria-label="天气预设">
+              <button class="weather-button" type="button" data-weather="calm">Calm</button>
+              <button class="weather-button" type="button" data-weather="rain">Rain</button>
+              <button class="weather-button" type="button" data-weather="storm">Storm</button>
+              <button class="weather-button" type="button" data-weather="squall">Squall</button>
+            </div>
+          </div>
+
+          <div class="rail-section">
+            <label class="control">
+              <span><b>Wind</b><output id="windValue" for="wind">1.35</output></span>
+              <input id="wind" type="range" min="0.25" max="2.4" value="1.35" step="0.01" />
+            </label>
+            <label class="control">
+              <span><b>Swell</b><output id="swellValue" for="swell">1.55</output></span>
+              <input id="swell" type="range" min="0.35" max="3.0" value="1.55" step="0.01" />
+            </label>
+            <label class="control">
+              <span><b>Rain</b><output id="rainValue" for="rain">0.70</output></span>
+              <input id="rain" type="range" min="0" max="1" value="0.70" step="0.01" />
+            </label>
+            <label class="control">
+              <span><b>Lightning</b><output id="lightningValue" for="lightning">0.52</output></span>
+              <input id="lightning" type="range" min="0" max="1" value="0.52" step="0.01" />
+            </label>
+            <label class="control">
+              <span><b>Sun</b><output id="sunValue" for="sun">11°</output></span>
+              <input id="sun" type="range" min="2" max="42" value="11" step="1" />
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button id="pauseButton" type="button">Pause</button>
+            <button id="resetButton" type="button">Reset</button>
+            <button id="seedButton" type="button">New Sea</button>
+          </div>
+        </aside>
+
+        <aside class="readout-panel" aria-label="性能读数">
+          <div class="readout">
+            <span>Performance</span>
+            <strong id="perfState">compiling</strong>
+          </div>
+          <div class="readout">
+            <span>Vertices</span>
+            <strong id="vertexLabel">--</strong>
+          </div>
+          <div class="readout">
+            <span>Wave Seed</span>
+            <strong id="seedLabel">1</strong>
+          </div>
+        </aside>
+
+        <footer class="weather-strip" aria-label="天气强度">
+          <div class="meter">
+            <span>Wind</span>
+            <i id="windMeter"></i>
+          </div>
+          <div class="meter">
+            <span>Rain</span>
+            <i id="rainMeter"></i>
+          </div>
+          <div class="meter">
+            <span>Storm</span>
+            <i id="stormMeter"></i>
+          </div>
+        </footer>
+
+        <div class="status-line" aria-live="polite">
+          <span class="status-line__dot"></span>
+          <span id="statusText">WebGPU renderer starting</span>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "claudesonnet5-tank3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "经典 3D 坦克大战重制 — 十关闯关制，Three.js 正交俯视视角，砖墙/钢墙/河流/树林/冰面地形与完整经典道具系统",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "three": "^0.185.0"
+  },
+  "devDependencies": {
+    "vite": "^8.1.2"
+  }
+}

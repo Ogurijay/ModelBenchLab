@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>GPT Tank 3D</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="game-canvas" aria-label="3D 坦克大战游戏画面"></canvas>
+
+      <section class="hud hud-primary" aria-live="polite">
+        <div class="hud-row">
+          <span>关卡</span>
+          <strong id="level-value">1 / 10</strong>
+        </div>
+        <div class="hud-row">
+          <span>生命</span>
+          <strong id="lives-value">3</strong>
+        </div>
+        <div class="hud-row">
+          <span>基地</span>
+          <strong id="base-value">安全</strong>
+        </div>
+        <div class="hud-row">
+          <span>分数</span>
+          <strong id="score-value">0</strong>
+        </div>
+      </section>
+
+      <section class="hud hud-enemies" aria-label="剩余敌人">
+        <span class="hud-caption">敌军</span>
+        <div id="enemy-pips" class="enemy-pips"></div>
+      </section>
+
+      <section id="toast" class="toast" aria-live="polite">
+        <strong>WASD / 方向键</strong>
+        <span>移动 · Space 开炮 · P 暂停</span>
+      </section>
+
+      <section id="message" class="message-panel" aria-live="assertive">
+        <h1 id="message-title">GPT Tank 3D</h1>
+        <p id="message-body">守住基地，击破全部敌方坦克。</p>
+        <button id="message-action" type="button">开始</button>
+      </section>
+
+      <section class="touch-pad" aria-label="触屏控制">
+        <div class="dpad">
+          <button type="button" data-action="up" title="向上">▲</button>
+          <button type="button" data-action="left" title="向左">◀</button>
+          <button type="button" data-action="down" title="向下">▼</button>
+          <button type="button" data-action="right" title="向右">▶</button>
+        </div>
+        <button class="fire-button" type="button" data-action="fire" title="开炮">●</button>
+        <button class="pause-button" type="button" data-action="pause" title="暂停">Ⅱ</button>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

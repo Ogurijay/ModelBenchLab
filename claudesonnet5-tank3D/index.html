@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>坦克大战 3D — Claude Sonnet 5</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="viewport">
+      <canvas id="scene"></canvas>
+
+      <div id="overlay-start" class="overlay">
+        <div class="panel">
+          <h1>坦克大战 <span class="accent">3D</span></h1>
+          <p class="tagline">经典玩法 · 十关闯关 · Three.js 立体重制</p>
+          <button id="btn-start" class="btn-primary">开始游戏</button>
+          <div class="controls-help">
+            <div><span class="key">↑ ↓ ← →</span> / <span class="key">W A S D</span><span class="help-desc">移动</span></div>
+            <div><span class="key">空格</span> / <span class="key">J</span><span class="help-desc">开火</span></div>
+            <div><span class="key">P</span> / <span class="key">Esc</span><span class="help-desc">暂停</span></div>
+          </div>
+          <p class="hint">保护你的基地老鹰，消灭全部敌方坦克即可过关</p>
+        </div>
+      </div>
+
+      <div id="overlay-intro" class="overlay hidden">
+        <div class="stage-flash">
+          <div class="stage-num">第 <span id="intro-level">1</span> 关</div>
+          <div class="stage-sub" id="intro-sub"></div>
+        </div>
+      </div>
+
+      <div id="overlay-pause" class="overlay hidden">
+        <div class="panel">
+          <h2>已暂停</h2>
+          <p>按 <span class="key">P</span> 或 <span class="key">Esc</span> 继续</p>
+        </div>
+      </div>
+
+      <div id="overlay-gameover" class="overlay hidden">
+        <div class="panel">
+          <h2 class="danger">GAME OVER</h2>
+          <p id="gameover-reason" class="reason"></p>
+          <p>最终得分：<span id="gameover-score" class="score-val">0</span></p>
+          <button id="btn-restart" class="btn-primary">重新开始</button>
+        </div>
+      </div>
+
+      <div id="overlay-victory" class="overlay hidden">
+        <div class="panel">
+          <h2 class="victory">通关！</h2>
+          <p>你守住了基地，击败了全部十关的敌军坦克</p>
+          <p>最终得分：<span id="victory-score" class="score-val">0</span></p>
+          <button id="btn-again" class="btn-primary">再来一次</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast hidden"></div>
+      <div id="fps" class="fps hidden"></div>
+    </div>
+
+    <aside id="sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">分数 SCORE</div>
+        <div id="hud-score" class="sidebar-value">0</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">最高分 HI-SCORE</div>
+        <div id="hud-highscore" class="sidebar-value">0</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">关卡 STAGE</div>
+        <div id="hud-level" class="sidebar-value">1</div>
+      </div>
+      <div class="sidebar-block sidebar-grow">
+        <div class="sidebar-label">剩余敌军 <span id="hud-enemy-count">20</span></div>
+        <div id="hud-enemy-grid" class="enemy-grid"></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">生命 PLAYER</div>
+        <div id="hud-lives" class="lives-row"></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">火力等级</div>
+        <div id="hud-power" class="power-row"></div>
+      </div>
+      <button id="btn-mute" class="btn-mute" title="静音/取消静音">🔊</button>
+    </aside>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

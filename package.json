@@ -8,6 +8,7 @@
     "claudeopus4.8-ocean-webgpu",
     "gpt5.5-ocean-weather",
     "doubao2.1-ocean-webgpu",
+    "gpt5.5-ocean-webgpu",
     "gpt5.5-ocean-skill",
     "claudefable5-ocean-realistic",
     "geminiflash3.5-ocean-realistic",
@@ -16,13 +17,17 @@
     "antigravity-ocean-storm",
     "claudefable5-kart-circuit",
     "geminiflash3.5-kart-circuit",
-    "gpt5.5-kart-circuit"
+    "gpt5.5-kart-circuit",
+    "claudesonnet5-ocean-storm",
+    "gpt5.5-tank3D",
+    "claudesonnet5-tank3D"
   ],
   "scripts": {
-    "dev": "concurrently -k -n portal,claude48,gpt-weather,doubao-wgpu,gpt-skill,fable-ocean,gemini-ocean,gpt-ocean,grok-ocean,antigravity,fable-kart,gemini-kart,gpt-kart -c cyan,magenta,yellow,green,blue,red,white,cyan,magenta,yellow,green,blue,red \"vite --port 3000\" \"vite --port 3001 claudeopus4.8-ocean-webgpu\" \"vite --port 3002 gpt5.5-ocean-weather\" \"vite --port 3003 doubao2.1-ocean-webgpu\" \"vite --port 3004 gpt5.5-ocean-skill\" \"vite --port 3005 claudefable5-ocean-realistic\" \"vite --port 3006 geminiflash3.5-ocean-realistic\" \"vite --port 3007 gpt5.5-ocean-realistic\" \"vite --port 3008 grok4.3-ocean-realistic\" \"vite --port 3012 antigravity-ocean-storm\" \"vite --port 3009 claudefable5-kart-circuit\" \"vite --port 3010 geminiflash3.5-kart-circuit\" \"vite --port 3011 gpt5.5-kart-circuit\"",
+    "dev": "concurrently -k -n portal,claude48,gpt-weather,doubao-wgpu,gpt-webgpu,gpt-skill,fable-ocean,gemini-ocean,gpt-ocean,grok-ocean,antigravity,fable-kart,gemini-kart,gpt-kart,gsap-three,sonnet-storm,tank3d,sonnet-tank3d -c cyan,magenta,yellow,green,cyan,blue,red,white,cyan,magenta,yellow,green,blue,red,magenta,cyan,yellow,green \"vite --port 3000\" \"vite --port 3001 claudeopus4.8-ocean-webgpu\" \"vite --port 3002 gpt5.5-ocean-weather\" \"vite --port 3003 doubao2.1-ocean-webgpu\" \"vite --port 3013 gpt5.5-ocean-webgpu\" \"vite --port 3004 gpt5.5-ocean-skill\" \"vite --port 3005 claudefable5-ocean-realistic\" \"vite --port 3006 geminiflash3.5-ocean-realistic\" \"vite --port 3007 gpt5.5-ocean-realistic\" \"vite --port 3008 grok4.3-ocean-realistic\" \"vite --port 3012 antigravity-ocean-storm\" \"vite --port 3009 claudefable5-kart-circuit\" \"vite --port 3010 geminiflash3.5-kart-circuit\" \"vite --port 3011 gpt5.5-kart-circuit\" \"vite --port 3014 claudeopus4.8-gsapthreetest\" \"vite --port 3015 claudesonnet5-ocean-storm\" \"vite --port 3016 gpt5.5-tank3D\" \"vite --port 3017 claudesonnet5-tank3D\"",
     "dev:claude": "vite claudeopus4.8-ocean-webgpu",
     "dev:gpt-weather": "vite gpt5.5-ocean-weather",
     "dev:doubao-webgpu": "vite doubao2.1-ocean-webgpu",
+    "dev:gpt-webgpu": "vite gpt5.5-ocean-webgpu",
     "dev:gpt-skill": "vite gpt5.5-ocean-skill",
     "dev:fable-ocean": "vite claudefable5-ocean-realistic",
     "dev:gemini-ocean": "vite geminiflash3.5-ocean-realistic",
@@ -31,7 +36,11 @@
     "dev:antigravity": "vite antigravity-ocean-storm",
     "dev:fable-kart": "vite claudefable5-kart-circuit",
     "dev:gemini-kart": "vite geminiflash3.5-kart-circuit",
-    "dev:gpt-kart": "vite gpt5.5-kart-circuit"
+    "dev:gpt-kart": "vite gpt5.5-kart-circuit",
+    "dev:gsap-three": "vite claudeopus4.8-gsapthreetest",
+    "dev:sonnet-storm": "vite claudesonnet5-ocean-storm",
+    "dev:tank3d": "vite --port 3016 gpt5.5-tank3D",
+    "dev:sonnet-tank3d": "vite --port 3017 claudesonnet5-tank3D"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

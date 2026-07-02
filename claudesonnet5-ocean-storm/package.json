@@ -1,0 +1,19 @@
+{
+  "name": "claudesonnet5-ocean-storm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "移动风暴单元驱动的 Three.js 海洋天气模拟：风暴在世界空间中生成、漂移、消散，途经之处才会起风、降雨、打雷。",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "three": "^0.185.0",
+    "lil-gui": "^0.21.0"
+  },
+  "devDependencies": {
+    "vite": "^8.1.2"
+  }
+}
