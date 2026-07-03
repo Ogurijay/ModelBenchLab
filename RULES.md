@@ -76,3 +76,6 @@
 | 3015 | claudesonnet5-ocean-storm |
 | 3016 | gpt5.5-tank3D |
 | 3017 | claudesonnet5-tank3D |
+| 3018 | gpt5.5-powdergame |
+| 3019 | mimov2.5-powdergame |
+| 3020 | claudefable5-powdergame |

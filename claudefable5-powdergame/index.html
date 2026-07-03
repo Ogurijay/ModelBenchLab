@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:," />
+  <title>粉末实验室 — 全中文元素物理沙盒</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --panel: #14141c;
+      --line: #262633;
+      --text: #d8d8e0;
+      --dim: #8a8a98;
+      --accent: #5fb3ff;
+    }
+    body {
+      font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px;
+      user-select: none;
+    }
+    header { width: 100%; max-width: 1500px; display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    h1 {
+      font-size: 1.25rem; font-weight: 600;
+      background: linear-gradient(120deg, #ffb060, #ff5f8f, #7fb0ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    header .sub { color: var(--dim); font-size: 0.8rem; }
+    main { display: flex; gap: 12px; align-items: flex-start; max-width: 1500px; }
+
+    #left { display: flex; flex-direction: column; gap: 8px; }
+    #toolbar {
+      display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+      padding: 7px 9px; max-width: 1080px;
+    }
+    #toolbar .grp {
+      color: var(--dim); font-size: 0.72rem; margin: 0 2px 0 8px;
+      border-left: 1px solid var(--line); padding-left: 10px;
+    }
+    #toolbar .grp:first-child { border-left: none; margin-left: 0; padding-left: 0; }
+    #toolbar button {
+      background: #1d1d28; color: var(--text); border: 1px solid var(--line);
+      border-radius: 7px; padding: 4px 9px; font-size: 0.78rem; cursor: pointer;
+      transition: border-color .12s, background .12s;
+    }
+    #toolbar button:hover { border-color: var(--accent); }
+    #toolbar button.on { background: #274363; border-color: var(--accent); color: #cfe7ff; }
+    #toolbar input[type=range] { width: 90px; accent-color: var(--accent); }
+    #toolbar .val { font-size: 0.78rem; color: var(--accent); min-width: 18px; text-align: center; }
+
+    #stage { position: relative; line-height: 0; }
+    canvas#view {
+      width: calc(360px * 3); height: calc(240px * 3);
+      image-rendering: pixelated;
+      border: 1px solid var(--line); border-radius: 8px;
+      cursor: crosshair; touch-action: none;
+      background: #0b0d12;
+    }
+    #status {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+      color: var(--dim); font-size: 0.76rem; padding: 6px 10px;
+      font-variant-numeric: tabular-nums;
+      max-width: 1080px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    #panel {
+      width: 372px; max-height: calc(100vh - 60px); overflow-y: auto;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+      padding: 10px;
+    }
+    #panel::-webkit-scrollbar { width: 8px; }
+    #panel::-webkit-scrollbar-thumb { background: #2c2c3a; border-radius: 4px; }
+    #descbox {
+      font-size: 0.78rem; line-height: 1.55; color: var(--text);
+      background: #101019; border: 1px solid var(--line); border-radius: 8px;
+      padding: 8px 10px; margin-bottom: 8px; min-height: 58px;
+    }
+    #descbox .sym { color: var(--accent); font-family: Consolas, monospace; }
+    #palette .cat { color: var(--dim); font-size: 0.72rem; text-align: center; margin: 8px 0 5px; }
+    #palette .chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+    .chip {
+      border: 1px solid rgba(0,0,0,0.35); border-radius: 7px;
+      padding: 4px 2px 3px; cursor: pointer; text-align: center;
+      display: flex; flex-direction: column; gap: 1px;
+      transition: transform .08s, box-shadow .12s;
+    }
+    .chip b { font-size: 0.76rem; font-weight: 600; }
+    .chip i { font-size: 0.62rem; font-style: normal; opacity: 0.82; font-family: Consolas, monospace; }
+    .chip:hover { transform: translateY(-1px); }
+    .chip.on { box-shadow: 0 0 0 2px var(--accent); }
+
+    details.help { margin-top: 10px; font-size: 0.74rem; color: var(--dim); line-height: 1.7; }
+    details.help summary { cursor: pointer; color: var(--text); font-size: 0.78rem; margin-bottom: 4px; }
+    details.help b { color: var(--accent); font-weight: 600; }
+    footer { margin-top: 8px; color: #55555f; font-size: 0.7rem; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>粉末实验室 PowderLab</h1>
+    <span class="sub">全中文落沙物理沙盒 · 62 种带化学式元素 · Claude Fable 5 原创实现</span>
+  </header>
+  <main>
+    <div id="left">
+      <div id="toolbar"></div>
+      <div id="stage"><canvas id="view"></canvas></div>
+      <div id="status">加载中…</div>
+    </div>
+    <aside id="panel">
+      <div id="descbox"></div>
+      <div id="palette"></div>
+      <details class="help">
+        <summary>📖 物理系统速览（点开）</summary>
+        <div>
+          <b>重力与密度</b>：粉末堆积滑落；重的沉、轻的浮——油浮在水上、沙沉入水底、一切都浮在汞上。<br>
+          <b>温度场</b>：热量沿材质导热率传导；金属导热快、墙完全绝热；高温物体会发出红→黄→白的辉光。<br>
+          <b>相变</b>：冰⇌水⇌蒸汽、干冰⇌CO₂、液氮⇌氮气、岩浆⇌岩石、沙→熔融玻璃→玻璃、金属⇌铁水、蜡⇌蜡油。<br>
+          <b>燃烧</b>：每种可燃物有自己的燃点；氧气助燃、CO₂/氮气窒息灭火、水浇灭（镁和铝热剂除外）。<br>
+          <b>爆炸</b>：火药/TNT/C4/硝化甘油各有威力与稳定性；冲击波会殉爆邻近炸药、震碎玻璃、掀飞粒子。<br>
+          <b>风与气压</b>：用「吹风」工具拖动刮风；风扇持续送风；爆炸产生冲击波（切到气压视图看波纹）。<br>
+          <b>电</b>：电源周期放电，电火花沿金属/金/汞/石墨传导并发热；电极插入盐水电解出 H₂ 和 O₂。<br>
+          <b>化学</b>：钠遇水爆炸；酸溶金属放氢气；酸碱中和放热成盐水；盐溶于水、盐融冰雪；石灰石煅烧放 CO₂；生石灰遇水放热；铁在水中生锈（盐水更快）；氢气+氯气→盐酸；铝热剂烧出铁水。<br>
+          <b>放射性</b>：铀持续放出衰变热，极缓慢地衰变成铅。<br>
+          <b>生命</b>：种子遇水发芽长藤，植物吸水生长、把 CO₂ 变成 O₂；菌丝侵蚀有机物；病毒吞噬一切但会逐代衰亡；氯气是它们共同的克星。<br>
+          <b>快捷键</b>：空格 暂停 · N 单步 · [ ] 笔刷 · R 风向 · V 视图循环。
+        </div>
+      </details>
+      <footer>原创实现的落沙类物理沙盒，向经典致敬 · Canvas 2D · 无第三方运行时依赖</footer>
+    </aside>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

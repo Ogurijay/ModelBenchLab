@@ -1,0 +1,267 @@
+﻿import { ElementId, type ElementDef } from './Types';
+
+export const ELEMENT_DEFS: Record<ElementId, ElementDef> = {
+  [ElementId.NONE]: {
+    id: ElementId.NONE,
+    name: '真空',
+    symbol: 'Vac',
+    color: '#0a0a0c',
+    glow: false,
+    category: 'wall',
+    density: 0,
+    flammable: 0,
+    thermalConductivity: 0.05,
+    defaultTemp: 20,
+    description: '无粒子空间，允许气体与液体穿过。'
+  },
+  [ElementId.WALL]: {
+    id: ElementId.WALL,
+    name: '墙壁',
+    symbol: 'W',
+    color: '#55555c',
+    glow: false,
+    category: 'wall',
+    density: 0,
+    flammable: 0,
+    thermalConductivity: 0,
+    defaultTemp: 20,
+    description: '不可摧毁的实体墙，阻挡一切。'
+  },
+  [ElementId.COND_WALL]: {
+    id: ElementId.COND_WALL,
+    name: '导线墙',
+    symbol: 'Cw',
+    color: '#3a5f5f',
+    glow: false,
+    category: 'electronics',
+    density: 0,
+    flammable: 0,
+    thermalConductivity: 0.1,
+    defaultTemp: 20,
+    description: '实体墙，但可以传导电流。'
+  },
+  [ElementId.STONE]: {
+    id: ElementId.STONE,
+    name: '石头',
+    symbol: 'St',
+    color: '#8b8c91',
+    glow: false,
+    category: 'solid',
+    density: 100,
+    flammable: 0,
+    thermalConductivity: 0.3,
+    defaultTemp: 20,
+    meltTemp: 1200,
+    meltTo: ElementId.LAVA,
+    description: '沉重的固体，熔点极高。'
+  },
+  [ElementId.WOOD]: {
+    id: ElementId.WOOD,
+    name: '木头',
+    symbol: 'Wd',
+    color: '#8b5a2b',
+    glow: false,
+    category: 'solid',
+    density: 90,
+    flammable: 0.02, // 点燃概率
+    thermalConductivity: 0.1,
+    defaultTemp: 20,
+    description: '结构固体，易燃，燃烧后化为灰烬。'
+  },
+  [ElementId.ICE]: {
+    id: ElementId.ICE,
+    name: '冰',
+    symbol: 'I',
+    color: '#add8e6',
+    glow: false,
+    category: 'solid',
+    density: 80,
+    flammable: 0,
+    thermalConductivity: 0.4,
+    defaultTemp: -10,
+    meltTemp: 0,
+    meltTo: ElementId.WATER,
+    description: '冰冷的固体，遇热融化为水。'
+  },
+  [ElementId.COPPER]: {
+    id: ElementId.COPPER,
+    name: '铜',
+    symbol: 'Cu',
+    color: '#d27d2d',
+    glow: false,
+    category: 'electronics',
+    density: 100,
+    flammable: 0,
+    thermalConductivity: 0.9,
+    defaultTemp: 20,
+    description: '优良导体，用于传递火花电流。'
+  },
+  [ElementId.SILICON]: {
+    id: ElementId.SILICON,
+    name: '硅',
+    symbol: 'Si',
+    color: '#4e5d6c',
+    glow: false,
+    category: 'electronics',
+    density: 100,
+    flammable: 0,
+    thermalConductivity: 0.4,
+    defaultTemp: 20,
+    description: '半导体，电流只能从低温区传导到高温区。'
+  },
+  [ElementId.WATER]: {
+    id: ElementId.WATER,
+    name: '水',
+    symbol: 'H₂O',
+    color: '#1f66e5',
+    glow: false,
+    category: 'liquid',
+    density: 10,
+    flammable: 0,
+    thermalConductivity: 0.6,
+    defaultTemp: 20,
+    meltTemp: 100,
+    meltTo: ElementId.STEAM,
+    freezeTemp: 0,
+    freezeTo: ElementId.ICE,
+    description: '基础液体，流动，能灭火并使部分物质结块。'
+  },
+  [ElementId.OIL]: {
+    id: ElementId.OIL,
+    name: '油',
+    symbol: 'Ol',
+    color: '#6e6b54',
+    glow: false,
+    category: 'liquid',
+    density: 8,
+    flammable: 0.08,
+    thermalConductivity: 0.15,
+    defaultTemp: 20,
+    description: '可燃液体，比水轻，遇火剧烈燃烧。'
+  },
+  [ElementId.ACID]: {
+    id: ElementId.ACID,
+    name: '强酸',
+    symbol: 'Ac',
+    color: '#39ff14',
+    glow: false,
+    category: 'liquid',
+    density: 9,
+    flammable: 0,
+    thermalConductivity: 0.2,
+    defaultTemp: 20,
+    description: '具有强腐蚀性的液体，能够溶解大多数物质。'
+  },
+  [ElementId.LAVA]: {
+    id: ElementId.LAVA,
+    name: '熔岩',
+    symbol: 'Lv',
+    color: '#ff4500',
+    glow: true,
+    category: 'liquid',
+    density: 12,
+    flammable: 0,
+    thermalConductivity: 0.5,
+    defaultTemp: 1200,
+    freezeTemp: 900,
+    freezeTo: ElementId.STONE,
+    description: '极高温的流体，能熔化并点燃周围一切。'
+  },
+  [ElementId.FIRE]: {
+    id: ElementId.FIRE,
+    name: '火',
+    symbol: 'F',
+    color: '#ffaa00',
+    glow: true,
+    category: 'gas',
+    density: -1, // 负数密度代表上浮
+    flammable: 0,
+    thermalConductivity: 0.7,
+    defaultTemp: 800,
+    description: '高温粒子，向上漂流，会逐渐熄灭。'
+  },
+  [ElementId.SMOKE]: {
+    id: ElementId.SMOKE,
+    name: '烟',
+    symbol: 'Sm',
+    color: '#555555',
+    glow: false,
+    category: 'gas',
+    density: -2,
+    flammable: 0,
+    thermalConductivity: 0.1,
+    defaultTemp: 150,
+    description: '燃烧产生的废气，受气流推动，慢慢消散。'
+  },
+  [ElementId.STEAM]: {
+    id: ElementId.STEAM,
+    name: '蒸汽',
+    symbol: 'H₂O(g)',
+    color: '#c8d6e5',
+    glow: false,
+    category: 'gas',
+    density: -1.2,
+    flammable: 0,
+    thermalConductivity: 0.3,
+    defaultTemp: 120,
+    freezeTemp: 95, // 冷凝
+    freezeTo: ElementId.WATER,
+    description: '水蒸气，向上飘散，遇冷会凝结成水滴。'
+  },
+  [ElementId.GAS]: {
+    id: ElementId.GAS,
+    name: '天然气',
+    symbol: 'G',
+    color: '#70a1ff',
+    glow: false,
+    category: 'gas',
+    density: -0.5,
+    flammable: 0.2, // 极易爆燃
+    thermalConductivity: 0.1,
+    defaultTemp: 20,
+    description: '易燃易爆气体，容易在空气中扩散。'
+  },
+  [ElementId.GUNPOWDER]: {
+    id: ElementId.GUNPOWDER,
+    name: '火药',
+    symbol: 'Gp',
+    color: '#57606f',
+    glow: false,
+    category: 'special',
+    density: 30, // 粉末，重力下落
+    flammable: 0.9,
+    thermalConductivity: 0.2,
+    defaultTemp: 20,
+    description: '粉末炸药，遇火或通电会瞬间爆炸。'
+  },
+  [ElementId.C4]: {
+    id: ElementId.C4,
+    name: '塑性炸药',
+    symbol: 'C4',
+    color: '#a4b0be',
+    glow: false,
+    category: 'special',
+    density: 100,
+    flammable: 0.5,
+    thermalConductivity: 0.15,
+    defaultTemp: 20,
+    description: '稳定的可塑炸药，只在通电或遇火时猛烈爆炸。'
+  },
+  [ElementId.PLUTONIUM]: {
+    id: ElementId.PLUTONIUM,
+    name: '钚',
+    symbol: 'Pu',
+    color: '#2ed573',
+    glow: true,
+    category: 'special',
+    density: 200,
+    flammable: 0,
+    thermalConductivity: 0.3,
+    defaultTemp: 40,
+    description: '重放射性粉末，受热或受高压（如爆炸）会触发核裂变。'
+  }
+};
+
+export function getElementDef(id: ElementId): ElementDef {
+  return ELEMENT_DEFS[id] || ELEMENT_DEFS[ElementId.NONE];
+}

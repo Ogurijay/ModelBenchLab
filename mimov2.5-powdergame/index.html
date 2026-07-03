@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mimo V2.5 粉末游戏 - 全中文物理沙盒</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#1a1a2e;color:#e0e0e0;font-family:'Microsoft YaHei','SimHei',sans-serif;overflow:hidden;height:100vh;display:flex;flex-direction:column;}
+#topbar{background:#16213e;padding:4px 12px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #0f3460;min-height:36px;flex-shrink:0;}
+#topbar .logo{font-weight:bold;color:#e94560;font-size:15px;white-space:nowrap;}
+#topbar .sep{color:#0f3460;}
+.tb-btn{background:#0f3460;border:1px solid #1a1a4e;color:#e0e0e0;padding:3px 10px;border-radius:3px;cursor:pointer;font-size:12px;font-family:inherit;}
+.tb-btn:hover{background:#e94560;border-color:#e94560;}
+.tb-btn.active{background:#e94560;border-color:#e94560;}
+#info-bar{font-size:11px;color:#aaa;display:flex;gap:14px;align-items:center;margin-left:auto;}
+#info-bar span{white-space:nowrap;}
+#main{display:flex;flex:1;overflow:hidden;}
+#sidebar{width:220px;background:#16213e;border-right:1px solid #0f3460;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;}
+#search-box{padding:6px;border-bottom:1px solid #0f3460;}
+#search-box input{width:100%;background:#1a1a2e;border:1px solid #0f3460;color:#e0e0e0;padding:4px 8px;border-radius:3px;font-size:12px;font-family:inherit;}
+#search-box input::placeholder{color:#666;}
+#cat-tabs{display:flex;flex-wrap:wrap;gap:2px;padding:4px 6px;border-bottom:1px solid #0f3460;}
+.cat-tab{background:#1a1a2e;border:1px solid #0f3460;color:#aaa;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:10px;font-family:inherit;}
+.cat-tab:hover,.cat-tab.active{background:#e94560;color:#fff;border-color:#e94560;}
+#elem-list{flex:1;overflow-y:auto;padding:4px 6px;}
+#elem-list::-webkit-scrollbar{width:6px;}
+#elem-list::-webkit-scrollbar-track{background:#1a1a2e;}
+#elem-list::-webkit-scrollbar-thumb{background:#0f3460;border-radius:3px;}
+.elem-btn{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:3px;cursor:pointer;border:1px solid transparent;font-size:11px;font-family:inherit;}
+.elem-btn:hover{background:#0f3460;}
+.elem-btn.selected{background:#0f3460;border-color:#e94560;}
+.elem-dot{width:16px;height:16px;border-radius:2px;border:1px solid #555;flex-shrink:0;}
+.elem-info{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.elem-name{color:#e0e0e0;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.elem-sym{color:#888;font-size:9px;}
+#canvas-wrap{flex:1;position:relative;overflow:hidden;background:#111;}
+#sim-canvas{position:absolute;top:0;left:0;}
+#overlay{position:absolute;top:0;left:0;pointer-events:none;}
+#brush-info{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.7);padding:3px 8px;border-radius:3px;font-size:11px;color:#ccc;pointer-events:none;}
+#temp-info{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,0.7);padding:3px 8px;border-radius:3px;font-size:11px;color:#ccc;pointer-events:none;}
+#right-panel{width:180px;background:#16213e;border-left:1px solid #0f3460;display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;padding:8px;gap:8px;}
+.panel-section{background:#1a1a2e;border:1px solid #0f3460;border-radius:4px;padding:8px;}
+.panel-title{font-size:11px;color:#e94560;font-weight:bold;margin-bottom:6px;border-bottom:1px solid #0f3460;padding-bottom:4px;}
+.panel-row{display:flex;align-items:center;justify-content:space-between;margin:3px 0;font-size:11px;}
+.panel-row label{color:#aaa;}
+.panel-row input[type=range]{width:80px;accent-color:#e94560;}
+.panel-row input[type=checkbox]{accent-color:#e94560;}
+.panel-row .val{color:#fff;min-width:30px;text-align:right;font-size:10px;}
+.panel-row select{background:#16213e;border:1px solid #0f3460;color:#e0e0e0;padding:2px 4px;border-radius:2px;font-size:11px;font-family:inherit;}
+#elem-desc{font-size:10px;color:#aaa;line-height:1.4;margin-top:4px;}
+.vis-btn{background:#1a1a2e;border:1px solid #0f3460;color:#aaa;padding:3px 6px;border-radius:3px;cursor:pointer;font-size:10px;font-family:inherit;}
+.vis-btn:hover,.vis-btn.active{background:#e94560;color:#fff;border-color:#e94560;}
+#modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;}
+#modal-overlay.show{display:flex;}
+#modal{background:#16213e;border:1px solid #e94560;border-radius:8px;padding:20px;max-width:500px;width:90%;color:#e0e0e0;}
+#modal h3{color:#e94560;margin-bottom:12px;}
+#modal textarea{width:100%;height:100px;background:#1a1a2e;border:1px solid #0f3460;color:#e0e0e0;padding:8px;border-radius:4px;font-family:monospace;font-size:11px;resize:vertical;}
+#modal .modal-btns{display:flex;gap:8px;margin-top:12px;justify-content:flex-end;}
+</style>
+</head>
+<body>
+<div id="topbar">
+  <span class="logo">Mimo V2.5 粉末游戏</span>
+  <span class="sep">|</span>
+  <button class="tb-btn" id="btn-pause" onclick="togglePause()">⏸ 暂停</button>
+  <button class="tb-btn" onclick="resetSim()">🔄 重置</button>
+  <button class="tb-btn" onclick="clearSim()">🗑 清空</button>
+  <button class="tb-btn" onclick="saveSave()">💾 保存</button>
+  <button class="tb-btn" onclick="loadSave()">📂 加载</button>
+  <button class="tb-btn" onclick="screenshot()">📸 截图</button>
+  <span class="sep">|</span>
+  <button class="tb-btn" id="btn-heat" onclick="toggleVis('heat')">🔥 温度</button>
+  <button class="tb-btn" id="btn-press" onclick="toggleVis('press')">💨 压力</button>
+  <button class="tb-btn" id="btn-vel" onclick="toggleVis('vel')">🌊 流速</button>
+  <span class="sep">|</span>
+  <button class="tb-btn" onclick="showHelp()">❓ 帮助</button>
+  <div id="info-bar">
+    <span id="fps-display">FPS: 60</span>
+    <span id="particle-count">粒子: 0</span>
+    <span id="mouse-pos">位置: 0,0</span>
+  </div>
+</div>
+<div id="main">
+  <div id="sidebar">
+    <div id="search-box"><input type="text" id="search-input" placeholder="🔍 搜索元素..." oninput="filterElements()"></div>
+    <div id="cat-tabs"></div>
+    <div id="elem-list"></div>
+  </div>
+  <div id="canvas-wrap">
+    <canvas id="sim-canvas"></canvas>
+    <canvas id="overlay"></canvas>
+    <div id="brush-info">画笔: 粉末(SAND) | 大小: 3</div>
+    <div id="temp-info">温度: 22°C</div>
+  </div>
+  <div id="right-panel">
+    <div class="panel-section">
+      <div class="panel-title">画笔设置</div>
+      <div class="panel-row"><label>画笔大小</label><input type="range" id="brush-size" min="1" max="20" value="3" oninput="brushSize=this.value;updateBrushInfo()"><span class="val" id="brush-size-val">3</span></div>
+      <div class="panel-row"><label>画笔形状</label><select id="brush-shape" onchange="brushShape=this.value"><option value="circle">圆形</option><option value="square">方形</option></select></div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">模拟参数</div>
+      <div class="panel-row"><label>重力</label><input type="range" id="gravity" min="0" max="2" step="0.1" value="1" oninput="simGravity=+this.value;document.getElementById('grav-val').textContent=this.value"><span class="val" id="grav-val">1</span></div>
+      <div class="panel-row"><label>风力</label><input type="range" id="wind" min="-2" max="2" step="0.1" value="0" oninput="simWind=+this.value;document.getElementById('wind-val').textContent=this.value"><span class="val" id="wind-val">0</span></div>
+      <div class="panel-row"><label>热传导</label><input type="range" id="heat-cond" min="0" max="2" step="0.1" value="1" oninput="simHeatCond=+this.value;document.getElementById('hc-val').textContent=this.value"><span class="val" id="hc-val">1</span></div>
+      <div class="panel-row"><label>环境温度</label><input type="range" id="ambient-temp" min="-273" max="5000" step="10" value="22" oninput="simAmbientTemp=+this.value+273.15;document.getElementById('at-val').textContent=this.value+'°C'"><span class="val" id="at-val">22°C</span></div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">显示选项</div>
+      <div class="panel-row"><label>显示网格</label><input type="checkbox" id="show-grid" onchange="showGrid=this.checked"></div>
+      <div class="panel-row"><label>显示速度</label><input type="checkbox" id="show-velocity" onchange="showVelocity=this.checked"></div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">工具</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;">
+        <button class="vis-btn active" onclick="setTool('draw')" id="tool-draw">✏️ 绘制</button>
+        <button class="vis-btn" onclick="setTool('erase')" id="tool-erase">🧹 擦除</button>
+        <button class="vis-btn" onclick="setTool('sample')" id="tool-sample">💉 取样</button>
+        <button class="vis-btn" onclick="setTool('heat')" id="tool-heat">🔥 加热</button>
+        <button class="vis-btn" onclick="setTool('cool')" id="tool-cool">❄️ 冷却</button>
+        <button class="vis-btn" onclick="setTool('press')" id="tool-press">💨 增压</button>
+        <button class="vis-btn" onclick="setTool('vacuum')" id="tool-vacuum">🕳️ 抽空</button>
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">元素信息</div>
+      <div id="elem-desc">选择一个元素查看详细信息</div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">快捷键</div>
+      <div style="font-size:10px;color:#888;line-height:1.6;">
+        空格 - 暂停/继续<br>
+        鼠标左键 - 绘制<br>
+        鼠标右键 - 擦除<br>
+        [ ] - 调整画笔<br>
+        1-9 - 快捷元素<br>
+        R - 重置<br>
+        S - 截图
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-overlay">
+  <div id="modal">
+    <h3 id="modal-title">保存/加载</h3>
+    <textarea id="modal-text" placeholder="复制或粘贴保存数据..."></textarea>
+    <div class="modal-btns">
+      <button class="tb-btn" onclick="closeModal()">取消</button>
+      <button class="tb-btn" id="modal-confirm" onclick="confirmModal()">确定</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const GW=300,GH=200,CS=4;
+let grid=new Array(GW*GH),tempG=new Float32Array(GW*GH),vxG=new Float32Array(GW*GH),vyG=new Float32Array(GW*GH),pG=new Float32Array(GW*GH);
+let canvas,ctx,paused=false,curElem='SAND',brushSz=3,brushSh='circle',curTool='draw';
+let simGrav=1,simWind=0,simHC=1,simAmbT=295.15,showGrid=false,showVel=false,visMode=null;
+let mDown=false,mX=0,mY=0,lastFT=0,fCnt=0,fps=60,modalAct=null;
+
+const EL={};
+function dE(id,p){EL[id]={id,name:p.n||id,sym:p.s||id,cat:p.c||'其他',col:p.co||'#888',state:p.st||'solid',dens:p.d||1,flam:p.f||0,cond:p.cd||0,hc:p.hc??0.5,desc:p.de||'',hiT:p.ht??Infinity,hiP:p.hp||null,loT:p.lt??-Infinity,loP:p.lp||null,grav:p.g||0,diff:p.df||0,loss:p.ls??0.9,wt:p.wt??50,life:0};}
+
+// 固体
+dE('STNE',{n:'石头',s:'STNE 固',c:'固体',co:'#808080',st:'solid',d:2.4,hc:0.5,de:'坚固石头',wt:80});
+dE('WOOD',{n:'木头',s:'WOOD 固',c:'固体',co:'#8B6914',st:'solid',d:0.6,f:50,hc:0.2,de:'可燃木材',wt:45});
+dE('METL',{n:'金属',s:'METL 固',c:'固体',co:'#A0A0B0',st:'solid',d:7.8,cd:1,hc:0.9,de:'导电金属',wt:100,ht:1223,hp:'LAVA'});
+dE('GLAS',{n:'玻璃',s:'GLAS 固',c:'固体',co:'#C0D0E0',st:'solid',d:2.5,hc:0.3,de:'透明玻璃',wt:70,ht:1500,hp:'LAVA'});
+dE('DMND',{n:'钻石',s:'DMND 固',c:'固体',co:'#B9F2FF',st:'solid',d:3.5,hc:1,de:'坚硬钻石',wt:55});
+dE('CONE',{n:'混凝土',s:'CONE 固',c:'固体',co:'#606060',st:'solid',d:2.3,hc:0.4,de:'坚固混凝土',wt:85});
+dE('BRCK',{n:'砖块',s:'BRCK 固',c:'固体',co:'#A0522D',st:'solid',d:1.9,hc:0.3,de:'耐火砖块',wt:75});
+dE('IRON',{n:'铁',s:'IRON 固',c:'固体',co:'#706050',st:'solid',d:7.8,cd:1,hc:0.8,de:'铁质材料',wt:100,ht:1811,hp:'LAVA'});
+dE('TUNG',{n:'钨',s:'TUNG 固',c:'固体',co:'#555555',st:'solid',d:19.3,cd:1,hc:0.9,de:'极高熔点钨',wt:120,ht:3695,hp:'LAVA'});
+dE('GOLD',{n:'金',s:'GOLD 固',c:'固体',co:'#FFD700',st:'solid',d:19.3,cd:1,hc:1,de:'金质导体',wt:115,ht:1337,hp:'LAVA'});
+dE('SILV',{n:'银',s:'SILV 固',c:'固体',co:'#C0C0C0',st:'solid',d:10.5,cd:1,hc:0.95,de:'银质导体',wt:110,ht:1235,hp:'LAVA'});
+dE('COPR',{n:'铜',s:'COPR 固',c:'固体',co:'#B87333',st:'solid',d:8.9,cd:1,hc:0.9,de:'铜质导体',wt:105,ht:1358,hp:'LAVA'});
+dE('ALUM',{n:'铝',s:'ALUM 固',c:'固体',co:'#A8A8A8',st:'solid',d:2.7,cd:1,hc:0.85,de:'轻质铝',wt:60,ht:933,hp:'LAVA'});
+dE('PLST',{n:'塑料',s:'PLST 固',c:'固体',co:'#E0E0E0',st:'solid',d:1.0,f:80,hc:0.1,de:'可燃塑料',wt:40,ht:400,hp:'LAVA'});
+dE('RUBR',{n:'橡胶',s:'RUBR 固',c:'固体',co:'#333333',st:'solid',d:1.1,f:90,hc:0.1,de:'弹性橡胶',wt:42,ht:350,hp:'LAVA'});
+dE('COTN',{n:'棉花',s:'COTN 固',c:'固体',co:'#F5F5DC',st:'solid',d:0.05,f:100,hc:0.05,de:'极易燃棉花',wt:5,ht:400,hp:'FIRE'});
+dE('WOOL',{n:'羊毛',s:'WOOL 固',c:'固体',co:'#F0E68C',st:'solid',d:0.1,f:95,hc:0.05,de:'可燃羊毛',wt:8,ht:350,hp:'FIRE'});
+dE('PAPR',{n:'纸',s:'PAPR 固',c:'固体',co:'#FFFFF0',st:'solid',d:0.7,f:100,hc:0.05,de:'极易燃纸',wt:3,ht:450,hp:'FIRE'});
+dE('ICRD',{n:'冰',s:'ICRD 固',c:'固体',co:'#B0E0FF',st:'solid',d:0.9,hc:0.5,de:'低温冰块',wt:35,ht:273,hp:'WATR'});
+dE('SALT',{n:'盐',s:'SALT 固',c:'固体',co:'#F0F0F0',st:'solid',d:2.2,hc:0.4,de:'食盐晶体',wt:50});
+
+// 粉末
+dE('SAND',{n:'沙子',s:'SAND 粉',c:'粉末',co:'#E8D44C',st:'powder',d:1.6,hc:0.4,de:'松散沙粒',wt:55,g:1.3,ht:1923,hp:'LAVA'});
+dE('DUST',{n:'尘埃',s:'DUST 粉',c:'粉末',co:'#CCBB99',st:'powder',d:0.5,f:100,hc:0.2,de:'易燃粉尘',wt:10,g:0.8,ht:500,hp:'FIRE'});
+dE('WAX',{n:'蜡',s:'WAX 粉',c:'粉末',co:'#FFE4B5',st:'powder',d:0.9,f:80,hc:0.1,de:'石蜡',wt:25,g:0.9,ht:340,hp:'LAVA'});
+dE('CLAY',{n:'黏土',s:'CLAY 粉',c:'粉末',co:'#CC7744',st:'powder',d:1.8,hc:0.3,de:'黏土粉末',wt:50,g:1.2});
+dE('COAL',{n:'煤',s:'COAL 粉',c:'粉末',co:'#333333',st:'powder',d:1.3,f:90,hc:0.2,de:'可燃煤炭',wt:50,g:1.1,ht:700,hp:'FIRE'});
+dE('SULR',{n:'硫磺',s:'SULR 粉',c:'粉末',co:'#C8C800',st:'powder',d:2.0,f:80,hc:0.3,de:'可燃硫磺',wt:48,g:1.2,ht:720,hp:'FIRE'});
+dE('NITR',{n:'硝石',s:'NITR 粉',c:'粉末',co:'#E8E8E8',st:'powder',d:2.1,hc:0.3,de:'硝酸钾',wt:55,g:1.2});
+dE('PHOS',{n:'磷',s:'PHOS 粉',c:'粉末',co:'#E8D8B0',st:'powder',d:1.8,f:100,hc:0.3,de:'自燃磷',wt:40,g:1.1,ht:317,hp:'FIRE'});
+dE('BONE',{n:'骨粉',s:'BONE 粉',c:'粉末',co:'#FFFFE0',st:'powder',d:1.5,hc:0.2,de:'骨骼粉末',wt:45,g:1.1});
+dE('RUST',{n:'铁锈',s:'RUST 粉',c:'粉末',co:'#8B4513',st:'powder',d:5.0,hc:0.3,de:'氧化铁',wt:85,g:1.2});
+
+// 液体
+dE('WATR',{n:'水',s:'WATR 液',c:'液体',co:'#2040C0',st:'liquid',d:1.0,hc:0.6,de:'普通水',wt:50,g:1.0,ht:373,hp:'WVAP',lt:273,lp:'ICRD'});
+dE('OIL',{n:'油',s:'OIL 液',c:'液体',co:'#302010',st:'liquid',d:0.8,f:90,hc:0.1,de:'可燃油',wt:35,g:0.9,ht:573,hp:'FIRE'});
+dE('LAVA',{n:'熔岩',s:'LAVA 液',c:'液体',co:'#FF4400',st:'liquid',d:3.0,hc:0.8,de:'极高温熔岩',wt:90,g:1.4,lt:923,lp:'STNE'});
+dE('ACID',{n:'酸液',s:'ACID 液',c:'液体',co:'#A8F040',st:'liquid',d:1.1,hc:0.4,de:'强腐蚀酸液',wt:48,g:1.0});
+dE('MERC',{n:'水银',s:'MERC 液',c:'液体',co:'#C0C0C0',st:'liquid',d:13.6,cd:1,hc:0.8,de:'液态汞',wt:130,g:1.5,lt:234,lp:'IRON'});
+dE('DWAT',{n:'蒸馏水',s:'DWAT 液',c:'液体',co:'#4060E0',st:'liquid',d:1.0,cd:0,hc:0.6,de:'纯净不导电水',wt:50,g:1.0,ht:373,hp:'WVAP'});
+dE('SWTR',{n:'咸水',s:'SWTR 液',c:'液体',co:'#1040A0',st:'liquid',d:1.03,cd:1,hc:0.6,de:'含盐海水',wt:52,g:1.0,ht:373,hp:'WVAP'});
+dE('LNTG',{n:'液态氮',s:'LNTG 液',c:'液体',co:'#80C0FF',st:'liquid',d:0.81,hc:0.9,de:'极低温液氮',wt:20,g:0.9,ht:77,hp:'N2GA'});
+dE('LOXY',{n:'液态氧',s:'LOXY 液',c:'液体',co:'#80C0D0',st:'liquid',d:1.14,cd:1,hc:0.7,de:'助燃液氧',wt:45,g:0.95,ht:90,hp:'O2GA'});
+dE('ALCO',{n:'酒精',s:'ALCO 液',c:'液体',co:'#D0D0E0',st:'liquid',d:0.79,f:100,hc:0.2,de:'可燃酒精',wt:30,g:0.85,ht:352,hp:'FIRE'});
+dE('SLTW',{n:'糖浆',s:'SLTW 液',c:'液体',co:'#8B4513',st:'liquid',d:1.3,hc:0.15,de:'粘稠糖浆',wt:60,g:0.6});
+dE('CAUS',{n:'碱液',s:'CAUS 液',c:'液体',co:'#E0C080',st:'liquid',d:1.1,hc:0.5,de:'腐蚀碱液',wt:48,g:1.0});
+dE('BGLA',{n:'熔融玻璃',s:'BGLA 液',c:'液体',co:'#FFE0B0',st:'liquid',d:2.2,hc:0.5,de:'高温熔融玻璃',wt:80,g:1.3,lt:1000,lp:'GLAS'});
+dE('DTUM',{n:'液态氘',s:'DTUM 液',c:'液体',co:'#40E0D0',st:'liquid',d:0.2,hc:0.3,de:'核聚变燃料',wt:15,g:0.7,ht:20,hp:'PLSM'});
+
+// 气体
+dE('WVAP',{n:'水蒸气',s:'WVAP 气',c:'气体',co:'#9090A0',st:'gas',d:0.001,hc:0.7,de:'热水蒸发',wt:1,g:-0.1,df:2,ls:0.98,lt:373,lp:'WATR'});
+dE('GAS',{n:'天然气',s:'GAS 气',c:'气体',co:'#808080',st:'gas',d:0.001,f:100,hc:0.3,de:'可燃气体',wt:1,g:-0.05,df:1.5,ls:0.98,ht:873,hp:'FIRE'});
+dE('SMOKE',{n:'烟雾',s:'SMOKE 气',c:'气体',co:'#404040',st:'gas',d:0.001,hc:0.2,de:'燃烧产物',wt:1,g:-0.15,df:1.2,ls:0.97,ht:800,hp:'FIRE'});
+dE('CO2',{n:'二氧化碳',s:'CO2 气',c:'气体',co:'#505050',st:'gas',d:0.002,hc:0.4,de:'灭火CO2',wt:2,g:0.05,df:1.8,ls:0.98});
+dE('O2GA',{n:'氧气',s:'O2 气',c:'气体',co:'#A0C0E0',st:'gas',d:0.001,hc:0.5,de:'助燃氧气',wt:1,g:-0.02,df:2,ls:0.98});
+dE('N2GA',{n:'氮气',s:'N2 气',c:'气体',co:'#B0B0C0',st:'gas',d:0.001,hc:0.4,de:'惰性氮气',wt:1,g:-0.02,df:2,ls:0.98});
+dE('H2GA',{n:'氢气',s:'H2 气',c:'气体',co:'#E0E0F0',st:'gas',d:0.0001,f:100,hc:0.6,de:'极轻可燃气',wt:0.1,g:-0.2,df:3,ls:0.98,ht:573,hp:'FIRE'});
+dE('CHMA',{n:'氯气',s:'CL2 气',c:'气体',co:'#80E080',st:'gas',d:0.003,hc:0.3,de:'有毒氯气',wt:3,g:0.05,df:1.5,ls:0.98});
+dE('AMN',{n:'氨气',s:'NH3 气',c:'气体',co:'#C0C0D0',st:'gas',d:0.001,hc:0.3,de:'刺激性氨气',wt:1.5,g:-0.05,df:1.8,ls:0.98});
+dE('STLM',{n:'蒸汽',s:'STLM 气',c:'气体',co:'#D0D0E0',st:'gas',d:0.0005,hc:0.8,de:'高温蒸汽',wt:0.5,g:-0.3,df:2.5,ls:0.98});
+dE('BIRL',{n:'丁烷',s:'C4H 气',c:'气体',co:'#909090',st:'gas',d:0.002,f:100,hc:0.3,de:'可燃丁烷',wt:2,g:-0.08,df:1.5,ls:0.98,ht:723,hp:'FIRE'});
+dE('MNGS',{n:'甲烷',s:'CH4 气',c:'气体',co:'#707070',st:'gas',d:0.001,f:100,hc:0.3,de:'可燃甲烷',wt:1,g:-0.05,df:1.8,ls:0.98,ht:810,hp:'FIRE'});
+dE('VOX',{n:'毒气',s:'VOX 气',c:'气体',co:'#608060',st:'gas',d:0.002,hc:0.2,de:'致命毒气',wt:2,g:0.02,df:1.5,ls:0.98});
+
+// 爆炸物
+dE('GUNP',{n:'火药',s:'GUNP 粉',c:'爆炸物',co:'#303030',st:'powder',d:1.5,f:100,hc:0.3,de:'经典火药',wt:55,g:1.2,ht:503,hp:'FIRE'});
+dE('C4',{n:'C4炸药',s:'C4 爆',c:'爆炸物',co:'#C8C8A0',st:'solid',d:1.4,hc:0.2,de:'强力C4',wt:60,ht:600,hp:'FIRE'});
+dE('NITG',{n:'硝化甘油',s:'NITG 液',c:'爆炸物',co:'#D0C080',st:'liquid',d:1.6,f:100,hc:0.3,de:'极不稳定',wt:65,g:1.1,ht:503,hp:'FIRE'});
+dE('FIRW',{n:'烟火',s:'FIRW 粉',c:'爆炸物',co:'#FF4444',st:'powder',d:1.2,f:100,hc:0.2,de:'美丽烟火',wt:40,g:1.0,ht:503,hp:'FIRE'});
+dE('THER',{n:'热剂',s:'THER 粉',c:'爆炸物',co:'#CC8800',st:'powder',d:3.0,f:90,hc:0.3,de:'铝热剂',wt:80,g:1.3,ht:600,hp:'FIRE'});
+dE('BOMB',{n:'炸弹',s:'BOMB 爆',c:'爆炸物',co:'#404040',st:'solid',d:5.0,hc:0.2,de:'高爆炸弹',wt:100,ht:503,hp:'FIRE'});
+dE('IGNC',{n:'导火索',s:'IGNC 固',c:'爆炸物',co:'#FF6600',st:'solid',d:1.0,f:100,hc:0.2,de:'燃烧导火索',wt:30,ht:403,hp:'FIRE'});
+dE('CFLM',{n:'冷焰',s:'CFLM 固',c:'爆炸物',co:'#00CCFF',st:'solid',d:0.1,hc:0.1,de:'低温等离子',wt:1,ht:3000,hp:'PLSM'});
+
+// 火焰/等离子
+dE('FIRE',{n:'火焰',s:'FIRE 火',c:'火焰',co:'#FF6600',st:'plasma',d:0.0001,hc:0,de:'燃烧火焰',wt:0,g:-0.3,df:3,ls:0.95});
+dE('PLSM',{n:'等离子',s:'PLSM 等',c:'火焰',co:'#FF40FF',st:'plasma',d:0.0001,cd:1,hc:0,de:'高温等离子',wt:0,g:-0.5,df:4,ls:0.93,ht:9999,lt:1000,lp:'FIRE'});
+dE('THDR',{n:'闪电',s:'THDR 电',c:'特殊',co:'#FFFF80',st:'plasma',d:0.0001,cd:1,hc:0,de:'高压闪电',wt:0,g:-0.5,df:5,ls:0.9,ht:5000,lt:1000,lp:'FIRE'});
+dE('ELEC',{n:'电子',s:'ELEC 粒',c:'特殊',co:'#80FFFF',st:'plasma',d:0.00001,cd:1,hc:0,de:'高速电子',wt:0,g:0,df:5,ls:0.9});
+
+// 特殊
+dE('CLNE',{n:'克隆体',s:'CLNE 特',c:'特殊',co:'#FF88FF',st:'solid',d:1.0,hc:0.5,de:'克隆相邻粒子',wt:50});
+dE('PCLN',{n:'动力克隆',s:'PCLN 特',c:'特殊',co:'#FF66FF',st:'solid',d:1.0,cd:1,hc:0.5,de:'通电才克隆',wt:50});
+dE('VOID',{n:'真空区',s:'VOID 特',c:'特殊',co:'#101010',st:'solid',d:99,hc:0,de:'吞噬粒子',wt:999});
+dE('BHOL',{n:'黑洞',s:'BHOL 特',c:'特殊',co:'#000000',st:'solid',d:999,hc:0,de:'极强引力',wt:9999});
+dE('DLAY',{n:'延时器',s:'DLAY 特',c:'特殊',co:'#CC88CC',st:'solid',d:3.0,cd:1,hc:0.3,de:'延迟传导',wt:60});
+dE('PIPE',{n:'管道',s:'PIPE 特',c:'特殊',co:'#888888',st:'solid',d:5.0,hc:0.8,de:'传输粒子',wt:80});
+dE('FRME',{n:'框架',s:'FRME 特',c:'特殊',co:'#999999',st:'solid',d:3.0,hc:0.3,de:'活塞框架',wt:60});
+dE('PSTN',{n:'活塞',s:'PSTN 特',c:'特殊',co:'#AA8844',st:'solid',d:5.0,cd:1,hc:0.3,de:'推动粒子',wt:70});
+dE('HSWC',{n:'热开关',s:'HSWC 特',c:'特殊',co:'#CC4444',st:'solid',d:3.0,cd:1,hc:0.5,de:'通电导热',wt:60});
+
+// 生命
+dE('YEAST',{n:'酵母',s:'YEAST 生',c:'生命',co:'#E8D8B0',st:'powder',d:0.8,hc:0.2,de:'温暖繁殖',wt:25,g:1.0,ht:330,hp:'DUST'});
+dE('SEED',{n:'种子',s:'SEED 生',c:'生命',co:'#8B6914',st:'powder',d:0.9,hc:0.2,de:'遇水生长',wt:20,g:1.0});
+dE('PLNT',{n:'植物',s:'PLNT 生',c:'生命',co:'#228B22',st:'solid',d:0.5,f:90,hc:0.1,de:'生长植物',wt:15,ht:400,hp:'FIRE'});
+dE('VIRS',{n:'病毒',s:'VIRS 病',c:'生命',co:'#A040A0',st:'powder',d:0.3,hc:0.1,de:'传染病毒',wt:5,g:0.8});
+
+// 电子
+dE('BTRY',{n:'电池',s:'BTRY 电',c:'电子',co:'#FFCC00',st:'solid',d:5.0,cd:1,hc:0.5,de:'持续电流',wt:80});
+dE('SWCH',{n:'开关',s:'SWCH 电',c:'电子',co:'#00CC00',st:'solid',d:3.0,cd:1,hc:0.3,de:'电子开关',wt:60});
+dE('PSCN',{n:'P型硅',s:'PSCN 半',c:'电子',co:'#CC4444',st:'solid',d:2.3,cd:1,hc:0.5,de:'P型半导体',wt:55});
+dE('NSCN',{n:'N型硅',s:'NSCN 半',c:'电子',co:'#4444CC',st:'solid',d:2.3,cd:1,hc:0.5,de:'N型半导体',wt:55});
+dE('INWR',{n:'绝缘线',s:'INWR 电',c:'电子',co:'#666666',st:'solid',d:2.0,hc:0.2,de:'绝缘导线',wt:40});
+dE('INST',{n:'瞬时线',s:'INST 电',c:'电子',co:'#66CCFF',st:'solid',d:2.0,cd:1,hc:0.5,de:'瞬时传导',wt:45});
+dE('PUMP',{n:'泵',s:'PUMP 电',c:'电子',co:'#CC6600',st:'solid',d:4.0,hc:0.3,de:'增加压力',wt:70});
+dE('PVOD',{n:'虚空',s:'PVOD 电',c:'电子',co:'#202020',st:'solid',d:99,hc:0,de:'吞噬粒子',wt:999});
+dE('PTCT',{n:'正温系数',s:'PTCT 电',c:'电子',co:'#CC8888',st:'solid',d:2.0,cd:1,hc:0.5,de:'热时断开',wt:50});
+dE('NTCT',{n:'负温系数',s:'NTCT 电',c:'电子',co:'#8888CC',st:'solid',d:2.0,cd:1,hc:0.5,de:'冷时断开',wt:50});
+
+// 工具
+dE('HEAT',{n:'加热器',s:'HEAT 工',c:'工具',co:'#FF2200',st:'solid',d:1.0,hc:1,de:'持续加热',wt:50});
+dE('COOL',{n:'冷却器',s:'COOL 工',c:'工具',co:'#0066FF',st:'solid',d:1.0,hc:1,de:'持续冷却',wt:50});
+
+// 墙壁
+dE('BRCW',{n:'砖墙',s:'BRCW 墙',c:'墙壁',co:'#8B4513',st:'wall',d:999,hc:0.1,de:'不可破坏',wt:9999});
+dE('METW',{n:'金属墙',s:'METW 墙',c:'墙壁',co:'#A0A0B0',st:'wall',d:999,cd:1,hc:0.8,de:'导电墙',wt:9999});
+dE('GLAW',{n:'玻璃墙',s:'GLAW 墙',c:'墙壁',co:'#C0D0E0',st:'wall',d:999,hc:0.3,de:'透明墙',wt:9999});
+dE('NDGW',{n:'不可破坏',s:'NDGW 墙',c:'墙壁',co:'#404040',st:'wall',d:999,hc:0,de:'绝对坚固',wt:9999});
+
+const RT=295.15,MT=9999,mT=0;
+function gI(x,y){return y*GW+x;}
+function inB(x,y){return x>=0&&x<GW&&y>=0&&y<GH;}
+function gT(x,y){return inB(x,y)?tempG[gI(x,y)]:RT;}
+function sT(x,y,t){if(inB(x,y))tempG[gI(x,y)]=Math.max(mT,Math.min(MT,t));}
+function gP(x,y){return inB(x,y)?grid[gI(x,y)]:null;}
+function eM(x,y){return inB(x,y)&&grid[gI(x,y)]===null;}
+function iS(x,y,t){const p=gP(x,y);return p&&p.type===t;}
+
+function mvP(x1,y1,x2,y2){
+  if(!inB(x1,y1)||!inB(x2,y2))return false;
+  const i1=gI(x1,y1),i2=gI(x2,y2);
+  const t=grid[i1];grid[i1]=grid[i2];grid[i2]=t;
+  if(grid[i1]){grid[i1].x=x1;grid[i1].y=y1;}
+  if(grid[i2]){grid[i2].x=x2;grid[i2].y=y2;}
+  const tt=tempG[i1];tempG[i1]=tempG[i2];tempG[i2]=tt;
+  const vx=vxG[i1];vxG[i1]=vxG[i2];vxG[i2]=vx;
+  const vy=vyG[i1];vyG[i1]=vyG[i2];vyG[i2]=vy;
+  return true;
+}
+
+function cP(x,y,type,tmp){
+  if(!inB(x,y))return null;
+  const d=EL[type];if(!d)return null;
+  const p={x,y,type,tmp:tmp!==undefined?tmp:gT(x,y)||RT,life:0,tmp2:0};
+  grid[gI(x,y)]=p;tempG[gI(x,y)]=p.tmp;return p;
+}
+
+function rP(x,y){if(!inB(x,y))return;const i=gI(x,y);grid[i]=null;tempG[i]=RT;vxG[i]=0;vyG[i]=0;}
+
+function mP(x1,y1,x2,y2){
+  if(!eM(x2,y2))return false;
+  const i1=gI(x1,y1),i2=gI(x2,y2);
+  const p=grid[i1];grid[i2]=p;grid[i1]=null;
+  tempG[i2]=tempG[i1];tempG[i1]=RT;
+  vxG[i2]=vxG[i1];vxG[i1]=0;
+  vyG[i2]=vyG[i1];vyG[i1]=0;
+  if(p){p.x=x2;p.y=y2;}
+  return true;
+}
+
+function iPow(t){return EL[t]&&EL[t].state==='powder';}
+function iLiq(t){return EL[t]&&EL[t].state==='liquid';}
+function iGas(t){return EL[t]&&EL[t].state==='gas';}
+function iSol(t){const d=EL[t];return d&&(d.state==='solid'||d.state==='wall');}
+function iFlm(t){return EL[t]&&EL[t].flam>0;}
+
+function adj(x,y){const a=[];[[0,-1],[0,1],[-1,0],[1,0]].forEach(([dx,dy])=>{const nx=x+dx,ny=y+dy;if(inB(nx,ny)&&gP(nx,ny))a.push(gP(nx,ny));});return a;}
+function cntAdj(x,y,t){let c=0;[[0,-1],[0,1],[-1,0],[1,0]].forEach(([dx,dy])=>{if(iS(x+dx,y+dy,t))c++;});return c;}
+
+function hCond(x1,y1,x2,y2,f){
+  const t1=gT(x1,y1),t2=gT(x2,y2),df=t1-t2;
+  if(Math.abs(df)<0.1)return;
+  const r=df*0.1*f*simHC;
+  sT(x1,y1,t1-r);sT(x2,y2,t2+r);
+}
+
+// 粉末更新
+function uPow(p){
+  const g=0.1*simGrav*(EL[p.type].g||1);
+  if(eM(p.x,p.y+1)){mP(p.x,p.y,p.x,p.y+1);p.y++;}
+  else{
+    const lf=Math.random()<0.5,d1=lf?-1:1,d2=lf?1:-1;
+    if(eM(p.x+d1,p.y+1)){mP(p.x,p.y,p.x+d1,p.y+1);p.x+=d1;p.y++;}
+    else if(eM(p.x+d2,p.y+1)){mP(p.x,p.y,p.x+d2,p.y+1);p.x+=d2;p.y++;}
+    else if(simWind!==0&&eM(p.x+(simWind>0?1:-1),p.y)){mP(p.x,p.y,p.x+(simWind>0?1:-1),p.y);p.x+=simWind>0?1:-1;}
+  }
+}
+
+// 液体更新
+function uLiq(p){
+  if(eM(p.x,p.y+1)){mP(p.x,p.y,p.x,p.y+1);p.y++;return;}
+  const lf=Math.random()<0.5,d1=lf?-1:1,d2=lf?1:-1;
+  if(eM(p.x+d1,p.y+1)){mP(p.x,p.y,p.x+d1,p.y+1);p.x+=d1;p.y++;}
+  else if(eM(p.x+d2,p.y+1)){mP(p.x,p.y,p.x+d2,p.y+1);p.x+=d2;p.y++;}
+  else if(eM(p.x+d1,p.y)){mP(p.x,p.y,p.x+d1,p.y);p.x+=d1;}
+  else if(eM(p.x+d2,p.y)){mP(p.x,p.y,p.x+d2,p.y);p.x+=d2;}
+}
+
+// 气体更新
+function uGas(p){
+  const d=EL[p.type],g=d.g||-0.05;
+  const dy=Math.random()<Math.abs(g)?(g>0?1:-1):0;
+  const dx=Math.floor(Math.random()*3)-1;
+  const nx=p.x+dx,ny=p.y+dy;
+  if(inB(nx,ny)&&eM(nx,ny)){mP(p.x,p.y,nx,ny);p.x=nx;p.y=ny;}
+  else{
+    const rx=Math.floor(Math.random()*3)-1,ry=Math.floor(Math.random()*3)-1;
+    if(inB(p.x+rx,p.y+ry)&&eM(p.x+rx,p.y+ry)){mP(p.x,p.y,p.x+rx,p.y+ry);p.x+=rx;p.y+=ry;}
+  }
+}
+
+// 等离子更新
+function uPlas(p){
+  p.life++;if(p.life>50&&p.type!=='THDR'&&p.type!=='ELEC'){rP(p.x,p.y);return;}
+  const dy=Math.floor(Math.random()*3)-2,dx=Math.floor(Math.random()*3)-1;
+  const nx=p.x+dx,ny=p.y+dy;
+  if(inB(nx,ny)&&eM(nx,ny))mP(p.x,p.y,nx,ny);
+}
+
+// 火焰
+function uFire(p){
+  p.life++;
+  if(p.life>40){if(Math.random()<0.3&&eM(p.x,p.y-1))cP(p.x,p.y-1,'SMOKE',p.tmp);rP(p.x,p.y);return;}
+  if(Math.random()<0.15){
+    [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+      const np=gP(p.x+dx,p.y+dy);
+      if(np&&iFlm(np.type)&&Math.random()*100<EL[np.type].flam){
+        rP(p.x+dx,p.y+dy);cP(p.x+dx,p.y+dy,'FIRE',np.tmp+200);
+      }
+    });
+  }
+  sT(p.x,p.y,gT(p.x,p.y)+20);
+  if(eM(p.x,p.y-1)){mP(p.x,p.y,p.x,p.y-1);p.y--;}
+}
+
+// 克隆
+function uClone(p){
+  p.life++;if(p.life%5!==0)return;
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&np.type!=='CLNE'&&np.type!=='PCLN'){
+      const nx=p.x+dx*2,ny=p.y+dy*2;
+      if(eM(nx,ny))cP(nx,ny,np.type,gT(p.x+dx,p.y+dy));
+    }
+  });
+}
+
+// 虚空
+function uVoid(p){
+  [[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]].forEach(([dx,dy])=>{
+    if(gP(p.x+dx,p.y+dy))rP(p.x+dx,p.y+dy);
+  });
+}
+
+// 黑洞
+function uBH(p){
+  for(let r=1;r<10;r++){
+    for(let a=0;a<8;a++){
+      const dx=Math.round(Math.cos(a*Math.PI/4)*r),dy=Math.round(Math.sin(a*Math.PI/4)*r);
+      const np=gP(p.x+dx,p.y+dy);
+      if(np&&Math.random()<1/Math.sqrt(dx*dx+dy*dy)){rP(p.x+dx,p.y+dy);sT(p.x,p.y,gT(p.x,p.y)+100);}
+    }
+  }
+}
+
+// 种子
+function uSeed(p){
+  if(!eM(p.x,p.y+1))return;
+  if(cntAdj(p.x,p.y,'WATR')>0||gT(p.x,p.y)>300){
+    if(eM(p.x,p.y-1)){cP(p.x,p.y-1,'PLNT',gT(p.x,p.y));rP(p.x,p.y);}
+  }
+}
+
+// 植物
+function uPlant(p){
+  p.life++;if(p.life%100!==0)return;
+  if(eM(p.x,p.y-1)&&Math.random()<0.3)cP(p.x,p.y-1,'PLNT',gT(p.x,p.y));
+  if(Math.random()<0.1){const dx=Math.random()<0.5?-1:1;if(eM(p.x+dx,p.y)&&eM(p.x+dx,p.y-1))cP(p.x+dx,p.y-1,'PLNT',gT(p.x,p.y));}
+}
+
+// 酵母
+function uYeast(p){
+  p.life++;if(p.life%30!==0)return;
+  if(gT(p.x,p.y)>290&&gT(p.x,p.y)<320&&(cntAdj(p.x,p.y,'WATR')>0||cntAdj(p.x,p.y,'WVAP')>0)){
+    [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{if(eM(p.x+dx,p.y+dy)){cP(p.x+dx,p.y+dy,'YEAST',gT(p.x,p.y));}});
+    if(eM(p.x,p.y-1))cP(p.x,p.y-1,'CO2',gT(p.x,p.y)+50);
+  }
+}
+
+// 病毒
+function uVirus(p){
+  p.life++;if(p.life%20!==0)return;
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&np.type!=='VIRS'&&np.type!=='VOID'&&np.type!=='BHOL'&&!iSol(np.type)&&Math.random()<0.1){
+      rP(p.x+dx,p.y+dy);cP(p.x+dx,p.y+dy,'VIRS',gT(p.x,p.y));
+    }
+  });
+}
+
+// 水
+function uWater(p){
+  if(gT(p.x,p.y)>350&&Math.random()<0.02){rP(p.x,p.y);cP(p.x,p.y,'WVAP',gT(p.x,p.y));}
+}
+
+// 酸
+function uAcid(p){
+  p.life++;if(p.life%3!==0)return;
+  [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&np.type!=='ACID'&&np.type!=='VOID'&&np.type!=='BHOL'&&np.type!=='BRCW'&&np.type!=='NDGW'){
+      if(!iSol(np.type)||EL[np.type].wt<50){
+        if(Math.random()<0.05){
+          rP(p.x+dx,p.y+dy);
+          if(Math.random()<0.3){rP(p.x,p.y);cP(p.x,p.y,'SMOKE',gT(p.x,p.y));}
+        }
+      }
+    }
+  });
+}
+
+// 熔岩
+function uLava(p){
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&iFlm(np.type)&&Math.random()<0.3){rP(p.x+dx,p.y+dy);cP(p.x+dx,p.y+dy,'FIRE',p.tmp);}
+  });
+  if(gT(p.x,p.y)<1000)sT(p.x,p.y,gT(p.x,p.y)-1);
+}
+
+// 硝石
+function uNiter(p){
+  p.life++;if(p.life%20!==0)return;
+  if(gT(p.x,p.y)>600){
+    for(let r=1;r<5;r++){
+      for(let a=0;a<8;a++){
+        const dx=Math.round(Math.cos(a*Math.PI/4)*r),dy=Math.round(Math.sin(a*Math.PI/4)*r);
+        const nx=p.x+dx,ny=p.y+dy;
+        if(inB(nx,ny)&&(eM(nx,ny)||iPow(gP(nx,ny)?.type)||iLiq(gP(nx,ny)?.type))){
+          if(Math.random()<0.5){rP(nx,ny);cP(nx,ny,'FIRE',p.tmp+500);}
+        }
+      }
+    }
+    rP(p.x,p.y);
+  }
+}
+
+// C4
+function uC4(p){
+  p.life++;if(p.life%10!==0)return;
+  if(gT(p.x,p.y)>600){
+    for(let r=1;r<12;r++){
+      for(let a=0;a<8;a++){
+        const dx=Math.round(Math.cos(a*Math.PI/4)*r),dy=Math.round(Math.sin(a*Math.PI/4)*r);
+        const nx=p.x+dx,ny=p.y+dy;
+        if(inB(nx,ny)){
+          const np=gP(nx,ny);
+          if(np&&np.type!=='BRCW'&&np.type!=='NDGW')rP(nx,ny);
+          if(Math.random()<0.7/r)cP(nx,ny,'FIRE',3000);
+        }
+      }
+    }
+    rP(p.x,p.y);
+  }
+}
+
+// 火药
+function uGunpowder(p){
+  p.life++;if(p.life%15!==0)return;
+  if(gT(p.x,p.y)>500){
+    for(let r=1;r<8;r++){
+      for(let a=0;a<8;a++){
+        const dx=Math.round(Math.cos(a*Math.PI/4)*r),dy=Math.round(Math.sin(a*Math.PI/4)*r);
+        const nx=p.x+dx,ny=p.y+dy;
+        if(inB(nx,ny)){
+          const np=gP(nx,ny);
+          if(np&&np.type!=='BRCW'&&np.type!=='NDGW')rP(nx,ny);
+          if(Math.random()<0.6/r)cP(nx,ny,'FIRE',2000);
+        }
+      }
+    }
+    rP(p.x,p.y);
+  }
+}
+
+// 热剂
+function uThermite(p){
+  p.life++;if(p.life%10!==0)return;
+  if(gT(p.x,p.y)>600){
+    for(let r=1;r<6;r++){
+      for(let a=0;a<8;a++){
+        const dx=Math.round(Math.cos(a*Math.PI/4)*r),dy=Math.round(Math.sin(a*Math.PI/4)*r);
+        const nx=p.x+dx,ny=p.y+dy;
+        if(inB(nx,ny)){
+          const np=gP(nx,ny);
+          if(np&&np.type!=='BRCW'&&np.type!=='NDGW')rP(nx,ny);
+          if(Math.random()<0.8/r){cP(nx,ny,'FIRE',5000);sT(nx,ny,5000);}
+        }
+      }
+    }
+    rP(p.x,p.y);
+  }
+}
+
+// CO2灭火
+function uCO2(p){
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&np.type==='FIRE'&&Math.random()<0.2)rP(p.x+dx,p.y+dy);
+  });
+}
+
+// O2助燃
+function uO2(p){
+  [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+    const np=gP(p.x+dx,p.y+dy);
+    if(np&&np.type==='FIRE')sT(p.x+dx,p.y+dy,gT(p.x+dx,p.y+dy)+10);
+  });
+}
+
+// 主循环
+function uSim(){
+  if(paused)return;
+  pG.fill(0);
+  for(let y=GH-1;y>=0;y--){
+    for(let x=0;x<GW;x++){
+      const p=gP(x,y);if(!p)continue;
+      const d=EL[p.type];if(!d)continue;
+      p.life++;
+      // 环境热
+      const at=simAmbT,ct=gT(x,y);
+      if(Math.abs(at-ct)>0.01)sT(x,y,ct+(at-ct)*0.0002);
+      // 热传导
+      if(d.hc>0){
+        [[1,0],[0,1],[-1,0],[0,-1]].forEach(([dx,dy])=>{
+          const np=gP(x+dx,y+dy);
+          if(np&&EL[np.type]&&EL[np.type].hc>0)hCond(x,y,x+dx,y+dy,(d.hc+EL[np.type].hc)/2);
+        });
+      }
+      // 相变
+      const tmp=gT(x,y);
+      if(d.hiT!==Infinity&&tmp>=d.hiT&&d.hiP){cP(x,y,d.hiP,tmp);continue;}
+      if(d.loT!==-Infinity&&tmp<=d.loT&&d.loP){cP(x,y,d.loP,tmp);continue;}
+      // 运动
+      if(d.state==='powder')uPow(p);
+      else if(d.state==='liquid')uLiq(p);
+      else if(d.state==='gas')uGas(p);
+      else if(d.state==='plasma')uPlas(p);
+      // 特殊行为
+      if(p.type==='FIRE')uFire(p);
+      else if(p.type==='CLNE'||p.type==='PCLN')uClone(p);
+      else if(p.type==='VOID')uVoid(p);
+      else if(p.type==='BHOL')uBH(p);
+      else if(p.type==='SEED')uSeed(p);
+      else if(p.type==='PLNT')uPlant(p);
+      else if(p.type==='YEAST')uYeast(p);
+      else if(p.type==='VIRS')uVirus(p);
+      else if(p.type==='WATR')uWater(p);
+      else if(p.type==='ACID')uAcid(p);
+      else if(p.type==='LAVA')uLava(p);
+      else if(p.type==='NITR')uNiter(p);
+      else if(p.type==='C4')uC4(p);
+      else if(p.type==='GUNP')uGunpowder(p);
+      else if(p.type==='CO2')uCO2(p);
+      else if(p.type==='O2GA')uO2(p);
+      else if(p.type==='THER')uThermite(p);
+      // 化学反应
+      if(p.life%5===0){
+        [[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{
+          const np=gP(x+dx,y+dy);if(!np)return;
+          if(p.type==='WATR'&&np.type==='SALT'&&Math.random()<0.1){rP(x,y);rP(x+dx,y+dy);cP(x,y,'SWTR',gT(x,y));}
+          if(p.type==='OIL'&&np.type==='FIRE'&&Math.random()<0.2){rP(x,y);cP(x,y,'FIRE',gT(x,y)+500);}
+          if(p.type==='H2GA'&&np.type==='O2GA'&&gT(x,y)>500&&Math.random()<0.1){rP(x,y);rP(x+dx,y+dy);cP(x,y,'WVAP',gT(x,y));}
+          if(p.type==='THER'&&np.type==='IRON'&&Math.random()<0.1&&gT(x,y)>600){rP(x+dx,y+dy);cP(x+dx,y+dy,'LAVA',4000);}
+          if(p.type==='PLNT'&&np.type==='FIRE'&&Math.random()<0.3){rP(x,y);cP(x,y,'FIRE',gT(x,y));}
+          if(p.type==='WOOD'&&np.type==='FIRE'&&Math.random()<0.2){rP(x,y);cP(x,y,'COAL',gT(x,y));}
+          if(p.type==='LAVA'&&np.type==='WATR'&&Math.random()<0.5){rP(x,y);cP(x,y,'STNE',gT(x,y)-200);rP(x+dx,y+dy);cP(x+dx,y+dy,'WVAP',gT(x+dx,y+dy)+100);}
+          if(p.type==='LAVA'&&np.type==='SAND'&&Math.random()<0.3){rP(x+dx,y+dy);cP(x+dx,y+dy,'GLAS',gT(x,y));}
+          if(p.type==='ICE'&&np.type==='WATR'&&Math.random()<0.1&&gT(x,y)<280){rP(x+dx,y+dy);cP(x+dx,y+dy,'ICRD',gT(x,y));}
+          if(p.type==='N2GA'&&np.type==='O2GA'&&gT(x,y)>2000&&Math.random()<0.02){rP(x,y);rP(x+dx,y+dy);cP(x,y,'SMOKE',gT(x,y));}
+        });
+      }
+    }
+  }
+}
+
+// 渲染
+function h2r(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function t2c(t){const n=Math.max(0,Math.min(1,(t-200)/3000));if(n<0.25)return[n*4*100|0,n*4*50|0,100+n*4*155|0];if(n<0.5)return[100+(n-0.25)*4*155|0,50+(n-0.25)*4*100|0,255-(n-0.25)*4*100|0];if(n<0.75)return[255,150+(n-0.5)*4*105|0,155-(n-0.5)*4*155|0];return[255,255,(n-0.75)*4*100|0];}
+
+function render(){
+  if(!ctx)return;
+  const w=canvas.width,h=canvas.height;
+  ctx.fillStyle='#111';ctx.fillRect(0,0,w,h);
+  const id=ctx.createImageData(GW,GH),d=id.data;
+  for(let y=0;y<GH;y++){
+    for(let x=0;x<GW;x++){
+      const i=(y*GW+x)*4,p=gP(x,y);
+      if(p){
+        const col=EL[p.type]?.col||'#888';
+        let rgb=h2r(col);
+        if(visMode==='heat'){const tc=t2c(gT(x,y));rgb=[rgb[0]*0.4+tc[0]*0.6|0,rgb[1]*0.4+tc[1]*0.6|0,rgb[2]*0.4+tc[2]*0.6|0];}
+        if(p.type==='FIRE'||p.type==='PLSM'){const l=Math.sin(p.life*0.5)*30;rgb[0]=Math.min(255,Math.max(0,rgb[0]+l))|0;rgb[1]=Math.min(255,Math.max(0,rgb[1]+l*0.5))|0;}
+        d[i]=rgb[0];d[i+1]=rgb[1];d[i+2]=rgb[2];d[i+3]=255;
+      } else if(visMode==='press'){
+        const pr=pG[gI(x,y)];
+        if(Math.abs(pr)>0.1){d[i]=pr>0?Math.min(255,pr*50|0):0;d[i+1]=Math.abs(pr)*20|0;d[i+2]=pr<0?Math.min(255,-pr*50|0):0;d[i+3]=100;}
+      }
+    }
+  }
+  ctx.putImageData(id,0,0);
+  ctx.imageSmoothingEnabled=false;ctx.drawImage(canvas,0,0,GW,GH,0,0,w,h);
+  if(showGrid){ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=0.5;for(let x=0;x<GW;x+=10){ctx.beginPath();ctx.moveTo(x*CS,0);ctx.lineTo(x*CS,h);ctx.stroke();}for(let y=0;y<GH;y+=10){ctx.beginPath();ctx.moveTo(0,y*CS);ctx.lineTo(w,y*CS);ctx.stroke();}}
+}
+
+// 交互
+function gGP(cx,cy){const r=canvas.getBoundingClientRect();return{x:Math.floor((cx-r.left)*GW/r.width),y:Math.floor((cy-r.top)*GH/r.height)};}
+
+function aBr(x,y,type,sz,sh){
+  const h=Math.floor(sz/2);
+  for(let dy=-h;dy<=h;dy++){
+    for(let dx=-h;dx<=h;dx++){
+      const nx=x+dx,ny=y+dy;if(!inB(nx,ny))continue;
+      let draw=sh==='circle'?dx*dx+dy*dy<=h*h:true;
+      if(!draw)continue;
+      if(curTool==='draw'){if(eM(nx,ny))cP(nx,ny,type,RT+(EL[type]?.tmp||0));}
+      else if(curTool==='erase')rP(nx,ny);
+      else if(curTool==='heat')sT(nx,ny,gT(nx,ny)+50);
+      else if(curTool==='cool')sT(nx,ny,gT(nx,ny)-50);
+      else if(curTool==='press')pG[gI(nx,ny)]+=0.5;
+      else if(curTool==='vacuum')pG[gI(nx,ny)]-=0.5;
+      else if(curTool==='sample'){const pp=gP(nx,ny);if(pp){selElem(pp.type);curTool='draw';uToolBtns();}}
+    }
+  }
+}
+
+function onMD(e){e.preventDefault();mDown=true;const p=gGP(e.clientX,e.clientY);mX=p.x;mY=p.y;if(e.button===2)curTool='erase';aBr(p.x,p.y,curElem,brushSz,brushSh);}
+function onMM(e){const p=gGP(e.clientX,e.clientY);mX=p.x;mY=p.y;document.getElementById('mouse-pos').textContent=`位置: ${p.x},${p.y}`;const pp=gP(p.x,p.y);if(pp)document.getElementById('temp-info').textContent=`${EL[pp.type]?.name||pp.type} | ${Math.round(gT(p.x,p.y)-273.15)}°C`;else document.getElementById('temp-info').textContent=`温度: ${Math.round(gT(p.x,p.y)-273.15)}°C`;if(mDown)aBr(p.x,p.y,curElem,brushSz,brushSh);}
+function onMU(e){mDown=false;if(e.button===2)curTool='draw';}
+
+// UI
+function selElem(t){
+  curElem=t;const d=EL[t];
+  document.querySelectorAll('.elem-btn').forEach(b=>b.classList.toggle('selected',b.dataset.type===t));
+  uBrushInfo();
+  if(d)document.getElementById('elem-desc').innerHTML=`<b>${d.name}</b> (${d.sym})<br>${d.desc}<br><span style="color:#888;">密度: ${d.dens}</span>${d.flam?`<br><span style="color:#f80;">可燃: ${d.flam}%</span>`:''}${d.cond?`<br><span style="color:#0af;">导电</span>`:''}`;
+}
+
+function uBrushInfo(){
+  const d=EL[curElem];
+  const tn=curTool==='draw'?'画笔':curTool==='erase'?'擦除':curTool==='heat'?'加热':curTool==='cool'?'冷却':curTool==='sample'?'取样':curTool==='press'?'增压':'抽空';
+  document.getElementById('brush-info').textContent=`${tn}: ${d?.name||curElem}(${curElem}) | 大小: ${brushSz}`;
+  document.getElementById('brush-size-val').textContent=brushSz;
+}
+
+function setTool(t){curTool=t;uToolBtns();uBrushInfo();}
+function uToolBtns(){document.querySelectorAll('#right-panel .vis-btn').forEach(b=>b.classList.remove('active'));const b=document.getElementById(`tool-${curTool}`);if(b)b.classList.add('active');}
+function togglePause(){paused=!paused;document.getElementById('btn-pause').textContent=paused?'▶ 继续':'⏸ 暂停';document.getElementById('btn-pause').classList.toggle('active',paused);}
+function toggleVis(m){if(visMode===m){visMode=null;document.querySelectorAll('#topbar .tb-btn').forEach(b=>b.classList.remove('active'));}else{visMode=m;document.getElementById('btn-heat').classList.toggle('active',m==='heat');document.getElementById('btn-press').classList.toggle('active',m==='press');document.getElementById('btn-vel').classList.toggle('active',m==='vel');}}
+function resetSim(){if(confirm('确定重置？')){grid.fill(null);tempG.fill(RT);vxG.fill(0);vyG.fill(0);pG.fill(0);}}
+function clearSim(){grid.fill(null);tempG.fill(RT);vxG.fill(0);vyG.fill(0);pG.fill(0);}
+
+// 保存/加载
+function saveSave(){
+  const data={v:'1.0',w:GW,h:GH,p:[]};
+  for(let y=0;y<GH;y++)for(let x=0;x<GW;x++){const p=gP(x,y);if(p)data.p.push({x,y,type:p.type,tmp:Math.round(gT(x,y)*10)/10});}
+  document.getElementById('modal-title').textContent='💾 保存数据';
+  document.getElementById('modal-text').value=JSON.stringify(data);
+  document.getElementById('modal-overlay').classList.add('show');modalAct='save';
+}
+function loadSave(){document.getElementById('modal-title').textContent='📂 加载数据';document.getElementById('modal-text').value='';document.getElementById('modal-overlay').classList.add('show');modalAct='load';}
+function confirmModal(){
+  if(modalAct==='load'){
+    try{const d=JSON.parse(document.getElementById('modal-text').value);if(d.p){clearSim();d.p.forEach(p=>{if(inB(p.x,p.y))cP(p.x,p.y,p.type,p.tmp||RT);});}}catch(e){alert('加载失败');}
+  }
+  closeModal();
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('show');}
+function screenshot(){const l=document.createElement('a');l.download=`mimo-powder-${Date.now()}.png`;l.href=canvas.toDataURL('image/png');l.click();}
+function showHelp(){alert('Mimo V2.5 粉末游戏\n\n全中文物理沙盒模拟器\n复刻 The Powder Toy\n\n操作:\n左键-绘制 右键-擦除\n空格-暂停 [/]-画笔\n1-9-快捷元素 R-重置');}
+
+// 元素列表
+const cats=['固体','粉末','液体','气体','爆炸物','火焰','特殊','生命','电子','工具','墙壁'];
+function initUI(){
+  const ct=document.getElementById('cat-tabs');ct.innerHTML='';
+  const at=document.createElement('div');at.className='cat-tab active';at.textContent='全部';at.onclick=()=>fCat('全部');ct.appendChild(at);
+  cats.forEach(c=>{const t=document.createElement('div');t.className='cat-tab';t.textContent=c;t.onclick=()=>fCat(c);ct.appendChild(t);});
+  fCat('全部');
+}
+function fCat(cat){
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.toggle('active',t.textContent===cat));
+  const l=document.getElementById('elem-list');l.innerHTML='';
+  const s=document.getElementById('search-input').value.toLowerCase();
+  Object.entries(EL).forEach(([id,d])=>{
+    if(cat!=='全部'&&d.cat!==cat)return;
+    if(s&&!d.name.toLowerCase().includes(s)&&!id.toLowerCase().includes(s))return;
+    const b=document.createElement('div');b.className='elem-btn'+(id===curElem?' selected':'');b.dataset.type=id;b.onclick=()=>selElem(id);
+    b.innerHTML=`<div class="elem-dot" style="background:${d.col}"></div><div class="elem-info"><span class="elem-name">${d.name}</span><span class="elem-sym">${d.sym}</span></div>`;
+    l.appendChild(b);
+  });
+}
+function filterElements(){const ac=document.querySelector('.cat-tab.active')?.textContent||'全部';fCat(ac);}
+
+// 键盘
+document.addEventListener('keydown',e=>{
+  switch(e.key){
+    case ' ':e.preventDefault();togglePause();break;
+    case '[':brushSz=Math.max(1,brushSz-1);uBrushInfo();break;
+    case ']':brushSz=Math.min(20,brushSz+1);uBrushInfo();break;
+    case 'r':case 'R':resetSim();break;
+    case 's':case 'S':if(e.ctrlKey){e.preventDefault();saveSave();}else screenshot();break;
+    case '1':selElem('SAND');break;case '2':selElem('WATR');break;case '3':selElem('FIRE');break;
+    case '4':selElem('GUNP');break;case '5':selElem('METL');break;case '6':selElem('WOOD');break;
+    case '7':selElem('OIL');break;case '8':selElem('ACID');break;case '9':selElem('GLAS');break;
+  }
+});
+
+function gameLoop(ts){
+  fCnt++;if(ts-lastFT>=1000){fps=fCnt;fCnt=0;lastFT=ts;document.getElementById('fps-display').textContent=`FPS: ${fps}`;}
+  let cnt=0;for(let i=0;i<grid.length;i++)if(grid[i])cnt++;
+  document.getElementById('particle-count').textContent=`粒子: ${cnt}`;
+  uSim();render();requestAnimationFrame(gameLoop);
+}
+
+function init(){
+  canvas=document.getElementById('sim-canvas');ctx=canvas.getContext('2d');
+  const wrap=document.getElementById('canvas-wrap');
+  canvas.width=wrap.clientWidth;canvas.height=wrap.clientHeight;
+  canvas.style.width=wrap.clientWidth+'px';canvas.style.height=wrap.clientHeight+'px';
+  grid.fill(null);tempG.fill(RT);
+  initUI();selElem('SAND');
+  canvas.addEventListener('mousedown',onMD);canvas.addEventListener('mousemove',onMM);canvas.addEventListener('mouseup',onMU);canvas.addEventListener('contextmenu',e=>e.preventDefault());
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0];onMD({clientX:t.clientX,clientY:t.clientY,button:0,preventDefault:()=>{}});});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();const t=e.touches[0];onMM({clientX:t.clientX,clientY:t.clientY});});
+  canvas.addEventListener('touchend',()=>onMU({button:0}));
+  window.addEventListener('resize',()=>{canvas.width=wrap.clientWidth;canvas.height=wrap.clientHeight;});
+  requestAnimationFrame(gameLoop);
+}
+window.addEventListener('load',init);
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>物理沙盒实验室 - The Powder Toy 中文版</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- 模拟扫描背景网格 -->
+    <div class="cyber-grid-bg"></div>
+
+    <div id="app">
+      <!-- 顶部控制条 -->
+      <header class="glass-panel header-bar">
+        <div class="logo">
+          <span class="logo-icon">⚛</span>
+          <h1>物理沙盒实验室 <small>The Powder Toy</small></h1>
+        </div>
+        <div class="decor-line"></div>
+        <div class="render-controls">
+          <span class="section-label">监测光谱:</span>
+          <button id="mode-normal" class="btn-mode active" data-mode="normal">发光成像</button>
+          <button id="mode-heat" class="btn-mode" data-mode="heat">热力光谱 (℃)</button>
+          <button id="mode-pressure" class="btn-mode" data-mode="pressure">气压场 & 矢量风</button>
+        </div>
+        <div class="decor-line"></div>
+        <div class="sim-actions">
+          <button id="btn-pause" class="btn-action">⏸ 暂停模拟</button>
+          <button id="btn-step" class="btn-action">⏭ 单帧步进</button>
+          <button id="btn-clear" class="btn-action btn-danger">🗑 粒子清屏</button>
+        </div>
+      </header>
+
+      <!-- 中间主容器 -->
+      <main class="main-container">
+        <!-- 左侧分类与元素选择器 -->
+        <aside class="glass-panel sidebar">
+          <div class="sidebar-section">
+            <h3>控制台指令组</h3>
+            <div class="category-tabs">
+              <button class="tab-btn active" data-cat="solid">固体粉末</button>
+              <button class="tab-btn" data-cat="liquid">流动液体</button>
+              <button class="tab-btn" data-cat="gas">漂浮气体</button>
+              <button class="tab-btn" data-cat="electronics">电磁电子</button>
+              <button class="tab-btn" data-cat="special">放射爆破</button>
+              <button class="tab-btn" data-cat="wall">功能隔离</button>
+            </div>
+          </div>
+          
+          <div class="sidebar-section element-section">
+            <h3>物质元素核心</h3>
+            <!-- 固体粉末类 -->
+            <div class="element-grid active" id="grid-solid">
+              <button class="el-btn" data-id="3" style="--el-color: #8b8c91;">石头 [St]</button>
+              <button class="el-btn" data-id="4" style="--el-color: #8b5a2b;">木头 [Wd]</button>
+              <button class="el-btn" data-id="5" style="--el-color: #add8e6;">冰块 [I]</button>
+            </div>
+            <!-- 流体液体类 -->
+            <div class="element-grid" id="grid-liquid">
+              <button class="el-btn" data-id="8" style="--el-color: #1f66e5;">水 [H₂O]</button>
+              <button class="el-btn" data-id="9" style="--el-color: #8c8253;">油 [Ol]</button>
+              <button class="el-btn" data-id="10" style="--el-color: #39ff14;">强酸 [Ac]</button>
+              <button class="el-btn" data-id="11" style="--el-color: #ff4500;">熔岩 [Lv]</button>
+            </div>
+            <!-- 漂浮气体类 -->
+            <div class="element-grid" id="grid-gas">
+              <button class="el-btn" data-id="12" style="--el-color: #ffaa00;">火焰 [F]</button>
+              <button class="el-btn" data-id="13" style="--el-color: #7f8c8d;">烟雾 [Sm]</button>
+              <button class="el-btn" data-id="14" style="--el-color: #c8d6e5;">蒸汽 [H₂O(g)]</button>
+              <button class="el-btn" data-id="15" style="--el-color: #70a1ff;">天然气 [G]</button>
+            </div>
+            <!-- 电学逻辑类 -->
+            <div class="element-grid" id="grid-electronics">
+              <button class="el-btn" data-id="6" style="--el-color: #d27d2d;">铜线 [Cu]</button>
+              <button class="el-btn" data-id="7" style="--el-color: #4e5d6c;">硅片 [Si]</button>
+              <button class="el-btn" data-id="2" style="--el-color: #3a5f5f;">导线墙 [Cw]</button>
+              <button class="el-btn spark-loader" id="btn-add-spark">⚡ 注入电信号火花</button>
+            </div>
+            <!-- 爆炸特殊类 -->
+            <div class="element-grid" id="grid-special">
+              <button class="el-btn" data-id="16" style="--el-color: #7f8c8d;">火药 [Gp]</button>
+              <button class="el-btn" data-id="17" style="--el-color: #a4b0be;">塑性炸药 [C4]</button>
+              <button class="el-btn" data-id="18" style="--el-color: #2ed573;">放射性钚 [Pu]</button>
+            </div>
+            <!-- 隔离类 -->
+            <div class="element-grid" id="grid-wall">
+              <button class="el-btn" data-id="0" style="--el-color: #0d0e15;">真空区域 [Vac]</button>
+              <button class="el-btn" data-id="1" style="--el-color: #7f8c8d;">物理屏障 [W]</button>
+            </div>
+          </div>
+
+          <div class="sidebar-section info-card">
+            <h3>元素物性解码</h3>
+            <p id="el-desc" class="desc-text">初始化控制台中...</p>
+          </div>
+        </aside>
+
+        <!-- 画布渲染区域 -->
+        <section class="canvas-area">
+          <div class="cyber-frame-wrapper">
+            <!-- 科技角饰 -->
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div class="cyber-corner bottom-left"></div>
+            <div class="cyber-corner bottom-right"></div>
+            
+            <!-- 顶部装饰十字刻度 -->
+            <div class="cyber-axis-x"></div>
+            
+            <!-- LED指示灯 -->
+            <div class="led-container">
+              <span class="led-label">系统状态:</span>
+              <div id="status-led" class="led led-running"></div>
+            </div>
+
+            <!-- 画布本身 -->
+            <div class="canvas-viewport">
+              <canvas id="sandbox-canvas" width="960" height="540"></canvas>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- 底部控制与状态条 -->
+      <footer class="glass-panel footer-bar">
+        <div class="brush-settings">
+          <span class="control-label">能量束直径: <strong id="val-brush-size">6</strong>px</span>
+          <div class="slider-wrapper">
+            <input type="range" id="brush-size" min="1" max="25" value="6" />
+            <div class="slider-fill"></div>
+          </div>
+          
+          <span class="control-label" style="margin-left: 20px;">射束形态:</span>
+          <button id="brush-circle" class="btn-shape active" data-shape="circle">圆形射束</button>
+          <button id="brush-square" class="btn-shape" data-shape="square">方形射束</button>
+        </div>
+
+        <div class="gravity-settings">
+          <span class="control-label">重力向量:</span>
+          <select id="gravity-select">
+            <option value="down" selected>垂直向下重力 [1G]</option>
+            <option value="none">微重力太空状态 [0G]</option>
+            <option value="left">向左侧拉引力 [1G]</option>
+            <option value="right">向右侧拉引力 [1G]</option>
+            <option value="up">垂直向上逆引力 [1G]</option>
+          </select>
+        </div>
+
+        <div class="stats-panel">
+          <div class="stat-item">
+            <span>刷新率:</span> <strong id="fps-counter" class="hud-val">60</strong><span class="unit">FPS</span>
+          </div>
+          <div class="stat-item separator">|</div>
+          <div class="stat-item hud-radar" id="inspect-panel">
+            <span class="hud-radar-scanner"></span>
+            <div class="radar-content">
+              <span class="stat-sub">质点视察:</span> <strong id="inspect-name" class="hud-val text-neon">真空</strong>
+              <span class="stat-sub">温度:</span> <strong id="inspect-temp" class="hud-val text-temp">20.0℃</strong>
+              <span class="stat-sub">气压值:</span> <strong id="inspect-press" class="hud-val text-press">0.00</strong>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,728 @@
+﻿/* ==========================================================================
+   物理实验室控制台主题样式表 (Redesigned Cyber-Console Style)
+   ========================================================================== */
+
+:root {
+  --bg-color: #06070a;
+  --panel-bg: rgba(10, 12, 22, 0.7);
+  --border-color: rgba(0, 242, 254, 0.15);
+  --accent-color: #00f2fe;
+  
+  --text-main: #f5f6fa;
+  --text-sub: #a4b0be;
+  --text-muted: #57606f;
+  
+  --cyan: #00f2fe;
+  --purple: #9c27b0;
+  --neon-pink: #ff007f;
+  --green: #39ff14;
+  --orange: #ffa500;
+  --red: #ff4d4d;
+  
+  --font-family: 'Orbitron', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --accent-glow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-color);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 动态科技网格背景线 */
+.cyber-grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(18, 24, 38, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 24, 38, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: -2;
+}
+
+.cyber-grid-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(127, 0, 255, 0.07) 0%, rgba(6, 7, 10, 0) 75%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  max-height: 900px;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   毛玻璃面板 (Premium Glassmorphism Panels)
+   ========================================================================== */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transition: border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 242, 254, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 242, 254, 0.08);
+}
+
+/* ==========================================================================
+   顶部 Header Panel
+   ========================================================================== */
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 72px;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  font-size: 26px;
+  color: var(--cyan);
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+  animation: spinLogo 8s linear infinite;
+}
+
+@keyframes spinLogo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: linear-gradient(135deg, #ffffff 0%, #a4b0be 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo h1 small {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* 科技感分割虚线 */
+.decor-line {
+  flex: 1;
+  max-width: 60px;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(0, 242, 254, 0.3) 50%, transparent 50%);
+  background-size: 8px 2px;
+  margin: 0 20px;
+}
+
+/* 观测模式控制组 */
+.render-controls {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.btn-mode {
+  background: transparent;
+  border: none;
+  color: var(--text-sub);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-mode:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-mode.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(79, 172, 254, 0.05) 100%);
+  color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15), inset 0 0 8px rgba(0, 242, 254, 0.1);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+/* 顶部操作按钮 */
+.sim-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-action {
+  background: rgba(0, 242, 254, 0.03);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 0 5px rgba(0, 242, 254, 0.05);
+}
+
+.btn-action:hover {
+  background: rgba(0, 242, 254, 0.08);
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2), inset 0 0 8px rgba(0, 242, 254, 0.1);
+}
+
+.btn-action.btn-danger {
+  color: var(--red);
+  background: rgba(255, 77, 77, 0.03);
+  border-color: rgba(255, 77, 77, 0.2);
+}
+
+.btn-action.btn-danger:hover {
+  background: rgba(255, 77, 77, 0.12);
+  border-color: var(--red);
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.2);
+}
+
+/* ==========================================================================
+   中间容器布局 Panel Layouts
+   ========================================================================== */
+.main-container {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  min-height: 0;
+}
+
+/* 侧边栏 (Sidebar Element Selector) */
+.sidebar {
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: auto;
+  border-right-color: rgba(0, 242, 254, 0.1);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 254, 0.15);
+  border-radius: 1.5px;
+}
+
+.sidebar-section h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-sub);
+  margin-bottom: 12px;
+  border-left: 3px solid var(--cyan);
+  padding-left: 10px;
+}
+
+/* 分类指令页签 (Tabs) */
+.category-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-sub);
+  padding: 10px 4px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(127, 0, 255, 0.05) 100%);
+  border-color: var(--cyan);
+  color: var(--text-main);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.15);
+  text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+}
+
+/* 元素选择网格 */
+.element-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.element-grid {
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.element-grid.active {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(40px, max-content));
+}
+
+/* 元素卡片按钮 */
+.el-btn {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--el-color);
+  color: var(--text-sub);
+  padding: 10px 16px;
+  font-size: 12px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.el-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  transform: translateX(6px);
+  border-left-width: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 242, 254, 0.05);
+}
+
+.el-btn.active {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-left-width: 8px;
+  border-left-color: var(--el-color);
+  color: var(--text-main);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 242, 254, 0.08);
+}
+
+/* 分类切换时的瀑布流滑入动画 (Staggered Stacking Effect) */
+@keyframes gridSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.element-grid.active .el-btn {
+  animation: gridSlideUp 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Stagger 延迟 */
+.element-grid.active .el-btn:nth-child(1) { animation-delay: 0.02s; }
+.element-grid.active .el-btn:nth-child(2) { animation-delay: 0.04s; }
+.element-grid.active .el-btn:nth-child(3) { animation-delay: 0.06s; }
+.element-grid.active .el-btn:nth-child(4) { animation-delay: 0.08s; }
+.element-grid.active .el-btn:nth-child(5) { animation-delay: 0.1s; }
+
+/* 注入电信号火花按钮 */
+.spark-loader {
+  --el-color: #00f2fe;
+  background: rgba(0, 242, 254, 0.03);
+  color: var(--cyan);
+}
+
+.spark-loader:hover {
+  background: rgba(0, 242, 254, 0.08);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.spark-loader.active {
+  background: rgba(0, 242, 254, 0.12);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+/* 解码说明卡片 */
+.info-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.desc-text {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+/* ==========================================================================
+   画布显示区域及科技框架 (.cyber-frame-wrapper)
+   ========================================================================== */
+.canvas-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.cyber-frame-wrapper {
+  position: relative;
+  background: #040507;
+  padding: 6px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  box-shadow: 
+    0 25px 70px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(0, 242, 254, 0.05);
+  width: 100%;
+  max-width: 974px; /* 960 + 14 */
+}
+
+/* 高科技角饰 */
+.cyber-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--cyan);
+  z-index: 15;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.5));
+}
+
+.cyber-corner.top-left {
+  top: -2px; left: -2px; border-right: none; border-bottom: none;
+}
+.cyber-corner.top-right {
+  top: -2px; right: -2px; border-left: none; border-bottom: none;
+}
+.cyber-corner.bottom-left {
+  bottom: -2px; left: -2px; border-right: none; border-top: none;
+}
+.cyber-corner.bottom-right {
+  bottom: -2px; right: -2px; border-left: none; border-top: none;
+}
+
+/* 横向刻度定位 */
+.cyber-axis-x {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 4px;
+  background: rgba(0, 242, 254, 0.15);
+  border-left: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+}
+
+.cyber-axis-x::after {
+  content: 'LAB-GRID 240x135';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+}
+
+/* 指示灯面板 */
+.led-container {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 12;
+  background: rgba(0,0,0,0.6);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.led-label {
+  font-size: 9px;
+  color: var(--text-sub);
+  letter-spacing: 0.5px;
+}
+
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.led-running {
+  background-color: var(--green);
+  color: var(--green);
+  animation: ledPulse 1.5s infinite alternate;
+}
+
+.led-paused {
+  background-color: var(--red);
+  color: var(--red);
+  box-shadow: 0 0 8px var(--red);
+}
+
+.led-stepping {
+  background-color: var(--orange);
+  color: var(--orange);
+  box-shadow: 0 0 12px var(--orange);
+}
+
+@keyframes ledPulse {
+  from { opacity: 0.4; box-shadow: 0 0 4px currentColor; }
+  to { opacity: 1; box-shadow: 0 0 12px currentColor; }
+}
+
+.canvas-viewport {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+#sandbox-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+/* ==========================================================================
+   底部 HUD 监测面板与画笔操作
+   ========================================================================== */
+.footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 72px;
+}
+
+/* 能量刷子滑道 (Custom Glowing Slider) */
+.brush-settings {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 130px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 4px rgba(0, 242, 254, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+/* 刷子形态选择 */
+.btn-shape {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-sub);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-shape:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.btn-shape.active {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: rgba(0, 242, 254, 0.3);
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+/* 引力方向选择 */
+.gravity-settings select {
+  background: rgba(10, 12, 22, 0.85);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.gravity-settings select:hover {
+  border-color: var(--cyan);
+}
+
+/* HUD面板及雷达扫描器 (Glow HUD Inspect Card) */
+.stats-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+.stat-item.separator {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+.stat-item .unit {
+  color: var(--text-muted);
+  font-size: 9px;
+  margin-left: 2px;
+}
+
+/* 雷达视屏卡 */
+.hud-radar {
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+/* 扫描光斑线 */
+.hud-radar-scanner {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.12), transparent);
+  animation: radarScan 3s infinite linear;
+}
+
+@keyframes radarScan {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.radar-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.hud-val {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.text-neon {
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+}
+
+.text-temp {
+  color: var(--orange);
+  text-shadow: 0 0 8px rgba(255, 165, 0, 0.4);
+}
+
+.text-press {
+  color: #c8d6e5;
+}
+
+.stat-sub {
+  color: var(--text-muted);
+  font-size: 9px;
+}
