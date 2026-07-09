@@ -6,6 +6,7 @@ const OCEAN_VERTEX_SHADER = /* glsl */ `
   #define MAX_WAVES ${MAX_WAVES}
 
   uniform float uTime;
+  uniform float uStormIntensity;
   uniform int uWaveCount;
   uniform vec4 uWaveA[MAX_WAVES];
   uniform vec4 uWaveB[MAX_WAVES];
@@ -30,24 +31,28 @@ const OCEAN_VERTEX_SHADER = /* glsl */ `
       float omega = uWaveB[index].x;
       float phaseOffset = uWaveB[index].y;
       float q = uWaveB[index].z;
+      float amplitudeScale = 1.0 + 0.24 * uStormIntensity;
+      float verticalAmplitude = amplitude * amplitudeScale;
+      float safeQ = q / amplitudeScale;
       float phase = k * dot(waveDirection, baseWorld.xz) - omega * uTime + phaseOffset;
       float sine = sin(phase);
       float cosine = cos(phase);
-      float horizontal = q * amplitude * cosine;
-      float differential = k * amplitude;
+      float horizontal = safeQ * verticalAmplitude * cosine;
+      float verticalDifferential = k * verticalAmplitude;
+      float horizontalDifferential = safeQ * verticalDifferential;
 
       displaced.x += horizontal * waveDirection.x;
-      displaced.y += amplitude * sine;
+      displaced.y += verticalAmplitude * sine;
       displaced.z += horizontal * waveDirection.y;
-      crest += q * differential * sine;
+      crest += horizontalDifferential * sine;
 
-      tangentX.x -= q * differential * waveDirection.x * waveDirection.x * sine;
-      tangentX.y += differential * waveDirection.x * cosine;
-      tangentX.z -= q * differential * waveDirection.x * waveDirection.y * sine;
+      tangentX.x -= horizontalDifferential * waveDirection.x * waveDirection.x * sine;
+      tangentX.y += verticalDifferential * waveDirection.x * cosine;
+      tangentX.z -= horizontalDifferential * waveDirection.x * waveDirection.y * sine;
 
-      tangentZ.x -= q * differential * waveDirection.x * waveDirection.y * sine;
-      tangentZ.y += differential * waveDirection.y * cosine;
-      tangentZ.z -= q * differential * waveDirection.y * waveDirection.y * sine;
+      tangentZ.x -= horizontalDifferential * waveDirection.x * waveDirection.y * sine;
+      tangentZ.y += verticalDifferential * waveDirection.y * cosine;
+      tangentZ.z -= horizontalDifferential * waveDirection.y * waveDirection.y * sine;
     }
 
     vec3 worldNormal = normalize(cross(tangentZ, tangentX));
@@ -63,6 +68,7 @@ const OCEAN_FRAGMENT_SHADER = /* glsl */ `
   precision highp float;
 
   uniform float uTime;
+  uniform float uStormIntensity;
   uniform vec3 uDeepColor;
   uniform vec3 uShallowColor;
   uniform vec3 uFoamColor;
@@ -124,7 +130,8 @@ const OCEAN_FRAGMENT_SHADER = /* glsl */ `
     float detailX = microHeight(vWorldPosition.xz + vec2(epsilon, 0.0));
     float detailZ = microHeight(vWorldPosition.xz + vec2(0.0, epsilon));
     vec2 detailGradient = vec2(detailX - baseDetail, detailZ - baseDetail) / epsilon;
-    normal = normalize(normal + vec3(-detailGradient.x, 0.0, -detailGradient.y) * 0.15);
+    float detailStrength = 0.15 + uStormIntensity * 0.08;
+    normal = normalize(normal + vec3(-detailGradient.x, 0.0, -detailGradient.y) * detailStrength);
 
     vec3 viewDir = normalize(cameraPosition - vWorldPosition);
     float fresnel = 0.02 + 0.98 * pow(1.0 - max(dot(normal, viewDir), 0.0), 5.0);
@@ -144,7 +151,11 @@ const OCEAN_FRAGMENT_SHADER = /* glsl */ `
 
     float foamNoise = oceanFbm(vWorldPosition.xz * 0.36 + vec2(uTime * 0.055, -uTime * 0.04));
     float fineFoam = oceanFbm(vWorldPosition.xz * 1.46 - vec2(uTime * 0.18, uTime * 0.11));
-    float breaker = smoothstep(0.48, 0.84, vSlope + vCrest * 0.34 + foamNoise * 0.18);
+    float breaker = smoothstep(
+      0.48 - uStormIntensity * 0.1,
+      0.84 - uStormIntensity * 0.08,
+      vSlope + vCrest * 0.34 + foamNoise * 0.18 + uStormIntensity * 0.12
+    );
     breaker *= smoothstep(0.38, 0.76, fineFoam + vCrest * 0.42);
     float foamLace = smoothstep(0.56, 0.83, fineFoam) * smoothstep(0.16, 0.58, vCrest);
     float foam = clamp(max(breaker, foamLace * 0.42), 0.0, 1.0);
@@ -156,9 +167,12 @@ const OCEAN_FRAGMENT_SHADER = /* glsl */ `
     );
     color += sunGlint;
     color = mix(color, uFoamColor, foam * (0.46 + 0.42 * fresnel));
+    float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    color = mix(color, vec3(luminance), uStormIntensity * 0.16);
+    color *= 1.0 - uStormIntensity * 0.07;
 
     float distanceFade = smoothstep(180.0, 640.0, length(cameraPosition.xz - vWorldPosition.xz));
-    color = mix(color, uSkyHorizon * 0.72, distanceFade * 0.34);
+    color = mix(color, uSkyHorizon * 0.72, distanceFade * (0.34 + uStormIntensity * 0.2));
     gl_FragColor = vec4(max(color, vec3(0.0)), 1.0);
   }
 `;
@@ -184,6 +198,7 @@ export function createOceanMaterial(waves, environment) {
     fog: false,
     uniforms: {
       uTime: { value: 0 },
+      uStormIntensity: { value: 0 },
       uWaveCount: { value: 0 },
       uWaveA: { value: createWaveVectors() },
       uWaveB: { value: createWaveVectors() },
@@ -238,4 +253,8 @@ export function updateOceanEnvironment(material, environment) {
   uniforms.uSunDirection.value.fromArray(environment.sunDirection).normalize();
   uniforms.uSunIntensity.value = environment.sunIntensity;
   uniforms.uCloudAmount.value = environment.cloudAmount;
+}
+
+export function updateOceanStorm(material, intensity) {
+  material.uniforms.uStormIntensity.value = Math.min(1, Math.max(0, intensity));
 }

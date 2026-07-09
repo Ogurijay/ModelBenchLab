@@ -3,7 +3,8 @@ import { createWaveSpectrum } from '../src/ocean/spectrum.js';
 import { ENVIRONMENT_PRESETS } from '../src/environment/presets.js';
 import {
   createOceanMaterial,
-  updateOceanEnvironment
+  updateOceanEnvironment,
+  updateOceanStorm
 } from '../src/ocean/material.js';
 import {
   createSkyMaterial,
@@ -37,6 +38,20 @@ describe('shader material contracts', () => {
     expect(deepUniform.value.toArray()).toEqual(
       ENVIRONMENT_PRESETS.overcast.deepColor
     );
+  });
+
+  it('updates storm intensity without replacing the uniform', () => {
+    const material = createOceanMaterial(
+      createWaveSpectrum(),
+      ENVIRONMENT_PRESETS.noon
+    );
+    const stormUniform = material.uniforms.uStormIntensity;
+
+    expect(stormUniform.value).toBe(0);
+    updateOceanStorm(material, 0.8);
+
+    expect(material.uniforms.uStormIntensity).toBe(stormUniform);
+    expect(stormUniform.value).toBe(0.8);
   });
 
   it('creates and updates the analytic sky material', () => {

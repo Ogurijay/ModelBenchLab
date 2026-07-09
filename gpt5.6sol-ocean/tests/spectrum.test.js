@@ -36,6 +36,21 @@ describe('wind-driven spectrum', () => {
     expect(Math.hypot(first.normal.x, first.normal.y, first.normal.z)).toBeCloseTo(1, 8);
   });
 
+  it('scales CPU wave height for storm camera clearance', () => {
+    const waves = createWaveSpectrum();
+    const regular = sampleWaveSurface({ x: 13, z: -19, time: 0.67, waves });
+    const storm = sampleWaveSurface({
+      x: 13,
+      z: -19,
+      time: 0.67,
+      waves,
+      amplitudeScale: 1.24
+    });
+
+    expect(storm.height).not.toBeCloseTo(regular.height, 8);
+    expect(Math.hypot(storm.normal.x, storm.normal.y, storm.normal.z)).toBeCloseTo(1, 8);
+  });
+
   it('selects a lighter mobile geometry profile', () => {
     const desktop = getQualityProfile({
       width: 1440,

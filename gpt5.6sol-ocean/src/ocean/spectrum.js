@@ -94,7 +94,10 @@ export function steepnessBudget(waves) {
   );
 }
 
-export function sampleWaveSurface({ x, z, time, waves }) {
+export function sampleWaveSurface({ x, z, time, waves, amplitudeScale = 1 }) {
+  const safeAmplitudeScale = Number.isFinite(amplitudeScale)
+    ? clamp(amplitudeScale, 0.1, 1.4)
+    : 1;
   let height = 0;
   let horizontalX = 0;
   let horizontalZ = 0;
@@ -110,21 +113,23 @@ export function sampleWaveSurface({ x, z, time, waves }) {
       wave.phase;
     const sine = Math.sin(phase);
     const cosine = Math.cos(phase);
+    const verticalAmplitude = wave.amplitude * safeAmplitudeScale;
+    const horizontalDifferential = wave.k * wave.amplitude;
+    const verticalDifferential = horizontalDifferential * safeAmplitudeScale;
     const horizontal = wave.q * wave.amplitude * cosine;
-    const differential = wave.k * wave.amplitude;
 
-    height += wave.amplitude * sine;
+    height += verticalAmplitude * sine;
     horizontalX += horizontal * wave.dirX;
     horizontalZ += horizontal * wave.dirZ;
-    crest += wave.q * differential * sine;
+    crest += wave.q * horizontalDifferential * sine;
 
-    tangentX.x -= wave.q * differential * wave.dirX * wave.dirX * sine;
-    tangentX.y += differential * wave.dirX * cosine;
-    tangentX.z -= wave.q * differential * wave.dirX * wave.dirZ * sine;
+    tangentX.x -= wave.q * horizontalDifferential * wave.dirX * wave.dirX * sine;
+    tangentX.y += verticalDifferential * wave.dirX * cosine;
+    tangentX.z -= wave.q * horizontalDifferential * wave.dirX * wave.dirZ * sine;
 
-    tangentZ.x -= wave.q * differential * wave.dirX * wave.dirZ * sine;
-    tangentZ.y += differential * wave.dirZ * cosine;
-    tangentZ.z -= wave.q * differential * wave.dirZ * wave.dirZ * sine;
+    tangentZ.x -= wave.q * horizontalDifferential * wave.dirX * wave.dirZ * sine;
+    tangentZ.y += verticalDifferential * wave.dirZ * cosine;
+    tangentZ.z -= wave.q * horizontalDifferential * wave.dirZ * wave.dirZ * sine;
   }
 
   const normal = normalizedVector(
