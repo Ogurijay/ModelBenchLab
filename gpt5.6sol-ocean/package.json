@@ -1,0 +1,19 @@
+{
+  "name": "gpt5.6sol-ocean",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3024 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4024",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "vite": "^8.1.0",
+    "vitest": "^3.2.6"
+  }
+}

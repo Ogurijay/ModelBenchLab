@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07141c" />
+    <meta
+      name="description"
+      content="GPT 5.6 SOL 使用 Three.js 与 WebGL 构建的确定性风驱写实海面。"
+    />
+    <title>GPT 5.6 SOL · Open Water</title>
+  </head>
+  <body>
+    <main id="scene-shell" data-state="loading">
+      <canvas id="ocean-canvas" aria-label="实时写实海面 WebGL 场景"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+
+      <header class="identity" aria-label="场景信息">
+        <p class="eyebrow"><span>GPT 5.6 SOL</span><span class="signal-dot"></span>LIVE SURFACE</p>
+        <h1>OPEN WATER <em>/ 开放海域</em></h1>
+        <div class="identity-meta">
+          <p id="current-preset">清冽正午</p>
+          <span aria-hidden="true">·</span>
+          <p>风驱 12 波谱</p>
+        </div>
+      </header>
+
+      <section class="telemetry" aria-label="渲染状态">
+        <span class="api-mark">WEBGL</span>
+        <span id="performance-readout">初始化海面</span>
+      </section>
+
+      <nav class="preset-switcher" aria-label="海面光照预设">
+        <button
+          class="preset-button is-active"
+          type="button"
+          data-preset="noon"
+          aria-pressed="true"
+        >
+          <span class="preset-number">01</span>
+          <span class="preset-copy"><b>正午</b><small>清冽蓝绿</small></span>
+        </button>
+        <button
+          class="preset-button"
+          type="button"
+          data-preset="dawn"
+          aria-pressed="false"
+        >
+          <span class="preset-number">02</span>
+          <span class="preset-copy"><b>晨光</b><small>低角度金色</small></span>
+        </button>
+        <button
+          class="preset-button"
+          type="button"
+          data-preset="overcast"
+          aria-pressed="false"
+        >
+          <span class="preset-number">03</span>
+          <span class="preset-copy"><b>阴天</b><small>银灰漫射</small></span>
+        </button>
+      </nav>
+
+      <p class="interaction-hint">拖拽观察 · 滚轮缩放 · 数字键 1—3 切换光照</p>
+
+      <section id="error-panel" class="error-panel" role="alert" hidden>
+        <p class="eyebrow">RENDERER OFFLINE</p>
+        <h2>海面无法启动</h2>
+        <p id="error-message">当前浏览器或显卡未能建立 WebGL 渲染环境。</p>
+        <p class="error-advice">请启用浏览器硬件加速，或更新显卡驱动后刷新页面。</p>
+      </section>
+
+      <div class="loading-mark" aria-hidden="true">
+        <span></span>
+        <p>正在生成风场</p>
+      </div>
+    </main>
+
+    <noscript>此实时海面需要启用 JavaScript。</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
