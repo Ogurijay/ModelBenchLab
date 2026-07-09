@@ -6,7 +6,7 @@
 
 **Architecture:** A pure JavaScript wind-spectrum module produces the 12 Gerstner waves used by both CPU tests and GPU uniforms. Separate ocean and sky ShaderMaterial modules render the scene, while a pure preset-transition module drives all environment uniforms. `main.js` only assembles scene objects, camera constraints, UI events, adaptive quality, diagnostics, and lifecycle handling.
 
-**Tech Stack:** JavaScript ES modules, Three.js 0.185, WebGL/GLSL, Vite 8, Vitest 3.2.
+**Tech Stack:** JavaScript ES modules, Three.js 0.184, WebGL/GLSL, Vite 8, Vitest 3.2.
 
 ---
 
@@ -339,7 +339,7 @@ git commit -m "feat: render analytic WebGL ocean and sky"
     "test": "vitest run"
   },
   "dependencies": {
-    "three": "^0.185.0"
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "vite": "^8.1.0",
@@ -433,7 +433,7 @@ Append this project record while preserving the existing port-3023 record:
   "variant": "realistic",
   "api": "WebGL",
   "lang": "JavaScript",
-  "three": "0.185",
+  "three": "0.184",
   "vite": "8",
   "workspace": true,
   "title": "海洋模拟 — 三光照写实海面",
@@ -448,7 +448,7 @@ Add the workspace string after `gpt5.5-ocean-pirate-ship`, add the Ocean portal 
 
 Run: `npm install --ignore-scripts`
 
-Expected: npm exits 0, keeps all existing workspaces, and adds the `gpt5.6sol-ocean` package plus Three.js 0.185.x to `package-lock.json`.
+Expected: npm exits 0, keeps all existing workspaces, and adds the `gpt5.6sol-ocean` package plus Three.js 0.184.x to `package-lock.json`.
 
 - [ ] **Step 4: Run repository consistency checks**
 

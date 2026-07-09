@@ -39,6 +39,8 @@
 | 3008 | grok4.3-ocean-realistic | Grok 4.3 | realistic |
 | 3012 | geminiflash3.5-ocean-storm | Gemini Flash 3.5 | storm |
 | 3015 | claudesonnet5-ocean-storm | Claude Sonnet 5 | storm |
+| 3023 | gpt5.5-ocean-pirate-ship | GPT 5.5 | pirate-ship |
+| 3024 | gpt5.6sol-ocean | GPT 5.6 SOL | realistic |
 
 > **公平对比原则**:直接横向对比只在**同一 variant 内**进行(如 4 个 realistic 之间)。跨 variant 只比"公共核心要求"部分。
 
