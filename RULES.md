@@ -25,7 +25,11 @@
 
 - 各任务目录（按上述命名规范）
 - 本规则文档（`RULES.md`）
-- 后续可能新建的统一资源管理文件
+- 统一资源管理文件与目录：
+  - `index.html`（门户）、`package.json` / `package-lock.json`
+  - `scripts/`（启动与校验脚本:`dev-all.mjs` / `sync-check.mjs`）
+  - `benchmark/`（评测体系与单一事实源 `registry.json`）
+  - `shared/`（公用资源库:assets / fixtures / rubrics / schema）
 
 其他所有内容（源码、配置、文档、依赖等）一律放在各自的任务目录下。
 
@@ -40,19 +44,25 @@
 
 ## 4. 门户与端口规范
 
-根目录的 `index.html`（统一门户首页）与 `package.json`（开发服务编排）属于「统一资源管理文件」。每个任务目录绑定一个固定端口，门户卡片链接到该端口启动的本地服务。
+**单一事实源:`benchmark/registry.json`。** 项目清单、模型归属、端口、门户卡片信息全部记录于此。`index.html`（门户）、`package.json`（workspaces）、本文件端口表都以它为准；`npm run dev` 直接读取它启动全部服务，不再手工维护 `concurrently` 字符串与 `-n/-c` 数组。
 
 端口分配原则：
 
 - `3000` 保留给门户首页（`index.html`）
 - `3001` 起按任务目录依次分配，**递增且不复用**（删除目录后其端口号留空，不要回收给新目录）
 
-**每次新增一个任务目录，必须同步完成以下两步（缺一不可）：**
+**每次新增 / 改名 / 删除任务目录，按以下步骤（缺一不可）：**
 
-1. **门户卡片**：在 `index.html` 对应分区（海洋 / 卡丁车 / …）新增一张卡片，包含：模型徽章、API 徽章（`WebGL` 用 `badge-api webgl`，`WebGPU` 用 `badge-api`）、标题、一句话描述、技术栈（Three.js / Vite 版本 + JS/TS）、端口号。
-2. **端口配置**：在 `package.json` 中
-   - 向 `dev` 脚本（`concurrently`）追加一条 `"vite --port <port> <目录名>"`，并在 `-n`（名称）与 `-c`（颜色）参数中补上对应项；
-   - 增加一条 `"dev:<key>": "vite <目录名>"` 单独启动脚本。
+1. **改 registry**：在 `benchmark/registry.json` 的 `projects` 增删改一条（含 `dir` / `port` / `model` / `mission` / `api` / `lang` / `title` / `desc` 等）。
+2. **改 workspaces**：在 `package.json` 的 `workspaces` 同步增删目录名。
+3. **加门户卡片**：在 `index.html` 对应分区新增卡片（模型徽章、API 徽章：`WebGPU` 用 `badge-api`，`WebGL` / `Canvas` 用 `badge-api webgl`；标题、一句话描述、技术栈、端口号）。
+4. **校验**：运行 `npm run sync:check`，确认 registry / package.json / index.html / RULES 四方一致。
+5. **更新下方端口表**。
+
+启动方式：
+
+- `npm run dev` — 门户 + 全部项目
+- `npm run dev:one -- <目录名或端口>` — 只启动单个项目
 
 当前端口分配表：
 
@@ -70,7 +80,7 @@
 | 3009 | claudefable5-kart-circuit |
 | 3010 | geminiflash3.5-kart-circuit |
 | 3011 | gpt5.5-kart-circuit |
-| 3012 | antigravity-ocean-storm |
+| 3012 | geminiflash3.5-ocean-storm |
 | 3013 | gpt5.5-ocean-webgpu |
 | 3014 | claudeopus4.8-gsapthreetest |
 | 3015 | claudesonnet5-ocean-storm |
@@ -79,3 +89,17 @@
 | 3018 | gpt5.5-powdergame |
 | 3019 | mimov2.5-powdergame |
 | 3020 | claudefable5-powdergame |
+| 3021 | doubao2.1pro-powdergame |
+| 3022 | geminiflash3.5-powdergame |
+
+## 5. 测试方法论(评测基础规则)
+
+本仓库不只是场景合集，更是一套模型能力测试体系。**所有测试以 [`benchmark/methodology.md`](benchmark/methodology.md) 为基础规则**：
+
+- **三层变量锁定**（输入锁 / 参数锁 / 评判锁）—— 每次只让被测模型变化。
+- **两种模式**：A 公平固定（主榜）/ B 各自最优（能力上限）。
+- **抗随机 + 抗污染**：每题跑 n≥3 记方差；任务库分 `public` / `private`，`private` 季度轮换、建议 gitignore。
+- **通用六轴 + 各类别专项**：评分卡见 [`shared/rubrics/`](shared/rubrics/)，各类别规则见 [`benchmark/categories/`](benchmark/categories/)。
+- **可复现**：测试单元 / 运行记录 schema 见 [`shared/schema/`](shared/schema/)，产物归档 `benchmark/runs/`。
+
+能力类别：`code-to-3d`（现役）· `vlm-aesthetic` ★ · `agent-tooluse` ★ · `llm` · `text-to-image` · `text-to-video` · `text-to-3d`。

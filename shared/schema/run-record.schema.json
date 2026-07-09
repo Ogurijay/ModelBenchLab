@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RunRecord",
+  "description": "一次测试运行的可回溯记录。",
+  "type": "object",
+  "required": ["run_id", "date", "model", "task_id", "mode", "scores"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "date": { "type": "string", "description": "YYYY-MM-DD" },
+    "model": { "type": "string" },
+    "model_version": { "type": "string" },
+    "task_id": { "type": "string" },
+    "mode": { "enum": ["A-fixed", "B-best"], "description": "A 公平固定 / B 各自最优" },
+    "sample_idx": { "type": "integer", "description": "第几次重复(1..samples)" },
+    "params_snapshot": { "type": "object" },
+    "output_ref": { "type": "string", "description": "截图 / 录屏 / 产物路径,建议 runs/<date>_<model>/" },
+    "latency_ms": { "type": "number" },
+    "cost": { "type": "number" },
+    "scores": { "type": "object", "description": "轴 / rubric键 -> 0..5(或 pass@k)" },
+    "rater": { "type": "string", "description": "human:<名> 或 judge:<模型>" },
+    "failure_tags": { "type": "array", "items": { "type": "string" }, "description": "如 穿模 / 掉帧 / 颜色串位" },
+    "notes": { "type": "string" }
+  }
+}

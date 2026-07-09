@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TestUnit",
+  "description": "一个冻结的测试单元:锁定输入与参数,只让被测模型变化。",
+  "type": "object",
+  "required": ["task_id", "category", "axes", "difficulty", "input", "fixed_params", "rubric"],
+  "properties": {
+    "task_id": { "type": "string", "description": "全局唯一,如 code3d-ocean-001" },
+    "category": { "enum": ["code-to-3d", "vlm-aesthetic", "agent-tooluse", "text-to-image", "text-to-3d", "llm"] },
+    "mission": { "type": "string", "description": "code-to-3d 用:ocean / kart / tank / sandbox / interaction" },
+    "axes": {
+      "type": "array",
+      "items": { "enum": ["adherence", "fidelity", "consistency", "controllability", "efficiency", "safety"] },
+      "description": "该任务命中的通用六轴,只对命中的轴打分"
+    },
+    "difficulty": { "enum": ["L1", "L2", "L3", "L4"] },
+    "input": {
+      "type": "object",
+      "description": "冻结的输入",
+      "properties": {
+        "prompt": { "type": "string" },
+        "assets": { "type": "array", "items": { "type": "string" }, "description": "shared/fixtures 下的相对路径" }
+      }
+    },
+    "fixed_params": { "type": "object", "description": "锁定的参数快照:seed / 分辨率 / 环境 / 观察时长等" },
+    "samples": { "type": "integer", "minimum": 1, "default": 3, "description": "每题重复次数(抗随机)" },
+    "rubric": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "weight"],
+        "properties": {
+          "key": { "type": "string" },
+          "weight": { "type": "number" },
+          "anchor": { "type": "string", "description": "0/3/5 分锚点说明" }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
-  "name": "antigravity-ocean-storm",
+  "name": "geminiflash3.5-ocean-storm",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3005",
+    "dev": "vite --port 3012",
     "build": "vite build",
     "preview": "vite preview"
   },
