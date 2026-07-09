@@ -6,10 +6,12 @@ const KEY_TO_PRESET = Object.freeze({
   3: PRESET_ORDER[2]
 });
 
-export function bindPresetControls({ root, keyboardTarget, onSelect }) {
+export function bindPresetControls({ root, keyboardTarget, onSelect, onStormToggle = () => {} }) {
   const buttons = Array.from(root.querySelectorAll('.preset-button[data-preset]'));
+  const stormButton = root.querySelector('#storm-toggle');
   const currentLabel = root.querySelector('#current-preset');
   const removers = [];
+  let stormEnabled = false;
 
   function setActive(id) {
     const preset = ENVIRONMENT_PRESETS[id];
@@ -31,15 +33,36 @@ export function bindPresetControls({ root, keyboardTarget, onSelect }) {
     onSelect(id);
   }
 
+  function setStormEnabled(enabled) {
+    stormEnabled = Boolean(enabled);
+    if (!stormButton) return;
+    stormButton.classList.toggle('is-active', stormEnabled);
+    stormButton.setAttribute('aria-pressed', String(stormEnabled));
+  }
+
+  function toggleStorm() {
+    setStormEnabled(!stormEnabled);
+    onStormToggle(stormEnabled);
+  }
+
   for (const button of buttons) {
     const handler = () => choose(button.dataset.preset);
     button.addEventListener('click', handler);
     removers.push(() => button.removeEventListener('click', handler));
   }
 
+  if (stormButton) {
+    stormButton.addEventListener('click', toggleStorm);
+    removers.push(() => stormButton.removeEventListener('click', toggleStorm));
+  }
+
   const keyHandler = (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+    if (event.key.toLowerCase() === 's') {
+      toggleStorm();
       return;
     }
     const id = KEY_TO_PRESET[event.key];
@@ -50,6 +73,7 @@ export function bindPresetControls({ root, keyboardTarget, onSelect }) {
 
   return {
     setActive,
+    setStormEnabled,
     destroy() {
       for (const remove of removers) remove();
     }

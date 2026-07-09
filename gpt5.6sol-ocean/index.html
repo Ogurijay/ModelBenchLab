@@ -30,7 +30,7 @@
         <span id="performance-readout">初始化海面</span>
       </section>
 
-      <nav class="preset-switcher" aria-label="海面光照预设">
+      <nav class="preset-switcher" aria-label="海面光照与天气控制">
         <button
           class="preset-button is-active"
           type="button"
@@ -58,9 +58,13 @@
           <span class="preset-number">03</span>
           <span class="preset-copy"><b>阴天</b><small>银灰漫射</small></span>
         </button>
+        <button id="storm-toggle" class="storm-button" type="button" aria-pressed="false">
+          <span class="preset-number">S</span>
+          <span class="preset-copy"><b>风暴</b><small>强风暴雨</small></span>
+        </button>
       </nav>
 
-      <p class="interaction-hint">拖拽观察 · 滚轮缩放 · 数字键 1—3 切换光照</p>
+      <p class="interaction-hint">拖拽观察 · 滚轮缩放 · 数字键 1—3 切换光照 · S 键切换风暴</p>
 
       <section id="error-panel" class="error-panel" role="alert" hidden>
         <p class="eyebrow">RENDERER OFFLINE</p>

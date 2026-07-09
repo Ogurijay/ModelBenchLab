@@ -17,6 +17,16 @@ describe('ocean page markup', () => {
     expect(html).toContain('type="module" src="/src/main.js"');
   });
 
+  it('exposes an independent storm toggle with accessible state and shortcut hint', () => {
+    const html = readFileSync(indexUrl, 'utf8');
+
+    expect(html.match(/id="storm-toggle"/g)).toHaveLength(1);
+    expect(html).toContain('id="storm-toggle" class="storm-button"');
+    expect(html).toContain('aria-pressed="false"');
+    expect(html).toContain('<b>风暴</b>');
+    expect(html).toMatch(/S\s*键切换风暴/);
+  });
+
   it('uses the current Three.js Timer API without deprecated Clock', () => {
     const source = readFileSync(mainUrl, 'utf8');
 

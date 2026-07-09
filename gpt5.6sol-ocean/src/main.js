@@ -13,19 +13,34 @@ import {
   stepPresetTransition
 } from './environment/presets.js';
 import { createSkyMaterial, updateSkyEnvironment } from './environment/sky.js';
-import { createOceanMaterial, updateOceanEnvironment } from './ocean/material.js';
+import {
+  createOceanMaterial,
+  updateOceanEnvironment,
+  updateOceanStorm
+} from './ocean/material.js';
 import { bindPresetControls } from './ui/controls.js';
+import { createRainField } from './weather/rain.js';
+import {
+  applyStormOverlay,
+  createStormState,
+  setStormEnabled,
+  stepStormState
+} from './weather/storm.js';
 
 const sceneShell = document.querySelector('#scene-shell');
 const canvas = document.querySelector('#ocean-canvas');
 const errorPanel = document.querySelector('#error-panel');
 const errorMessage = document.querySelector('#error-message');
 const performanceReadout = document.querySelector('#performance-readout');
+const currentPresetLabel = document.querySelector('#current-preset');
 
 const diagnostics = Object.seal({
   ready: false,
   frames: 0,
   activePreset: 'noon',
+  stormEnabled: false,
+  stormIntensity: 0,
+  rainDrops: 0,
   quality: 'pending',
   webgl: false,
   fps: 0
@@ -140,6 +155,10 @@ function startOcean() {
   sky.renderOrder = -1000;
   scene.add(sky);
 
+  const rain = createRainField({ quality: quality.name, seed: 5602 });
+  scene.add(rain.points);
+  diagnostics.rainDrops = rain.dropCount;
+
   const environmentTargets = {
     renderer,
     scene,
@@ -150,15 +169,21 @@ function startOcean() {
   applyEnvironment(environmentTargets, initialEnvironment);
 
   let transition = createPresetTransition('noon');
+  let stormState = createStormState();
   const transitionDuration = reducedMotion ? 0.25 : 1.8;
+  const stormDuration = reducedMotion ? 0.25 : 2.4;
   const ui = bindPresetControls({
     root: sceneShell,
     keyboardTarget: window,
     onSelect(id) {
       transition = selectPreset(transition, id, transitionDuration);
+    },
+    onStormToggle(enabled) {
+      stormState = setStormEnabled(stormState, enabled, stormDuration);
     }
   });
 
+  rain.points.visible = true;
   renderer.compile(scene, camera);
   const brokenProgram = renderer.info.programs?.find(
     (program) => program.diagnostics && program.diagnostics.runnable === false
@@ -166,6 +191,7 @@ function startOcean() {
   if (brokenProgram) {
     throw new Error('海面着色器编译失败，请检查浏览器 WebGL 支持。');
   }
+  rain.setIntensity(0);
 
   const timer = new THREE.Timer();
   timer.connect(document);
@@ -204,11 +230,16 @@ function startOcean() {
     const delta = Math.min(0.05, timer.getDelta());
     const elapsed = timer.getElapsed();
     transition = stepPresetTransition(transition, delta);
+    stormState = stepStormState(stormState, delta);
     diagnostics.activePreset = transition.progress >= 1
       ? transition.activeId
       : transition.targetId;
+    diagnostics.stormEnabled = stormState.targetEnabled;
+    diagnostics.stormIntensity = stormState.intensity;
 
-    applyEnvironment(environmentTargets, transition.current);
+    const environment = applyStormOverlay(transition.current, stormState.intensity);
+    applyEnvironment(environmentTargets, environment);
+    updateOceanStorm(oceanMaterial, stormState.intensity);
     oceanMaterial.uniforms.uTime.value = elapsed;
     skyMaterial.uniforms.uTime.value = elapsed;
 
@@ -216,10 +247,25 @@ function startOcean() {
       x: camera.position.x,
       z: camera.position.z,
       time: elapsed,
-      waves
+      waves,
+      amplitudeScale: 1 + 0.24 * stormState.intensity
     });
     camera.position.y = Math.max(camera.position.y, surface.height + 2.2);
     controls.update();
+
+    rain.setIntensity(stormState.intensity);
+    rain.update({
+      time: elapsed,
+      cameraPosition: camera.position,
+      windDirection: [0.92, 0.32]
+    });
+
+    if (currentPresetLabel) {
+      const stormVisible = stormState.targetEnabled || stormState.intensity > 0.01;
+      currentPresetLabel.textContent = stormVisible
+        ? `${transition.current.label} · 风暴叠加`
+        : transition.current.label;
+    }
 
     const gridCell = 24;
     const anchorX = Math.round(camera.position.x / gridCell) * gridCell;
@@ -259,6 +305,7 @@ function startOcean() {
     horizonMaterial.dispose();
     skyGeometry.dispose();
     skyMaterial.dispose();
+    rain.dispose();
     timer.dispose();
     renderer.dispose();
   }
@@ -266,6 +313,7 @@ function startOcean() {
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('pagehide', dispose, { once: true });
   ui.setActive('noon');
+  ui.setStormEnabled(false);
   render();
 }
 
