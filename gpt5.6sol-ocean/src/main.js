@@ -167,7 +167,8 @@ function startOcean() {
     throw new Error('海面着色器编译失败，请检查浏览器 WebGL 支持。');
   }
 
-  const clock = new THREE.Clock();
+  const timer = new THREE.Timer();
+  timer.connect(document);
   let animationFrame = 0;
   let disposed = false;
   let sampleElapsed = 0;
@@ -195,12 +196,13 @@ function startOcean() {
     sampleFrames = 0;
   }
 
-  function render() {
+  function render(timestamp) {
     if (disposed) return;
     animationFrame = requestAnimationFrame(render);
 
-    const delta = Math.min(0.05, clock.getDelta());
-    const elapsed = clock.elapsedTime;
+    timer.update(timestamp);
+    const delta = Math.min(0.05, timer.getDelta());
+    const elapsed = timer.getElapsed();
     transition = stepPresetTransition(transition, delta);
     diagnostics.activePreset = transition.progress >= 1
       ? transition.activeId
@@ -257,6 +259,7 @@ function startOcean() {
     horizonMaterial.dispose();
     skyGeometry.dispose();
     skyMaterial.dispose();
+    timer.dispose();
     renderer.dispose();
   }
 
