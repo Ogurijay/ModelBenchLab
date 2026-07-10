@@ -91,6 +91,9 @@
 | 3020 | claudefable5-powdergame |
 | 3021 | doubao2.1pro-powdergame |
 | 3022 | geminiflash3.5-powdergame |
+| 3023 | gpt5.5-ocean-pirate-ship |
+| 3024 | gpt5.6sol-ocean |
+| 3025 | claudefable5-manhattan-procedural |
 
 ## 5. 测试方法论(评测基础规则)
 

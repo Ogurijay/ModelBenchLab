@@ -26,7 +26,10 @@
     "mimov2.5-powdergame",
     "claudefable5-powdergame",
     "doubao2.1pro-powdergame",
-    "geminiflash3.5-powdergame"
+    "geminiflash3.5-powdergame",
+    "gpt5.5-ocean-pirate-ship",
+    "gpt5.6sol-ocean",
+    "claudefable5-manhattan-procedural"
   ],
   "scripts": {
     "dev": "node scripts/dev-all.mjs",

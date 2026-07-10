@@ -110,10 +110,10 @@
     <a class="card" href="http://localhost:3001" target="_blank">
       <div class="card-header">
         <span class="badge badge-model">Claude Opus 4.8</span>
-        <span class="badge badge-api">WebGPU</span>
+        <span class="badge badge-api webgl">WebGL</span>
       </div>
-      <div class="card-title">海洋模拟 — WebGPU 方案</div>
-      <div class="card-desc">TSL 节点着色器，8 Gerstner 波 GPU 全算，26万顶点 60fps，随机种子波谱</div>
+      <div class="card-title">海洋模拟 — WebGL 写实 + 海盗船</div>
+      <div class="card-desc">GLSL 着色器，16 波物理风驱谱 + 域扭曲，自建海盗船随浪浮动，PMREM 环境反射</div>
       <div class="card-tech">Three.js 0.184 · Vite 8 · JavaScript <span class="port">:3001</span></div>
     </a>
 
@@ -215,6 +215,26 @@
       <div class="card-title">海洋模拟 — 移动风暴单元</div>
       <div class="card-desc">风暴以独立单元在世界空间生成、漂移、消散，天气由距离风暴中心的远近实时驱动，而非全局预设切换；程序化雷电与 WebAudio 合成雷声（按真实声速延迟）</div>
       <div class="card-tech">Three.js 0.185 · Vite 8 · JavaScript <span class="port">:3015</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3023" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — Fable 海面 + 海盗船</div>
+      <div class="card-desc">复制 fable 版 Gerstner 海面与天空 shader，加载 GLB 海盗船并按波浪高度随浪漂浮</div>
+      <div class="card-tech">Three.js 0.179 · Vite 7 · JavaScript <span class="port">:3023</span></div>
+    </a>
+
+    <a class="card" href="http://localhost:3024" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">GPT 5.6 SOL</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">海洋模拟 — 三光照写实海面</div>
+      <div class="card-desc">12 波风驱 Gerstner 波谱，双尺度微法线、菲涅尔反射、太阳光路与程序化泡沫，正午/晨光/阴天平滑切换</div>
+      <div class="card-tech">Three.js 0.184 · Vite 8 · JavaScript <span class="port">:3024</span></div>
     </a>
 
   </div>
@@ -349,6 +369,22 @@
       <div class="card-title">GSAP ScrollTrigger 相机飞行</div>
       <div class="card-desc">ScrollTrigger 驱动相机沿 CatmullRom 曲线穿越光环隧道，React Three Fiber + useGSAP 集成最佳实践</div>
       <div class="card-tech">Three.js 0.185 · Vite 8 · React/JSX <span class="port">:3014</span></div>
+    </a>
+
+  </div>
+
+  <!-- ========== 3D 曼哈顿场景复现 ========== -->
+  <h2 class="section-title">Manhattan — 3D 曼哈顿场景复现</h2>
+  <div class="grid">
+
+    <a class="card" href="http://localhost:3025" target="_blank">
+      <div class="card-header">
+        <span class="badge badge-model">Claude Fable 5</span>
+        <span class="badge badge-api webgl">WebGL</span>
+      </div>
+      <div class="card-title">3D 曼哈顿场景复现 — 程序化活城</div>
+      <div class="card-desc">种子确定性街区与双峰天际线、五地标 + 悬链线大桥，雕刻公园地形与自由女神，红绿灯交通仿真、昼夜循环、晴/云/雾/雨/雷暴/雪天气与积雪湿地面，全程序化零资产</div>
+      <div class="card-tech">Three.js 0.184 · Vite 8 · JavaScript <span class="port">:3025</span></div>
     </a>
 
   </div>

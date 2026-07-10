@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里,再运行 `npm run sync:check` 校验 package.json/index.html/RULES.md 是否一致。`npm run dev` 也读取本文件启动全部服务。",
-  "updatedAt": "2026-07-09",
+  "updatedAt": "2026-07-10",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -8,7 +8,7 @@
     "rule": "递增且不复用;删除目录后其端口留空,不回收给新目录"
   },
   "capabilityCategories": {
-    "code-to-3d": { "label": "代码生成 3D / 图形场景", "status": "active", "note": "现有 22 个项目全部属于此类" },
+    "code-to-3d": { "label": "代码生成 3D / 图形场景", "status": "active", "note": "现有 25 个项目全部属于此类" },
     "vlm-aesthetic": { "label": "视觉 / 审美理解 (VLM)", "status": "planned" },
     "agent-tooluse": { "label": "Agent 工具调用 / 任务执行", "status": "planned" },
     "text-to-image": { "label": "文生图", "status": "planned" },
@@ -19,7 +19,8 @@
     "kart": "卡丁车赛道",
     "tank": "坦克大战",
     "sandbox": "粒子物理沙盒",
-    "interaction": "交互 / 滚动动画"
+    "interaction": "交互 / 滚动动画",
+    "manhattan": "3D 曼哈顿场景复现"
   },
   "projects": [
     { "dir": "claudeopus4.8-ocean-webgpu", "port": 3001, "model": "Claude Opus 4.8", "category": "code-to-3d", "mission": "ocean", "variant": "webgpu", "api": "WebGPU", "lang": "JavaScript", "three": "0.184", "vite": "8", "workspace": true, "title": "海洋模拟 — WebGPU 方案", "desc": "TSL 节点着色器，8 Gerstner 波 GPU 全算，26万顶点 60fps，随机种子波谱", "docs": { "readme": true, "handover": false, "changelog": false } },
@@ -43,14 +44,18 @@
     { "dir": "mimov2.5-powdergame", "port": 3019, "model": "Mimo V2.5", "category": "code-to-3d", "mission": "sandbox", "variant": "powder", "api": "Canvas2D", "lang": "JavaScript", "three": null, "vite": "8", "workspace": true, "title": "粉末物理沙盒 — 全中文 100+ 元素", "desc": "The Powder Toy 复刻版，100+ 元素含中文符号，温度/压力/热传导物理，12+ 种化学反应，相变系统，全中文 UI", "docs": { "readme": false, "handover": true, "changelog": true } },
     { "dir": "claudefable5-powdergame", "port": 3020, "model": "Claude Fable 5", "category": "code-to-3d", "mission": "sandbox", "variant": "powder", "api": "Canvas2D", "lang": "JavaScript", "three": null, "vite": "8", "workspace": true, "title": "粉末实验室 — 全中文元素沙盒", "desc": "62 种带化学式元素：温度场与全套相变、燃烧爆炸与冲击波殉爆、风压场、导电与电解水、酸碱盐化学、放射衰变、生态生长，三视图 + 示例场景", "docs": { "readme": false, "handover": true, "changelog": true } },
     { "dir": "doubao2.1pro-powdergame", "port": 3021, "model": "Doubao 2.1 Pro", "category": "code-to-3d", "mission": "sandbox", "variant": "powder", "api": "Canvas2D", "lang": "TypeScript", "three": null, "vite": "6", "framework": "React", "workspace": true, "title": "粉末物理沙盒 — React 架构", "desc": "React + Zustand + Tailwind 构建的粒子沙盒，模块化组件与状态管理", "docs": { "readme": true, "handover": false, "changelog": false }, "notes": "自带 vite.config.ts + React 插件,可能需独立 vite 版本;沿用共享 vite 启动如异常需单独处理" },
-    { "dir": "geminiflash3.5-powdergame", "port": 3022, "model": "Gemini Flash 3.5", "category": "code-to-3d", "mission": "sandbox", "variant": "powder", "api": "Canvas2D", "lang": "TypeScript", "three": null, "vite": "8", "workspace": true, "title": "物理沙盒实验室 — The Powder Toy 中文版", "desc": "原生 TypeScript 粒子沙盒，中文元素与物理反应", "docs": { "readme": false, "handover": false, "changelog": false }, "renamedFrom": "gemini3.5flash-powdergame" }
+    { "dir": "geminiflash3.5-powdergame", "port": 3022, "model": "Gemini Flash 3.5", "category": "code-to-3d", "mission": "sandbox", "variant": "powder", "api": "Canvas2D", "lang": "TypeScript", "three": null, "vite": "8", "workspace": true, "title": "物理沙盒实验室 — The Powder Toy 中文版", "desc": "原生 TypeScript 粒子沙盒，中文元素与物理反应", "docs": { "readme": false, "handover": false, "changelog": false }, "renamedFrom": "gemini3.5flash-powdergame" },
+    { "dir": "gpt5.5-ocean-pirate-ship", "port": 3023, "model": "GPT 5.5", "category": "code-to-3d", "mission": "ocean", "variant": "pirate-ship", "api": "WebGL", "lang": "JavaScript", "three": "0.179", "vite": "7", "workspace": true, "title": "海洋模拟 — Fable 海面 + 海盗船", "desc": "复用 Fable 版 Gerstner 海面与天空 shader，加载 GLB 海盗船并按波浪高度随浪漂浮", "docs": { "readme": true, "handover": true, "changelog": true } },
+    { "dir": "gpt5.6sol-ocean", "port": 3024, "model": "GPT 5.6 SOL", "category": "code-to-3d", "mission": "ocean", "variant": "realistic", "api": "WebGL", "lang": "JavaScript", "three": "0.184", "vite": "8", "workspace": true, "title": "海洋模拟 — 三光照写实海面", "desc": "确定性 12 波风驱 Gerstner 波谱，双尺度 GLSL 微法线、菲涅尔反射、太阳光路与程序化泡沫，正午/晨光/阴天三套环境平滑切换", "docs": { "readme": true, "handover": true, "changelog": true } },
+    { "dir": "claudefable5-manhattan-procedural", "port": 3025, "model": "Claude Fable 5", "category": "code-to-3d", "mission": "manhattan", "variant": "procedural", "api": "WebGL", "lang": "JavaScript", "three": "0.184", "vite": "8", "workspace": true, "title": "3D 曼哈顿场景复现 — 程序化活城", "desc": "种子确定性街区与双峰天际线、五地标 + 悬链线大桥，雕刻公园地形/岩石/自由女神，红绿灯交通仿真与昼夜循环，晴/云/雾/雨/雷暴/雪天气联动积雪湿地面，全程序化零资产,实例化 60fps", "docs": { "readme": true, "handover": true, "changelog": true } }
   ],
   "portalSections": [
     { "id": "ocean", "label": "Ocean — 海洋模拟" },
     { "id": "kart", "label": "Kart — 卡丁车赛道" },
     { "id": "tank", "label": "Tank — 坦克大战" },
     { "id": "sandbox", "label": "Sandbox — 粒子物理沙盒" },
-    { "id": "interaction", "label": "Interaction — 交互 / 滚动动画" }
+    { "id": "interaction", "label": "Interaction — 交互 / 滚动动画" },
+    { "id": "manhattan", "label": "Manhattan — 3D 曼哈顿场景复现" }
   ],
   "retiredPorts": [],
   "deletedDirs": [
