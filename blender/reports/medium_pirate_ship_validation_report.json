@@ -1,0 +1,94 @@
+{
+  "asset": "medium_pirate_ship",
+  "glb_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\medium_pirate_ship.glb",
+  "glb_file_size_bytes": 477776,
+  "glb_magic_header": "glTF",
+  "glb_version": 2,
+  "glb_declared_length": 477776,
+  "mesh_object_count": 85,
+  "material_count": 11,
+  "principled_material_count": 11,
+  "metallic_reflective_materials": [
+    "aged brass reflective PBR",
+    "dark gunmetal reflective PBR"
+  ],
+  "gltf_pbr_materials": [
+    {
+      "name": "varnished dark oak - PBR",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.3199999928474426,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "warm deck planks - PBR",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.3799999952316284,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "aged brass reflective PBR",
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.18000000715255737,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "matte black sail cloth",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.7799999713897705,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "off-white skull paint",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.36000001430511475,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "aged canvas sail cloth",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.6200000047683716,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "tarred rope",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.7200000286102295,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "dark gunmetal reflective PBR",
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.2199999988079071,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "warm lantern glass",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.07999999821186066,
+      "alphaMode": "BLEND"
+    }
+  ],
+  "gltf_extensions_used": [
+    "KHR_materials_specular",
+    "KHR_lights_punctual"
+  ],
+  "light_count": 3,
+  "camera_count": 1,
+  "total_vertices": 11823,
+  "total_polygons": 8566,
+  "bounds": {
+    "x": [
+      -7.011,
+      5.87
+    ],
+    "y": [
+      -1.925,
+      1.925
+    ],
+    "z": [
+      -0.935,
+      4.615
+    ]
+  },
+  "threejs_note": "Load with THREE.GLTFLoader. PBR materials use MeshStandardMaterial-compatible glTF metallic/roughness data."
+}

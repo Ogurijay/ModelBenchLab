@@ -1,0 +1,19 @@
+{
+  "asset": "tang_dao",
+  "blend_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\tang_dao.blend",
+  "glb_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\tang_dao.glb",
+  "mesh_object_count": 30,
+  "material_count": 8,
+  "light_count": 2,
+  "camera_count": 1,
+  "total_vertices": 1450,
+  "total_polygons": 1038,
+  "key_features": [
+    "straight single-edged Tang dao blade",
+    "polished steel PBR material",
+    "small brass guard and habaki collar",
+    "black lacquered handle with raised cord wrap",
+    "Tang style ring pommel with tassel",
+    "display stand"
+  ]
+}

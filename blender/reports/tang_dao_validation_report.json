@@ -1,0 +1,70 @@
+{
+  "asset": "tang_dao",
+  "glb_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\tang_dao.glb",
+  "glb_file_size_bytes": 144060,
+  "glb_magic_header": "glTF",
+  "glb_version": 2,
+  "glb_declared_length": 144060,
+  "mesh_object_count": 30,
+  "material_count": 6,
+  "metallic_reflective_materials": [
+    "folded polished steel PBR",
+    "bright sharpened edge PBR",
+    "aged brass fittings PBR"
+  ],
+  "light_count": 1,
+  "camera_count": 1,
+  "total_vertices": 3281,
+  "total_polygons": 4204,
+  "bounds": {
+    "x": [
+      -2.113,
+      8.65
+    ],
+    "y": [
+      -0.79,
+      0.625
+    ],
+    "z": [
+      -0.7,
+      0.295
+    ]
+  },
+  "gltf_extensions_used": [
+    "KHR_materials_clearcoat",
+    "KHR_materials_specular",
+    "KHR_lights_punctual"
+  ],
+  "materials": [
+    {
+      "name": "folded polished steel PBR",
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.18000000715255737
+    },
+    {
+      "name": "bright sharpened edge PBR",
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.10999999940395355
+    },
+    {
+      "name": "dark groove shadow inlay",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.6399999856948853
+    },
+    {
+      "name": "aged brass fittings PBR",
+      "metallicFactor": 1.0,
+      "roughnessFactor": 0.20000000298023224
+    },
+    {
+      "name": "black lacquered wood PBR",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.23999999463558197
+    },
+    {
+      "name": "black silk cord wrap",
+      "metallicFactor": 0,
+      "roughnessFactor": 0.7200000286102295
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "asset": "medium_pirate_ship",
+  "blend_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\medium_pirate_ship.blend",
+  "glb_path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\blender\\models\\medium_pirate_ship.glb",
+  "mesh_object_count": 85,
+  "material_count": 11,
+  "light_count": 4,
+  "camera_count": 1,
+  "total_vertices": 3568,
+  "total_polygons": 3166,
+  "pbr_materials": [
+    "aged brass reflective PBR",
+    "aged canvas sail cloth",
+    "dark gunmetal reflective PBR",
+    "Dots Stroke",
+    "Material",
+    "matte black sail cloth",
+    "off-white skull paint",
+    "tarred rope",
+    "varnished dark oak - PBR",
+    "warm deck planks - PBR",
+    "warm lantern glass"
+  ]
+}

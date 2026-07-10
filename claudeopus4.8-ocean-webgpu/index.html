@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>WebGPU Ocean · GPU 海面模拟</title>
+    <title>WebGL Ocean · GPU 海面模拟</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E" />
   </head>
   <body>
@@ -12,13 +12,13 @@
 
       <div class="loading" id="loading">
         <div class="loading__ring"></div>
-        <p class="loading__text">初始化 WebGPU 渲染器…</p>
+        <p class="loading__text">初始化 WebGL 渲染器…</p>
       </div>
 
       <header class="brand">
         <div class="brand__mark">🌊</div>
         <div class="brand__text">
-          <p class="brand__eyeline">Three.js · TSL · WebGPURenderer</p>
+          <p class="brand__eyeline">Three.js · GLSL · WebGLRenderer</p>
           <h1 class="brand__title">GPU 实时海面模拟</h1>
         </div>
         <span class="pill" id="gpuStatus">检测中…</span>
@@ -31,18 +31,23 @@
         </div>
 
         <label class="control">
-          <span class="control__label">浪高 <b id="heightValue">1.40</b></span>
-          <input id="height" type="range" min="0.1" max="4.5" value="1.4" step="0.02" />
+          <span class="control__label">风速 <b id="windValue">11.0 m/s</b></span>
+          <input id="wind" type="range" min="1" max="30" value="11" step="0.5" />
         </label>
 
         <label class="control">
-          <span class="control__label">风速 <b id="windValue">1.00</b></span>
-          <input id="wind" type="range" min="0.0" max="3.0" value="1.0" step="0.02" />
+          <span class="control__label">风向 <b id="windDirValue">135°</b></span>
+          <input id="windDir" type="range" min="0" max="360" value="135" step="1" />
         </label>
 
         <label class="control">
-          <span class="control__label">陡度 <b id="chopValue">1.00</b></span>
-          <input id="chop" type="range" min="0" max="2.6" value="1.0" step="0.02" />
+          <span class="control__label">浪高 <b id="heightValue">1.00</b></span>
+          <input id="height" type="range" min="0.2" max="2.5" value="1.0" step="0.05" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">陡度 <b id="chopValue">0.85</b></span>
+          <input id="chop" type="range" min="0" max="1" value="0.85" step="0.01" />
         </label>
 
         <label class="control">
@@ -51,8 +56,13 @@
         </label>
 
         <label class="control">
-          <span class="control__label">日照角度 <b id="sunValue">18°</b></span>
+          <span class="control__label">日照高度 <b id="sunValue">18°</b></span>
           <input id="sun" type="range" min="2" max="80" value="18" step="1" />
+        </label>
+
+        <label class="control">
+          <span class="control__label">日照方位 <b id="sunAzValue">305°</b></span>
+          <input id="sunAz" type="range" min="0" max="360" value="305" step="1" />
         </label>
 
         <div class="button-row">
@@ -66,8 +76,8 @@
 
         <div class="readout">
           <div class="readout__row"><span>顶点数</span><b id="vertCount">—</b></div>
-          <div class="readout__row"><span>波数 · 相位</span><b class="accent">8 波 · 随机谱</b></div>
-          <div class="readout__row"><span>计算位置</span><b class="accent">GPU · TSL</b></div>
+          <div class="readout__row"><span>海况</span><b class="accent" id="seaState">—</b></div>
+          <div class="readout__row"><span>波谱 · 计算</span><b class="accent">16 波 · GLSL</b></div>
         </div>
       </aside>
 
