@@ -6,7 +6,8 @@
 
 | 类别 | 说明 | 专项规则 | 状态 |
 |---|---|---|---|
-| `code-to-3d` | 代码生成 3D / 图形场景 | [categories/code-to-3d.md](categories/code-to-3d.md) | 现役(22 项目) |
+| `code-to-3d` | 代码生成 3D / 图形场景 | [categories/code-to-3d.md](categories/code-to-3d.md) | 现役 |
+| `code-to-ui` | 前端 UI 实现(性能工程 / 交互) | [categories/code-to-ui.md](categories/code-to-ui.md) | 现役 |
 | `vlm-aesthetic` | 视觉 / 审美理解(VLM) | [categories/vlm-aesthetic.md](categories/vlm-aesthetic.md) | 重心 |
 | `agent-tooluse` | Agent 工具调用 / 任务执行 | [categories/agent-tooluse.md](categories/agent-tooluse.md) | 重心 |
 | `llm` | 文本 / 对话 | [categories/llm.md](categories/llm.md) | 规划 |

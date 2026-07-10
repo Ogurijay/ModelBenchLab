@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:," />
+  <title>回声画廊 · 美术馆布光 | Claude Fable 5</title>
+  <style>
+    :root {
+      --gold: #c9a45c;
+      --ink: #0d0c0a;
+      --paper: #e8e0d0;
+      --dim: #9a917f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--ink); }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      color: var(--paper);
+      user-select: none;
+    }
+    #app, #app canvas { position: fixed; inset: 0; display: block; }
+
+    .hidden { display: none !important; }
+
+    /* —— 进入界面 —— */
+    #overlay {
+      position: fixed; inset: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 50% 42%, rgba(30, 26, 18, 0.82), rgba(8, 7, 5, 0.94));
+      backdrop-filter: blur(3px);
+      cursor: pointer;
+    }
+    #overlay .panel {
+      text-align: center; padding: 52px 68px;
+      border: 1px solid rgba(201, 164, 92, 0.38);
+      background: rgba(12, 10, 8, 0.55);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+    }
+    #overlay h1 {
+      font-family: Georgia, "STZhongsong", "SimSun", serif;
+      font-size: 54px; font-weight: 600; letter-spacing: 0.28em;
+      color: var(--paper); text-indent: 0.28em;
+    }
+    #overlay .sub {
+      margin-top: 10px; font-size: 13px; letter-spacing: 0.42em; text-indent: 0.42em;
+      color: var(--gold); text-transform: uppercase;
+    }
+    #overlay .desc { margin-top: 26px; font-size: 15px; line-height: 1.9; color: var(--dim); }
+    #startBtn {
+      margin-top: 30px; padding: 13px 46px; font-size: 16px; letter-spacing: 0.2em; text-indent: 0.2em;
+      color: var(--ink); background: var(--gold); border: none; cursor: pointer;
+      font-family: inherit; transition: filter 0.2s, transform 0.2s;
+    }
+    #startBtn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    #overlay .keys { margin-top: 22px; font-size: 12.5px; letter-spacing: 0.1em; color: #6f6858; }
+    #overlay .tip { margin-top: 12px; font-size: 12.5px; color: #c96f4a; }
+
+    /* —— HUD —— */
+    #hud { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+    #hudTitle {
+      position: absolute; top: 20px; left: 24px;
+      font-size: 14px; letter-spacing: 0.3em; color: rgba(232, 224, 208, 0.8);
+    }
+    #hudTitle b { font-weight: 600; color: var(--paper); }
+    #fps { margin-left: 14px; font-size: 12px; letter-spacing: 0.08em; color: var(--dim); }
+    /* 天光按钮独立于 HUD/overlay,z-index 高于进入界面(20),
+       未锁定指针(进入前/ESC 暂停)时鼠标始终可点;锁定后用 L 键 */
+    #skyBtn {
+      position: fixed; top: 16px; right: 24px; z-index: 25;
+      padding: 9px 20px; font-size: 13px; letter-spacing: 0.16em; text-indent: 0.16em;
+      color: var(--paper); background: rgba(18, 15, 11, 0.62);
+      border: 1px solid rgba(201, 164, 92, 0.5); cursor: pointer; font-family: inherit;
+      transition: background 0.25s, color 0.25s;
+    }
+    #skyBtn.on { background: rgba(201, 164, 92, 0.88); color: var(--ink); }
+    #skyBtn:hover { border-color: var(--gold); }
+    #crosshair {
+      position: absolute; left: 50%; top: 50%; width: 5px; height: 5px;
+      margin: -2.5px 0 0 -2.5px; border-radius: 50%;
+      background: rgba(232, 224, 208, 0.75); box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    }
+    #hints {
+      position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+      display: flex; gap: 20px; font-size: 12px; letter-spacing: 0.12em; color: #79715f;
+      white-space: nowrap;
+    }
+    #hints span::before { content: "· "; color: rgba(201, 164, 92, 0.6); }
+
+    /* —— 展品说明浮层 —— */
+    #caption {
+      position: absolute; left: 50%; bottom: 62px; transform: translateX(-50%);
+      max-width: 560px; padding: 14px 26px 15px; text-align: center;
+      background: rgba(14, 12, 9, 0.78); border-top: 1px solid rgba(201, 164, 92, 0.55);
+      animation: capIn 0.35s ease;
+    }
+    @keyframes capIn { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+    #caption .cap-no { font-size: 13px; color: var(--gold); letter-spacing: 0.2em; margin-right: 10px; }
+    #caption .cap-title {
+      font-family: Georgia, "STZhongsong", "SimSun", serif;
+      font-size: 19px; color: var(--paper); letter-spacing: 0.06em;
+    }
+    #caption .cap-kind { margin-left: 10px; font-size: 12px; color: var(--dim); }
+    #caption p { margin-top: 7px; font-size: 13px; line-height: 1.75; color: #b3aa98; }
+
+    /* —— 不支持 WebGL2 —— */
+    #fatal {
+      position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center;
+      font-size: 17px; letter-spacing: 0.1em; color: var(--paper); background: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <button id="skyBtn" type="button">天光 · 开</button>
+
+  <div id="hud" class="hidden">
+    <div id="hudTitle"><b>回声画廊</b> · 共 8 件展品<span id="fps">-- FPS</span></div>
+    <div id="crosshair"></div>
+    <div id="caption" class="hidden"></div>
+    <div id="hints">
+      <span>WASD 移动</span><span>鼠标 环视</span><span>Shift 快走</span><span>L 切换天光</span><span>ESC 暂停</span>
+    </div>
+  </div>
+
+  <div id="overlay">
+    <div class="panel">
+      <h1>回声画廊</h1>
+      <p class="sub">Echo Gallery · 美术馆布光研究</p>
+      <p class="desc">八件展品 · 三类光源 · 一条动线<br />请随灯光行走,直到大厅尽头的金色回响。</p>
+      <button id="startBtn" type="button">点击进入展厅</button>
+      <p class="keys">WASD 移动 · 鼠标环视 · L 切换天光 · ESC 暂停</p>
+      <p id="lockTip" class="tip hidden">指针锁定失败:请在浏览器窗口内再次点击进入。</p>
+    </div>
+  </div>
+
+  <div id="fatal" class="hidden">当前浏览器不支持 WebGL2,无法进入展厅。</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

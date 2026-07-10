@@ -94,6 +94,12 @@
 | 3023 | gpt5.5-ocean-pirate-ship |
 | 3024 | gpt5.6sol-ocean |
 | 3025 | claudefable5-manhattan-procedural |
+| 3026 | gpt5.6sol-powdergame |
+| 3027 | claudefable5-gallery-lighting |
+| 3028 | claudefable5-cloth-flag |
+| 3029 | claudefable5-domino-rube |
+| 3030 | claudefable5-bowling-physics |
+| 3031 | claudefable5-datagrid-virtual |
 
 ## 5. 测试方法论(评测基础规则)
 
@@ -105,4 +111,4 @@
 - **通用六轴 + 各类别专项**：评分卡见 [`shared/rubrics/`](shared/rubrics/)，各类别规则见 [`benchmark/categories/`](benchmark/categories/)。
 - **可复现**：测试单元 / 运行记录 schema 见 [`shared/schema/`](shared/schema/)，产物归档 `benchmark/runs/`。
 
-能力类别：`code-to-3d`（现役）· `vlm-aesthetic` ★ · `agent-tooluse` ★ · `llm` · `text-to-image` · `text-to-video` · `text-to-3d`。
+能力类别：`code-to-3d`（现役）· `code-to-ui`（现役）· `vlm-aesthetic` ★ · `agent-tooluse` ★ · `llm` · `text-to-image` · `text-to-video` · `text-to-3d`。

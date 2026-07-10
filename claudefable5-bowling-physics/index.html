@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>霓虹保龄球馆 — Claude Fable 5</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene"></canvas>
+
+    <div id="hud">
+      <header id="topbar">
+        <div class="brand">
+          <span class="brand-neon">霓虹保龄球馆</span>
+          <span class="brand-sub">Claude Fable 5 · 物理版</span>
+        </div>
+        <div id="status">第 1 轮 · 第 1 投</div>
+        <div class="top-actions">
+          <button id="btn-test" class="btn btn-ghost">运行计分自测</button>
+          <button id="btn-restart" class="btn btn-ghost">再来一局</button>
+          <button id="btn-sound" class="btn btn-ghost">声音:开</button>
+        </div>
+      </header>
+
+      <div id="scoreboard-wrap">
+        <div id="scoreboard"></div>
+      </div>
+
+      <div id="controls">
+        <div class="ctl-group" id="grp-aim">
+          <label>方向</label>
+          <div class="aim-row">
+            <button id="aim-left" class="btn btn-round" title="向左瞄准(←)">◀</button>
+            <span id="aim-value" class="readout">0.0°</span>
+            <button id="aim-right" class="btn btn-round" title="向右瞄准(→)">▶</button>
+          </div>
+        </div>
+        <div class="ctl-group" id="grp-spin">
+          <label>侧旋 <span id="spin-value" class="readout-inline">无旋</span></label>
+          <input type="range" id="spin" min="-100" max="100" value="0" step="5" />
+          <div class="spin-legend"><span>左曲</span><span>直球</span><span>右曲</span></div>
+        </div>
+        <div class="ctl-group grow" id="grp-power">
+          <label>力度 <span id="power-value" class="readout-inline">--</span></label>
+          <div id="power-bar">
+            <div class="power-zones"></div>
+            <div id="power-fill"></div>
+          </div>
+        </div>
+        <button id="btn-throw" class="btn btn-primary">开始蓄力<small>空格</small></button>
+      </div>
+
+      <div id="hint">← → 瞄准 · 拖动滑杆加侧旋 · 空格开始蓄力,再按空格定格出手</div>
+      <div id="callout" class="hidden"></div>
+      <div id="fps"></div>
+    </div>
+
+    <div id="test-panel" class="modal hidden">
+      <div class="modal-card">
+        <h2>计分逻辑自测(10 组冻结序列)</h2>
+        <div id="test-summary"></div>
+        <ul id="test-list"></ul>
+        <button id="btn-test-close" class="btn btn-primary">关闭</button>
+      </div>
+    </div>
+
+    <div id="gameover" class="modal hidden">
+      <div class="modal-card">
+        <h2>一局结束!</h2>
+        <div id="final-score" class="final-score">0</div>
+        <div id="final-comment" class="final-comment"></div>
+        <div id="final-detail" class="final-detail"></div>
+        <button id="btn-again" class="btn btn-primary">再来一局</button>
+      </div>
+    </div>
+
+    <div id="loading">
+      <div class="loading-pin"></div>
+      <div>正在打蜡球道…</div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

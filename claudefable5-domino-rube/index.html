@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多米诺·鲁布戈德堡机关 — Claude Fable 5</title>
+  <style>
+    :root {
+      --panel-bg: rgba(16, 14, 24, 0.72);
+      --panel-border: rgba(255, 199, 120, 0.22);
+      --accent: #ffb45e;
+      --accent-dim: #b9834a;
+      --text: #f3ead9;
+      --text-dim: #a89a86;
+      --ok: #7fe0a8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0a12; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      color: var(--text);
+      user-select: none;
+    }
+    #app { position: fixed; inset: 0; }
+    canvas { display: block; }
+
+    .panel {
+      position: fixed;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      z-index: 10;
+    }
+
+    #hud {
+      top: 18px; left: 18px;
+      padding: 16px 18px 14px;
+      width: 292px;
+    }
+    #hud h1 {
+      font-size: 17px; font-weight: 700; letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    #hud .sub {
+      font-size: 11px; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 0.5px;
+    }
+    .btn-row { display: flex; gap: 8px; margin-bottom: 8px; }
+    button {
+      flex: 1;
+      font-family: inherit;
+      font-size: 13px; font-weight: 600;
+      padding: 9px 6px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 199, 120, 0.35);
+      background: linear-gradient(180deg, rgba(255, 180, 94, 0.16), rgba(255, 180, 94, 0.05));
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s, transform 0.06s, border-color 0.15s;
+    }
+    button:hover { background: linear-gradient(180deg, rgba(255,180,94,0.30), rgba(255,180,94,0.10)); }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.38; cursor: default; }
+    button.primary {
+      background: linear-gradient(180deg, #ffb45e, #e08c33);
+      color: #241606; border-color: #ffcf94;
+    }
+    button.primary:hover { background: linear-gradient(180deg, #ffc67e, #ef9c42); }
+    button.toggled { border-color: var(--ok); color: var(--ok); }
+
+    #stages { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
+    .stage {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 12.5px; color: var(--text-dim);
+      padding: 5px 9px; border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .stage .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #3a3547; flex-shrink: 0;
+      transition: all 0.25s;
+    }
+    .stage.active {
+      color: var(--accent);
+      border-color: rgba(255, 180, 94, 0.35);
+      background: rgba(255, 180, 94, 0.08);
+    }
+    .stage.active .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .stage.done { color: var(--ok); }
+    .stage.done .dot { background: var(--ok); }
+    .stage .t { margin-left: auto; font-size: 11px; opacity: 0.85; font-variant-numeric: tabular-nums; }
+
+    #help {
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px; line-height: 1.7; color: var(--text-dim);
+    }
+    #help b { color: var(--text); font-weight: 600; }
+
+    #stats {
+      right: 18px; bottom: 18px;
+      padding: 10px 14px;
+      font-size: 11.5px; line-height: 1.8;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+      min-width: 158px;
+    }
+    #stats b { color: var(--text); }
+    #stats .bell-time { color: var(--accent); font-weight: 700; }
+
+    #banner {
+      position: fixed; top: 20%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      font-size: 42px; font-weight: 800; letter-spacing: 8px;
+      color: var(--accent);
+      text-shadow: 0 0 30px rgba(255, 180, 94, 0.85), 0 2px 8px rgba(0,0,0,0.6);
+      opacity: 0; pointer-events: none; z-index: 20;
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    #banner.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <div id="hud" class="panel">
+    <h1>多米诺·鲁布戈德堡机关</h1>
+    <div class="sub">Claude Fable 5 · cannon-es 确定性物理链</div>
+    <div class="btn-row">
+      <button id="btn-trigger" class="primary">▶ 触发机关</button>
+      <button id="btn-reset">↺ 复位</button>
+    </div>
+    <div class="btn-row">
+      <button id="btn-camera">📷 相机:自动运镜</button>
+      <button id="btn-slow">🐢 慢动作:关</button>
+    </div>
+    <div id="stages">
+      <div class="stage" data-stage="1"><span class="dot"></span>多米诺骨牌<span class="t"></span></div>
+      <div class="stage" data-stage="2"><span class="dot"></span>斜坡滚球<span class="t"></span></div>
+      <div class="stage" data-stage="3"><span class="dot"></span>杠杆跷跷板<span class="t"></span></div>
+      <div class="stage" data-stage="4"><span class="dot"></span>摆锤撞击<span class="t"></span></div>
+      <div class="stage" data-stage="5"><span class="dot"></span>终点铃铛<span class="t"></span></div>
+    </div>
+    <div id="help">
+      <b>空格</b> 触发 · <b>R</b> 复位 · <b>C</b> 切换相机 · <b>S</b> 慢动作<br/>
+      手动模式:左键旋转 / 右键平移 / 滚轮缩放
+    </div>
+  </div>
+
+  <div id="stats" class="panel">
+    <div>帧率 <b id="stat-fps">--</b> fps</div>
+    <div>仿真时间 <b id="stat-sim">0.000</b> s</div>
+    <div>铃响时刻 <span class="bell-time" id="stat-bell">--</span></div>
+  </div>
+
+  <div id="banner">铃 · 响 !</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

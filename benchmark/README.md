@@ -11,7 +11,7 @@
 
 | 现役 / 重心 | 规划 |
 |---|---|
-| [code-to-3d](categories/code-to-3d.md) 现役 · [vlm-aesthetic](categories/vlm-aesthetic.md) ★ · [agent-tooluse](categories/agent-tooluse.md) ★ | [llm](categories/llm.md) · [text-to-image](categories/text-to-image.md) · [text-to-video](categories/text-to-video.md) · [text-to-3d](categories/text-to-3d.md) |
+| [code-to-3d](categories/code-to-3d.md) 现役 · [code-to-ui](categories/code-to-ui.md) 现役 · [vlm-aesthetic](categories/vlm-aesthetic.md) ★ · [agent-tooluse](categories/agent-tooluse.md) ★ | [llm](categories/llm.md) · [text-to-image](categories/text-to-image.md) · [text-to-video](categories/text-to-video.md) · [text-to-3d](categories/text-to-3d.md) |
 
 ## 目录
 
