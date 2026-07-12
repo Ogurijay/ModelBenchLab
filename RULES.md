@@ -26,8 +26,8 @@
 - 各任务目录（按上述命名规范）
 - 本规则文档（`RULES.md`）
 - 统一资源管理文件与目录：
-  - `index.html`（门户）、`package.json` / `package-lock.json`
-  - `scripts/`（启动与校验脚本:`dev-all.mjs` / `sync-check.mjs`）
+  - `index.html`（门户）、`package.json` / `package-lock.json`、`vite.config.mjs`（单端口开发服务配置）
+  - `scripts/`（启动与校验脚本:`dev-one.mjs` / `sync-check.mjs`）
   - `benchmark/`（评测体系与单一事实源 `registry.json`）
   - `shared/`（公用资源库:assets / fixtures / rubrics / schema）
 
@@ -42,64 +42,27 @@
 
 每次对任务进行调整或改动时，必须同步更新这两个文件。
 
-## 4. 门户与端口规范
+## 4. 门户与访问规范(单端口)
 
-**单一事实源:`benchmark/registry.json`。** 项目清单、模型归属、端口、门户卡片信息全部记录于此。`index.html`（门户）、`package.json`（workspaces）、本文件端口表都以它为准；`npm run dev` 直接读取它启动全部服务，不再手工维护 `concurrently` 字符串与 `-n/-c` 数组。
+**单一事实源:`benchmark/registry.json`。** 项目清单、模型归属、门户卡片信息全部记录于此;门户卡片由 `index.html` 在运行时读取 registry **自动生成**,不再手工维护。
 
-端口分配原则：
+**单端口模式:整个仓库只使用一个端口 `3000`。**
 
-- `3000` 保留给门户首页（`index.html`）
-- `3001` 起按任务目录依次分配，**递增且不复用**（删除目录后其端口号留空，不要回收给新目录）
+- 门户首页:`http://localhost:3000/`
+- 各任务项目:`http://localhost:3000/<目录名>/`(如 `/claudefable5-ocean-realistic/`)
+- 由根 `vite.config.mjs` 承载:多版本 three 靠 workspaces 嵌套 `node_modules` 就近解析;子项目的 `public/` 资源与根绝对路径引用由内置路由中间件自动回落
+- 子项目编写要求:`index.html` 中的资源引用一律用**相对路径**(`./src/main.js`,不要 `/src/main.js`)
 
-**每次新增 / 改名 / 删除任务目录，按以下步骤（缺一不可）：**
+**每次新增 / 改名 / 删除任务目录,按以下步骤(缺一不可):**
 
-1. **改 registry**：在 `benchmark/registry.json` 的 `projects` 增删改一条（含 `dir` / `port` / `model` / `mission` / `api` / `lang` / `title` / `desc` 等）。
-2. **改 workspaces**：在 `package.json` 的 `workspaces` 同步增删目录名。
-3. **加门户卡片**：在 `index.html` 对应分区新增卡片（模型徽章、API 徽章：`WebGPU` 用 `badge-api`，`WebGL` / `Canvas` 用 `badge-api webgl`；标题、一句话描述、技术栈、端口号）。
-4. **校验**：运行 `npm run sync:check`，确认 registry / package.json / index.html / RULES 四方一致。
-5. **更新下方端口表**。
+1. **改 registry**:在 `benchmark/registry.json` 的 `projects` 增删改一条(含 `dir` / `port` / `model` / `mission` / `api` / `lang` / `title` / `desc` 等;新 mission 需同步在 `portalSections` 的 `missions` 里挂到某个分区)。`port` 仅供 `dev:one` 单独调试,仍按递增不复用登记。
+2. **改 workspaces**:在 `package.json` 的 `workspaces` 同步增删目录名,并在根目录运行 `npm install`。
+3. **校验**:运行 `npm run sync:check`,确认 registry / workspaces / 目录 / 门户一致。门户卡片无需手动添加——registry 登记后自动出现。
 
-启动方式：
+启动方式:
 
-- `npm run dev` — 门户 + 全部项目
-- `npm run dev:one -- <目录名或端口>` — 只启动单个项目
-
-当前端口分配表：
-
-| 端口 | 任务目录 |
-|------|----------|
-| 3000 | （门户首页 index.html） |
-| 3001 | claudeopus4.8-ocean-webgpu |
-| 3002 | gpt5.5-ocean-weather |
-| 3003 | doubao2.1-ocean-webgpu |
-| 3004 | gpt5.5-ocean-skill |
-| 3005 | claudefable5-ocean-realistic |
-| 3006 | geminiflash3.5-ocean-realistic |
-| 3007 | gpt5.5-ocean-realistic |
-| 3008 | grok4.3-ocean-realistic |
-| 3009 | claudefable5-kart-circuit |
-| 3010 | geminiflash3.5-kart-circuit |
-| 3011 | gpt5.5-kart-circuit |
-| 3012 | geminiflash3.5-ocean-storm |
-| 3013 | gpt5.5-ocean-webgpu |
-| 3014 | claudeopus4.8-gsapthreetest |
-| 3015 | claudesonnet5-ocean-storm |
-| 3016 | gpt5.5-tank3D |
-| 3017 | claudesonnet5-tank3D |
-| 3018 | gpt5.5-powdergame |
-| 3019 | mimov2.5-powdergame |
-| 3020 | claudefable5-powdergame |
-| 3021 | doubao2.1pro-powdergame |
-| 3022 | geminiflash3.5-powdergame |
-| 3023 | gpt5.5-ocean-pirate-ship |
-| 3024 | gpt5.6sol-ocean |
-| 3025 | claudefable5-manhattan-procedural |
-| 3026 | gpt5.6sol-powdergame |
-| 3027 | claudefable5-gallery-lighting |
-| 3028 | claudefable5-cloth-flag |
-| 3029 | claudefable5-domino-rube |
-| 3030 | claudefable5-bowling-physics |
-| 3031 | claudefable5-datagrid-virtual |
+- `npm run dev` — 单端口 `:3000`,门户 + 全部项目(唯一常规方式)
+- `npm run dev:one <目录名或端口>` — 用 registry 登记的独立端口单独调试某个项目
 
 ## 5. 测试方法论(评测基础规则)
 

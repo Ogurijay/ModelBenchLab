@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "AI 模型能力测试合集 — 不同模型生成的 3D 场景对比。项目清单与端口以 benchmark/registry.json 为单一事实源。",
+  "description": "AI 模型能力测试合集 — 不同模型生成的 3D 场景对比。单端口 :3000,项目清单以 benchmark/registry.json 为单一事实源。",
   "workspaces": [
     "claudeopus4.8-ocean-webgpu",
     "gpt5.5-ocean-weather",
@@ -38,13 +38,13 @@
     "claudefable5-datagrid-virtual"
   ],
   "scripts": {
-    "dev": "node scripts/dev-all.mjs",
-    "dev:one": "node scripts/dev-all.mjs",
-    "dev:portal": "vite --port 3000 --strictPort",
+    "dev": "vite",
+    "dev:one": "node scripts/dev-one.mjs",
     "sync:check": "node scripts/sync-check.mjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
+    "three": "^0.185.1",
     "vite": "^8.0.16"
   }
 }

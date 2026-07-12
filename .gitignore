@@ -4,3 +4,4 @@ dist/
 .agents/
 .codex/
 *.local
+.playwright-mcp/

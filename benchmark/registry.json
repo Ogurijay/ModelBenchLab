@@ -1,11 +1,11 @@
 {
-  "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里,再运行 `npm run sync:check` 校验 package.json/index.html/RULES.md 是否一致。`npm run dev` 也读取本文件启动全部服务。",
-  "updatedAt": "2026-07-10",
+  "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
+  "updatedAt": "2026-07-13",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
-    "firstProject": 3001,
-    "rule": "递增且不复用;删除目录后其端口留空,不回收给新目录"
+    "mode": "single-port",
+    "note": "单端口模式:门户与全部项目都经 :3000 访问(/<dir>/)。projects[].port 仅供 `npm run dev:one <dir>` 单独调试时使用,新增项目仍按递增不复用登记。"
   },
   "capabilityCategories": {
     "code-to-3d": {
@@ -680,39 +680,68 @@
   "portalSections": [
     {
       "id": "ocean",
-      "label": "Ocean — 海洋模拟"
+      "label": "Ocean — 海洋模拟",
+      "missions": [
+        "ocean"
+      ]
     },
     {
       "id": "kart",
-      "label": "Kart — 卡丁车赛道"
+      "label": "Kart — 卡丁车赛道",
+      "missions": [
+        "kart"
+      ]
     },
     {
       "id": "tank",
-      "label": "Tank — 坦克大战"
+      "label": "Tank — 坦克大战",
+      "missions": [
+        "tank"
+      ]
     },
     {
       "id": "sandbox",
-      "label": "Sandbox — 粒子物理沙盒"
+      "label": "Sandbox — 粒子物理沙盒",
+      "missions": [
+        "sandbox"
+      ]
     },
     {
       "id": "interaction",
-      "label": "Interaction — 交互 / 滚动动画"
+      "label": "Interaction — 交互 / 滚动动画",
+      "missions": [
+        "interaction"
+      ]
     },
     {
       "id": "manhattan",
-      "label": "Manhattan — 3D 曼哈顿场景复现"
+      "label": "Manhattan — 3D 曼哈顿场景复现",
+      "missions": [
+        "manhattan"
+      ]
     },
     {
       "id": "gallery",
-      "label": "Gallery — 美术馆布光"
+      "label": "Gallery — 美术馆布光",
+      "missions": [
+        "gallery"
+      ]
     },
     {
       "id": "physics",
-      "label": "Physics — 物理模拟"
+      "label": "Physics — 物理模拟",
+      "missions": [
+        "cloth",
+        "domino",
+        "bowling"
+      ]
     },
     {
       "id": "ui",
-      "label": "UI — 前端界面工程"
+      "label": "UI — 前端界面工程",
+      "missions": [
+        "datagrid"
+      ]
     }
   ],
   "retiredPorts": [],
