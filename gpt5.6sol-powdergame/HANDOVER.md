@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-- 项目目录：`E:\Web3dTest\gpt5.6sol-powdergame`
+- 项目目录：`E:\ModelBenchLab\gpt5.6sol-powdergame`
 - 登记端口：`3023`
 - 技术栈：Vite 8 + TypeScript + Canvas 2D + Vitest
 - 产品定位：The Powder Toy 风格的全中文逐像素物理实验台

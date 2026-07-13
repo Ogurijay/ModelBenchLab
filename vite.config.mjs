@@ -76,8 +76,8 @@ export default defineConfig({
   },
   plugins: [
     benchRouting(),
-    // 仅两个 React 项目走 JSX 转换,其余项目不受影响
-    react({ include: [/claudeopus4\.8-gsapthreetest[\\/].+\.[jt]sx?$/, /doubao2\.1pro-powdergame[\\/].+\.[jt]sx?$/] }),
+    // 仅 React 项目走 JSX 转换,其余项目不受影响
+    react({ include: [/doubao2\.1pro-powdergame[\\/].+\.[jt]sx?$/] }),
     // doubao2.1pro-powdergame 源码使用 tsconfig 的 @/ 路径别名
     tsconfigPaths({ projects: ['doubao2.1pro-powdergame/tsconfig.json'] }),
   ],

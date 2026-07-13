@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-- 目录：`E:\Web3dTest\gpt5.5-powdergame`
+- 目录：`E:\ModelBenchLab\gpt5.5-powdergame`
 - 端口：`3018`
 - 技术栈：Vite 8 + TypeScript + Canvas 2D
 - 入口：`src/main.ts`
@@ -30,8 +30,8 @@
 ## 验证命令
 
 ```powershell
-npm --prefix E:\Web3dTest\gpt5.5-powdergame run test
-npm --prefix E:\Web3dTest\gpt5.5-powdergame run build
+npm --prefix E:\ModelBenchLab\gpt5.5-powdergame run test
+npm --prefix E:\ModelBenchLab\gpt5.5-powdergame run build
 ```
 
 2026-07-03 已通过：

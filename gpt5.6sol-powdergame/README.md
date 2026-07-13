@@ -5,7 +5,7 @@
 ## 运行
 
 ```powershell
-npm --prefix E:\Web3dTest\gpt5.6sol-powdergame run dev -- --port 3023
+npm --prefix E:\ModelBenchLab\gpt5.6sol-powdergame run dev -- --port 3023
 ```
 
 也可以从根工作区按目录启动：
@@ -47,7 +47,7 @@ tests/          模拟规则单元测试
 ## 验证
 
 ```powershell
-npm --prefix E:\Web3dTest\gpt5.6sol-powdergame run test
-npm --prefix E:\Web3dTest\gpt5.6sol-powdergame run build
+npm --prefix E:\ModelBenchLab\gpt5.6sol-powdergame run test
+npm --prefix E:\ModelBenchLab\gpt5.6sol-powdergame run build
 ```
 

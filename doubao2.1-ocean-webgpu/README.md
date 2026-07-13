@@ -11,9 +11,9 @@ npm run dev
 
 ## 入口
 
-- 示例目录：`E:\Web3dTest\doubao2.1-ocean-webgpu`
-- 实现说明：`E:\Web3dTest\doubao2.1-ocean-webgpu\docs\IMPLEMENTATION.md`
-- 主代码：`E:\Web3dTest\doubao2.1-ocean-webgpu\src\main.js`
+- 示例目录：`E:\ModelBenchLab\doubao2.1-ocean-webgpu`
+- 实现说明：`E:\ModelBenchLab\doubao2.1-ocean-webgpu\docs\IMPLEMENTATION.md`
+- 主代码：`E:\ModelBenchLab\doubao2.1-ocean-webgpu\src\main.js`
 
 ## 浏览器要求
 

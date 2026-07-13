@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-- 项目目录：`E:\Web3dTest\gpt5.5-ocean-webgpu`
+- 项目目录：`E:\ModelBenchLab\gpt5.5-ocean-webgpu`
 - 类型：独立 Vite + Three.js WebGPU demo
 - 固定门户端口：`3013`
 - 主入口：`index.html`
@@ -21,7 +21,7 @@
 
 ## 验收建议
 
-1. 在 `E:\Web3dTest` 执行 `npm run dev:gpt-webgpu -- --port 3013`。
+1. 在 `E:\ModelBenchLab` 执行 `npm run dev:gpt-webgpu -- --port 3013`。
 2. 用新版 Chrome 或 Edge 打开 `http://localhost:3013`。
 3. 确认顶部状态为 `WebGPU`，海面动态渲染，天气预设和滑杆能实时改变效果。
 4. 若批量对比，执行根目录 `npm run dev`，从门户打开 `:3013` 卡片。

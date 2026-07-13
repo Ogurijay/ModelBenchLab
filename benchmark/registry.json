@@ -38,7 +38,6 @@
     "kart": "卡丁车赛道",
     "tank": "坦克大战",
     "sandbox": "粒子物理沙盒",
-    "interaction": "交互 / 滚动动画",
     "manhattan": "3D 曼哈顿场景复现",
     "gallery": "美术馆布光",
     "cloth": "布料模拟",
@@ -302,26 +301,6 @@
       "workspace": true,
       "title": "海洋模拟 — WebGPU 天气系统",
       "desc": "TSL Gerstner 波海面，雨雾云层、闪电、浮标响应与实时天气控制",
-      "docs": {
-        "readme": true,
-        "handover": true,
-        "changelog": true
-      }
-    },
-    {
-      "dir": "claudeopus4.8-gsapthreetest",
-      "port": 3014,
-      "model": "Claude Opus 4.8",
-      "category": "code-to-3d",
-      "mission": "interaction",
-      "variant": "gsap-scrolltrigger",
-      "api": "WebGL",
-      "lang": "React/JSX",
-      "three": "0.185",
-      "vite": "8",
-      "workspace": true,
-      "title": "GSAP ScrollTrigger 相机飞行",
-      "desc": "ScrollTrigger 驱动相机沿 CatmullRom 曲线穿越光环隧道，React Three Fiber + useGSAP 集成最佳实践",
       "docs": {
         "readme": true,
         "handover": true,
@@ -707,13 +686,6 @@
       ]
     },
     {
-      "id": "interaction",
-      "label": "Interaction — 交互 / 滚动动画",
-      "missions": [
-        "interaction"
-      ]
-    },
-    {
       "id": "manhattan",
       "label": "Manhattan — 3D 曼哈顿场景复现",
       "missions": [
@@ -744,12 +716,19 @@
       ]
     }
   ],
-  "retiredPorts": [],
+  "retiredPorts": [
+    3014
+  ],
   "deletedDirs": [
     {
       "dir": "doubao2.1-ocean-weather",
       "reason": "空壳:仅剩 node_modules,0 个 git 跟踪文件,无源码",
       "deletedAt": "2026-07-09"
+    },
+    {
+      "dir": "claudeopus4.8-gsapthreetest",
+      "reason": "迁出:移至 E:\\WebDesignLab(AI 网页设计合集仓库),端口 3014 退役",
+      "deletedAt": "2026-07-13"
     }
   ]
 }

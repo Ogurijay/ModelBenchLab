@@ -1,4 +1,4 @@
-# Web3dTest 项目规则
+# ModelBenchLab 项目规则
 
 ## 1. 命名规范
 

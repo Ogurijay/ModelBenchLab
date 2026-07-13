@@ -18,7 +18,6 @@
     "gpt5.5-kart-circuit",
     "geminiflash3.5-ocean-storm",
     "gpt5.5-ocean-webgpu",
-    "claudeopus4.8-gsapthreetest",
     "claudesonnet5-ocean-storm",
     "gpt5.5-tank3D",
     "claudesonnet5-tank3D",
@@ -43,6 +42,7 @@
     "sync:check": "node scripts/sync-check.mjs"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^9.1.0",
     "three": "^0.185.1",
     "vite": "^8.0.16"

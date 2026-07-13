@@ -5,7 +5,7 @@
 ## 运行
 
 ```powershell
-npm --prefix E:\Web3dTest\gpt5.5-powdergame run dev -- --port 3018
+npm --prefix E:\ModelBenchLab\gpt5.5-powdergame run dev -- --port 3018
 ```
 
 根工作区也提供单独脚本：
@@ -46,6 +46,6 @@ tests/          Vitest 规则测试
 ## 验证
 
 ```powershell
-npm --prefix E:\Web3dTest\gpt5.5-powdergame run test
-npm --prefix E:\Web3dTest\gpt5.5-powdergame run build
+npm --prefix E:\ModelBenchLab\gpt5.5-powdergame run test
+npm --prefix E:\ModelBenchLab\gpt5.5-powdergame run build
 ```
