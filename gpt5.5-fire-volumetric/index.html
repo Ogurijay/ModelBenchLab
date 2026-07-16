@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080806" />
+    <link rel="icon" href="data:," />
+    <title>燃烧标本 · 实体火焰实验台</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main id="app" aria-label="实体火焰三维场景"></main>
+
+    <header class="masthead">
+      <p class="eyebrow">VOLUMETRIC STUDY / 001</p>
+      <h1>燃烧<br /><i>标本</i></h1>
+      <p class="lede">不是一张贴图，<br />而是一团可环绕观察的温度。</p>
+    </header>
+
+    <section class="readout" aria-label="渲染状态">
+      <div><span>核心温度</span><strong id="temperature">1,340°C</strong></div>
+      <div><span>采样步数</span><strong id="steps">72 STEP</strong></div>
+      <div><span>渲染帧率</span><strong id="fps">-- FPS</strong></div>
+    </section>
+
+    <aside class="controls" aria-label="火焰控制台">
+      <div class="panel-heading">
+        <span>燃烧控制</span>
+        <button id="pause" class="icon-button" type="button" aria-pressed="false">暂停</button>
+      </div>
+
+      <label>
+        <span>火势 <output id="intensityValue">1.00</output></span>
+        <input id="intensity" type="range" min="0.55" max="1.45" step="0.01" value="1" />
+      </label>
+      <label>
+        <span>湍流 <output id="turbulenceValue">0.72</output></span>
+        <input id="turbulence" type="range" min="0.15" max="1.35" step="0.01" value="0.72" />
+      </label>
+      <label>
+        <span>横向风 <output id="windValue">+0.18</output></span>
+        <input id="wind" type="range" min="-1" max="1" step="0.01" value="0.18" />
+      </label>
+      <label>
+        <span>渲染质量 <output id="qualityValue">高</output></span>
+        <input id="quality" type="range" min="0" max="2" step="1" value="2" />
+      </label>
+
+      <button id="resetView" class="reset" type="button">重置观察视角</button>
+      <p class="hint">拖拽环绕 · 滚轮远近 · 空格暂停</p>
+    </aside>
+
+    <div class="specimen-index" aria-hidden="true"><span>NO.</span>01</div>
+    <div class="rule rule-top" aria-hidden="true"></div>
+    <div class="rule rule-bottom" aria-hidden="true"></div>
+
+    <noscript>此页面需要 JavaScript 才能运行 Three.js 实体火焰。</noscript>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

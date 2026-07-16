@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-07-13",
+  "updatedAt": "2026-07-15",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -43,7 +43,8 @@
     "cloth": "布料模拟",
     "domino": "多米诺机关",
     "bowling": "保龄球",
-    "datagrid": "虚拟滚动数据网格"
+    "datagrid": "虚拟滚动数据网格",
+    "fire": "实体火焰模拟"
   },
   "projects": [
     {
@@ -654,6 +655,48 @@
         "changelog": true
       },
       "taskDoc": "benchmark/tasks/code-to-ui/datagrid.md"
+    },
+    {
+      "dir": "gpt5.5-fire-volumetric",
+      "port": 3032,
+      "model": "GPT-5.5",
+      "category": "code-to-3d",
+      "mission": "fire",
+      "variant": "volumetric",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "实体火焰 — 体积光焰实验台",
+      "desc": "程序化体积光线步进火焰:内外焰分层、域扭曲湍流、热流偏转、火星与烟羽、动态照明及实时参数控制",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/fire.md"
+    },
+    {
+      "dir": "claudefable5-fire-raymarch",
+      "port": 3033,
+      "model": "Claude Fable 5",
+      "category": "code-to-3d",
+      "mission": "fire",
+      "variant": "raymarch",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "实体火焰 — 夜营篝火·体积光线步进",
+      "desc": "全屏合成 pass 真·体积光线步进:深度截断遮挡、域扭曲三层焰色、热浪折射背景、火星烟羽受风、火光摇曳阴影与中文实时控制",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/fire.md"
     }
   ],
   "portalSections": [
@@ -706,6 +749,13 @@
         "cloth",
         "domino",
         "bowling"
+      ]
+    },
+    {
+      "id": "fire",
+      "label": "Fire — 实体火焰模拟",
+      "missions": [
+        "fire"
       ]
     },
     {

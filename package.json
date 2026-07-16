@@ -34,7 +34,9 @@
     "claudefable5-cloth-flag",
     "claudefable5-domino-rube",
     "claudefable5-bowling-physics",
-    "claudefable5-datagrid-virtual"
+    "claudefable5-datagrid-virtual",
+    "gpt5.5-fire-volumetric",
+    "claudefable5-fire-raymarch"
   ],
   "scripts": {
     "dev": "vite",

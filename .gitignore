@@ -5,3 +5,4 @@ dist/
 .codex/
 *.local
 .playwright-mcp/
+tmp/
