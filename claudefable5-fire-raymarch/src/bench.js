@@ -4,7 +4,7 @@
 
 import { params, setParam } from './params.js';
 
-export function installBench({ clock, renderer, composite, sparks, getFps, stepFrame, resetView }) {
+export function installBench({ clock, renderer, composite, sparks, getFps, stepFrame, resetView, setView }) {
   const errors = [];
   window.addEventListener('error', (e) => errors.push(String(e.message)));
   window.addEventListener('unhandledrejection', (e) => errors.push(String(e.reason)));
@@ -39,6 +39,9 @@ export function installBench({ clock, renderer, composite, sparks, getFps, stepF
     },
 
     resetView,
+
+    /** 环绕取证:方位角/仰角(度)与距离,直接摆相机。 */
+    setView,
 
     /** 渲染一帧后立即导出 PNG(隐藏标签页截图超时的后备通道)。 */
     snapshot() {

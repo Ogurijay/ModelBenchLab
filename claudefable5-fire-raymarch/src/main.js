@@ -13,8 +13,8 @@ import { FireComposite } from './fireComposite.js';
 import { buildUI } from './ui.js';
 import { installBench } from './bench.js';
 
-const INIT_POS = new THREE.Vector3(3.3, 2.05, 4.35);
-const INIT_TARGET = new THREE.Vector3(0, 0.85, 0);
+const INIT_POS = new THREE.Vector3(2.9, 1.72, 3.82);
+const INIT_TARGET = new THREE.Vector3(0, 0.78, 0);
 
 // ---- 渲染器:场景渲染进线性 HDR RT,色调映射在合成 shader 手动完成
 const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
@@ -126,6 +126,19 @@ function resetView() {
   controls.update();
 }
 
+/** 评测便利:按方位角/仰角/距离摆相机(环绕验证三维体积)。 */
+function setView(azimuthDeg = 0, elevationDeg = 18, distance = 4.9) {
+  const az = (azimuthDeg * Math.PI) / 180;
+  const el = (elevationDeg * Math.PI) / 180;
+  camera.position.set(
+    INIT_TARGET.x + distance * Math.cos(el) * Math.cos(az),
+    INIT_TARGET.y + distance * Math.sin(el),
+    INIT_TARGET.z + distance * Math.cos(el) * Math.sin(az),
+  );
+  controls.target.copy(INIT_TARGET);
+  controls.update();
+}
+
 // ---- 启动:同步首帧(不等 rAF,隐藏标签页也能 ready)
 buildUI({
   onTogglePause: () => setParam('paused', !params.paused),
@@ -140,7 +153,7 @@ buildUI({
   }),
 });
 
-const bench = installBench({ clock, renderer, composite, sparks, getFps, stepFrame, resetView });
+const bench = installBench({ clock, renderer, composite, sparks, getFps, stepFrame, resetView, setView });
 
 applyQuality();
 update(0);

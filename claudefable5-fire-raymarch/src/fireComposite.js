@@ -77,7 +77,7 @@ float sceneDist(vec2 uv) {
 vec3 fireColor(float T) {
   vec3 c = mix(vec3(0.45, 0.035, 0.002), vec3(1.65, 0.31, 0.02), smoothstep(0.06, 0.46, T));
   c = mix(c, vec3(3.3, 1.42, 0.20), smoothstep(0.46, 0.78, T));
-  c = mix(c, vec3(4.8, 3.7, 2.5), smoothstep(0.78, 0.97, T));
+  c = mix(c, vec3(4.8, 3.7, 2.5), smoothstep(0.82, 0.98, T));
   return c;
 }
 
@@ -100,37 +100,37 @@ vec3 fieldSample(vec3 wp) {
   vec3 s = vec3(p.x * 1.6, p.y * 0.85 - uTime * 1.75, p.z * 1.6);
   float w1 = fbm2(s * 1.9);
   float w2 = fbm2(s * 1.9 + vec3(5.2, 8.3, 1.7));
-  vec2 warp = (vec2(w1, w2) - 0.5) * uTurb * (0.16 + 0.55 * clamp(h, 0.0, 1.3));
+  vec2 warp = (vec2(w1, w2) - 0.5) * uTurb * (0.18 + 0.62 * clamp(h, 0.0, 1.3));
   vec2 xz = p.xz + warp;
 
   // 火焰:收尖轮廓 + 细节 FBM
   float fire = 0.0;
   float temp = 0.0;
   float r = length(xz);
-  float radius = (0.30 + 0.13 * uIntensity) * (1.0 - 0.72 * clamp(h, 0.0, 1.0))
+  float radius = (0.33 + 0.14 * uIntensity) * (1.0 - 0.62 * clamp(h, 0.0, 1.0))
                * smoothstep(-0.10, 0.06, p.y);
   float shell = 1.0 - r / max(radius, 1e-3);
-  if (shell > -0.6 && h < 1.35 && p.y > -0.05) {
+  if (shell > -0.6 && h < 1.45 && p.y > -0.05) {
     float n = fbm3(vec3(xz.x * 3.0, s.y * 1.35, xz.y * 3.0));
-    fire = clamp(shell * 1.55 + (n - 0.5) * (0.95 + 0.35 * uTurb), 0.0, 1.0);
-    fire *= smoothstep(1.32, 0.6, h);      // 顶部撕裂收尖
+    fire = clamp(shell * 1.7 + (n - 0.5) * (1.15 + 0.45 * uTurb), 0.0, 1.0);
+    fire *= smoothstep(1.42, 0.88, h);     // 顶部撕裂收尖
     fire *= smoothstep(-0.05, 0.1, p.y);   // 底部从柴堆淡入
-    temp = fire * (1.0 - 0.42 * clamp(h, 0.0, 1.0));
+    temp = fire * (1.0 - 0.38 * clamp(h, 0.0, 1.0));
     temp *= 0.60 + 0.55 * clamp(shell, 0.0, 1.0); // 径向:核心白热,外缘转红
-    temp = clamp(temp * 1.35, 0.0, 1.0);
+    temp = clamp(temp * 1.4, 0.0, 1.0);
   }
 
-  // 烟羽:火顶以上,大尺度慢速噪声,顶部散逸
+  // 烟羽:火顶以上,大尺度慢速噪声,顶部散逸;保持稀薄半透明
   float smoke = 0.0;
-  if (p.y > H * 0.55) {
+  if (p.y > H * 0.7) {
     vec3 m = vec3(p.x, p.y - uTime * 0.9, p.z) * 1.05;
     m.xz += warp * 1.6;
     float sn = fbm2(m + vec3(3.7, 0.0, 9.1));
-    float col = 1.0 - r / (0.34 + 0.30 * clamp((p.y - H) * 0.55, 0.0, 1.2));
-    smoke = clamp(col * 1.1 + (sn - 0.52) * 1.3, 0.0, 1.0);
-    smoke *= smoothstep(H * 0.55, H * 1.15, p.y);
+    float col = 1.0 - r / (0.30 + 0.36 * clamp((p.y - H) * 0.55, 0.0, 1.2));
+    smoke = clamp(col * 1.05 + (sn - 0.52) * 1.25, 0.0, 1.0);
+    smoke *= smoothstep(H * 0.72, H * 1.25, p.y);
     smoke *= smoothstep(3.5, 2.1, p.y);
-    smoke *= 0.85;
+    smoke *= 0.55;
   }
 
   return vec3(fire, temp, smoke) * edge;
@@ -153,7 +153,7 @@ void main() {
     fbm2(vec3(vUv * 9.0, uTime * 1.9)) - 0.5,
     fbm2(vec3(vUv * 9.0 + 4.7, uTime * 1.9 + 2.3)) - 0.5
   );
-  vec2 uvD = clamp(vUv + duv * heat * 0.020 * (0.5 + 0.9 * uIntensity),
+  vec2 uvD = clamp(vUv + duv * heat * 0.012 * (0.5 + 0.9 * uIntensity),
                    vec2(0.001), vec2(0.999));
 
   // ---- 体积光线步进:包围盒求交 + 场景深度截断
@@ -174,7 +174,7 @@ void main() {
       if (sigma > 1e-4) {
         // 发射:火焰按温度取色;烟自身近黑,底部承接火光染橙
         float glow = exp(-max(wp.y - H * 0.95, 0.0) * 1.9);
-        vec3 emit = fireColor(f.y) * (f.x * 10.5 * uFlicker)
+        vec3 emit = fireColor(f.y) * (f.x * 11.5 * uFlicker)
                   + (vec3(0.030, 0.027, 0.024) + vec3(1.9, 0.62, 0.10) * glow * uFlicker) * f.z * 0.55;
         float a = 1.0 - exp(-sigma * stepLen);
         vol += trans * (emit / max(sigma, 1e-4)) * a;
@@ -255,6 +255,9 @@ export class FireComposite {
 
   /** 每帧同步相机矩阵与模拟参数。 */
   update(camera, time, { intensity, turbulence, wind, flicker }) {
+    // 相机矩阵通常由 renderer.render 懒更新;体积 ray 重建必须拿到本帧矩阵,
+    // 否则 setView 后单帧步进(headless 取证)会用旧视角的 ray 对新深度做截断
+    camera.updateMatrixWorld();
     const u = this.material.uniforms;
     u.uProjInv.value.copy(camera.projectionMatrixInverse);
     u.uCamWorld.value.copy(camera.matrixWorld);

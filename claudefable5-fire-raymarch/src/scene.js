@@ -130,14 +130,14 @@ function buildLogs() {
     map, roughnessMap: rough, roughness: 1, metalness: 0,
     emissiveMap: ember, emissive: new THREE.Color('#ff6a18'), emissiveIntensity: 1.2,
   });
-  const COUNT = 6, LEN = 1.05;
+  const COUNT = 6, LEN = 0.92;
   for (let i = 0; i < COUNT; i++) {
     const geo = new THREE.CylinderGeometry(vary(0.040, 0.006), vary(0.056, 0.008), LEN, 9, 1);
     // CylinderGeometry 的 UV v 沿高度:+Y 端(v=1)为内端,对准 emberGradient 的发光端
     const mesh = new THREE.Mesh(geo, logMat);
     const a = (i / COUNT) * Math.PI * 2 + vary(0, 0.2);
-    const footR = vary(0.46, 0.05);
-    const tilt = vary(1.02, 0.08); // 与竖直的夹角(弧度),约 58°
+    const footR = vary(0.44, 0.05);
+    const tilt = vary(1.08, 0.07); // 与竖直的夹角(弧度),约 62°:架得更矮,让火舌探出
     // 底端落在石圈内缘,顶端(内端)聚拢于火心上方
     const dir = new THREE.Vector3(-Math.cos(a) * Math.sin(tilt), Math.cos(tilt), -Math.sin(a) * Math.sin(tilt)).normalize();
     mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
@@ -153,7 +153,7 @@ function buildLogs() {
     const mesh = new THREE.Mesh(geo, spareMat);
     mesh.rotation.z = Math.PI / 2;
     mesh.rotation.y = vary(1.9, 0.5);
-    mesh.position.set(vary(-1.7, 0.15), 0.07 + i * 0.1, vary(1.35, 0.3));
+    mesh.position.set(vary(-1.5, 0.12), 0.09 + i * 0.1, vary(1.15, 0.25));
     if (i === 1) mesh.rotation.x = 0.18;
     mesh.castShadow = mesh.receiveShadow = true;
     group.add(mesh);
@@ -168,7 +168,7 @@ function buildTripod() {
   const iron = new THREE.MeshStandardMaterial({ color: '#3a3d42', metalness: 0.85, roughness: 0.5 });
   const copper = new THREE.MeshStandardMaterial({ color: '#b07038', metalness: 0.92, roughness: 0.3, vertexColors: true });
 
-  const APEX = new THREE.Vector3(0, 1.62, 0);
+  const APEX = new THREE.Vector3(0, 1.56, 0);
   for (let i = 0; i < 3; i++) {
     const a = (i / 3) * Math.PI * 2 + 0.5;
     const foot = new THREE.Vector3(Math.cos(a) * 0.85, 0.02, Math.sin(a) * 0.85);
@@ -181,10 +181,10 @@ function buildTripod() {
     mesh.castShadow = true;
     group.add(mesh);
   }
-  // 挂链:4 节交错圆环
-  for (let i = 0; i < 4; i++) {
+  // 挂链:3 节交错圆环,垂到壶提梁
+  for (let i = 0; i < 3; i++) {
     const link = new THREE.Mesh(new THREE.TorusGeometry(0.028, 0.007, 6, 14), iron);
-    link.position.set(0, 1.54 - i * 0.05, 0);
+    link.position.set(0, 1.48 - i * 0.05, 0);
     link.rotation.y = (i % 2) * Math.PI / 2;
     link.rotation.x = Math.PI / 12;
     link.castShadow = true;
@@ -207,12 +207,12 @@ function buildTripod() {
     potGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
   }
   const pot = new THREE.Mesh(potGeo, copper);
-  pot.position.set(0, 1.24, 0);
+  pot.position.set(0, 1.18, 0);
   pot.castShadow = true;
   group.add(pot);
   // 壶盖 + 钮 + 提梁
   const lid = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.115, 0.035, 20), copper);
-  lid.position.set(0, 1.395, 0);
+  lid.position.set(0, 1.335, 0);
   {
     // 盖与钮无顶点色属性时 vertexColors 材质会告警,补上纯白
     const fill = (g) => {
@@ -223,10 +223,10 @@ function buildTripod() {
   }
   group.add(lid);
   const knob = new THREE.Mesh(new THREE.SphereGeometry(0.024, 12, 10), iron);
-  knob.position.set(0, 1.425, 0);
+  knob.position.set(0, 1.365, 0);
   group.add(knob);
   const handle = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.009, 8, 24, Math.PI), iron);
-  handle.position.set(0, 1.32, 0);
+  handle.position.set(0, 1.26, 0);
   handle.rotation.z = 0; // 半圆开口朝下,两端搭壶肩
   group.add(handle);
   return group;
@@ -267,8 +267,8 @@ function buildSky() {
         vec3 d = normalize(vDir);
         float up = clamp(d.y, 0.0, 1.0);
         // 地平灰蓝 → 天顶近黑的夜空渐变(线性空间 HDR,交给合成 pass 调色)
-        vec3 col = mix(vec3(0.052, 0.065, 0.10), vec3(0.006, 0.008, 0.016), pow(up, 0.55));
-        col += vec3(0.020, 0.016, 0.012) * exp(-abs(d.y) * 9.0); // 地平线微光
+        vec3 col = mix(vec3(0.028, 0.036, 0.060), vec3(0.004, 0.006, 0.012), pow(up, 0.55));
+        col += vec3(0.012, 0.010, 0.008) * exp(-abs(d.y) * 9.0); // 地平线微光
         // 星星:方向栅格哈希,亮度阈值筛选 + 缓慢闪烁
         vec3 cell = floor(d * 240.0);
         float h = hash13(cell);
@@ -302,8 +302,8 @@ export function buildWorld(scene) {
   scene.add(sky);
 
   // 环境:冷夜半球光 + 冷月定向光(不投影,影子交给火光)
-  scene.add(new THREE.HemisphereLight(0x25304c, 0x0b0906, 0.35));
-  const moon = new THREE.DirectionalLight(0x93a7d0, 0.4);
+  scene.add(new THREE.HemisphereLight(0x25304c, 0x0b0906, 0.42));
+  const moon = new THREE.DirectionalLight(0x93a7d0, 0.45);
   moon.position.set(-6, 7, -9);
   scene.add(moon);
 

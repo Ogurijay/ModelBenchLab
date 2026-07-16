@@ -20,7 +20,7 @@ void main() {
   vSeed = aSeed;
   vec4 mv = modelViewMatrix * vec4(position, 1.0);
   float size = aSize * (1.0 - aLife * 0.45);
-  gl_PointSize = size * uPixelRatio * 46.0 / max(-mv.z, 0.5);
+  gl_PointSize = size * uPixelRatio * 30.0 / max(-mv.z, 0.5);
   gl_Position = projectionMatrix * mv;
 }
 `;
@@ -58,7 +58,7 @@ export class Sparks {
     const sizes = new Float32Array(MAX);
     for (let i = 0; i < MAX; i++) {
       seeds[i] = this.rng();
-      sizes[i] = 0.55 + this.rng() * 0.75;
+      sizes[i] = 0.4 + this.rng() * 0.6;
       this.age[i] = 1e3; // 全部以"已熄灭"起步,按火势逐渐点燃
       this.life[i] = 1;
     }

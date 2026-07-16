@@ -34,7 +34,7 @@ export class FireLight {
     const f = 0.72 + 0.36 * slow + 0.08 * (fast - 0.5);
     this.flicker = f;
 
-    this.main.intensity = (22 + 34 * intensity) * f;
+    this.main.intensity = (30 + 46 * intensity) * f;
     this.main.color.lerpColors(WARM, HOT, slow);
     // 光源位置随火核摆动微漂(影子随之晃动),并被风轻推
     this.main.position.set(
@@ -43,7 +43,7 @@ export class FireLight {
       (noise1(time * 3.4 + 13) - 0.5) * 0.14 + wind[1] * 0.18,
     );
 
-    this.top.intensity = (4 + 6 * intensity) * f;
+    this.top.intensity = (6 + 9 * intensity) * f;
     this.top.position.set(wind[0] * 0.8, 1.3 + 0.5 * intensity, wind[1] * 0.8);
   }
 
