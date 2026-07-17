@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-17",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -44,7 +44,8 @@
     "domino": "多米诺机关",
     "bowling": "保龄球",
     "datagrid": "虚拟滚动数据网格",
-    "fire": "实体火焰模拟"
+    "fire": "实体火焰模拟",
+    "portal": "传送门解谜"
   },
   "projects": [
     {
@@ -697,6 +698,69 @@
         "changelog": true
       },
       "taskDoc": "benchmark/tasks/code-to-3d/fire.md"
+    },
+    {
+      "dir": "claudefable5-portal-chambers",
+      "port": 3034,
+      "model": "Claude Fable 5",
+      "category": "code-to-3d",
+      "mission": "portal",
+      "variant": "chambers",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "传送门 — 五间实验室",
+      "desc": "第一人称双色传送门:RT 虚拟相机透视 + 斜近裁剪面,动量守恒飞跃,方块/按钮/滑门/消解栅/电梯,5 间递进测试室,传送变换纯函数 10 组冻结自测",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+    },
+    {
+      "dir": "gpt5.6solultra-portal-puzzle",
+      "port": 3035,
+      "model": "GPT 5.6 SOL Ultra",
+      "category": "code-to-3d",
+      "mission": "portal",
+      "variant": "puzzle",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "折跃实验场 — 第一人称空间解谜",
+      "desc": "原创工业试验舱:双传送门实时出口视图、位置 / 朝向 / 动量映射、可搬运相位立方体、压力平台门禁与完整重置",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+    },
+    {
+      "dir": "gpt5.6solultra-manhattan-procedural",
+      "port": 3036,
+      "model": "GPT 5.6 SOL Ultra",
+      "category": "code-to-3d",
+      "mission": "manhattan",
+      "variant": "procedural",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "3D 曼哈顿风暴换班 — 全程序化活城",
+      "desc": "确定性曼哈顿路网与双峰天际线，五座地标、雕刻公园/岩石/自由女神和悬链线大桥，固定步长交通仿真、昼夜环游及六态天气联动，提供可交叉验证的 __BENCH__ 接口",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md"
     }
   ],
   "portalSections": [
@@ -763,6 +827,13 @@
       "label": "UI — 前端界面工程",
       "missions": [
         "datagrid"
+      ]
+    },
+    {
+      "id": "portal",
+      "label": "Portal — 传送门解谜",
+      "missions": [
+        "portal"
       ]
     }
   ],

@@ -1,0 +1,188 @@
+:root {
+  color-scheme: dark;
+  --ink: #071116;
+  --ink-soft: rgba(7, 17, 22, 0.82);
+  --paper: #e7e0d0;
+  --paper-dim: #a9aaa1;
+  --taxi: #efb83c;
+  --copper: #72a29b;
+  --signal: #e45b43;
+  --line: rgba(231, 224, 208, 0.22);
+  --hairline: 1px solid var(--line);
+  font-family: "Bahnschrift", "Microsoft YaHei UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: var(--ink); color: var(--paper); }
+button, input { font: inherit; }
+button { color: inherit; }
+#scene { position: fixed; inset: 0; display: block; width: 100%; height: 100%; outline: none; }
+#interface { position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 900ms ease; }
+#interface.is-ready { opacity: 1; }
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.masthead {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  right: 26px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 12px;
+  border-bottom: var(--hairline);
+  filter: drop-shadow(0 5px 18px rgba(0, 0, 0, 0.45));
+}
+
+.monogram {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--taxi);
+  transform: rotate(45deg);
+  background: rgba(7, 17, 22, 0.76);
+}
+.monogram span { transform: rotate(-45deg); font: 700 25px/1 "Bodoni MT", "STSong", serif; color: var(--taxi); }
+.title-lockup { display: flex; align-items: baseline; gap: 14px; }
+.eyebrow { margin: 0; order: 2; color: var(--paper-dim); font-size: 9px; letter-spacing: 0.2em; }
+h1 { margin: 0; font: 600 25px/1 "Bodoni MT", "STSong", serif; letter-spacing: 0.09em; text-shadow: 0 2px 20px #000; }
+h1 span { margin-left: 10px; color: var(--taxi); font-size: 14px; font-family: "Microsoft YaHei UI", sans-serif; font-weight: 400; letter-spacing: 0.18em; }
+.benchmark-stamp { margin-left: auto; display: grid; grid-template-columns: auto auto; gap: 2px 12px; text-align: right; text-shadow: 0 2px 14px #000; }
+.benchmark-stamp span { grid-row: span 2; align-self: center; padding: 5px 8px; border: 1px solid var(--taxi); color: var(--taxi); font-size: 9px; letter-spacing: .12em; }
+.benchmark-stamp strong { font-size: 10px; letter-spacing: .16em; }
+.benchmark-stamp small { color: var(--paper-dim); font-size: 8px; letter-spacing: .13em; }
+
+.control-deck {
+  pointer-events: auto;
+  position: absolute;
+  top: 103px;
+  left: 26px;
+  width: min(332px, calc(100vw - 52px));
+  padding: 17px 18px 16px;
+  background: linear-gradient(145deg, rgba(10, 24, 29, 0.9), rgba(7, 17, 22, 0.72));
+  border: var(--hairline);
+  border-top: 2px solid var(--taxi);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36), inset 0 0 30px rgba(104, 163, 154, 0.035);
+  backdrop-filter: blur(14px) saturate(0.85);
+}
+.control-deck::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(231,224,208,.07); pointer-events: none; }
+.deck-heading, .row-label { display: flex; align-items: center; justify-content: space-between; }
+.deck-heading { padding-bottom: 10px; border-bottom: var(--hairline); font-size: 9px; letter-spacing: .18em; color: var(--paper-dim); }
+.deck-heading output { color: var(--taxi); font-size: 11px; letter-spacing: .12em; }
+.weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 11px 0 15px; }
+.weather-button, .camera-button, .seed-form button, .audio-button {
+  border: 1px solid rgba(231, 224, 208, 0.18);
+  background: rgba(231, 224, 208, 0.045);
+  cursor: pointer;
+  transition: border-color 180ms, color 180ms, background 180ms, transform 180ms;
+}
+.weather-button { min-height: 34px; display: flex; align-items: center; gap: 7px; justify-content: center; font-size: 10px; letter-spacing: .08em; }
+.weather-button:hover, .camera-button:hover, .seed-form button:hover { border-color: var(--taxi); transform: translateY(-1px); }
+.weather-button.is-active { background: var(--taxi); border-color: var(--taxi); color: var(--ink); font-weight: 700; }
+.weather-icon { width: 8px; height: 8px; border: 1px solid currentColor; border-radius: 50%; opacity: .8; }
+[data-weather="cloudy"] .weather-icon, [data-weather="fog"] .weather-icon { border-radius: 6px 6px 2px 2px; }
+[data-weather="rain"] .weather-icon, [data-weather="storm"] .weather-icon { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+[data-weather="snow"] .weather-icon { border: 0; }
+[data-weather="snow"] .weather-icon::before { content: "✦"; display: block; transform: translateY(-3px); }
+
+.timeline-block { border-top: var(--hairline); padding-top: 12px; }
+.row-label label, .seed-form label, .wind-row label { color: var(--paper-dim); font-size: 9px; letter-spacing: .14em; }
+.row-label output { color: var(--paper); font: 600 18px/1 "Bahnschrift Condensed", monospace; }
+input[type="range"] { width: 100%; height: 20px; margin: 8px 0 0; appearance: none; background: transparent; cursor: pointer; }
+input[type="range"]::-webkit-slider-runnable-track { height: 2px; background: linear-gradient(90deg, var(--copper), var(--taxi)); }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 11px; height: 11px; margin-top: -5px; border: 2px solid var(--ink); border-radius: 50%; background: var(--taxi); box-shadow: 0 0 0 1px var(--taxi); }
+.ticks { display: flex; justify-content: space-between; margin-top: -1px; color: rgba(231,224,208,.5); font-size: 7px; }
+.switch-row { display: flex; gap: 18px; padding: 13px 0; border-bottom: var(--hairline); }
+.switch { display: flex; align-items: center; gap: 7px; cursor: pointer; color: var(--paper-dim); font-size: 9px; letter-spacing: .08em; }
+.switch input { position: absolute; opacity: 0; }
+.switch span { width: 24px; height: 12px; border: 1px solid var(--line); position: relative; }
+.switch span::after { content: ""; position: absolute; top: 2px; left: 2px; width: 6px; height: 6px; background: var(--paper-dim); transition: transform 180ms, background 180ms; }
+.switch input:checked + span::after { transform: translateX(12px); background: var(--taxi); }
+.wind-row { display: grid; grid-template-columns: 82px 1fr 58px; align-items: center; gap: 8px; padding: 9px 0; border-bottom: var(--hairline); }
+.wind-row input { margin: 0; }
+.wind-row output { text-align: right; color: var(--copper); font-size: 9px; }
+.wind-row small, .seed-form small { display: block; margin-top: 2px; font-size: 7px; letter-spacing: .1em; }
+.seed-form { padding: 11px 0 10px; border-bottom: var(--hairline); }
+.seed-form > div { display: grid; grid-template-columns: 1fr 64px; gap: 6px; margin-top: 7px; }
+.seed-form input { min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--line); outline: 0; background: rgba(0,0,0,.24); color: var(--paper); font: 14px "Bahnschrift", monospace; letter-spacing: .08em; }
+.seed-form input:focus { border-color: var(--taxi); }
+.seed-form button { font-size: 9px; letter-spacing: .1em; }
+.camera-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 11px; }
+.camera-button { height: 32px; font-size: 9px; letter-spacing: .1em; }
+.camera-button.is-active { border-color: var(--copper); background: rgba(114,162,155,.16); color: #bce0da; }
+
+.telemetry {
+  position: absolute;
+  top: 103px;
+  right: 26px;
+  width: 210px;
+  background: var(--ink-soft);
+  border: var(--hairline);
+  border-right: 2px solid var(--copper);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+}
+.telemetry-heading { padding: 11px 13px; border-bottom: var(--hairline); font-size: 8px; letter-spacing: .16em; color: var(--copper); }
+.live-dot { display: inline-block; width: 5px; height: 5px; margin-right: 6px; border-radius: 50%; background: #75c97f; box-shadow: 0 0 8px #75c97f; animation: pulse 1.6s infinite; }
+.telemetry dl { margin: 0; padding: 6px 13px; }
+.telemetry dl div { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid rgba(231,224,208,.08); }
+.telemetry dt { color: var(--paper-dim); font-size: 9px; }
+.telemetry dt small { margin-left: 4px; color: rgba(231,224,208,.35); font-size: 7px; }
+.telemetry dd { margin: 0; font: 600 13px "Bahnschrift Condensed", monospace; color: var(--paper); }
+.hash-line { padding: 8px 13px 11px; display: grid; gap: 3px; color: var(--paper-dim); font-size: 8px; }
+.hash-line code { overflow: hidden; color: var(--taxi); text-overflow: ellipsis; white-space: nowrap; font-size: 8px; }
+
+.capability-rail { position: absolute; right: 26px; bottom: 27px; display: flex; gap: 2px; }
+.capability-rail span { padding: 6px 9px; border-top: 1px solid var(--line); background: rgba(7,17,22,.62); color: var(--paper-dim); font-size: 8px; letter-spacing: .08em; }
+.capability-rail span:first-child { border-color: var(--taxi); color: var(--paper); }
+.view-hint { position: absolute; left: 26px; bottom: 26px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(7,17,22,.66); border-left: 2px solid var(--taxi); color: var(--paper-dim); font-size: 9px; letter-spacing: .06em; }
+.mouse-glyph { width: 10px; height: 15px; border: 1px solid currentColor; border-radius: 5px; position: relative; }
+.mouse-glyph::before { content: ""; position: absolute; top: 2px; left: 4px; width: 1px; height: 4px; background: currentColor; }
+.audio-button { pointer-events: auto; position: absolute; right: 26px; bottom: 65px; padding: 7px 10px; color: var(--paper-dim); font-size: 8px; letter-spacing: .08em; background: rgba(7,17,22,.7); }
+.audio-button span { display: inline-block; width: 5px; height: 5px; margin-right: 6px; border-radius: 50%; background: var(--signal); }
+.audio-button.is-active { border-color: var(--copper); color: var(--paper); }
+.audio-button.is-active span { background: #75c97f; }
+.toast { position: absolute; left: 50%; bottom: 82px; transform: translate(-50%, 14px); padding: 9px 14px; background: var(--paper); color: var(--ink); font-size: 10px; letter-spacing: .06em; opacity: 0; transition: opacity 180ms, transform 180ms; }
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+#loading { position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 22px; background: #071116; transition: opacity 650ms, visibility 650ms; }
+#loading.is-hidden { opacity: 0; visibility: hidden; }
+.loading-mark { width: 62px; height: 62px; display: grid; place-items: center; border: 1px solid var(--taxi); color: var(--taxi); font: 32px "Bodoni MT", serif; transform: rotate(45deg); animation: loadmark 1.8s ease-in-out infinite; }
+.loading-mark::first-letter { transform: rotate(-45deg); }
+#loading div { display: grid; gap: 7px; }
+#loading strong { font: 500 19px "STSong", serif; letter-spacing: .12em; }
+#loading small { color: var(--paper-dim); font-size: 9px; letter-spacing: .14em; }
+
+@keyframes pulse { 50% { opacity: .35; } }
+@keyframes loadmark { 50% { box-shadow: 0 0 34px rgba(239,184,60,.22); transform: rotate(45deg) scale(.9); } }
+
+@media (max-width: 860px) {
+  .masthead { top: 12px; left: 14px; right: 14px; }
+  .eyebrow, .benchmark-stamp { display: none; }
+  h1 { font-size: 20px; }
+  .control-deck { top: 86px; left: 14px; width: min(306px, calc(100vw - 28px)); max-height: calc(100vh - 148px); overflow: auto; }
+  .telemetry { top: auto; right: 14px; bottom: 14px; width: 178px; }
+  .telemetry dl div:nth-child(n+4), .hash-line { display: none; }
+  .capability-rail, .view-hint, .audio-button { display: none; }
+}
+
+@media (max-width: 520px) {
+  .monogram { width: 38px; height: 38px; }
+  h1 span { display: block; margin: 4px 0 0; }
+  .control-deck { width: 272px; transform: scale(.92); transform-origin: top left; }
+  .telemetry { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}

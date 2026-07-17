@@ -1,6 +1,6 @@
 # 类别规则:code-to-3d — 代码生成 3D / 图形场景
 
-本 lab 的现役类别:给同一任务描述,不同模型各自**写代码**生成 Web 3D 场景(现有 22 个项目,见 [`../registry.json`](../registry.json))。
+本 lab 的现役类别:给同一任务描述,不同模型各自**写代码**生成 Web 3D 场景(现役项目清单与数量以 [registry.json](../registry.json) 中 category 字段为准)。
 
 - **专项评分卡**(七维 + 审美子表,视觉·审美为重心轴):[`../../shared/rubrics/code-to-3d.md`](../../shared/rubrics/code-to-3d.md)
 - **任务库**(各 mission 的冻结规范 + 特性清单 + 参与项目):[`../tasks/code-to-3d/`](../tasks/code-to-3d/)(如 `ocean.md`)

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101413" />
+    <meta name="description" content="原创第一人称空间折跃解谜游戏：双传送门、动量映射与立方体机关。" />
+    <link rel=icon href=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cellipse%20cx%3D%2232%22%20cy%3D%2232%22%20rx%3D%2217%22%20ry%3D%2228%22%20fill%3D%22none%22%20stroke%3D%22%23c8ff4a%22%20stroke-width%3D%226%22/%3E%3C/svg%3E>
+    <title>折跃实验场 // CHAMBER 07</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div id="app" aria-label="3D 游戏画面"></div>
+
+    <section id="entry" class="entry" aria-labelledby="entry-title">
+      <div class="entry-grid" aria-hidden="true"></div>
+      <div class="entry-copy">
+        <div class="serial"><span>WSL</span> / SPATIAL TEST 07</div>
+        <p class="eyebrow">折跃系统在线 · 双向链路等待校准</p>
+        <h1 id="entry-title"><span>折跃</span><br />实验场</h1>
+        <p class="intro">放置一对空间锚点，进入密封舱取出相位立方体，让压力平台保持激活，再穿过开启的出口。</p>
+        <button id="startBtn" type="button">
+          <span>进入试验场</span>
+          <b aria-hidden="true">↗</b>
+        </button>
+        <p class="pointer-tip" id="pointerTip">点击后将锁定鼠标；按 <kbd>Esc</kbd> 可暂停。</p>
+      </div>
+      <div class="entry-index" aria-hidden="true">
+        <span>07</span>
+        <small>VELOCITY<br />IS A PROMISE</small>
+      </div>
+    </section>
+
+    <main id="hud" class="hud hidden" aria-live="polite">
+      <header class="mission-strip">
+        <span class="mission-code">CHAMBER / 07</span>
+        <div>
+          <small>当前指令</small>
+          <strong id="objective">建立双向折跃链路</strong>
+        </div>
+        <span id="fps" class="fps">-- FPS</span>
+      </header>
+
+      <aside class="portal-meter" aria-label="传送门状态">
+        <div id="cyanStatus" class="portal-slot cyan">
+          <i></i><span><b>主锚点</b><small>未部署</small></span><kbd>左键</kbd>
+        </div>
+        <div id="amberStatus" class="portal-slot amber">
+          <i></i><span><b>副锚点</b><small>未部署</small></span><kbd>右键</kbd>
+        </div>
+      </aside>
+
+      <div id="crosshair" class="crosshair" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><span></span>
+      </div>
+
+      <div id="interact" class="interact hidden"><kbd>E</kbd><span>拾取相位立方体</span></div>
+      <div id="toast" class="toast hidden"></div>
+
+      <footer class="control-rail">
+        <span><kbd>WASD</kbd> 移动</span>
+        <span><kbd>空格</kbd> 跳跃</span>
+        <span><kbd>E</kbd> 拾取 / 放下</span>
+        <span><kbd>R</kbd> 重置</span>
+      </footer>
+    </main>
+
+    <section id="complete" class="complete hidden" aria-labelledby="complete-title">
+      <div class="complete-card">
+        <span class="complete-mark">✓</span>
+        <p>空间因果链已闭合</p>
+        <h2 id="complete-title">测试通过</h2>
+        <dl>
+          <div><dt>折跃次数</dt><dd id="teleportCount">0</dd></div>
+          <div><dt>用时</dt><dd id="completeTime">00:00</dd></div>
+        </dl>
+        <button id="againBtn" type="button">重新校准</button>
+      </div>
+    </section>
+
+    <div id="fatal" class="fatal hidden">
+      <strong>无法启动 WebGL</strong>
+      <span>请启用浏览器硬件加速后刷新页面。</span>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

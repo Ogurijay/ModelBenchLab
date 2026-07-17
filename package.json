@@ -36,7 +36,10 @@
     "claudefable5-bowling-physics",
     "claudefable5-datagrid-virtual",
     "gpt5.5-fire-volumetric",
-    "claudefable5-fire-raymarch"
+    "claudefable5-fire-raymarch",
+    "claudefable5-portal-chambers",
+    "gpt5.6solultra-portal-puzzle",
+    "gpt5.6solultra-manhattan-procedural"
   ],
   "scripts": {
     "dev": "vite",

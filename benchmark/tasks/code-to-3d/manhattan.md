@@ -76,6 +76,7 @@
 | 端口 | 目录 | 模型 | variant |
 |---|---|---|---|
 | 3025 | claudefable5-manhattan-procedural | Claude Fable 5 | procedural |
+| 3036 | gpt5.6solultra-manhattan-procedural | GPT 5.6 SOL Ultra | procedural |
 
 > **公平对比原则**:直接横向对比只在**同一 variant 内**进行。跨 variant 只比"公共核心要求"部分。
 
