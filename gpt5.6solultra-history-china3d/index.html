@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1514" />
+    <meta
+      name="description"
+      content="从春秋战国到现代的中国历史地理 3D 演变沙盘，包含地形、城市、势力、事件与域外同期观察。"
+    />
+    <link rel="icon" href="data:," />
+    <title>山河纪 · 中国历史 3D 演变沙盘</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene" aria-label="中国历史地形与城市三维沙盘"></canvas>
+
+      <div class="grain" aria-hidden="true"></div>
+      <div class="map-vignette" aria-hidden="true"></div>
+
+      <header class="masthead">
+        <div class="brand-lockup">
+          <span class="seal" aria-hidden="true">山河</span>
+          <div>
+            <p class="eyebrow">CHRONICLE OF THE REALM · 770 BCE—2025 CE</p>
+            <h1>山河纪</h1>
+          </div>
+        </div>
+        <div class="era-heading" aria-live="polite">
+          <span id="era-kicker">关键历史截面 01 / 12</span>
+          <strong id="era-heading">公元前 770 年 · 春秋开启</strong>
+        </div>
+        <div class="masthead-actions">
+          <button class="icon-button" id="quality-button" type="button" title="切换渲染画质">
+            <span>画质</span>
+            <strong id="quality-label">均衡</strong>
+          </button>
+          <button class="primary-quiet" id="overview-button" type="button">
+            <span class="button-icon" aria-hidden="true">⌂</span>
+            全国总览
+          </button>
+        </div>
+      </header>
+
+      <aside class="chronicle-panel glass-panel" aria-label="时代概览">
+        <div class="panel-index">
+          <span id="era-number">壹</span>
+          <i></i>
+          <small id="era-period">春秋时期</small>
+        </div>
+        <p class="era-summary" id="era-summary"></p>
+
+        <div class="source-key">
+          <span><i class="source-dot factual"></i>史实概括</span>
+          <span><i class="source-dot inferred"></i>推定复原</span>
+          <span><i class="source-dot generated"></i>程序生成</span>
+        </div>
+
+        <section class="panel-section">
+          <div class="section-heading">
+            <span>势力与治理</span>
+            <small>POLITIES</small>
+          </div>
+          <div id="faction-list" class="faction-list"></div>
+        </section>
+
+        <section class="panel-section events-section">
+          <div class="section-heading">
+            <span>同期大事</span>
+            <small>EVENTS</small>
+          </div>
+          <div id="event-list" class="event-list"></div>
+        </section>
+
+        <section class="terrain-note" id="terrain-note">
+          <span>地理观察</span>
+          <p></p>
+        </section>
+      </aside>
+
+      <aside class="atlas-panel glass-panel" aria-label="图层与域外观察">
+        <div class="atlas-title">
+          <div>
+            <span>世界同屏</span>
+            <small>COARSE GLOBAL CONTEXT</small>
+          </div>
+          <button id="atlas-collapse" class="text-button" type="button" aria-expanded="true">收起</button>
+        </div>
+
+        <div class="world-atlas" id="world-atlas" aria-label="同期域外势力概览">
+          <svg viewBox="0 0 320 128" role="img" aria-label="低精度世界势力示意图">
+            <defs>
+              <pattern id="atlas-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width=".6" />
+              </pattern>
+            </defs>
+            <rect width="320" height="128" rx="12" fill="url(#atlas-grid)" />
+            <path class="atlas-land" d="M15 38 34 25l34 2 12 18-17 13-7 21-25 5-17-18Z" />
+            <path class="atlas-land" d="m64 88 21-7 16 13-7 27-15-2Z" />
+            <path class="atlas-land" d="m122 35 18-16 38 7 15-11 48 9 19 18-12 18-26 4-12 28-34 5-15-24-37-8Z" />
+            <path class="atlas-land" d="m147 70 22 7 9 34-19 12-17-29Z" />
+            <path class="atlas-land" d="m256 88 28-9 22 13-8 24-33 4Z" />
+            <g id="foreign-markers"></g>
+          </svg>
+          <div id="foreign-list" class="foreign-list"></div>
+        </div>
+
+        <div class="city-jump">
+          <label for="city-select">
+            <span>城市定位</span>
+            <small>61 CITY DIORAMAS</small>
+          </label>
+          <select id="city-select" aria-label="选择城市并定位">
+            <option value="">选择一座城市</option>
+          </select>
+        </div>
+
+        <div class="layer-controls">
+          <span class="mini-heading">沙盘图层</span>
+          <label class="switch-row">
+            <input type="checkbox" id="layer-territory" checked />
+            <span class="switch"><i></i></span>
+            <span><strong>势力版图</strong><small>概括性六角控制区</small></span>
+          </label>
+          <label class="switch-row">
+            <input type="checkbox" id="layer-cities" checked />
+            <span class="switch"><i></i></span>
+            <span><strong>城市建筑</strong><small>时代与地域风格</small></span>
+          </label>
+          <label class="switch-row">
+            <input type="checkbox" id="layer-events" checked />
+            <span class="switch"><i></i></span>
+            <span><strong>事件信标</strong><small>迁都、战争与工程</small></span>
+          </label>
+          <label class="switch-row">
+            <input type="checkbox" id="layer-labels" checked />
+            <span class="switch"><i></i></span>
+            <span><strong>地名标注</strong><small>随相机缩放显隐</small></span>
+          </label>
+        </div>
+
+        <div class="map-legend">
+          <span><i class="legend-hex"></i>实色：核心 / 行政区</span>
+          <span><i class="legend-hex soft"></i>半透明：影响 / 推定区</span>
+        </div>
+      </aside>
+
+      <section class="city-card glass-panel" id="city-card" aria-label="城市详情" hidden>
+        <button class="close-button" id="city-close" type="button" aria-label="关闭城市详情">×</button>
+        <div class="city-card-heading">
+          <div class="city-monogram" id="city-monogram">洛</div>
+          <div>
+            <small id="city-source">程序化复原 · 史实锚点</small>
+            <h2 id="city-name">洛阳</h2>
+            <p id="city-historical-name">洛邑 · 河洛平原</p>
+          </div>
+        </div>
+        <div class="city-facts">
+          <div><span>地形</span><strong id="city-biome">河谷平原</strong></div>
+          <div><span>建筑母题</span><strong id="city-style">夯土高台</strong></div>
+          <div><span>聚落等级</span><strong id="city-rank">都城</strong></div>
+        </div>
+        <p id="city-description" class="city-description"></p>
+        <button class="focus-button" id="city-focus" type="button">进入城市近景 <span>↗</span></button>
+      </section>
+
+      <div class="hover-label" id="hover-label" hidden>
+        <strong></strong>
+        <small></small>
+      </div>
+
+      <section class="timeline-shell" aria-label="历史年代轴">
+        <div class="playback-controls">
+          <button id="play-button" class="play-button" type="button" aria-label="播放历史演变">
+            <span class="play-icon" aria-hidden="true"></span>
+          </button>
+          <div>
+            <span id="play-state">全程演变</span>
+            <small id="play-range-label">前770 → 2025</small>
+          </div>
+        </div>
+
+        <div class="timeline-main">
+          <input
+            id="era-slider"
+            type="range"
+            min="0"
+            max="11"
+            step="1"
+            value="0"
+            aria-label="选择历史时代"
+          />
+          <div class="timeline-track" id="timeline-track"></div>
+        </div>
+
+        <div class="segment-control">
+          <div class="segment-heading">
+            <span>片段播放</span>
+            <button id="segment-reset" class="text-button" type="button">全程</button>
+          </div>
+          <div class="segment-selects">
+            <label>
+              <span>始</span>
+              <select id="segment-start" aria-label="片段开始年代"></select>
+            </label>
+            <i>—</i>
+            <label>
+              <span>终</span>
+              <select id="segment-end" aria-label="片段结束年代"></select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <div class="scene-hud" aria-label="场景状态">
+        <span><i class="pulse-dot"></i><b id="hud-mode">全国视角</b></span>
+        <span id="hud-cities">城市 0</span>
+        <span id="hud-fps">-- FPS</span>
+        <span id="hud-draws">-- DRAW</span>
+      </div>
+
+      <div class="loading-screen" id="loading">
+        <div class="loading-emblem">
+          <i></i><i></i><i></i>
+          <span>九州</span>
+        </div>
+        <p>铺展山河卷轴</p>
+        <small id="loading-status">正在构筑地形与历史截面…</small>
+      </div>
+
+      <noscript>此 3D 历史沙盘需要启用 JavaScript。</noscript>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

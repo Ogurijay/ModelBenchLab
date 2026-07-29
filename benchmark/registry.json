@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-24",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -45,7 +45,12 @@
     "bowling": "保龄球",
     "datagrid": "虚拟滚动数据网格",
     "fire": "实体火焰模拟",
-    "portal": "传送门解谜"
+    "portal": "传送门解谜",
+    "life": "GBA 风格生活模拟",
+    "business": "像素商业大亨",
+    "brawler": "3D 竞技格斗",
+    "digimon": "数码宝贝大乱斗",
+    "history": "中国历史3D演变沙盘"
   },
   "projects": [
     {
@@ -742,6 +747,27 @@
       "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
     },
     {
+      "dir": "claudeopus5-portal-recursive",
+      "port": 3045,
+      "model": "Claude Opus 5",
+      "category": "code-to-3d",
+      "mission": "portal",
+      "variant": "recursive",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "传送门 — 递归门景与实体开孔",
+      "desc": "两层递归门中门渲染(RT 链 + 斜近裁剪);墙体按门口真实布尔开孔做碰撞,分块扫掠移动在穿越瞬间做变换,动量守恒;方块/按钮/消解栅/电梯与 5 间测试室,传送变换纯函数 10 组冻结自测",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+    },
+    {
       "dir": "gpt5.6solultra-manhattan-procedural",
       "port": 3036,
       "model": "GPT 5.6 SOL Ultra",
@@ -761,6 +787,152 @@
         "changelog": true
       },
       "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md"
+    },
+    {
+      "dir": "gpt5.6solultra-life-gba",
+      "port": 3037,
+      "model": "GPT 5.6 SOL Ultra",
+      "category": "code-to-ui",
+      "mission": "life",
+      "variant": "gba",
+      "api": "Canvas2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "口袋日常 — GBA 风格生活模拟",
+      "desc": "240×160 像素画布上的掌机生活模拟：俯视小屋、家具互动、五维需求、昼夜时间、金钱与每日目标，支持键盘和实体式触控按键",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md"
+    },
+    {
+      "dir": "gpt5.6solultra-business-tycoon",
+      "port": 3038,
+      "model": "GPT 5.6 SOL Ultra",
+      "category": "code-to-ui",
+      "mission": "business",
+      "variant": "tycoon",
+      "api": "DOM",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "街区大亨 — 像素商业模拟",
+      "desc": "可逐日游玩的像素经营沙盘：12 类联动商业机制、144 种可开店模式、城市事件、贷款扩张、门店策略台与本地存档",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md"
+    },
+    {
+      "dir": "claudefable5-life-gba",
+      "port": 3041,
+      "model": "Claude Fable 5",
+      "category": "code-to-ui",
+      "mission": "life",
+      "variant": "gba",
+      "api": "Canvas2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "像素小日子 — GBA 风模拟人生",
+      "desc": "240×160 GBA 掌机壳像素小屋:六需求衰减与心情宝石、14+ 可交互家具、昼夜光照与睡眠过场、上班绩效升职、周一账单逾期停电、电话购物升级家具、邻居 BFS 来访与猫、WebAudio 芯片双 BGM,美术音频全程序化零资产,localStorage 存档",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md"
+    },
+    {
+      "dir": "claudefable5-business-tycoon",
+      "port": 3040,
+      "model": "Claude Fable 5",
+      "category": "code-to-ui",
+      "mission": "business",
+      "variant": "tycoon",
+      "api": "Canvas2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "像素大亨 — 商业模拟养成",
+      "desc": "12 行业 121 种业态×15 项结算机制:六城区像素街景昼夜四季,选址地价/供需定价/供应品质/雇员士气/升级/28 项科技树/营销品牌/数字化方案/信贷信用分/股票/28 种城市事件含抉择/竞争对手 AI 并购/声望/经济周期/目标任务链,确定性种子内置自测,localStorage 存档",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md"
+    },
+    {
+      "dir": "gpt5.6sol-digimon-rumble",
+      "port": 3039,
+      "model": "GPT 5.6 SOL",
+      "category": "code-to-3d",
+      "mission": "brawler",
+      "variant": "digimon-rumble",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "数码兽大乱斗 — PS2 风格完整精选版",
+      "desc": "完整 Three.js 数码兽竞技精选版：8 条三形态进化线、2 名 Boss、5 座场地、4 种规则、1–4P 本地乱斗、6 关数码杯与版本化存档",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/brawler.md"
+    },
+    {
+      "dir": "claudefable5-digimon-rumble",
+      "port": 3042,
+      "model": "Claude Fable 5",
+      "category": "code-to-3d",
+      "mission": "digimon",
+      "variant": "rumble",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "数码宝贝大乱斗 — PS2 格斗复刻",
+      "desc": "复刻 Digimon Rumble Arena 2:11 名可选数码兽(DSCS 骨骼动画模型),2.5D 平台格斗、三段连击/必杀弹幕/防御击飞、战斗中数码进化究极体、CPU AI 与三局两胜,PS2 风格 HUD 与合成音效",
+      "docs": {
+        "readme": false,
+        "handover": true,
+        "changelog": true
+      }
+    },
+    {
+      "dir": "gpt5.6solultra-history-china3d",
+      "port": 3043,
+      "model": "GPT 5.6 SOL Ultra",
+      "category": "code-to-3d",
+      "mission": "history",
+      "variant": "china3d",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "山河纪 · 中国历史3D演变沙盘",
+      "desc": "12 个历史关键帧串联春秋战国至现代，61 座城市可下钻的程序化 3D 沙盘，包含全国地形、历代势力与国土演变、粗粒度域外版图和重大事件",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/history.md"
     }
   ],
   "portalSections": [
@@ -826,7 +998,15 @@
       "id": "ui",
       "label": "UI — 前端界面工程",
       "missions": [
-        "datagrid"
+        "datagrid",
+        "business"
+      ]
+    },
+    {
+      "id": "life",
+      "label": "Life Sim — 像素生活模拟",
+      "missions": [
+        "life"
       ]
     },
     {
@@ -834,6 +1014,27 @@
       "label": "Portal — 传送门解谜",
       "missions": [
         "portal"
+      ]
+    },
+    {
+      "id": "brawler",
+      "label": "Brawler — 3D 竞技格斗",
+      "missions": [
+        "brawler"
+      ]
+    },
+    {
+      "id": "digimon",
+      "label": "Digimon — 数码宝贝大乱斗",
+      "missions": [
+        "digimon"
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History — 中国历史3D演变沙盘",
+      "missions": [
+        "history"
       ]
     }
   ],

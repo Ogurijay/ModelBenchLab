@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#181a2a" />
+    <title>口袋日常 · GBA 生活模拟</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="brand" aria-label="游戏标题">
+        <span class="brand-kicker">LITTLE DAYS / 2003</span>
+        <h1>口袋日常</h1>
+        <p>一间小屋，一天好心情。</p>
+      </header>
+
+      <section class="handheld" aria-label="GBA 风格生活模拟游戏">
+        <div class="handheld-topline">
+          <span>POWER</span><i aria-hidden="true"></i><b>POCKET LIFE</b>
+        </div>
+        <div class="screen-bezel">
+          <div class="screen-wrap">
+            <canvas id="game" width="240" height="160" aria-label="游戏画面"></canvas>
+            <div class="scanlines" aria-hidden="true"></div>
+          </div>
+          <div class="screen-label"><span>DOT MATRIX WITH STEREO SOUND</span><strong>COLOR</strong></div>
+        </div>
+
+        <div class="controls">
+          <div class="dpad" aria-label="方向键">
+            <button data-key="ArrowUp" class="up" aria-label="向上"></button>
+            <button data-key="ArrowLeft" class="left" aria-label="向左"></button>
+            <i aria-hidden="true"></i>
+            <button data-key="ArrowRight" class="right" aria-label="向右"></button>
+            <button data-key="ArrowDown" class="down" aria-label="向下"></button>
+          </div>
+          <div class="speaker" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="action-pad">
+            <button data-key="KeyX" class="button-b" aria-label="返回或取消">B</button>
+            <button data-key="KeyZ" class="button-a" aria-label="互动或确认">A</button>
+          </div>
+        </div>
+        <div class="system-buttons">
+          <button data-key="KeyM">SELECT</button>
+          <button data-key="KeyP">START</button>
+        </div>
+      </section>
+
+      <aside class="quick-guide" aria-label="操作说明">
+        <div><kbd>↑↓←→</kbd><span>移动</span></div>
+        <div><kbd>Z / J</kbd><span>互动</span></div>
+        <div><kbd>X / K</kbd><span>取消</span></div>
+        <div><kbd>P</kbd><span>暂停</span></div>
+      </aside>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

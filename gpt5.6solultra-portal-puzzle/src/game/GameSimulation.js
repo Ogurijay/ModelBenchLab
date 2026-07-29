@@ -5,6 +5,7 @@ import {
   mapVectorThroughPortal,
   vectorLengthError,
 } from './portalMath.js';
+import { advanceSprintState, PLAYER_MOVEMENT } from './playerMovement.js';
 
 export const FIXED_DT = 1 / 120;
 
@@ -152,6 +153,11 @@ export class GameSimulation {
       grounded: false,
       portalCooldown: 0,
       eyeOffset: 0.67,
+      sprintElapsed: 0,
+      sprintActive: false,
+      sprintProgress: 0,
+      sprintMaxed: false,
+      movementSpeed: PLAYER_MOVEMENT.walkSpeed,
     };
     this.cube = {
       position: START_CUBE.clone(),
@@ -163,6 +169,27 @@ export class GameSimulation {
     };
 
     this.reset();
+    this.onInputClear = () => this.resetSprint();
+    this.input.addEventListener?.('clear', this.onInputClear);
+  }
+
+  resetSprint() {
+    this.player.sprintElapsed = 0;
+    this.player.sprintActive = false;
+    this.player.sprintProgress = 0;
+    this.player.sprintMaxed = false;
+    this.player.movementSpeed = PLAYER_MOVEMENT.walkSpeed;
+    const state = {
+      active: false,
+      elapsed: 0,
+      progress: 0,
+      speed: PLAYER_MOVEMENT.walkSpeed,
+      maxed: false,
+      maxSpeed: PLAYER_MOVEMENT.sprintMaxSpeed,
+      chargeSeconds: PLAYER_MOVEMENT.sprintChargeSeconds,
+    };
+    this.ui.setSprintState?.(state);
+    return state;
   }
 
   reset() {
@@ -179,6 +206,7 @@ export class GameSimulation {
     this.player.velocity.set(0, 0, 0);
     this.player.grounded = false;
     this.player.portalCooldown = 0;
+    this.resetSprint();
     this.cube.position.copy(START_CUBE);
     this.cube.velocity.set(0, 0, 0);
     this.cube.grounded = false;
@@ -218,8 +246,22 @@ export class GameSimulation {
     tmpB.set(-tmpA.z, 0, tmpA.x);
     tmpC.copy(tmpA).multiplyScalar(forwardInput).addScaledVector(tmpB, rightInput);
     if (tmpC.lengthSq() > 1) tmpC.normalize();
-    const speed = this.input.down('ShiftLeft') || this.input.down('ShiftRight') ? 6.4 : 4.45;
-    tmpC.multiplyScalar(speed);
+    const sprintState = advanceSprintState(this.player.sprintElapsed, {
+      sprintHeld: this.input.down('ShiftLeft') || this.input.down('ShiftRight'),
+      moving: tmpC.lengthSq() > 1e-8,
+      dt,
+    });
+    this.player.sprintElapsed = sprintState.elapsed;
+    this.player.sprintActive = sprintState.active;
+    this.player.sprintProgress = sprintState.progress;
+    this.player.sprintMaxed = sprintState.maxed;
+    this.player.movementSpeed = sprintState.speed;
+    this.ui.setSprintState?.({
+      ...sprintState,
+      maxSpeed: PLAYER_MOVEMENT.sprintMaxSpeed,
+      chargeSeconds: PLAYER_MOVEMENT.sprintChargeSeconds,
+    });
+    tmpC.multiplyScalar(sprintState.speed);
     const response = tmpC.lengthSq() > 0 ? 15 : 10;
     this.player.velocity.x = THREE.MathUtils.damp(this.player.velocity.x, tmpC.x, response, dt);
     this.player.velocity.z = THREE.MathUtils.damp(this.player.velocity.z, tmpC.z, response, dt);
@@ -411,6 +453,15 @@ export class GameSimulation {
         grounded: this.player.grounded,
         yaw: +this.input.yaw.toFixed(4),
         pitch: +this.input.pitch.toFixed(4),
+        sprint: {
+          active: this.player.sprintActive,
+          elapsed: +this.player.sprintElapsed.toFixed(4),
+          progress: +this.player.sprintProgress.toFixed(4),
+          maxed: this.player.sprintMaxed,
+          targetSpeed: +this.player.movementSpeed.toFixed(4),
+          maxSpeed: PLAYER_MOVEMENT.sprintMaxSpeed,
+          chargeSeconds: PLAYER_MOVEMENT.sprintChargeSeconds,
+        },
       },
       cube: {
         position: roundedVector(this.cube.position),

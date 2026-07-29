@@ -79,6 +79,7 @@
 |---|---|---|---|
 | 3034 | claudefable5-portal-chambers | Claude Fable 5 | chambers |
 | 3035 | gpt5.6solultra-portal-puzzle | GPT 5.6 SOL Ultra | puzzle |
+| 3045 | claudeopus5-portal-recursive | Claude Opus 5 | recursive |
 
 ## 评分与参数卡
 

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08111f" />
+    <meta name="description" content="Three.js 数码兽大乱斗完整精选复刻：8 条三形态进化线、数码杯/自由乱斗/训练模式与 1–4P 本地对战。" />
+    <title>DIGI-RUMBLE // 数码兽大乱斗</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='10'%20fill='%23030712'/%3E%3Cpath%20d='M32%206%2058%2032%2032%2058%206%2032Z'%20fill='none'%20stroke='%2343edff'%20stroke-width='5'/%3E%3Cpath%20d='M32%2017%2047%2032%2032%2047%2017%2032Z'%20fill='%2343edff'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body class="ui-ready">
+    <div id="game" aria-label="3D 数码兽格斗场景"></div>
+
+    <div class="boot-noise" aria-hidden="true"></div>
+    <section id="loading" class="loading legacy-ui" aria-live="polite">
+      <div class="loader-mark"><i></i><i></i><i></i></div>
+      <p>正在接入数码世界</p>
+      <div class="load-track"><span id="loadBar"></span></div>
+      <small id="loadText">读取竞技场数据…</small>
+    </section>
+
+    <section id="titleScreen" class="title-screen legacy-ui hidden" aria-labelledby="gameTitle">
+      <div class="title-grid" aria-hidden="true"></div>
+      <div class="title-kicker"><span>LOCAL // 1P VS CPU</span><b>ARENA 01</b></div>
+      <div class="title-copy">
+        <p>网络竞技协议已就绪</p>
+        <h1 id="gameTitle"><span>DIGI</span><br />RUMBLE</h1>
+        <div class="cn-title">数码兽 · 大乱斗</div>
+        <button id="startBtn" type="button"><span>进入战斗</span><kbd>ENTER</kbd></button>
+        <p class="start-tip">桌面键盘操作 · 支持窗口缩放 · 建议开启声音</p>
+      </div>
+      <div class="versus-card">
+        <div><span>PLAYER 1</span><strong>亚古兽</strong><small>AGUMON</small></div>
+        <b>VS</b>
+        <div><span>CPU</span><strong>加布兽</strong><small>GABUMON</small></div>
+      </div>
+      <div class="title-footer"><span>THREE.JS REAL-TIME BATTLE</span><span>BUILD 2026.07</span></div>
+    </section>
+
+    <main id="hud" class="hud legacy-ui hidden" aria-live="polite">
+      <header class="fight-hud">
+        <section class="fighter-panel player-panel">
+          <div class="fighter-id"><span>1P</span><div><strong>亚古兽</strong><small>AGUMON</small></div></div>
+          <div class="bar hp-bar"><i id="playerHp"></i><em id="playerHpLag"></em></div>
+          <div class="soul-row"><span>DIGI-SOUL</span><div class="soul-bar"><i id="playerSoul"></i></div></div>
+        </section>
+        <div class="round-clock"><small>ROUND 01</small><strong id="timer">90</strong><span id="statusLabel">BATTLE</span></div>
+        <section class="fighter-panel enemy-panel">
+          <div class="fighter-id"><div><strong>加布兽</strong><small>GABUMON</small></div><span>CPU</span></div>
+          <div class="bar hp-bar"><i id="enemyHp"></i><em id="enemyHpLag"></em></div>
+          <div class="soul-row"><div class="soul-bar"><i id="enemySoul"></i></div><span>DIGI-SOUL</span></div>
+        </section>
+      </header>
+
+      <div id="announcement" class="announcement hidden"><small>NETWORK SIGNAL</small><strong></strong></div>
+      <div id="combo" class="combo hidden"><strong>2</strong><span>HIT<br />COMBO</span></div>
+      <div id="pickupHint" class="pickup-hint hidden">能量数据已生成</div>
+
+      <footer class="controls">
+        <div><kbd>WASD</kbd><span>移动</span></div>
+        <div><kbd>J</kbd><span>连击</span></div>
+        <div><kbd>K</kbd><span>小型火焰</span></div>
+        <div><kbd>SPACE</kbd><span>跳跃</span></div>
+        <div><kbd>SHIFT</kbd><span>闪避</span></div>
+        <div class="overdrive-control"><kbd>E</kbd><span>爆裂进化</span></div>
+      </footer>
+    </main>
+
+    <section id="result" class="result legacy-ui hidden" aria-labelledby="resultTitle">
+      <div class="result-stripes" aria-hidden="true"></div>
+      <div class="result-card">
+        <p id="resultCode">BATTLE COMPLETE</p>
+        <h2 id="resultTitle">YOU WIN</h2>
+        <div class="result-stats">
+          <div><span>剩余生命</span><strong id="resultHp">100%</strong></div>
+          <div><span>战斗用时</span><strong id="resultTime">00:00</strong></div>
+          <div><span>最大连击</span><strong id="resultCombo">0 HIT</strong></div>
+        </div>
+        <button id="againBtn" type="button">再次战斗 <kbd>R</kbd></button>
+      </div>
+    </section>
+
+    <div id="fatal" class="fatal hidden"><strong>无法启动竞技场</strong><span></span></div>
+    <div id="productUI" class="product-ui hidden" data-screen="boot" aria-hidden="true" aria-label="DIGI-RUMBLE game interface">
+      <div class="ui-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <main class="ui-screen-mount" data-ui-mount></main>
+      <div class="ui-global-announcement hidden" data-ui-announcement role="status" aria-live="assertive">
+        <small>NETWORK SIGNAL</small><strong></strong>
+      </div>
+      <div class="ui-toast hidden" data-ui-toast role="status" aria-live="polite"></div>
+      <section class="ui-fatal hidden" data-ui-fatal role="alert" aria-live="assertive">
+        <div><small>FATAL LINK ERROR</small><strong>Unable to start arena</strong><span></span></div>
+      </section>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

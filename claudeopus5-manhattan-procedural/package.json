@@ -1,0 +1,19 @@
+{
+  "name": "claudeopus5-manhattan-procedural",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3044 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4044 --strictPort",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "vite": "^8.1.2",
+    "vitest": "^3.2.6"
+  }
+}

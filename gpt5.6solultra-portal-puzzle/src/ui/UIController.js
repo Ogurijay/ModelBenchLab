@@ -6,6 +6,7 @@ export class UIController {
     this.hud = document.getElementById('hud');
     this.objective = document.getElementById('objective');
     this.fps = document.getElementById('fps');
+    this.sprintStatus = document.getElementById('sprintStatus');
     this.cyanStatus = document.getElementById('cyanStatus');
     this.amberStatus = document.getElementById('amberStatus');
     this.crosshair = document.getElementById('crosshair');
@@ -18,6 +19,7 @@ export class UIController {
     this.entered = false;
     this.toastTimer = 0;
     this.lastObjective = '';
+    this.lastSprintLabel = '';
   }
 
   setLocked(locked) {
@@ -72,6 +74,31 @@ export class UIController {
     if (this.toastTimer <= 0) return;
     this.toastTimer -= dt;
     if (this.toastTimer <= 0) this.toast.classList.add('hidden');
+  }
+
+  setSprintState({
+    active = false,
+    elapsed = 0,
+    maxed = false,
+    maxSpeed = 12.8,
+    chargeSeconds = 3,
+  } = {}) {
+    if (!this.sprintStatus) return;
+    const duration = Number.isFinite(Number(chargeSeconds)) ? Math.max(0, Number(chargeSeconds)) : 3;
+    const maximum = Number.isFinite(Number(maxSpeed)) ? Number(maxSpeed) : 12.8;
+    const safeElapsed = Math.min(duration, Math.max(0, Number(elapsed) || 0));
+    const label = maxed
+      ? `极速 ${maximum.toFixed(1)} · 2×`
+      : active
+        ? `蓄速 ${safeElapsed.toFixed(1)} / ${duration.toFixed(1)} 秒`
+        : `冲刺待命 · ${duration.toFixed(0)} 秒`;
+    if (label !== this.lastSprintLabel) {
+      this.sprintStatus.querySelector('em').textContent = label;
+      this.lastSprintLabel = label;
+    }
+    this.sprintStatus.classList.toggle('is-active', active && !maxed);
+    this.sprintStatus.classList.toggle('is-max', maxed);
+    this.sprintStatus.dataset.state = maxed ? 'max' : active ? 'charging' : 'idle';
   }
 
   setFps(value) { this.fps.textContent = `${value} FPS`; }

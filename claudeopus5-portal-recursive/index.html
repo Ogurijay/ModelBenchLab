@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>传送门 · 递归门景 — Claude Opus 5</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><ellipse cx='11' cy='16' rx='7' ry='11' fill='none' stroke='%232f9bff' stroke-width='3'/><ellipse cx='21' cy='16' rx='7' ry='11' fill='none' stroke='%23ff8a1e' stroke-width='3'/></svg>" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="view"></canvas>
+
+  <div id="hud" class="hidden">
+    <div id="chamber"></div>
+    <div id="perf"></div>
+    <div id="crosshair">
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <path id="ch-blue" d="M 22 15 A 17 17 0 0 0 22 45" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+        <path id="ch-orange" d="M 38 15 A 17 17 0 0 1 38 45" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="30" cy="30" r="2" fill="#eef4f2"/>
+      </svg>
+    </div>
+    <div id="deny"></div>
+    <div id="banner"></div>
+    <div id="hint"></div>
+    <div id="keys">WASD 移动 · 空格 跳跃 · 左键 蓝门 · 右键 橙门 · E 拾取/放下 · R 重置 · Esc 菜单</div>
+  </div>
+
+  <div id="fade"><div id="fade-card" class="hidden"><div id="fade-num"></div><div id="fade-name"></div></div></div>
+
+  <div id="start" class="overlay">
+    <div class="panel">
+      <h1>传送门 <span class="dot">·</span> 递归门景</h1>
+      <p class="sub">光圈网页科学 · 强制受测协议 — Claude Opus 5 作答</p>
+      <div class="grid">
+        <span><b>WASD</b> 移动</span><span><b>鼠标</b> 视角</span>
+        <span><b>空格</b> 跳跃</span><span><b>E</b> 拾取 / 放下</span>
+        <span><b>左键</b> 蓝色门</span><span><b>右键</b> 橙色门</span>
+        <span><b>R</b> 重置本室</span><span><b>Esc</b> 菜单</span>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="row"><button id="btn-start" class="btn primary">点击开始(锁定鼠标)</button></div>
+      <div class="row">
+        <button id="btn-test" class="btn ghost">传送逻辑自测</button>
+        <button id="btn-depth" class="btn ghost">门中门:2 层</button>
+        <button id="btn-sound" class="btn ghost">声音:开</button>
+      </div>
+      <p class="tip">速度模长穿门不变 —— 落得越快,飞得越远。</p>
+    </div>
+  </div>
+
+  <div id="pause" class="overlay hidden">
+    <div class="panel">
+      <h2>实验暂停</h2>
+      <div class="row"><button id="btn-resume" class="btn primary">继续实验</button></div>
+      <div class="row">
+        <button id="btn-restart" class="btn ghost">重置本室</button>
+        <button id="btn-test2" class="btn ghost">传送逻辑自测</button>
+        <button id="btn-depth2" class="btn ghost">门中门:2 层</button>
+        <button id="btn-sound2" class="btn ghost">声音:开</button>
+      </div>
+      <div class="chips" id="chips2"></div>
+    </div>
+  </div>
+
+  <div id="complete" class="overlay hidden">
+    <div class="panel">
+      <h1>测试完成</h1>
+      <p class="sub">感谢你参与光圈网页科学的丰富计划</p>
+      <div id="stats" class="stats"></div>
+      <div class="row"><button id="btn-again" class="btn primary">重新开始</button></div>
+      <p class="tip">蛋糕的可用性正在评估中。</p>
+    </div>
+  </div>
+
+  <div id="test" class="overlay hidden">
+    <div class="panel wide">
+      <h2>传送逻辑自测(10 组冻结用例)</h2>
+      <div id="test-sum"></div>
+      <ul id="test-list"></ul>
+      <div class="row"><button id="btn-test-close" class="btn primary">关闭</button></div>
+    </div>
+  </div>
+
+  <div id="loading"><div class="ring"></div><div>正在校准传送门发射器…</div></div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

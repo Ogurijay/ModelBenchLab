@@ -1,0 +1,186 @@
+:root {
+  --bg: #05070c;
+  --panel-bg: rgba(12, 16, 24, 0.82);
+  --panel-border: rgba(120, 150, 190, 0.22);
+  --text: #dbe4f0;
+  --text-dim: #8b98ab;
+  --accent: #6fb3ff;
+  --accent-dim: rgba(111, 179, 255, 0.16);
+  --warm: #ffcf7a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#canvas-root { position: fixed; inset: 0; }
+#canvas-root canvas { display: block; width: 100%; height: 100%; }
+
+/* ---------- 加载遮罩 ---------- */
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, #0d1626, #04060a 70%);
+  z-index: 50;
+  transition: opacity 0.6s ease;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loading-box { width: min(360px, 78vw); text-align: center; }
+.loading-title { font-size: 1.15rem; letter-spacing: 0.28em; margin-bottom: 1.1rem; color: #e8eefb; }
+.loading-bar { height: 3px; background: rgba(255, 255, 255, 0.09); border-radius: 2px; overflow: hidden; }
+#loading-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--warm)); transition: width 0.25s ease; }
+#loading-text { margin-top: 0.85rem; font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.08em; }
+
+/* ---------- HUD ---------- */
+#hud {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 20;
+  min-width: 178px;
+  padding: 10px 12px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.75;
+}
+#hud.hidden { display: none; }
+.hud-row { display: flex; justify-content: space-between; gap: 14px; }
+.hud-key { color: var(--text-dim); }
+.hud-val { color: var(--text); font-family: "SF Mono", "Cascadia Mono", Consolas, monospace; }
+.hud-main .hud-val { color: var(--accent); font-size: 0.95rem; font-weight: 600; }
+.hud-sep { height: 1px; background: var(--panel-border); margin: 7px 0; }
+
+/* ---------- 控制面板 ---------- */
+#panel {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 30;
+  width: 264px;
+  max-height: calc(100vh - 28px);
+  overflow-y: auto;
+  padding: 14px 15px 16px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 170, 210, 0.3) transparent;
+}
+#panel::-webkit-scrollbar { width: 6px; }
+#panel::-webkit-scrollbar-thumb { background: rgba(140, 170, 210, 0.3); border-radius: 3px; }
+#panel.collapsed { width: 46px; padding: 8px; overflow: hidden; }
+#panel.collapsed #panel-body { display: none; }
+
+#panel-toggle {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+#panel-toggle:hover { background: var(--accent-dim); border-color: var(--accent); }
+#panel.collapsed #panel-toggle { position: static; }
+
+.panel-title { margin: 0 34px 2px 0; font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; }
+.panel-sub { margin: 0 0 12px; font-size: 0.68rem; color: var(--text-dim); }
+
+.panel-group { border-top: 1px solid var(--panel-border); padding-top: 10px; margin-bottom: 12px; }
+.panel-group h2 { margin: 0 0 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; color: var(--accent); }
+
+.btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 9px; }
+.preset-grid { grid-template-columns: repeat(2, 1fr); }
+.btn-row { display: flex; gap: 5px; margin-bottom: 6px; }
+.btn-row .pbtn { flex: 1; }
+
+.wbtn, .pbtn {
+  padding: 6px 4px;
+  font-size: 0.73rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--panel-border);
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.wbtn:hover, .pbtn:hover { background: var(--accent-dim); border-color: var(--accent); }
+.wbtn.is-active { background: var(--accent); border-color: var(--accent); color: #06121f; font-weight: 600; }
+.pbtn.primary { background: rgba(111, 179, 255, 0.18); border-color: rgba(111, 179, 255, 0.5); }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  font-size: 0.73rem;
+  color: var(--text-dim);
+}
+.row > span:first-child { flex: 0 0 42px; }
+.row input[type="range"] { flex: 1; min-width: 0; accent-color: var(--accent); height: 3px; }
+.row em { flex: 0 0 62px; font-style: normal; text-align: right; color: var(--text); font-family: "SF Mono", Consolas, monospace; font-size: 0.7rem; }
+.row select, .row input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font-size: 0.73rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  font-family: inherit;
+}
+.row.check { gap: 8px; cursor: pointer; }
+.row.check input { accent-color: var(--accent); }
+.row.check > span { flex: 1; }
+
+.tip { margin: 2px 0 0; font-size: 0.66rem; color: var(--text-dim); line-height: 1.5; }
+.panel-foot { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--panel-border); font-size: 0.66rem; color: var(--text-dim); line-height: 1.6; }
+
+/* ---------- 底部提示 ---------- */
+#hint {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  padding: 6px 14px;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.8s ease;
+}
+#hint.hidden { opacity: 0; }
+
+@media (max-width: 720px) {
+  #panel { width: 210px; font-size: 0.7rem; }
+  #hud { font-size: 0.68rem; min-width: 150px; }
+  #hint { display: none; }
+}

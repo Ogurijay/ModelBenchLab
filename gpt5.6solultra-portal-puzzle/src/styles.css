@@ -371,6 +371,10 @@ kbd {
 }
 
 .control-rail span { display: flex; align-items: center; gap: 5px; }
+.control-rail .sprint-status em { font-style: normal; }
+.control-rail .sprint-status.is-active { color: rgba(233, 236, 229, .72); }
+.control-rail .sprint-status.is-max { color: var(--acid); text-shadow: 0 0 12px rgba(200, 255, 74, .38); }
+
 
 .complete {
   position: fixed;

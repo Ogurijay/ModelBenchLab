@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数码宝贝大乱斗 — Digimon Rumble Arena</title>
+<style>
+  :root {
+    --hp-orange: #ff9d00;
+    --hp-red: #ff2d00;
+    --evo-blue: #00c8ff;
+    --gold: #ffd24a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  body { font-family: "Trebuchet MS", "Microsoft YaHei", "微软雅黑", sans-serif; }
+  #gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* ============ 通用 ============ */
+  .screen { position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; z-index: 10; }
+  .hidden { display: none !important; }
+  .stroke-text {
+    font-weight: 900; font-style: italic; letter-spacing: 2px;
+    -webkit-text-stroke: 2px #1a1a5e;
+    text-shadow: 3px 3px 0 rgba(20,10,60,.85), 0 0 18px rgba(0,0,0,.5);
+  }
+
+  /* ============ 标题画面 ============ */
+  #title-screen { background: transparent; }
+  #title-logo { text-align: center; transform: rotate(-4deg); margin-bottom: 8vh;
+    animation: logoFloat 3s ease-in-out infinite; }
+  @keyframes logoFloat { 0%,100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-10px); } }
+  #title-logo .jp { font-size: clamp(28px, 4.5vw, 52px); color: #fff;
+    font-weight: 900; letter-spacing: 12px; text-shadow: 0 0 12px #00c8ff, 2px 2px 0 #003; }
+  #title-logo .main { font-size: clamp(56px, 10vw, 128px); line-height: 1.05;
+    background: linear-gradient(180deg, #fff35e 8%, #ffa600 40%, #ff5e00 60%, #ffd24a 92%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; font-style: italic; letter-spacing: 4px;
+    filter: drop-shadow(4px 5px 0 #7a1600) drop-shadow(0 0 22px rgba(255,140,0,.55)); }
+  #title-logo .sub { font-size: clamp(20px, 3.2vw, 40px); color: #e8f6ff;
+    font-weight: 900; font-style: italic; letter-spacing: 10px;
+    -webkit-text-stroke: 1.5px #123; text-shadow: 3px 3px 0 rgba(0,20,60,.8); }
+  #press-start { font-size: clamp(18px, 2.4vw, 30px); color: #fff; font-weight: 700;
+    letter-spacing: 6px; animation: blink 1.1s step-end infinite;
+    text-shadow: 0 0 10px #0af, 2px 2px 0 #013; }
+  @keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: .12; } }
+  #title-hint { position: absolute; bottom: 4vh; color: #9fd7ff; font-size: 13px;
+    letter-spacing: 2px; opacity: .8; }
+
+  /* ============ 选人画面 ============ */
+  #select-screen { justify-content: flex-start; padding-top: 3vh;
+    background: linear-gradient(90deg, rgba(4,6,40,.85) 0%, rgba(6,10,48,.72) 40%, rgba(4,6,40,0) 62%); }
+  #select-header { font-size: clamp(26px, 4vw, 44px); color: #fff; margin-bottom: 2vh; }
+  #select-body { display: flex; gap: 3vw; align-items: center; width: 92%; max-width: 1500px; flex: 1; min-height: 0; }
+  #char-grid { display: grid; grid-template-columns: repeat(4, minmax(90px, 150px)); gap: 12px; }
+  .char-cell { position: relative; aspect-ratio: 1; border: 3px solid #2a4a9e; border-radius: 8px;
+    background: linear-gradient(160deg, #10245e, #060d30); cursor: pointer;
+    display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+    transition: transform .12s, border-color .12s, box-shadow .12s; }
+  .char-cell img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: auto; }
+  .char-cell .cname { position: relative; z-index: 2; width: 100%; text-align: center;
+    font-size: 12px; font-weight: 700; color: #cfe6ff; padding: 3px 0;
+    background: linear-gradient(0deg, rgba(0,10,40,.92), rgba(0,10,40,0)); letter-spacing: 1px; }
+  .char-cell.cursor-p1 { border-color: var(--gold); box-shadow: 0 0 18px rgba(255,210,74,.65); transform: scale(1.07); z-index: 2; }
+  .char-cell.cursor-p1::before { content: "1P"; position: absolute; top: 4px; left: 6px; z-index: 3;
+    color: #102; background: var(--gold); font-size: 11px; font-weight: 900; padding: 1px 6px; border-radius: 3px; }
+  .char-cell.picked-p2 { border-color: #ff5e7a; box-shadow: 0 0 18px rgba(255,94,122,.6); }
+  .char-cell.picked-p2::after { content: "CPU"; position: absolute; top: 4px; right: 6px; z-index: 3;
+    color: #fff; background: #e0244a; font-size: 11px; font-weight: 900; padding: 1px 6px; border-radius: 3px; }
+  #select-preview { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    align-self: stretch; pointer-events: none; }
+  #preview-name { font-size: clamp(30px, 4.4vw, 56px); color: #fff; }
+  #preview-evo { font-size: clamp(14px, 1.6vw, 20px); color: var(--evo-blue); font-weight: 700;
+    letter-spacing: 2px; margin-top: 6px; text-shadow: 0 0 8px rgba(0,200,255,.8); }
+  #select-footer { padding: 1.6vh 0 2.2vh; color: #bfe0ff; font-size: 14px; letter-spacing: 2px; }
+  #select-footer b { color: var(--gold); }
+
+  /* ============ 加载 ============ */
+  #loading-screen { background: rgba(2,4,20,.9); z-index: 40; }
+  #loading-text { color: #fff; font-size: 26px; font-weight: 900; letter-spacing: 6px; }
+  #loading-bar-wrap { width: min(420px, 60vw); height: 14px; border: 2px solid #3a5aae;
+    margin-top: 18px; border-radius: 7px; overflow: hidden; background: #060d28; }
+  #loading-bar { height: 100%; width: 0%; border-radius: 5px;
+    background: linear-gradient(90deg, #00c8ff, #7dff9a); transition: width .2s; }
+
+  /* ============ 战斗 HUD ============ */
+  #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+  .hud-side { position: absolute; top: 18px; width: 42%; }
+  #hud-p1 { left: 16px; }
+  #hud-p2 { right: 16px; }
+  .hud-row { display: flex; align-items: flex-start; gap: 10px; }
+  #hud-p2 .hud-row { flex-direction: row-reverse; }
+  .portrait { width: 74px; height: 74px; border: 3px solid #ffd24a; border-radius: 8px;
+    background: #0a1440 center/cover; box-shadow: 0 3px 8px rgba(0,0,0,.5); flex: none; }
+  .portrait.mega { border-color: #7dff9a; box-shadow: 0 0 14px rgba(125,255,154,.8); }
+  .bars { flex: 1; min-width: 0; }
+  .hp-outer { height: 26px; background: rgba(6,10,34,.82); border: 2px solid #10214e;
+    transform: skewX(-18deg); border-radius: 4px; overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.55), inset 0 0 8px rgba(0,0,0,.6); }
+  #hud-p2 .hp-outer { transform: skewX(18deg); }
+  .hp-white, .hp-fill { height: 100%; border-radius: 2px; }
+  .hp-wrap { position: relative; height: 100%; }
+  .hp-white { position: absolute; inset: 0; width: 100%; background: #ffe9d0; transition: width .55s ease-out; }
+  .hp-fill { position: absolute; inset: 0; width: 100%;
+    background: linear-gradient(180deg, #ffe97d 8%, var(--hp-orange) 45%, #ff6a00 90%); }
+  .hp-fill.low { background: linear-gradient(180deg, #ff9d7d, var(--hp-red) 60%, #a00); }
+  #hud-p2 .hp-white, #hud-p2 .hp-fill { right: 0; left: auto; }
+  .name-tag { margin-top: 4px; font-size: 15px; font-weight: 900; color: #fff; letter-spacing: 2px;
+    text-shadow: 1px 1px 0 #012, 0 0 8px rgba(0,120,255,.6); font-style: italic; }
+  #hud-p2 .name-tag { text-align: right; }
+  .evo-outer { margin-top: 5px; height: 12px; background: rgba(6,10,34,.82);
+    border: 2px solid #10214e; transform: skewX(-18deg); border-radius: 3px; overflow: hidden; }
+  #hud-p2 .evo-outer { transform: skewX(18deg); }
+  .evo-fill { height: 100%; width: 0%;
+    background: linear-gradient(90deg, #0066ff, var(--evo-blue) 60%, #aef8ff); }
+  .evo-fill.full { animation: evoPulse .5s ease-in-out infinite; }
+  #hud-p2 .evo-fill { float: right; }
+  @keyframes evoPulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.9); } }
+  .evo-label { font-size: 10px; font-weight: 900; color: #9fd7ff; letter-spacing: 3px; margin-top: 2px; }
+  .evo-label.ready { color: #fff; animation: blink .6s step-end infinite; }
+  #hud-p2 .evo-label { text-align: right; }
+  .round-pips { display: flex; gap: 6px; margin-top: 5px; }
+  #hud-p2 .round-pips { justify-content: flex-end; }
+  .pip { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #ffd24a;
+    background: rgba(6,10,34,.8); }
+  .pip.won { background: radial-gradient(circle at 35% 30%, #fff9d0, var(--gold) 65%);
+    box-shadow: 0 0 8px rgba(255,210,74,.9); }
+
+  #hud-timer { position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    font-size: 44px; font-weight: 900; color: #fff; font-style: italic;
+    -webkit-text-stroke: 2px #123; text-shadow: 3px 3px 0 rgba(0,10,40,.8); }
+  #hud-timer.urgent { color: #ff5e5e; animation: blink .5s step-end infinite; }
+
+  /* ============ 中央播报 ============ */
+  #announce { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 20; }
+  #announce span { font-size: clamp(56px, 11vw, 150px); opacity: 0; }
+  #announce span.show { animation: slam .48s cubic-bezier(.2,1.6,.35,1) forwards; }
+  #announce span.show-hold { animation: slamHold 1.4s cubic-bezier(.2,1.6,.35,1) forwards; }
+  @keyframes slam {
+    0% { opacity: 0; transform: scale(3.2) rotate(-6deg); }
+    55% { opacity: 1; transform: scale(.94) rotate(-4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-4deg); } }
+  @keyframes slamHold {
+    0% { opacity: 0; transform: scale(3.2) rotate(-6deg); }
+    18% { opacity: 1; transform: scale(.94) rotate(-4deg); }
+    82% { opacity: 1; transform: scale(1) rotate(-4deg); }
+    100% { opacity: 0; transform: scale(1.1) rotate(-4deg); } }
+  .ann-gold { background: linear-gradient(180deg, #fff35e, #ff9100 55%, #ffd24a);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; font-style: italic;
+    filter: drop-shadow(4px 4px 0 #601) drop-shadow(0 0 26px rgba(255,150,0,.7)); }
+  .ann-blue { background: linear-gradient(180deg, #d8fbff, #00c8ff 55%, #dff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-weight: 900; font-style: italic;
+    filter: drop-shadow(4px 4px 0 #026) drop-shadow(0 0 26px rgba(0,200,255,.75)); }
+
+  /* ============ 胜利画面 ============ */
+  #victory-banner { position: absolute; left: 0; right: 0; bottom: 9vh; text-align: center;
+    pointer-events: none; z-index: 20; }
+  #victory-name { font-size: clamp(34px, 5.5vw, 64px); color: #fff; }
+  #victory-word { font-size: clamp(50px, 9vw, 120px); }
+  #victory-hint { margin-top: 2vh; color: #dff; font-size: 16px; letter-spacing: 3px;
+    animation: blink 1.1s step-end infinite; text-shadow: 1px 1px 0 #023; }
+
+  /* ============ 通用操作提示条 ============ */
+  #keys-hint { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    color: rgba(210,235,255,.75); font-size: 12.5px; letter-spacing: 1.5px; z-index: 6;
+    background: rgba(3,8,26,.55); padding: 5px 14px; border-radius: 14px; white-space: nowrap; }
+  #keys-hint b { color: var(--gold); font-weight: 900; }
+
+  /* 轻微 CRT 扫描线,PS2 氛围 */
+  #crt { position: absolute; inset: 0; pointer-events: none; z-index: 30; opacity: .10;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.9) 2px 3px); }
+</style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+
+  <!-- 战斗 HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-side" id="hud-p1">
+      <div class="hud-row">
+        <div class="portrait" id="portrait-p1"></div>
+        <div class="bars">
+          <div class="hp-outer"><div class="hp-wrap">
+            <div class="hp-white" id="hpw-p1"></div><div class="hp-fill" id="hp-p1"></div>
+          </div></div>
+          <div class="name-tag" id="name-p1">亚古兽</div>
+          <div class="evo-outer"><div class="evo-fill" id="evo-p1"></div></div>
+          <div class="evo-label" id="evolabel-p1">DIGIVOLVE</div>
+          <div class="round-pips"><div class="pip" id="pip-p1-0"></div><div class="pip" id="pip-p1-1"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hud-side" id="hud-p2">
+      <div class="hud-row">
+        <div class="portrait" id="portrait-p2"></div>
+        <div class="bars">
+          <div class="hp-outer"><div class="hp-wrap">
+            <div class="hp-white" id="hpw-p2"></div><div class="hp-fill" id="hp-p2"></div>
+          </div></div>
+          <div class="name-tag" id="name-p2">加布兽</div>
+          <div class="evo-outer"><div class="evo-fill" id="evo-p2"></div></div>
+          <div class="evo-label" id="evolabel-p2">DIGIVOLVE</div>
+          <div class="round-pips"><div class="pip" id="pip-p2-0"></div><div class="pip" id="pip-p2-1"></div></div>
+        </div>
+      </div>
+    </div>
+    <div id="hud-timer">99</div>
+  </div>
+
+  <!-- 中央播报 -->
+  <div id="announce"><span id="announce-text" class="ann-gold stroke-text"></span></div>
+
+  <!-- 标题画面 -->
+  <div id="title-screen" class="screen">
+    <div id="title-logo">
+      <div class="jp">デジモン</div>
+      <div class="main">数码宝贝</div>
+      <div class="sub">RUMBLE&nbsp;ARENA</div>
+    </div>
+    <div id="press-start" class="stroke-text">PRESS ENTER</div>
+    <div id="title-hint">THREE.JS TRIBUTE · 灵感来自 PS2《数码宝贝大乱斗》 · 模型: Digimon Story Cyber Sleuth</div>
+  </div>
+
+  <!-- 选人画面 -->
+  <div id="select-screen" class="screen hidden">
+    <div id="select-header" class="stroke-text ann-blue">选择你的搭档</div>
+    <div id="select-body">
+      <div id="char-grid"></div>
+      <div id="select-preview">
+        <div id="preview-name" class="stroke-text"></div>
+        <div id="preview-evo"></div>
+      </div>
+    </div>
+    <div id="select-footer">
+      <b>←→↑↓/WASD</b> 移动光标 · <b>J/Enter</b> 确定 · <b>随后为 CPU 选择对手</b> · <b>Esc</b> 返回
+    </div>
+  </div>
+
+  <!-- 加载画面 -->
+  <div id="loading-screen" class="screen hidden">
+    <div id="loading-text">NOW LOADING...</div>
+    <div id="loading-bar-wrap"><div id="loading-bar"></div></div>
+  </div>
+
+  <!-- 胜利横幅 -->
+  <div id="victory-banner" class="hidden">
+    <div id="victory-name" class="stroke-text"></div>
+    <div id="victory-word" class="ann-gold stroke-text">WINNER!</div>
+    <div id="victory-hint">按 ENTER 再来一局 · 按 ESC 返回选人</div>
+  </div>
+
+  <div id="keys-hint" class="hidden">
+    <b>A/D</b> 移动 · <b>W</b> 跳跃(×2) · <b>S</b> 速降 · <b>J</b> 攻击连段 · <b>K</b> 必杀 · <b>L</b> 防御 · <b>I</b> 数码进化 · <b>M</b> 静音
+  </div>
+
+  <div id="crt"></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

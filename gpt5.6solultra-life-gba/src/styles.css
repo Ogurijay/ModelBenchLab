@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap');
+
+:root {
+  color-scheme: dark;
+  --ink: #181a2a;
+  --shell: #7a76c8;
+  --shell-hi: #a9a4ed;
+  --shell-lo: #403d83;
+  --button: #532b68;
+  --paper: #f4d58d;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: #f8f3d4;
+  font-family: 'DotGothic16', sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(126, 107, 182, .2), transparent 27rem),
+    radial-gradient(circle at 80% 80%, rgba(232, 142, 112, .12), transparent 30rem),
+    #151524;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+button { font: inherit; touch-action: manipulation; }
+
+.page-shell {
+  width: min(100%, 1060px);
+  min-height: 100vh;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 590px) 1fr;
+  align-items: center;
+  gap: 30px;
+  padding: 34px 24px;
+}
+
+.brand { align-self: start; padding-top: clamp(25px, 11vh, 100px); }
+.brand-kicker { color: #eead77; font: 8px/1.8 'Press Start 2P', monospace; letter-spacing: 1px; }
+.brand h1 { margin: 10px 0 0; color: var(--paper); font-size: clamp(36px, 5vw, 64px); line-height: .95; letter-spacing: -5px; text-shadow: 4px 4px 0 #7d3f58; writing-mode: vertical-rl; }
+.brand p { width: 1em; margin: 18px 0 0 9px; color: #aca9c9; line-height: 1.25; }
+
+.handheld {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.17 / 1;
+  padding: 5.5% 8% 6%;
+  border-radius: 26% 26% 44% 44% / 11% 11% 17% 17%;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.45), transparent 16% 78%, rgba(31,24,78,.18)),
+    var(--shell);
+  box-shadow:
+    inset 0 7px 3px rgba(255,255,255,.24),
+    inset 0 -12px 9px rgba(45,39,111,.32),
+    0 28px 0 #26243f,
+    0 38px 70px rgba(0,0,0,.55);
+  transform: rotate(-.6deg);
+}
+
+.handheld::after {
+  content: '';
+  position: absolute;
+  inset: 1.8%;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: inherit;
+}
+
+.handheld-topline { display: flex; align-items: center; height: 3%; color: #3f3d72; font: 7px 'Press Start 2P', monospace; }
+.handheld-topline i { width: 5px; height: 5px; margin: 0 7px 0 3px; border-radius: 50%; background: #e64657; box-shadow: 0 0 7px #ff5969; }
+.handheld-topline b { margin-left: auto; font-weight: 400; letter-spacing: 1px; }
+
+.screen-bezel {
+  height: 58%;
+  padding: 4.4% 8% 3%;
+  border-radius: 11px 11px 28px 11px;
+  background: linear-gradient(145deg, #2d2e45, #10111b);
+  box-shadow: inset 3px 4px 2px rgba(255,255,255,.07), 0 5px 0 rgba(54,50,117,.5);
+}
+
+.screen-wrap { position: relative; height: 88%; overflow: hidden; background: #1d2431; box-shadow: 0 0 0 3px #080911, 0 0 25px rgba(144, 198, 133, .18); }
+#game { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; outline: none; }
+.scanlines { position: absolute; inset: 0; pointer-events: none; opacity: .1; background: repeating-linear-gradient(to bottom, transparent 0 2px, #102116 3px); mix-blend-mode: multiply; }
+.screen-label { height: 12%; display: flex; justify-content: space-between; align-items: center; color: #85869c; font: 5px 'Press Start 2P', monospace; }
+.screen-label strong { color: #d8b25d; font-size: 7px; }
+
+.controls { position: relative; height: 29%; display: flex; align-items: center; justify-content: space-between; padding: 2% 1%; }
+.dpad { position: relative; width: 29%; aspect-ratio: 1; display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); filter: drop-shadow(0 5px 1px rgba(37,31,83,.5)); }
+.dpad::before, .dpad::after { content: ''; position: absolute; background: #2b2b3b; border-radius: 4px; }
+.dpad::before { inset: 0 33.3%; }
+.dpad::after { inset: 33.3% 0; }
+.dpad button, .dpad i { position: relative; z-index: 1; min-width: 0; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.dpad button:active { background: rgba(255,255,255,.09); }
+.dpad .up { grid-area: 1 / 2; } .dpad .left { grid-area: 2 / 1; } .dpad i { grid-area: 2 / 2; border-radius: 50%; box-shadow: inset 0 0 0 2px #222230; } .dpad .right { grid-area: 2 / 3; } .dpad .down { grid-area: 3 / 2; }
+.dpad button::after { content: ''; position: absolute; inset: 38%; border-style: solid; }
+.dpad .up::after { border-width: 0 5px 6px; border-color: transparent transparent #15151f; top: 28%; }
+.dpad .down::after { border-width: 6px 5px 0; border-color: #15151f transparent transparent; bottom: 28%; }
+.dpad .left::after { border-width: 5px 6px 5px 0; border-color: transparent #15151f transparent transparent; left: 28%; }
+.dpad .right::after { border-width: 5px 0 5px 6px; border-color: transparent transparent transparent #15151f; right: 28%; }
+
+.action-pad { width: 31%; aspect-ratio: 1.65; display: flex; align-items: center; justify-content: space-around; padding: 8%; border-radius: 999px; background: rgba(62,57,120,.24); transform: rotate(-14deg); }
+.action-pad button { width: 48%; aspect-ratio: 1; border: 0; border-radius: 50%; color: #c99ecb; background: radial-gradient(circle at 36% 25%, #7f4c85, var(--button) 55%, #3b1b4a); box-shadow: inset 0 3px 2px rgba(255,255,255,.17), 0 5px 1px #392755; cursor: pointer; font: 13px 'Press Start 2P', monospace; }
+.action-pad button:active { translate: 0 4px; box-shadow: inset 0 2px 5px rgba(0,0,0,.3), 0 1px 0 #392755; }
+.button-b { margin-top: 25%; } .button-a { margin-bottom: 25%; }
+
+.speaker { width: 17%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; transform: rotate(-8deg); opacity: .45; }
+.speaker i { aspect-ratio: 1; border-radius: 50%; background: #48457e; box-shadow: inset 1px 2px 2px #2a2859; }
+.system-buttons { position: absolute; left: 41%; bottom: 4%; display: flex; gap: 10px; transform: rotate(-5deg); }
+.system-buttons button { padding: 4px 12px; border: 0; border-radius: 999px; color: #49477a; background: #615e9c; box-shadow: inset 0 2px 2px rgba(255,255,255,.25), 0 3px 1px #464276; font: 6px 'Press Start 2P', monospace; cursor: pointer; }
+.system-buttons button:active { translate: 0 2px; box-shadow: inset 0 2px 3px rgba(0,0,0,.25); }
+
+.quick-guide { align-self: end; display: grid; gap: 12px; padding-bottom: 52px; color: #9997b4; }
+.quick-guide div { display: flex; align-items: center; gap: 10px; }
+.quick-guide kbd { min-width: 54px; padding: 7px 8px; color: #e5c284; border: 1px solid #48465f; border-bottom-width: 3px; border-radius: 5px; background: #202033; text-align: center; font: 7px 'Press Start 2P', monospace; }
+.quick-guide span { font-size: 14px; }
+
+@media (max-width: 850px) {
+  .page-shell { grid-template-columns: 1fr; width: min(100%, 650px); padding: 22px 16px 40px; }
+  .brand { display: flex; align-items: baseline; gap: 14px; padding: 0 8px; }
+  .brand-kicker { display: none; }
+  .brand h1 { writing-mode: initial; font-size: 36px; letter-spacing: -3px; }
+  .brand p { width: auto; margin: 0; }
+  .quick-guide { grid-template-columns: repeat(4, 1fr); padding: 12px 4px 0; }
+  .quick-guide div { flex-direction: column; gap: 4px; }
+}
+
+@media (max-width: 520px) {
+  body { min-height: 100svh; }
+  .page-shell { min-height: auto; padding: 16px 7px 30px; gap: 18px; }
+  .brand { padding-left: 12px; }
+  .brand p { font-size: 13px; }
+  .handheld { aspect-ratio: 1.04; padding-inline: 5%; border-radius: 21% 21% 37% 37% / 9% 9% 14% 14%; }
+  .screen-bezel { height: 59%; padding-inline: 5%; }
+  .controls { height: 28%; padding-inline: 4%; }
+  .quick-guide { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }

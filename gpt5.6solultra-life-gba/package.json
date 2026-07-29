@@ -1,0 +1,13 @@
+{
+  "name": "gpt5.6solultra-life-gba",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16"
+  }
+}

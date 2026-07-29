@@ -47,6 +47,7 @@ export class InputController extends EventTarget {
   clear() {
     this.keys.clear();
     this.pressed.clear();
+    this.dispatchEvent(new Event('clear'));
   }
 
   down(code) { return this.keys.has(code); }

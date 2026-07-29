@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>像素小日子 · GBA 风模拟人生 — Claude Fable 5</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='8' width='28' height='18' rx='4' fill='%236b5fd8'/%3E%3Crect x='7' y='11' width='13' height='11' rx='1' fill='%23122'/%3E%3Crect x='8' y='12' width='11' height='9' fill='%2378c850'/%3E%3Ccircle cx='25' cy='14' r='2' fill='%23d84c6f'/%3E%3Ccircle cx='27.5' cy='18' r='2' fill='%23d84c6f'/%3E%3C/svg%3E" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background:
+        radial-gradient(1200px 700px at 50% 20%, #2a2750 0%, #17162e 55%, #0d0c1c 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; overflow: hidden;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      user-select: none; -webkit-user-select: none;
+    }
+
+    /* ---------- GBA 掌机外壳 ---------- */
+    .gba {
+      position: relative;
+      background: linear-gradient(160deg, #7d71e8 0%, #6b5fd8 45%, #5346b8 100%);
+      border-radius: 24px 24px 38px 38px;
+      box-shadow:
+        inset 0 2px 2px rgba(255,255,255,.35),
+        inset 0 -6px 10px rgba(0,0,0,.35),
+        0 18px 50px rgba(0,0,0,.6);
+      padding: 18px 26px 26px;
+      display: grid;
+      grid-template-columns: 86px auto 86px;
+      grid-template-areas: "dpad screen ab" "startsel screen ab";
+      align-items: center; column-gap: 18px;
+    }
+    .gba::before { /* 左右肩钮暗示 */
+      content: ""; position: absolute; top: -6px; left: 30px; right: 30px; height: 14px;
+      background: linear-gradient(#4c3fae, #5b4ec9); border-radius: 10px 10px 0 0; z-index: -1;
+    }
+
+    .bezel {
+      grid-area: screen;
+      background: linear-gradient(170deg, #30304a, #1b1b2c 70%);
+      border-radius: 14px 14px 40px 14px;
+      padding: 22px 30px 26px;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,.7), inset 0 -1px 1px rgba(255,255,255,.08);
+      position: relative;
+    }
+    .bezel .brand {
+      text-align: center; color: #b9b4e6; letter-spacing: .35em; font-size: 10px;
+      margin-bottom: 8px; font-weight: 700; text-transform: uppercase;
+    }
+    .bezel .brand b { color: #ded9ff; }
+    .led { position: absolute; left: 12px; top: 45%; width: 7px; height: 7px; border-radius: 50%;
+      background: #46e06a; box-shadow: 0 0 8px #46e06a; }
+    .screen {
+      background: #000; border-radius: 4px; overflow: hidden; line-height: 0;
+      box-shadow: 0 0 0 2px #000, inset 0 0 18px rgba(0,0,0,.9);
+    }
+    canvas#game {
+      image-rendering: pixelated; image-rendering: crisp-edges;
+      display: block; background: #08131f;
+      outline: none;
+    }
+
+    /* ---------- 按键 ---------- */
+    .dpad { grid-area: dpad; position: relative; width: 84px; height: 84px; margin-top: 26px; }
+    .dpad .bar { position: absolute; background: linear-gradient(#3a3a52, #23233a); border-radius: 6px;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.18), 0 3px 4px rgba(0,0,0,.45); }
+    .dpad .h { left: 0; right: 0; top: 28px; height: 28px; }
+    .dpad .v { top: 0; bottom: 0; left: 28px; width: 28px; }
+    .dpad .cap { position: absolute; left: 33px; top: 33px; width: 18px; height: 18px;
+      border-radius: 50%; background: radial-gradient(circle at 40% 35%, #44445e, #20203a); }
+    .dpad button { position: absolute; width: 28px; height: 28px; opacity: 0; border: 0; cursor: pointer; }
+    .dpad button:active { opacity: .25; background: #fff; border-radius: 6px; }
+    .dpad .up    { left: 28px; top: 0; }
+    .dpad .down  { left: 28px; bottom: 0; }
+    .dpad .left  { left: 0; top: 28px; }
+    .dpad .right { right: 0; top: 28px; }
+
+    .ab { grid-area: ab; display: flex; flex-direction: column; gap: 14px; align-items: center;
+      transform: rotate(-18deg); margin-top: 10px; }
+    .ab .row { display: flex; gap: 14px; }
+    .btn-round {
+      width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+      background: radial-gradient(circle at 38% 32%, #e05c80, #b03055 65%, #8e2242);
+      color: #ffe3ec; font-weight: 800; font-size: 15px; font-family: inherit;
+      box-shadow: inset 0 2px 2px rgba(255,255,255,.4), 0 4px 6px rgba(0,0,0,.5);
+    }
+    .btn-round:active { transform: translateY(2px); box-shadow: inset 0 2px 4px rgba(0,0,0,.4); }
+
+    .startsel { grid-area: startsel; display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+    .pill {
+      width: 42px; height: 14px; border-radius: 8px; border: 0; cursor: pointer;
+      background: linear-gradient(#3a3a52, #23233a); position: relative;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.2), 0 2px 3px rgba(0,0,0,.5);
+      transform: rotate(-18deg);
+    }
+    .pill:active { transform: rotate(-18deg) translateY(1px); }
+    .pill span {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      font-size: 8px; color: #cdc8f2; letter-spacing: .12em; font-weight: 700;
+    }
+
+    /* ---------- 说明 ---------- */
+    .hints { color: #8f8ac0; font-size: 12px; text-align: center; line-height: 1.9; }
+    .hints b { color: #cfc9ff; font-weight: 700; }
+    .hints .key {
+      display: inline-block; background: #262347; border: 1px solid #4b4584; border-bottom-width: 3px;
+      border-radius: 5px; padding: 0 6px; margin: 0 2px; color: #e8e4ff; font-size: 11px;
+      font-family: Consolas, monospace;
+    }
+    @media (max-height: 720px) { .hints { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="gba">
+    <div class="dpad" aria-label="方向键">
+      <div class="bar h"></div><div class="bar v"></div><div class="cap"></div>
+      <button class="up" data-btn="UP" aria-label="上"></button>
+      <button class="down" data-btn="DOWN" aria-label="下"></button>
+      <button class="left" data-btn="LEFT" aria-label="左"></button>
+      <button class="right" data-btn="RIGHT" aria-label="右"></button>
+    </div>
+
+    <div class="bezel">
+      <div class="brand"><b>GAME BOY</b> ADVANCE</div>
+      <div class="led"></div>
+      <div class="screen"><canvas id="game" width="480" height="320" tabindex="0"></canvas></div>
+    </div>
+
+    <div class="ab">
+      <div class="row">
+        <button class="btn-round" data-btn="B" aria-label="B 键">B</button>
+        <button class="btn-round" data-btn="A" aria-label="A 键">A</button>
+      </div>
+    </div>
+
+    <div class="startsel">
+      <button class="pill" data-btn="SELECT" aria-label="SELECT"><span>SELECT</span></button>
+      <button class="pill" data-btn="START" aria-label="START"><span>START</span></button>
+    </div>
+  </div>
+
+  <div class="hints">
+    <b>方向键 / WASD</b> 移动 · <span class="key">Z</span>/<span class="key">J</span>/<span class="key">空格</span> A 键(互动/确认) ·
+    <span class="key">X</span>/<span class="key">K</span> B 键(取消/加速走) ·
+    <span class="key">回车</span> START(菜单) · <span class="key">Tab</span> SELECT(收起界面) · <span class="key">M</span> 音乐开关
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

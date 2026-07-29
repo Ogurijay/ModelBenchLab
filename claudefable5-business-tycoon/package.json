@@ -1,0 +1,15 @@
+{
+  "name": "claudefable5-tycoon-pixel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "像素大亨 — 像素风商业模拟养成游戏：12 行业 120 种业态，14 项商业机制（选址/定价/雇员/升级/科技/营销/供应链/信贷/股票/事件/竞争 AI/声望/经济周期/大亨养成），程序化像素街景昼夜四季，零资产 Canvas2D，确定性种子与内置自测",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "vite": "^8.1.2"
+  }
+}

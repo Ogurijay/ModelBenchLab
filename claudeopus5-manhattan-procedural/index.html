@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D 曼哈顿 · 程序化活城（Claude Opus 5）</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="canvas-root"></div>
+
+  <!-- 加载遮罩 -->
+  <div id="loading">
+    <div class="loading-box">
+      <div class="loading-title">正在生成曼哈顿</div>
+      <div class="loading-bar"><div id="loading-fill"></div></div>
+      <div id="loading-text">准备中…</div>
+    </div>
+  </div>
+
+  <!-- 左上角统计 HUD -->
+  <div id="hud">
+    <div class="hud-row hud-main"><span class="hud-key">FPS</span><span id="hud-fps" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">绘制调用</span><span id="hud-draw" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">三角形</span><span id="hud-tris" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">实例数</span><span id="hud-inst" class="hud-val">--</span></div>
+    <div class="hud-sep"></div>
+    <div class="hud-row"><span class="hud-key">时间</span><span id="hud-time" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">天气</span><span id="hud-weather" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">太阳高度角</span><span id="hud-sun" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">在途车辆</span><span id="hud-cars" class="hud-val">--</span></div>
+    <div class="hud-row"><span class="hud-key">城市种子</span><span id="hud-seed" class="hud-val">--</span></div>
+  </div>
+
+  <!-- 右侧控制面板 -->
+  <aside id="panel">
+    <button id="panel-toggle" title="收起 / 展开面板">≡</button>
+    <div id="panel-body">
+      <h1 class="panel-title">3D 曼哈顿</h1>
+      <p class="panel-sub">全程序化生成 · 零外部资产</p>
+
+      <section class="panel-group">
+        <h2>天气</h2>
+        <div id="weather-buttons" class="btn-grid">
+          <button data-weather="clear" class="wbtn is-active">晴</button>
+          <button data-weather="cloudy" class="wbtn">多云</button>
+          <button data-weather="fog" class="wbtn">雾</button>
+          <button data-weather="rain" class="wbtn">雨</button>
+          <button data-weather="storm" class="wbtn">雷暴</button>
+          <button data-weather="snow" class="wbtn">雪</button>
+        </div>
+        <label class="row"><span>风向</span><input id="wind-dir" type="range" min="0" max="359" step="1" value="215" /><em id="wind-dir-value">215°</em></label>
+        <label class="row"><span>风速</span><input id="wind-speed" type="range" min="0" max="28" step="0.5" value="6" /><em id="wind-speed-value">6.0 m/s</em></label>
+      </section>
+
+      <section class="panel-group">
+        <h2>时间</h2>
+        <label class="row"><span>时刻</span><input id="time-slider" type="range" min="0" max="1439" step="1" value="1020" /><em id="time-value">17:00</em></label>
+        <label class="row"><span>流速</span><input id="timescale-slider" type="range" min="0" max="1200" step="10" value="120" /><em id="timescale-value">120×</em></label>
+        <label class="row"><span>季节</span>
+          <select id="season">
+            <option value="80">春分（3/21）</option>
+            <option value="172" selected>夏至（6/21）</option>
+            <option value="266">秋分（9/23）</option>
+            <option value="355">冬至（12/21）</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="panel-group">
+        <h2>城市</h2>
+        <label class="row"><span>种子</span><input id="seed-input" type="text" value="1337" spellcheck="false" /></label>
+        <div class="btn-row">
+          <button id="seed-apply" class="pbtn primary">重建城市</button>
+          <button id="seed-random" class="pbtn">随机种子</button>
+        </div>
+        <p class="tip">同一种子必定生成同一座城市。</p>
+      </section>
+
+      <section class="panel-group">
+        <h2>相机</h2>
+        <label class="row"><span>模式</span>
+          <select id="camera-mode">
+            <option value="orbit" selected>自由轨道</option>
+            <option value="tour">自动环游</option>
+            <option value="street">街道漫游</option>
+          </select>
+        </label>
+        <div class="btn-grid preset-grid">
+          <button data-camera-preset="skyline" class="pbtn">天际线</button>
+          <button data-camera-preset="empire" class="pbtn">帝国大厦</button>
+          <button data-camera-preset="park" class="pbtn">中央公园</button>
+          <button data-camera-preset="bridge" class="pbtn">悬索桥</button>
+          <button data-camera-preset="liberty" class="pbtn">自由女神</button>
+          <button data-camera-preset="street" class="pbtn">街面</button>
+        </div>
+      </section>
+
+      <section class="panel-group">
+        <h2>显示</h2>
+        <label class="row check"><input id="toggle-audio" type="checkbox" /><span>音效（雷声 / 环境）</span></label>
+        <label class="row check"><input id="toggle-hud" type="checkbox" checked /><span>统计 HUD</span></label>
+        <label class="row"><span>画质</span>
+          <select id="quality">
+            <option value="high" selected>高</option>
+            <option value="medium">中</option>
+            <option value="low">低</option>
+          </select>
+        </label>
+      </section>
+
+      <p class="panel-foot">左键拖拽旋转 · 右键平移 · 滚轮缩放</p>
+    </div>
+  </aside>
+
+  <div id="hint">拖拽查看城市 · 面板可切天气与时间</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
