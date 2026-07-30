@@ -1,0 +1,135 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #070a12; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: #e8e2d4; cursor: default;
+}
+#app, #app canvas { width: 100%; height: 100%; display: block; }
+
+/* ---------- 载入页 ---------- */
+#loading {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at 50% 38%, #16203a, #05070d 70%);
+  transition: opacity .8s ease;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loading-box { text-align: center; width: 320px; }
+.loading-crest {
+  width: 62px; height: 72px; margin: 0 auto 18px;
+  background: linear-gradient(160deg, #6d9ad8, #2c4c86 55%, #1b2f57);
+  clip-path: polygon(50% 0%, 100% 16%, 100% 62%, 50% 100%, 0% 62%, 0% 16%);
+  box-shadow: 0 0 32px rgba(110, 160, 230, .35);
+  position: relative;
+}
+.loading-crest::after {
+  content: ''; position: absolute; inset: 6px;
+  background: linear-gradient(160deg, #e8c877, #a97f2e);
+  clip-path: polygon(50% 6%, 94% 20%, 94% 60%, 50% 92%, 6% 60%, 6% 20%);
+  opacity: .85;
+}
+.loading-title { font-size: 27px; letter-spacing: 10px; font-weight: 300; color: #f0e6cf; text-indent: 10px; }
+.loading-sub { margin-top: 10px; font-size: 12.5px; color: #8e9ab4; letter-spacing: 1px; }
+.loading-bar { margin: 18px auto 0; width: 240px; height: 3px; background: rgba(160,180,220,.16); border-radius: 3px; overflow: hidden; }
+.loading-bar i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #4d7fc4, #e8c877); transition: width .25s ease; }
+
+/* ---------- 准星 ---------- */
+#crosshair {
+  position: fixed; left: 50%; top: 50%; z-index: 12;
+  width: 16px; height: 16px; margin: -8px 0 0 -8px; pointer-events: none;
+  opacity: .75;
+}
+#crosshair::before, #crosshair::after {
+  content: ''; position: absolute; background: #fff; box-shadow: 0 0 3px #000;
+}
+#crosshair::before { left: 7px; top: 0; width: 2px; height: 16px; }
+#crosshair::after { top: 7px; left: 0; height: 2px; width: 16px; }
+#crosshair.hidden { display: none; }
+
+/* ---------- 底部提示 ---------- */
+#hint {
+  position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 14;
+  background: rgba(10, 14, 24, .72); backdrop-filter: blur(8px);
+  border: 1px solid rgba(200, 175, 120, .22); border-radius: 999px;
+  padding: 8px 20px; font-size: 12.5px; color: #c9c2b0; letter-spacing: .5px;
+  transition: opacity .4s; white-space: nowrap;
+}
+#hint b { color: #e8c877; font-weight: 600; }
+#hint.hidden { opacity: 0; }
+
+/* ---------- 地点铭牌 ---------- */
+#place {
+  position: fixed; left: 50%; top: 26px; transform: translateX(-50%); z-index: 14;
+  text-align: center; pointer-events: none; text-shadow: 0 2px 14px rgba(0,0,0,.9);
+  transition: opacity .5s;
+}
+#place-name { display: block; font-size: 21px; letter-spacing: 7px; color: #f2e8d2; font-weight: 300; text-indent: 7px; }
+#place-sub { display: block; margin-top: 4px; font-size: 11px; letter-spacing: 3px; color: #93a1bd; text-indent: 3px; }
+
+/* ---------- HUD ---------- */
+#hud {
+  position: fixed; left: 14px; top: 14px; z-index: 14;
+  background: rgba(10, 14, 24, .74); backdrop-filter: blur(9px);
+  border: 1px solid rgba(150, 170, 210, .18); border-radius: 10px;
+  padding: 9px 12px; font-family: Consolas, "SF Mono", monospace; font-size: 11.5px;
+  line-height: 1.75; color: #a9b6cf; min-width: 176px;
+}
+#hud .k { color: #6e7d99; }
+#hud .v { color: #8fc0ff; float: right; margin-left: 14px; }
+#hud .v.warn { color: #e8a557; }
+
+/* ---------- 小地图 ---------- */
+#minimap {
+  position: fixed; left: 14px; bottom: 14px; z-index: 14;
+  width: 200px; height: 200px;
+  background: rgba(8, 12, 20, .78); backdrop-filter: blur(8px);
+  border: 1px solid rgba(200, 175, 120, .2); border-radius: 10px;
+  image-rendering: auto;
+}
+
+/* ---------- 右侧控制面板 ---------- */
+#panel {
+  position: fixed; top: 14px; right: 14px; z-index: 20; width: 246px;
+  background: rgba(11, 15, 25, .82); backdrop-filter: blur(11px);
+  border: 1px solid rgba(200, 175, 120, .2); border-radius: 12px;
+  padding: 12px 14px 14px; font-size: 12px; user-select: none;
+  max-height: calc(100vh - 28px); overflow-y: auto; overflow-x: hidden;
+}
+#panel::-webkit-scrollbar { width: 6px; }
+#panel::-webkit-scrollbar-thumb { background: rgba(160,180,220,.22); border-radius: 3px; }
+#panel h1 { font-size: 14.5px; font-weight: 500; letter-spacing: 2.5px; color: #f0e6cf; }
+#panel .sub { color: #7c869c; font-size: 10.5px; margin: 3px 0 10px; letter-spacing: .3px; }
+#panel .sec { margin-top: 11px; padding-top: 10px; border-top: 1px solid rgba(200, 175, 120, .14); }
+#panel .sec-label { color: #b39a68; font-size: 10.5px; margin-bottom: 7px; letter-spacing: 2px; }
+#panel .row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+#panel .row label { flex: 0 0 auto; color: #b3bccd; font-size: 11.5px; }
+#panel .val { margin-left: auto; color: #8fc0ff; font-family: Consolas, monospace; font-size: 11px; }
+#panel input[type=range] { flex: 1; accent-color: #d8b463; height: 3px; }
+#panel input[type=checkbox] { accent-color: #d8b463; margin-left: auto; width: 14px; height: 14px; }
+#panel .tip { color: #6d7790; font-size: 10.5px; line-height: 1.6; }
+
+.btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.btn-grid.three { grid-template-columns: repeat(3, 1fr); }
+#panel button {
+  background: #182031; color: #cdd5e4; border: 1px solid #2b3550;
+  border-radius: 7px; padding: 6px 4px; font-size: 11.5px; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+  font-family: inherit;
+}
+#panel button:hover { background: #24304c; border-color: #3d4d72; }
+#panel button.active { background: #38507f; border-color: #d8b463; color: #fff; }
+#panel button.gold { background: #2e2716; border-color: #6c5a2e; color: #e6cd93; }
+#panel button.gold:hover { background: #40361d; }
+
+#panel .keys { font-size: 10.5px; color: #78839a; line-height: 1.85; }
+#panel .keys kbd {
+  display: inline-block; min-width: 17px; text-align: center;
+  background: #1d2536; border: 1px solid #333f5c; border-bottom-width: 2px;
+  border-radius: 4px; padding: 0 4px; color: #b7c2d6; font-family: Consolas, monospace;
+  font-size: 10px; margin-right: 3px;
+}
+
+@media (max-width: 860px) {
+  #minimap { display: none; }
+  #panel { width: 210px; }
+}

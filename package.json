@@ -47,7 +47,8 @@
     "claudefable5-business-tycoon",
     "claudefable5-digimon-rumble",
     "gpt5.6solultra-history-china3d",
-    "claudeopus5-portal-recursive"
+    "claudeopus5-portal-recursive",
+    "claudeopus5-stormwind-interiors"
   ],
   "scripts": {
     "dev": "vite",

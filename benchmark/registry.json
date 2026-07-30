@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-07-24",
+  "updatedAt": "2026-07-27",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -50,7 +50,8 @@
     "business": "像素商业大亨",
     "brawler": "3D 竞技格斗",
     "digimon": "数码宝贝大乱斗",
-    "history": "中国历史3D演变沙盘"
+    "history": "中国历史3D演变沙盘",
+    "stormwind": "奇幻王都全景(内外可穿行)"
   },
   "projects": [
     {
@@ -933,6 +934,27 @@
         "changelog": true
       },
       "taskDoc": "benchmark/tasks/code-to-3d/history.md"
+    },
+    {
+      "dir": "claudeopus5-stormwind-interiors",
+      "port": 3046,
+      "model": "Claude Opus 5",
+      "category": "code-to-3d",
+      "mission": "stormwind",
+      "variant": "interiors",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "暴风王都全景 — 每栋建筑都能走进去",
+      "desc": "程序化奇幻王都:八边形城墙(马道可绕城)/运河六桥/大教堂中殿/王座厅;80+ 栋民居店铺工坊全部真空心,门窗洞即碰撞缺口,可推门进屋上二楼;昼夜天光 + PMREM 环境反射,10 盏动态光源池托起满城火光",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/stormwind.md"
     }
   ],
   "portalSections": [
@@ -1035,6 +1057,13 @@
       "label": "History — 中国历史3D演变沙盘",
       "missions": [
         "history"
+      ]
+    },
+    {
+      "id": "stormwind",
+      "label": "Stormhold — 奇幻王都全景",
+      "missions": [
+        "stormwind"
       ]
     }
   ],

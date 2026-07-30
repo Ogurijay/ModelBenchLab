@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>暴风王都全景 · 内外可穿行 — Claude Opus 5</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b1020'/%3E%3Cpath d='M3 14V8l2.5-3L8 8v6z' fill='%23d8cbb0'/%3E%3Cpath d='M2.4 8.2L5.5 4.4 8.6 8.2z' fill='%234f8fd0'/%3E%3Crect x='9.5' y='5' width='3.6' height='9' fill='%23c3b79c'/%3E%3Cpath d='M9 5.2L11.3 1.6 13.6 5.2z' fill='%233d78b8'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <div id="loading">
+    <div class="loading-box">
+      <div class="loading-crest"></div>
+      <div class="loading-title">暴 风 王 都</div>
+      <div class="loading-sub" id="loading-sub">正在奠基…</div>
+      <div class="loading-bar"><i id="loading-bar-fill"></i></div>
+    </div>
+  </div>
+
+  <div id="crosshair" class="hidden"></div>
+
+  <div id="hint">
+    <b>点击画面</b> 进入第一人称 · <b>WASD</b> 行走 · <b>Shift</b> 疾跑 · <b>空格</b> 跳 · <b>ESC</b> 退出
+  </div>
+
+  <div id="place"><span id="place-name">王都上空</span><span id="place-sub">俯瞰巡游中</span></div>
+
+  <div id="hud"></div>
+  <canvas id="minimap" width="240" height="240"></canvas>
+  <div id="panel"></div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
