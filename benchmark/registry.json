@@ -51,7 +51,8 @@
     "brawler": "3D 竞技格斗",
     "digimon": "数码宝贝大乱斗",
     "history": "中国历史3D演变沙盘",
-    "stormwind": "奇幻王都全景(内外可穿行)"
+    "stormwind": "奇幻王都全景(内外可穿行)",
+    "stadium": "世界杯露天球场"
   },
   "projects": [
     {
@@ -955,6 +956,26 @@
         "changelog": true
       },
       "taskDoc": "benchmark/tasks/code-to-3d/stormwind.md"
+    },
+    {
+      "dir": "grok4.7-stadium-worldcup",
+      "port": 3047,
+      "model": "Grok 4.7",
+      "category": "code-to-3d",
+      "mission": "stadium",
+      "variant": "worldcup",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "子午冠球场 — 8 万座世界杯露天主场",
+      "desc": "原创圆角矩形三层碗：按真实座位统计约 8.5 万座，C 值 90mm，无跑道、场地露天、看台有顶。径向桁架冠顶、陶瓷鳍片立面，可走进环廊、包厢、更衣室与球员通道；昼夜、白模、X-ray、爆炸、三视图与剖切。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      }
     }
   ],
   "portalSections": [
@@ -1064,6 +1085,13 @@
       "label": "Stormhold — 奇幻王都全景",
       "missions": [
         "stormwind"
+      ]
+    },
+    {
+      "id": "stadium",
+      "label": "Stadium — 世界杯露天球场",
+      "missions": [
+        "stadium"
       ]
     }
   ],

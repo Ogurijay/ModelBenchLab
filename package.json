@@ -48,7 +48,8 @@
     "claudefable5-digimon-rumble",
     "gpt5.6solultra-history-china3d",
     "claudeopus5-portal-recursive",
-    "claudeopus5-stormwind-interiors"
+    "claudeopus5-stormwind-interiors",
+    "grok4.7-stadium-worldcup"
   ],
   "scripts": {
     "dev": "vite",

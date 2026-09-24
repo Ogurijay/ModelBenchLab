@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>子午冠球场 — 世界杯露天主场</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="boot">
+    <p class="brand">MERIDIAN CROWN</p>
+    <h1>子午冠</h1>
+    <p id="boot-line">正在按座位逐个落位…</p>
+  </div>
+  <canvas id="view"></canvas>
+  <header>
+    <div>
+      <p class="brand">MERIDIAN CROWN</p>
+      <h1>子午冠球场</h1>
+    </div>
+    <p id="capacity">—</p>
+  </header>
+  <aside id="panel">
+    <section>
+      <h2>座位与视线</h2>
+      <div id="stats"></div>
+    </section>
+    <section>
+      <h2>部位</h2>
+      <div id="parts"></div>
+    </section>
+    <section>
+      <h2>走到</h2>
+      <div id="jumps"></div>
+    </section>
+  </aside>
+  <footer id="dock">
+    <div class="row" id="views"></div>
+    <div class="row" id="looks"></div>
+    <label>时刻 <input id="hour" type="range" min="0" max="100" value="18" /></label>
+    <label>爆炸 <input id="explode" type="range" min="0" max="100" value="0" /></label>
+    <label>剖切 <input id="slice" type="range" min="-40" max="40" value="0" /></label>
+    <span id="fps"></span>
+  </footer>
+  <p id="hint">拖拽旋转 · 滚轮推进 · 点选部位可隐藏或对焦</p>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
