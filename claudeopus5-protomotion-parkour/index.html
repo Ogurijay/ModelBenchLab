@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProtoMotion · Prototype 移动系统 — Claude Opus 5</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='22' y='2' width='7' height='28' fill='%23d9902a'/><path d='M4 26 L14 26 L20 14' fill='none' stroke='%233f8fe0' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='20' cy='9' r='3.4' fill='%23e4ebef'/></svg>" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="view"></canvas>
+
+  <!-- HUD:四行读数照 ProtoMotionCharacter::Tick 的屏幕调试输出;行内容由 ui/hud.js 生成 -->
+  <div id="hud" class="hidden">
+    <div id="readout"></div>
+    <div id="perf"></div>
+    <div id="trace" class="hidden">
+      <div id="trace-head">轨迹 · 每 0.25 s 一行 · 最近 40 行(UE <code>-ProtoTrace</code> 等价物)</div>
+      <div id="trace-log"></div>
+    </div>
+    <div id="keys"></div>
+  </div>
+
+  <div id="start" class="overlay">
+    <div class="panel">
+      <h1>ProtoMotion <span class="dot">·</span> Prototype 移动系统</h1>
+      <p class="sub">UE 5.8 工程 <b>ProtoMotion_Lab</b> 的 Three.js 对照实现 — Claude Opus 5 作答</p>
+      <p class="lede">
+        走 / 跑 / 冲刺 / 跳 / 滑翔 / 跑墙 / 攀爬 / 墙跳 / 下滑 / 翻滚 / 翻越 ——
+        照 Prototype (2009) 拆包资源还原的那一套。
+        这里和 UE 侧共用<b>同一份常量</b>(走 260、跑 700、冲刺 1500、重力 −1960)、
+        <b>同一份关卡坐标</b>(17 个结构,每个都对应条件图的一条边界)、
+        <b>同一份 13 项自检</b>。世界是厘米、Z-up,不做任何单位换算。
+      </p>
+      <div class="grid" id="start-keys"></div>
+      <p class="auto-title">不靠按键、靠环境触发的那半套</p>
+      <ul class="auto" id="start-auto"></ul>
+      <div class="row"><button id="btn-start" class="btn primary">点击开始(锁定鼠标)</button></div>
+      <div class="row"><button id="btn-selftest" class="btn ghost">运行 13 项自检</button></div>
+      <p class="tip">同一份自检也能无头跑:<code>node tests/run.mjs</code>。</p>
+    </div>
+  </div>
+
+  <div id="pause" class="overlay hidden">
+    <div class="panel">
+      <h2>已暂停</h2>
+      <p class="sub">仿真停在原地,松手前的状态都还在</p>
+      <div class="row"><button id="btn-resume" class="btn primary">继续</button></div>
+      <div class="row">
+        <button id="btn-restart" class="btn ghost">回到出生点</button>
+        <button id="btn-selftest2" class="btn ghost">运行 13 项自检</button>
+        <button id="btn-trace" class="btn ghost">轨迹:关</button>
+      </div>
+      <p class="tip">出生点 (0, 0, 120) 朝向 +X,正前方 42 m 就是跑墙用的那面墙。</p>
+    </div>
+  </div>
+
+  <div id="selftest" class="overlay hidden">
+    <div class="panel wide">
+      <h2>自检 · 13 项状态断言</h2>
+      <p class="sub">照抄 <b>ProtoSelfTest.cpp</b>:每项传送就位、每帧重新施加意图、收集期间出现过的所有 MotionState</p>
+      <div id="st-sum"></div>
+      <ul id="st-list"></ul>
+      <div class="row">
+        <button id="btn-st-run" class="btn primary">运行 13 项自检</button>
+        <button id="btn-st-copy" class="btn ghost">复制结果</button>
+        <button id="btn-st-close" class="btn ghost">关闭</button>
+      </div>
+      <p class="tip">必须一致的是 13 条状态断言;峰值速度等数值与 UE 允许有差,差异记在 HANDOVER。
+        无头驱动请用 <code>__bench.selfTest()</code>(同步返回,不依赖 rAF)。</p>
+    </div>
+  </div>
+
+  <div id="loading"><div class="ring"></div><div>正在载入 Alex 与 118 条动画…</div></div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

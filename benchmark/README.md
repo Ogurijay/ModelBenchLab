@@ -26,3 +26,7 @@ benchmark/
 ```
 
 评分卡在 [`../shared/rubrics/`](../shared/rubrics/),schema 在 [`../shared/schema/`](../shared/schema/),测试输入素材在 [`../shared/fixtures/`](../shared/README.md)。
+
+## 结构与正式评测
+
+任务映射见 tasks/index.json。npm run sync:check 校验结构；npm run benchmark:check 校验存在的运行记录；--formal 额外要求 frozen 单元和完整 A 样本。当前所有任务待恢复与冻结，未生成正式评分。优先级 focus 与建设状态 planned 可以并存。

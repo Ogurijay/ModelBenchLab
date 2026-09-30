@@ -1,0 +1,110 @@
+{
+  "errors": [],
+  "snapshot": {
+    "page": "race",
+    "mode": "auto",
+    "selected": "cyclone",
+    "venue": "bedroom",
+    "track": "classic",
+    "count": 8,
+    "laps": 3,
+    "state": "ready",
+    "time": 0,
+    "carCount": 8,
+    "build": {
+      "shell": 0,
+      "chassis": 0,
+      "motor": 0,
+      "tires": 0,
+      "rollers": 0,
+      "battery": 0
+    },
+    "stats": [
+      86,
+      78,
+      71,
+      78
+    ],
+    "explode": 0,
+    "camera": "orbit",
+    "render": {
+      "calls": 581,
+      "triangles": 130934
+    },
+    "racers": [
+      {
+        "id": "cyclone",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 0,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "hurricane",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 1,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "triangle",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 2,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "evolution",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 3,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "cobra",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 0,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "spider",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 1,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "giant",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 2,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "devil",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 3,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      }
+    ],
+    "storageIssue": false
+  }
+}

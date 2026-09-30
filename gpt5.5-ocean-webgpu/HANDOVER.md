@@ -41,3 +41,9 @@
 - 增加 WebGPU compute shader（计算着色器）版 FFT 海浪。
 - 增加真实海雾体积云或屏幕空间雨滴。
 - 加入 GPU timer query 做更准确的性能分析。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/gpt5.5-ocean-webgpu/`。
+- 独立调试：根目录运行 `npm run dev:one -- gpt5.5-ocean-webgpu`，端口 3013。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

@@ -3,38 +3,205 @@
   "title": "TestUnit",
   "description": "一个冻结的测试单元:锁定输入与参数,只让被测模型变化。",
   "type": "object",
-  "required": ["task_id", "category", "axes", "difficulty", "input", "fixed_params", "rubric"],
+  "required": [
+    "task_id",
+    "category",
+    "axes",
+    "difficulty",
+    "input",
+    "fixed_params",
+    "rubric",
+    "mission",
+    "version",
+    "status",
+    "samples",
+    "pending",
+    "source_doc",
+    "rubric_profile"
+  ],
   "properties": {
-    "task_id": { "type": "string", "description": "全局唯一,如 code3d-ocean-001" },
-    "category": { "enum": ["code-to-3d", "vlm-aesthetic", "agent-tooluse", "text-to-image", "text-to-3d", "llm"] },
-    "mission": { "type": "string", "description": "code-to-3d 用:ocean / kart / tank / sandbox / interaction" },
+    "task_id": {
+      "type": "string",
+      "description": "全局唯一,如 code3d-ocean-001"
+    },
+    "category": {
+      "enum": [
+        "code-to-3d",
+        "vlm-aesthetic",
+        "agent-tooluse",
+        "text-to-image",
+        "text-to-3d",
+        "code-to-ui",
+        "llm",
+        "text-to-video"
+      ]
+    },
+    "mission": {
+      "type": "string",
+      "description": "code-to-3d 用:ocean / kart / tank / sandbox / interaction"
+    },
     "axes": {
       "type": "array",
-      "items": { "enum": ["adherence", "fidelity", "consistency", "controllability", "efficiency", "safety"] },
-      "description": "该任务命中的通用六轴,只对命中的轴打分"
+      "items": {
+        "enum": [
+          "adherence",
+          "fidelity",
+          "consistency",
+          "controllability",
+          "efficiency",
+          "safety"
+        ]
+      },
+      "description": "该任务命中的通用六轴,只对命中的轴打分",
+      "minItems": 1,
+      "uniqueItems": true
     },
-    "difficulty": { "enum": ["L1", "L2", "L3", "L4"] },
+    "difficulty": {
+      "enum": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ]
+    },
     "input": {
       "type": "object",
       "description": "冻结的输入",
       "properties": {
-        "prompt": { "type": "string" },
-        "assets": { "type": "array", "items": { "type": "string" }, "description": "shared/fixtures 下的相对路径" }
-      }
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "shared/fixtures 下的相对路径"
+        }
+      },
+      "required": [
+        "prompt",
+        "assets"
+      ]
     },
-    "fixed_params": { "type": "object", "description": "锁定的参数快照:seed / 分辨率 / 环境 / 观察时长等" },
-    "samples": { "type": "integer", "minimum": 1, "default": 3, "description": "每题重复次数(抗随机)" },
+    "fixed_params": {
+      "type": "object",
+      "description": "锁定的参数快照:seed / 分辨率 / 环境 / 观察时长等",
+      "minProperties": 0
+    },
+    "samples": {
+      "type": "integer",
+      "minimum": 3,
+      "default": 3,
+      "description": "每题重复次数(抗随机)"
+    },
     "rubric": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["key", "weight"],
+        "required": [
+          "key",
+          "weight"
+        ],
         "properties": {
-          "key": { "type": "string" },
-          "weight": { "type": "number" },
-          "anchor": { "type": "string", "description": "0/3/5 分锚点说明" }
+          "key": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          },
+          "anchor": {
+            "type": "string",
+            "description": "0/3/5 分锚点说明"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "frozen"
+      ]
+    },
+    "pending": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_doc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rubric_profile": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "frozen"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pending": {
+            "maxItems": 0
+          },
+          "fixed_params": {
+            "required": [
+              "runtime_versions",
+              "browser_version",
+              "gpu",
+              "evaluation_protocol",
+              "seeds"
+            ],
+            "properties": {
+              "runtime_versions": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+                }
+              },
+              "browser_version": {
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+              },
+              "gpu": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evaluation_protocol": {
+                "type": "string",
+                "minLength": 1
+              },
+              "seeds": {
+                "type": "array",
+                "minItems": 3,
+                "uniqueItems": true,
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
         }
       }
     }
-  }
+  ]
 }

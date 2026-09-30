@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6solultra-business-tycoon/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-business-tycoon`，打开 `http://localhost:3038/`。下文子目录启动说明仅用于独立开发。
+
 # 街区大亨 · Pixel Borough
 
 一款浏览器内直接游玩的像素商业养成游戏。玩家从 7.2 万元启动资金起步，在九块街区地块中选择商业模式、开店、调整策略并逐日结算，目标是建立多业态商业版图。

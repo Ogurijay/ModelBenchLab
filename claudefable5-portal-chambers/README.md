@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-portal-chambers/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-portal-chambers`，打开 `http://localhost:3034/`。下文子目录启动说明仅用于独立开发。
+
 # 传送门 · 五间实验室 — Claude Fable 5
 
 参照 Valve《Portal》(PC)核心玩法的网页复刻:第一人称双色传送门、透过门实时看到另一侧、

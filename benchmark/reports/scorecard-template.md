@@ -30,3 +30,7 @@
 | **加权总分** | | | Σ(权重×分) |
 
 失败标签:[  ]   一句话结论:
+
+## 记录完整性
+
+填写 task_id/version、A-fixed 或 B-best、每次 params_snapshot、output_ref、rater 和 rubric_profile。只填写任务命中的 axes；B 未跑标未测。游戏使用 code-to-ui-game 专项表，历史任务使用该版本明确的专项覆盖权重。至少三次独立样本后汇总均值与方差；不补造历史分数。

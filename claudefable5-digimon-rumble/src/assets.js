@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
 import { MODELS_BASE } from './config.js';
+import { SHARED_MODELS } from './shared-models.js';
 
 const loader = new GLTFLoader();
 const cache = new Map(); // model id -> Promise<{scene, animations}>
@@ -11,7 +12,7 @@ const cache = new Map(); // model id -> Promise<{scene, animations}>
 export function loadModel(modelId) {
   if (!cache.has(modelId)) {
     cache.set(modelId, new Promise((resolve, reject) => {
-      loader.load(`${MODELS_BASE}${modelId}.glb`,
+      loader.load(SHARED_MODELS[modelId] || `${MODELS_BASE}${modelId}.glb`,
         (gltf) => {
           // DSCS 导出的材质 metalness 偏高,无 envMap 时会渲成黑块 — 统一压低;
           // 部分材质带 BLEND 透明标志导致整体幽灵化 — 无 alpha 贴图时强制不透明

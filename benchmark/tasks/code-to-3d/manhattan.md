@@ -73,10 +73,6 @@
 
 ## 参与项目(源自 registry,mission=manhattan)
 
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3025 | claudefable5-manhattan-procedural | Claude Fable 5 | procedural |
-| 3036 | gpt5.6solultra-manhattan-procedural | GPT 5.6 SOL Ultra | procedural |
 
 > **公平对比原则**:直接横向对比只在**同一 variant 内**进行。跨 variant 只比"公共核心要求"部分。
 
@@ -86,7 +82,7 @@
 
 **评测环境锁定**:桌面 1920×1080、固定 GPU 档;观察 ≥90s,须覆盖一次完整昼夜(用时间加速)+ 每种天气 ≥10s + 种子重建一次(输入 1337 / 2026 / 42 各一次验证确定性);截图归档 `benchmark/runs/<date>_<model>/`,匿名盲评。
 
-## 测试单元(冻结 JSON,对齐 shared/schema/test-unit.schema.json)
+## 历史测试单元示例（正式状态以中央 JSON 为准）
 
 ```json
 {
@@ -114,3 +110,7 @@
   ]
 }
 ```
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-manhattan-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

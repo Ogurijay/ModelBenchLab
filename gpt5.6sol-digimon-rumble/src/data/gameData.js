@@ -1,45 +1,60 @@
+import shared_wargreymon from '../../../shared/assets/models/digimon/wargreymon.glb?url';
+import shared_agumon from '../../../shared/assets/models/digimon/agumon.glb?url';
+import shared_guilmon from '../../../shared/assets/models/digimon/guilmon.glb?url';
+import shared_gatomon from '../../../shared/assets/models/digimon/gatomon.glb?url';
+import shared_patamon from '../../../shared/assets/models/digimon/patamon.glb?url';
+import shared_veemon from '../../../shared/assets/models/digimon/veemon.glb?url';
+import shared_gallantmon from '../../../shared/assets/models/digimon/gallantmon.glb?url';
+import shared_metalgarurumon from '../../../shared/assets/models/digimon/metalgarurumon.glb?url';
+import shared_gabumon from '../../../shared/assets/models/digimon/gabumon.glb?url';
+import shared_seraphimon from '../../../shared/assets/models/digimon/seraphimon.glb?url';
+import shared_renamon from '../../../shared/assets/models/digimon/renamon.glb?url';
+import shared_imperialdramon from '../../../shared/assets/models/digimon/imperialdramon.glb?url';
+import shared_sakuyamon from '../../../shared/assets/models/digimon/sakuyamon.glb?url';
+import shared_diaboromon from '../../../shared/assets/models/digimon/diaboromon.glb?url';
+
 export const CHARACTERS = [
   {
     id: 'agumon', name: '亚古兽', en: 'AGUMON', crest: '勇气', role: '全能型',
     color: '#ff8b21', accent: '#ffe04a', stats: { speed: 4, power: 3, range: 3, guard: 3 },
     forms: [
-      { name: '亚古兽', en: 'AGUMON', model: './models/agumon.glb', height: 2.45, skill: '小型火焰' },
+      { name: '亚古兽', en: 'AGUMON', model: shared_agumon, height: 2.45, skill: '小型火焰' },
       { name: '暴龙兽', en: 'GREYMON', model: './models/greymon.glb', height: 3.45, skill: '超级火焰' },
-      { name: '战斗暴龙兽', en: 'WARGREYMON', model: './models/wargreymon.glb', height: 3.25, skill: '盖亚能量炮' },
+      { name: '战斗暴龙兽', en: 'WARGREYMON', model: shared_wargreymon, height: 3.25, skill: '盖亚能量炮' },
     ],
   },
   {
     id: 'gabumon', name: '加布兽', en: 'GABUMON', crest: '友情', role: '远程型',
     color: '#4d8cff', accent: '#7af2ff', stats: { speed: 3, power: 3, range: 5, guard: 3 },
     forms: [
-      { name: '加布兽', en: 'GABUMON', model: './models/gabumon.glb', height: 3.8, skill: '爆炎火焰弹' },
+      { name: '加布兽', en: 'GABUMON', model: shared_gabumon, height: 3.8, skill: '爆炎火焰弹' },
       { name: '加鲁鲁兽', en: 'GARURUMON', model: './models/garurumon.glb', height: 2.8, skill: '妖狐火焰' },
-      { name: '钢铁加鲁鲁兽', en: 'METALGARURUMON', model: './models/metalgarurumon.glb', height: 3.0, skill: '绝对冷冻气' },
+      { name: '钢铁加鲁鲁兽', en: 'METALGARURUMON', model: shared_metalgarurumon, height: 3.0, skill: '绝对冷冻气' },
     ],
   },
   {
     id: 'guilmon', name: '基尔兽', en: 'GUILMON', crest: '危险', role: '强攻型',
     color: '#ed344d', accent: '#ffb22e', stats: { speed: 3, power: 5, range: 3, guard: 2 },
     forms: [
-      { name: '基尔兽', en: 'GUILMON', model: './models/guilmon.glb', height: 2.5, skill: '基尔火炮' },
+      { name: '基尔兽', en: 'GUILMON', model: shared_guilmon, height: 2.5, skill: '基尔火炮' },
       { name: '古拉兽', en: 'GROWLMON', model: './models/growlmon.glb', height: 3.5, skill: '魔龙火焰' },
-      { name: '红莲骑士兽', en: 'GALLANTMON', model: './models/gallantmon.glb', height: 3.35, skill: '极乐净土' },
+      { name: '红莲骑士兽', en: 'GALLANTMON', model: shared_gallantmon, height: 3.35, skill: '极乐净土' },
     ],
   },
   {
     id: 'patamon', name: '巴达兽', en: 'PATAMON', crest: '希望', role: '空战型',
     color: '#f5bb67', accent: '#fff3a1', stats: { speed: 5, power: 2, range: 4, guard: 2 },
     forms: [
-      { name: '巴达兽', en: 'PATAMON', model: './models/patamon.glb', height: 2.15, skill: '空气炮' },
+      { name: '巴达兽', en: 'PATAMON', model: shared_patamon, height: 2.15, skill: '空气炮' },
       { name: '天使兽', en: 'ANGEMON', model: './models/angemon.glb', height: 3.45, skill: '天堂之拳' },
-      { name: '究极天使兽', en: 'SERAPHIMON', model: './models/seraphimon.glb', height: 3.55, skill: '七重天堂' },
+      { name: '究极天使兽', en: 'SERAPHIMON', model: shared_seraphimon, height: 3.55, skill: '七重天堂' },
     ],
   },
   {
     id: 'gatomon', name: '迪路兽', en: 'GATOMON', crest: '光明', role: '技巧型',
     color: '#f7f1e7', accent: '#ec65e6', stats: { speed: 5, power: 3, range: 2, guard: 3 },
     forms: [
-      { name: '迪路兽', en: 'GATOMON', model: './models/gatomon.glb', height: 2.15, skill: '猫猫拳' },
+      { name: '迪路兽', en: 'GATOMON', model: shared_gatomon, height: 2.15, skill: '猫猫拳' },
       { name: '天女兽', en: 'ANGEWOMON', model: './models/angewomon.glb', height: 3.45, skill: '神圣弓箭' },
       { name: '神圣天女兽', en: 'OPHANIMON', model: './models/ophanimon.glb', height: 3.5, skill: '伊甸园标枪' },
     ],
@@ -48,18 +63,18 @@ export const CHARACTERS = [
     id: 'veemon', name: 'V仔兽', en: 'VEEMON', crest: '奇迹', role: '突进型',
     color: '#2f6ee9', accent: '#f4e84b', stats: { speed: 4, power: 4, range: 2, guard: 4 },
     forms: [
-      { name: 'V仔兽', en: 'VEEMON', model: './models/veemon.glb', height: 2.35, skill: 'V仔头槌' },
+      { name: 'V仔兽', en: 'VEEMON', model: shared_veemon, height: 2.35, skill: 'V仔头槌' },
       { name: 'V仔兽EX', en: 'EXVEEMON', model: './models/exveemon.glb', height: 3.3, skill: 'X光线' },
-      { name: '帝皇龙甲兽FM', en: 'IMPERIALDRAMON FM', model: './models/imperialdramon.glb', height: 3.65, skill: '超级死亡' },
+      { name: '帝皇龙甲兽FM', en: 'IMPERIALDRAMON FM', model: shared_imperialdramon, height: 3.65, skill: '超级死亡' },
     ],
   },
   {
     id: 'renamon', name: '妖狐兽', en: 'RENAMON', crest: '灵巧', role: '术式型',
     color: '#e8bc3f', accent: '#a46cff', stats: { speed: 5, power: 3, range: 5, guard: 2 },
     forms: [
-      { name: '妖狐兽', en: 'RENAMON', model: './models/renamon.glb', height: 2.6, skill: '狐叶楔' },
+      { name: '妖狐兽', en: 'RENAMON', model: shared_renamon, height: 2.6, skill: '狐叶楔' },
       { name: '九尾狐兽', en: 'KYUBIMON', model: './models/kyubimon.glb', height: 3.2, skill: '鬼火玉' },
-      { name: '沙古牙兽', en: 'SAKUYAMON', model: './models/sakuyamon.glb', height: 3.55, skill: '金刚界曼荼罗' },
+      { name: '沙古牙兽', en: 'SAKUYAMON', model: shared_sakuyamon, height: 3.55, skill: '金刚界曼荼罗' },
     ],
   },
   {
@@ -77,7 +92,7 @@ export const BOSSES = [
   {
     id: 'diaboromon', name: '超恶魔兽', en: 'DIABOROMON', crest: '入侵', role: 'Boss', boss: true,
     color: '#6d32a8', accent: '#de66ff', stats: { speed: 4, power: 5, range: 5, guard: 4 },
-    forms: [{ name: '超恶魔兽', en: 'DIABOROMON', model: './models/diaboromon.glb', height: 4.1, skill: '灾难炮' }],
+    forms: [{ name: '超恶魔兽', en: 'DIABOROMON', model: shared_diaboromon, height: 4.1, skill: '灾难炮' }],
   },
   {
     id: 'apocalymon', name: '启示录兽', en: 'APOCALYMON', crest: '终焉', role: 'Final Boss', boss: true,

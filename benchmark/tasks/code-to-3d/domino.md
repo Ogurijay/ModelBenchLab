@@ -29,13 +29,11 @@
 
 **验收陷阱(评委必做)**:连续「触发→复位」5 次,任何一次断链 / 铃不响 / 复位后残留位移即扣一致性分;切到后台再切回(RAF 暂停)不得导致物理爆炸。
 
-## 参与项目(mission=domino)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3026 | claudefable5-domino-rube | Claude Fable 5 | rube |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-3d.md`;E 一致性稳定性维在本题权重×2(确定性是题眼)。
 - 参数锁(模式 A):three `^0.185.0` · vite `^8.1.2` · JavaScript · 物理允许 cannon-es `^0.20.0` 或自写。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-domino-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

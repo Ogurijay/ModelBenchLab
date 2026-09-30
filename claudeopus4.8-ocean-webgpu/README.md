@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudeopus4.8-ocean-webgpu/`。
+独立调试：根目录运行 `npm run dev:one -- claudeopus4.8-ocean-webgpu`，打开 `http://localhost:3001/`。下文子目录启动说明仅用于独立开发。
+
 # 🌊 WebGL Ocean · GPU 实时海面模拟 + 海盗船
 
 基于 **Three.js `WebGLRenderer` + GLSL `ShaderMaterial`** 的实时海面模拟。
@@ -38,7 +42,7 @@ npm run build    # 生产构建到 dist/
 npm run preview  # 预览构建产物
 ```
 
-打开终端提示的地址（默认 `http://127.0.0.1:5173`）。
+打开终端提示的地址（默认 `http://localhost:3001/`）。
 
 > **需要 WebGL2 浏览器**（几乎所有现代浏览器都支持，建议开启「硬件加速」）。
 > 若浏览器不支持 WebGL，页面会显示友好的降级提示，不会白屏。

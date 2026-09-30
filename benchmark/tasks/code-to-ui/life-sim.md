@@ -19,9 +19,6 @@
 2. GBA 色板、低分辨率构图、像素边缘和掌机外观是否统一。
 3. 交互提示、状态反馈和触屏操作是否清晰可靠。
 
-## 参与项目(mission=life)
+## 测试单元与项目索引
 
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3037 | gpt5.6solultra-life-gba | GPT 5.6 SOL Ultra | gba |
-| 3041 | claudefable5-life-gba | Claude Fable 5 | gba |
+测试单元：`benchmark/tasks/public/codeui-life-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

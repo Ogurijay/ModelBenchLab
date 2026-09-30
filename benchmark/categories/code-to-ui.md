@@ -37,3 +37,7 @@
 ## 任务库
 
 - [`../tasks/code-to-ui/datagrid.md`](../tasks/code-to-ui/datagrid.md) — 十万行虚拟滚动数据网格(现役第一题)
+
+## 游戏任务与总索引
+
+life/business 使用 shared/rubrics/code-to-ui-game.md；网格的 DOM 与防抖检查不适用于这两类。完整任务清单读取 ../tasks/index.json，不在本文件手写项目清单。

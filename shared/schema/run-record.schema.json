@@ -3,22 +3,165 @@
   "title": "RunRecord",
   "description": "一次测试运行的可回溯记录。",
   "type": "object",
-  "required": ["run_id", "date", "model", "task_id", "mode", "scores"],
+  "required": [
+    "run_id",
+    "date",
+    "model",
+    "task_id",
+    "mode",
+    "scores",
+    "task_version",
+    "model_version",
+    "sample_idx",
+    "params_snapshot",
+    "output_ref",
+    "rater",
+    "rubric_profile",
+    "project_dir"
+  ],
   "properties": {
-    "run_id": { "type": "string" },
-    "date": { "type": "string", "description": "YYYY-MM-DD" },
-    "model": { "type": "string" },
-    "model_version": { "type": "string" },
-    "task_id": { "type": "string" },
-    "mode": { "enum": ["A-fixed", "B-best"], "description": "A 公平固定 / B 各自最优" },
-    "sample_idx": { "type": "integer", "description": "第几次重复(1..samples)" },
-    "params_snapshot": { "type": "object" },
-    "output_ref": { "type": "string", "description": "截图 / 录屏 / 产物路径,建议 runs/<date>_<model>/" },
-    "latency_ms": { "type": "number" },
-    "cost": { "type": "number" },
-    "scores": { "type": "object", "description": "轴 / rubric键 -> 0..5(或 pass@k)" },
-    "rater": { "type": "string", "description": "human:<名> 或 judge:<模型>" },
-    "failure_tags": { "type": "array", "items": { "type": "string" }, "description": "如 穿模 / 掉帧 / 颜色串位" },
-    "notes": { "type": "string" }
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "A-fixed",
+        "B-best"
+      ],
+      "description": "A 公平固定 / B 各自最优"
+    },
+    "sample_idx": {
+      "type": "integer",
+      "description": "第几次重复(1..samples)",
+      "minimum": 1
+    },
+    "params_snapshot": {
+      "type": "object",
+      "minProperties": 1,
+      "required": [
+        "runtime_versions",
+        "browser_version",
+        "gpu",
+        "seed",
+        "rubric_version"
+      ],
+      "properties": {
+        "runtime_versions": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+          }
+        },
+        "browser_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "gpu": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "rubric_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "output_ref": {
+      "type": "string",
+      "description": "截图 / 录屏 / 产物路径,建议 runs/<date>_<model>/",
+      "minLength": 1
+    },
+    "latency_ms": {
+      "type": "number"
+    },
+    "cost": {
+      "type": "number"
+    },
+    "scores": {
+      "type": "object",
+      "description": "轴 / rubric键 -> 0..5(或 pass@k)",
+      "minProperties": 1,
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          {
+            "type": "object",
+            "required": [
+              "metric",
+              "value"
+            ],
+            "properties": {
+              "metric": {
+                "enum": [
+                  "pass@k",
+                  "accuracy",
+                  "win-rate",
+                  "Elo",
+                  "MAE",
+                  "Spearman"
+                ]
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "rater": {
+      "type": "string",
+      "description": "human:<名> 或 judge:<模型>",
+      "minLength": 1
+    },
+    "failure_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "如 穿模 / 掉帧 / 颜色串位"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "task_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rubric_profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_dir": {
+      "type": "string",
+      "minLength": 1
+    }
   }
 }

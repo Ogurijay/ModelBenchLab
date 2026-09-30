@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f1e7" />
+    <meta name="description" content="晴日小镇，一款 GBA 像素风的生活模拟游戏。布置小屋、结识邻居，让平凡的一天闪闪发光。" />
+    <title>晴日小镇 · Pocket Days</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%237c9270' d='M12 2h8v4h4v8h4v4h-4v8h-4v4h-8v-4H8v-8H4v-4h4V6h4z'/%3E%3Cpath fill='%23c0d896' d='M12 6h4v18h-4v-8H8v-4h4z'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="晴日小镇首页"><span class="brand-mark" aria-hidden="true">✦</span><span><strong>晴日小镇<span class="brand-dot">.</span></strong><small>POCKET DAYS / 慢慢来，日子很长</small></span></a>
+        <div class="header-right"><span class="edition">A LITTLE LIFE, WELL LIVED.</span><button class="icon-button" id="sound-button" aria-label="打开游戏音乐" title="打开游戏音乐"></button><button class="icon-button" id="help-button" aria-label="查看游戏帮助" title="游戏帮助">?</button></div>
+      </header>
+      <main>
+        <section class="intro"><div><div class="eyebrow"><span class="live-dot"></span> YOUR EVERYDAY ADVENTURE</div><h1>把日子过成，<span>喜欢的样子。</span></h1><p>一间小屋，几个新朋友，还有值得期待的每一天。</p></div><div class="intro-stamp"><span>✳</span><div>欢迎搬来晴日小镇<small>MAKE YOURSELF AT HOME</small></div></div></section>
+        <nav class="main-nav" aria-label="游戏功能"><div class="nav-tabs"><button class="nav-tab active" id="home-tab"><span data-icon="home"></span>我的生活<span class="tab-dot"></span></button><button class="nav-tab" id="map-tab"><span data-icon="map"></span>小镇地图</button><button class="nav-tab" id="shop-tab"><span data-icon="bag"></span>家居小铺</button></div><button class="diary-button" id="diary-button"><span data-icon="book"></span>生活手账 <span>↗</span></button></nav>
+        <div class="game-layout">
+          <section class="game-panel" aria-label="游戏区域">
+            <div class="scene-toolbar"><div class="location"><span data-icon="pin"></span><strong id="location-label">梧桐巷 · 我的小屋</strong><span class="location-tag" id="location-tag">HOME</span></div><div class="weather"><span data-icon="sun"></span><span id="day-label">春 · 第 1 天</span><span class="toolbar-divider"></span><strong id="clock">08:00</strong></div></div>
+            <div class="canvas-wrap" id="canvas-wrap"><canvas id="game" width="480" height="320" tabindex="0" aria-label="晴日小镇像素游戏。方向键或 WASD 移动，E 或空格互动，也可点击地面行走和点击家具互动。"></canvas><div class="scene-label"><span class="live-dot"></span><span id="scene-caption">属于你的小小天地</span></div><button id="view-button" class="view-button" title="展开游戏画面" aria-label="展开游戏画面"><span data-icon="expand"></span></button><div class="toast" id="toast" role="status" aria-live="polite"></div><div class="action-progress" id="action-progress" hidden><span id="action-label"></span><div><i id="action-fill"></i></div><small>按 Esc 取消</small></div><div class="pause-overlay" id="pause-overlay" hidden><span>Ⅱ</span><strong>让时间歇一会儿</strong><button id="resume-button">继续生活</button></div><div id="arrival" class="arrival" aria-hidden="true"></div></div>
+            <div class="interaction-bar"><div class="interaction-icon" id="interaction-icon"><span data-icon="sparkle"></span></div><div class="interaction-text"><strong id="interaction-title">新生活，从一个小小的决定开始</strong><span id="interaction-description">点击家具互动，或随意走走。</span></div><button class="interact-button" id="interact-button">探索小屋 <kbd>E</kbd></button></div>
+            <div class="playback-bar"><div class="playback"><button id="pause-button" class="playback-button" aria-label="暂停游戏" title="暂停 / 继续"><span data-icon="pause"></span></button><span class="playback-separator"></span><button class="speed-button selected" data-speed="1" aria-label="正常速度" aria-pressed="true">1×</button><button class="speed-button" data-speed="2" aria-label="两倍速度" aria-pressed="false">2×</button><button class="speed-button" data-speed="3" aria-label="三倍速度" aria-pressed="false">3×</button></div><span class="game-hint"><span data-icon="mouse"></span>点击行走，靠近互动</span><span class="mobile-wallet" id="mobile-money" aria-label="我的零钱">§ 500</span><span class="save-indicator" id="save-indicator"><span></span>自动存档已开启</span></div>
+          </section>
+          <div class="mobile-controls" aria-label="触屏操作"><div class="dpad"><button data-key="ArrowUp" aria-label="向上">↑</button><button data-key="ArrowLeft" aria-label="向左">←</button><button data-key="ArrowDown" aria-label="向下">↓</button><button data-key="ArrowRight" aria-label="向右">→</button></div><button class="mobile-action" id="mobile-action">A <span>互动</span></button></div>
+          <aside class="sidebar">
+            <section class="resident-card"><div class="resident-top"><div class="portrait"><canvas id="portrait" width="48" height="48" aria-label="角色小满的像素头像"></canvas><span class="portrait-status"></span></div><div class="resident-name"><span>小镇新居民</span><h2>小满 <span>✦</span></h2><p id="mood-label">状态很棒，今天也要开心！</p></div></div><div class="wallet"><span><span data-icon="coin"></span>我的零钱</span><strong><span>§</span> <span id="money">500</span></strong></div></section>
+            <section class="needs-card"><div class="section-heading"><h2>好好照顾自己</h2><span id="mood-badge">心情很棒</span></div><div id="needs-list" class="needs-list"></div><div class="needs-footnote"><span>♡</span><span id="needs-note">吃饱睡好，快乐就会多一点。</span></div></section>
+            <section class="wishes-card"><div class="section-heading"><h2><span>✧</span> 今天的小心愿</h2><span id="wish-count">0 / 3</span></div><div id="wishes-list"></div><div class="wish-reward"><span>慢慢完成就好。</span><span>每个心愿 <b>+ § 30</b></span></div></section>
+          </aside>
+        </div>
+        <footer class="game-footer"><div><span class="footer-flower">✳</span><span>没什么大事，只是好好生活。</span></div><div class="keyboard-guide"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动</span><span><kbd>E</kbd> 互动</span><span><kbd>Esc</kbd> 取消</span><button id="save-button"><span data-icon="save"></span>保存进度</button></div></footer>
+        <div class="bottom-note"><span>POCKET DAYS</span><span>一款像素风生活模拟小游戏 <i>·</i> VOL. 01 — A FRESH START</span><span>MADE FOR SLOW DAYS <span class="tiny-diamond">◆</span></span></div>
+      </main>
+    </div>
+    <dialog id="dialog"><div class="dialog-head"><div><span class="eyebrow" id="dialog-eyebrow">POCKET DAYS</span><h2 id="dialog-title"></h2></div><button class="icon-button" id="close-dialog" aria-label="关闭">×</button></div><div id="dialog-body"></div></dialog>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

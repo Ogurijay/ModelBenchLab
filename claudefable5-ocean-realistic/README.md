@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-ocean-realistic/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-ocean-realistic`，打开 `http://localhost:3005/`。下文子目录启动说明仅用于独立开发。
+
 # Claude Realistic Ocean
 
 Claude 完成的 Three.js（Web 3D 图形库）真实海面模拟用例，用于 agent 能力横向对比。
@@ -16,7 +20,7 @@ npm install
 npm run dev
 ```
 
-打开终端输出的本地地址（默认 `http://127.0.0.1:5174/`）。
+打开终端输出的本地地址（默认 `http://localhost:3005/`）。
 
 ## 验证命令
 

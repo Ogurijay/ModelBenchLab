@@ -41,3 +41,9 @@ npm run dev:one claudefable5-business-tycoon   # 独立 :3040 调试
 ```
 
 Console 调试：`__TYCOON__.ff(360)` 快进一年；`.setVt(60)` 正午；`.setDist('cbd')` 切城区。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-business-tycoon/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-business-tycoon`，端口 3040。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

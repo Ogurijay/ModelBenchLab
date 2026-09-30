@@ -35,13 +35,11 @@
 
 **验收陷阱(评委必做)**:快速输入"张伟"逐字删改,观察 filterRuns 只在停顿后 +1;拖滚动条到 50000 行处检查 DOM 行数仍 ≤80;排序后 Shift 范围选择再过滤,选中集合必须仍指向同一批行 id。
 
-## 参与项目(mission=datagrid)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3028 | claudefable5-datagrid-virtual | Claude Fable 5 | virtual |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-ui.md`(B 性能工程 ★ 权重最高,客观检查清单优先)。
 - 参数锁(模式 A):**零运行时依赖**(仅 vite `^8.1.2` devDependency)· JavaScript · 禁框架禁组件库 · 防抖 300ms · CPU 4× 降速档测滚动帧率。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/codeui-datagrid-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

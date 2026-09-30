@@ -6,8 +6,8 @@
 |---|---|
 | 任务 | benchmark mission `gallery`(美术馆布光,code-to-3d),冻结任务书见 `benchmark/tasks/code-to-3d/gallery.md` |
 | 实现方式 | Three.js ^0.185 + Vite ^8.1.2,JavaScript ESM,零外部资产(纹理全部 canvas 程序化) |
-| 端口 | 3024(`benchmark/registry.json` 登记;3023 属并发会话的 gpt5.6sol-powdergame,已避让顺延) |
-| 启动 | `npm run dev -- --port 3024 --strictPort`;依赖由仓库根 workspaces 统一安装(three 0.185.1 从根解析),项目内不要单独 `npm install` |
+| 调试端口 | 3027（registry 当前登记；常规服务使用3000） |
+| 启动 | `npm run dev -- --port 3027 --strictPort`;依赖由仓库根 workspaces 统一安装(three 0.185.1 从根解析),项目内不要单独 `npm install` |
 
 ## 技术架构(文件职责)
 
@@ -59,3 +59,9 @@ __bench.setSkylight(false) // 额外钩子:自动化切换昼夜(同步 UI 按�
 - WebAudio 程序化环境声(脚步 / 展厅低频氛围)。
 - 用 SSR(examples/jsm SSRPass)替换 Reflector 获得粗糙度感知反射。
 - 说明牌增加注视高亮描边(OutlinePass 或 shader)。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-gallery-lighting/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-gallery-lighting`，端口 3027。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

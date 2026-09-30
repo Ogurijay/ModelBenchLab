@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-business-tycoon/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-business-tycoon`，打开 `http://localhost:3040/`。下文子目录启动说明仅用于独立开发。
+
 # 像素大亨 — 商业模拟养成（Claude Fable 5）
 
 > 任务书：[`benchmark/tasks/code-to-ui/business-tycoon.md`](../benchmark/tasks/code-to-ui/business-tycoon.md)

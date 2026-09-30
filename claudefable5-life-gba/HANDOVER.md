@@ -54,3 +54,9 @@ src/audio.js      芯片音效 22 种 + BGM 3 首(前瞻调度)
 src/text.js       像素化中文渲染(12px 宋体 ×2)+窗口部件
 src/input.js      键盘+外壳按键统一输入(边沿/重复)
 ```
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-life-gba/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-life-gba`，端口 3041。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

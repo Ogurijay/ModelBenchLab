@@ -1,0 +1,57 @@
+{
+  "task_id": "codeui-life-001",
+  "category": "code-to-ui",
+  "mission": "life",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "待恢复；参阅 benchmark/tasks/code-to-ui/life-sim.md",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.05
+    },
+    {
+      "key": "G",
+      "weight": 0.1
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "恢复或核对逐字原始 prompt",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-ui/life-sim.md",
+  "rubric_profile": "shared/rubrics/code-to-ui-game.md"
+}

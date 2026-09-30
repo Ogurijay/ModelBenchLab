@@ -22,3 +22,7 @@
 - L4 加分:冻结左列(工号+姓名)、导出 CSV(UTF-8 BOM、当前过滤+排序视图)
 - 工程:`window.__bench = { ready, getState, scrollToRow, search, renderNow }` 调试钩子(scrollToRow/search 内部同步渲染,headless/后台标签页自动化无需等帧);零运行时依赖(仅 vite devDependency);README / HANDOVER / CHANGELOG 齐备
 - 浏览器实测通过:滚动到第 50000 行 DOM 行节点 41(≤80)、scrollHeight 3,600,040 比例正确;突发输入 filterRuns 0、停顿后恰 +1;三态与多列排序(100k 行 54ms);Shift 范围选择过滤后 id 集合不变;键盘导航/Ctrl+A/Esc;列宽拖拽指示线与双击复位;冻结列横向滚动钉住;390px 紧凑模式(隐藏次要列,总宽 332px);`vite build` 通过(gzip 后 JS ≈ 8.8KB)
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

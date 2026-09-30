@@ -9,3 +9,7 @@
 - 将视觉概念图保存到 `assets/concept/ocean-weather-webgpu-concept.png`。
 - 同步根门户、根开发脚本和端口表，固定门户端口为 `3013`。
 - 增加 final QA 截图，并通过 Chrome WebGPU 路径与像素非空检查。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

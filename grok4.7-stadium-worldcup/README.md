@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/grok4.7-stadium-worldcup/`。
+独立调试：根目录运行 `npm run dev:one -- grok4.7-stadium-worldcup`，打开 `http://localhost:3047/`。下文子目录启动说明仅用于独立开发。
+
 # 子午冠球场
 
 `grok4.7-stadium-worldcup` · three.js 0.185 / WebGL / Vite 8

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-fire-volumetric/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-fire-volumetric`，打开 `http://localhost:3032/`。下文子目录启动说明仅用于独立开发。
+
 # 燃烧标本 — Three.js r185 实体火焰
 
 这是 ModelBenchLab 的 `fire`（实体火焰模拟）任务实现。场景使用 Three.js r185 的自定义 ShaderMaterial，在一个三维包围盒内执行体积光线步进（ray marching）：每个像素沿观察射线采样程序化密度场，并把颜色与透明度从前到后积分，因此可从任意方向环绕观察，不是始终朝向相机的平面贴图。

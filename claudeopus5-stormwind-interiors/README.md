@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudeopus5-stormwind-interiors/`。
+独立调试：根目录运行 `npm run dev:one -- claudeopus5-stormwind-interiors`，打开 `http://localhost:3046/`。下文子目录启动说明仅用于独立开发。
+
 # 暴风王都全景 · 内外可穿行 — Claude Opus 5
 
 `claudeopus5-stormwind-interiors` · three.js 0.185 / WebGL / Vite 8 · 单端口访问 `http://localhost:3000/claudeopus5-stormwind-interiors/`

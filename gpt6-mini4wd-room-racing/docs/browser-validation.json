@@ -1,0 +1,132 @@
+{
+  "date": "2026-09-07T06:14:39.750Z",
+  "browser": "Microsoft Edge, headless, WebGL 2",
+  "base": "http://127.0.0.1:3000/gpt6-mini4wd-room-racing/",
+  "checks": [
+    "Eight named cars and generated thumbnails load",
+    "Scene batches to 581 draw calls including shadow pass",
+    "All six slots can be selected and replaced, updating the actual build",
+    "Installed parts persist after reload",
+    "Every classic car is selectable",
+    "All three venues and track layouts render",
+    "Keyboard pause freezes the simulation and resumes",
+    "Eight racers complete a browser race and receive eight ranked results",
+    "Manual throttle, braking and battery-consuming boost work through keyboard events",
+    "Follow, top and orbit cameras switch",
+    "Custom racer creation and persistence work",
+    "Invalid imported racers are rejected without corrupting the garage",
+    "Valid JSON racer import works",
+    "Racer JSON export produces a download",
+    "390px layout has no horizontal overflow",
+    "1280px layout has no horizontal overflow",
+    "No JavaScript exceptions or browser console errors"
+  ],
+  "errors": [],
+  "finalSnapshot": {
+    "page": "race",
+    "mode": "auto",
+    "selected": "custom-1788761678251-kl5ul",
+    "venue": "bedroom",
+    "track": "classic",
+    "count": 8,
+    "laps": 3,
+    "state": "ready",
+    "time": 0,
+    "carCount": 10,
+    "build": {
+      "shell": 0,
+      "chassis": 0,
+      "motor": 0,
+      "tires": 0,
+      "rollers": 0,
+      "battery": 0
+    },
+    "stats": [
+      80,
+      80,
+      80,
+      80
+    ],
+    "explode": 0,
+    "camera": "orbit",
+    "render": {
+      "calls": 583,
+      "triangles": 130934
+    },
+    "racers": [
+      {
+        "id": "custom-1788761678251-kl5ul",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 0,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "cyclone",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 1,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "hurricane",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 2,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "triangle",
+        "progress": -0.012,
+        "speed": 0,
+        "lane": 3,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "evolution",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 0,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "cobra",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 1,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "spider",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 2,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      },
+      {
+        "id": "giant",
+        "progress": -0.03,
+        "speed": 0,
+        "lane": 3,
+        "heat": 25,
+        "battery": 100,
+        "finish": null
+      }
+    ],
+    "storageIssue": false
+  }
+}

@@ -1,77 +1,41 @@
 # ModelBenchLab 项目规则
 
-## 1. 命名规范
+## 1. 命名与身份
 
-所有任务目录统一使用 `LLM-Mission-Other` 格式命名：
+新任务目录使用 `{模型名称}-{任务类型}-{变体描述}`，例如 `gpt6-ocean-observatory`。模型名含版本；Mission 与 Variant 的规范身份以 `benchmark/registry.json` 为准。目录改名必须同步 registry、workspaces、lockfile、文档及源码引用。
 
-```
-{模型名称}-{任务类型}-{变体描述}
-```
+已改名项目的旧目录名记录在 `projects[].aliases`，根开发服务将旧地址重定向到新地址；aliases 不是实体目录或额外项目。任务身份由 `task_id + task_version` 定义，不随目录改名改变。
 
-示例：
-- `claudeopus4.8-ocean-webgpu` — Claude Opus 4.8 生成的海洋模拟，WebGPU 方案
-- `gpt-ocean-skill` — GPT Skill 模式生成的海洋模拟
-- `doubao2.1-ocean-webgpu` — 豆包 2.1 生成的海洋模拟，WebGPU 方案
+## 2. 根目录与公共内容
 
-规则说明：
-- **LLM**：模型名称 + 版本号，如 `claudeopus4.8`、`gpt`、`doubao2.1`
-- **Mission**：任务类型，如 `ocean`（海洋模拟）、`terrain`（地形渲染）等
-- **Other**：变体描述，说明该版本的区分特征，如 `webgpu`、`weather`、`skill`、`normal`
-- 同一任务 + 同一模型允许存在多个版本（命名不同即可）
+根目录只保留登记任务、`RULES.md`、`index.html`、`package.json`、`package-lock.json`、`vite.config.mjs`、`.gitignore`、`scripts/`、`benchmark/`、`shared/`。
 
-## 2. 根目录结构
+允许的本地工具目录：`.git/`、`.agents/`、`.claude/`、`.codex/`、`.playwright-mcp/`、`tmp/`。工具目录中除 Git 外的内容不提交。`node_modules/` 是 npm workspace 自动生成的公共或嵌套依赖目录，`dist/`、`build/` 为忽略的构建产物；不是任务目录。未知根目录由结构校验报错。
 
-根目录仅存放以下内容：
+项目源码、独有配置和项目文档放在任务目录；公共开发工具依赖由根 package.json 显式声明。公共二进制资源存 `shared/assets/`，建模源文件、生成脚本与报告可作为资产包同置，例如 `shared/assets/blender/`。
 
-- 各任务目录（按上述命名规范）
-- 本规则文档（`RULES.md`）
-- 统一资源管理文件与目录：
-  - `index.html`（门户）、`package.json` / `package-lock.json`、`vite.config.mjs`（单端口开发服务配置）
-  - `scripts/`（启动与校验脚本:`dev-one.mjs` / `sync-check.mjs`）
-  - `benchmark/`（评测体系与单一事实源 `registry.json`）
-  - `shared/`（公用资源库:assets / fixtures / rubrics / schema）
+## 3. 交接与改动记录
 
-其他所有内容（源码、配置、文档、依赖等）一律放在各自的任务目录下。
+每个任务根目录必须有 `README.md`、`HANDOVER.md`、`CHANGELOG.md`。交接记录当前状态、技术方案、已知问题、下一步；改动记录写明日期、内容和原因。每次改动同步这两份文件。`docs/` 可存设计及验收材料，不能替代根交接文件。
 
-## 3. 交接文档与改动记录
+registry 的 `docs` 布尔标记与 `docPaths` 路径须对应真实文件。补建文档必须区分本轮静态核验与历史运行结论；无法恢复的开发历史、原始 prompt 和评测证据写明待补，不推断完成。
 
-每个任务目录下必须维护：
+## 4. 登记、安装与访问
 
-- **交接文档**（`HANDOVER.md`）：记录当前项目状态、技术方案、已知问题、后续计划，供接手者快速了解
-- **历史改动清单**（`CHANGELOG.md`）：记录每次调整和改动的内容、时间、原因
+项目、模型、调试端口与门户信息以 `benchmark/registry.json` 为唯一清单源，门户动态读取它。全部项目都需有 package.json 并纳入 workspaces；纯静态任务使用零运行时依赖 manifest，无需添加构建工具。
 
-每次对任务进行调整或改动时，必须同步更新这两个文件。
+常规服务唯一端口为 **3000**：根目录 `npm run dev`；门户 `/`，项目 `/<dir>/`。`dev:one` 是明确的独立调试例外：根目录 `npm run dev:one -- <目录、旧别名或登记端口>`。项目配置及当前 README 的调试端口须一致。
 
-## 4. 门户与访问规范(单端口)
+新端口递增且不复用。历史待整合项目可以恢复其原已分配端口；删除的端口列入 `retiredPorts`。新增/改名/删除项目需同步 registry、workspaces、lockfile，执行 npm install（结构整理使用 `--offline --ignore-scripts`，保持已解析版本），最后运行 `npm run sync:check`。
 
-**单一事实源:`benchmark/registry.json`。** 项目清单、模型归属、门户卡片信息全部记录于此;门户卡片由 `index.html` 在运行时读取 registry **自动生成**,不再手工维护。
+各项目 index.html 的本地 src/href 使用相对路径。根 Vite 负责嵌套 public 回落、旧别名跳转与多版本 Three.js 就近解析，不能强制合并 Three.js。公共资产使用相对 `?url` import，生产构建由 Vite 输出；根配置提供 `@shared`，独立项目使用该别名前也须在自己的配置声明。
 
-**单端口模式:整个仓库只使用一个端口 `3000`。**
+## 5. 评测与规则优先级
 
-- 门户首页:`http://localhost:3000/`
-- 各任务项目:`http://localhost:3000/<目录名>/`(如 `/claudefable5-ocean-realistic/`)
-- 由根 `vite.config.mjs` 承载:多版本 three 靠 workspaces 嵌套 `node_modules` 就近解析;子项目的 `public/` 资源与根绝对路径引用由内置路由中间件自动回落
-- 子项目编写要求:`index.html` 中的资源引用一律用**相对路径**(`./src/main.js`,不要 `/src/main.js`)
+正式评测遵守 `benchmark/methodology.md`；专项类别与 rubric 细化它，具体 task 的版本化专项 rubric 可覆盖通用权重，但必须显式记录 `rubric_profile`。历史项目存在或构建通过不等于已完成正式评测。
 
-**每次新增 / 改名 / 删除任务目录,按以下步骤(缺一不可):**
+`benchmark/tasks/index.json` 关联 mission、题面和结构化测试单元；projects 的 task_id/task_version 必须匹配。公共测试单元在 `benchmark/tasks/public/`；私有题在被忽略的 `benchmark/tasks/private/` 或 `shared/fixtures/**/private/`。输入冻结后禁止原地改题：新建版本并更新索引；旧运行仍引用旧版本。
 
-1. **改 registry**:在 `benchmark/registry.json` 的 `projects` 增删改一条(含 `dir` / `port` / `model` / `mission` / `api` / `lang` / `title` / `desc` 等;新 mission 需同步在 `portalSections` 的 `missions` 里挂到某个分区)。`port` 仅供 `dev:one` 单独调试,仍按递增不复用登记。
-2. **改 workspaces**:在 `package.json` 的 `workspaces` 同步增删目录名,并在根目录运行 `npm install`。
-3. **校验**:运行 `npm run sync:check`,确认 registry / workspaces / 目录 / 门户一致。门户卡片无需手动添加——registry 登记后自动出现。
+测试单元区分 `draft` 与 `frozen`。缺少逐字输入、确切环境或评判脚本的历史项目只能是 draft，不进入公平主榜。A 公平固定为主榜必跑；B 各自最优可选，有 B 时并列展示，没跑标为未测。随机生成任务至少三次，报告均值与方差。
 
-启动方式:
-
-- `npm run dev` — 单端口 `:3000`,门户 + 全部项目(唯一常规方式)
-- `npm run dev:one <目录名或端口>` — 用 registry 登记的独立端口单独调试某个项目
-
-## 5. 测试方法论(评测基础规则)
-
-本仓库不只是场景合集，更是一套模型能力测试体系。**所有测试以 [`benchmark/methodology.md`](benchmark/methodology.md) 为基础规则**：
-
-- **三层变量锁定**（输入锁 / 参数锁 / 评判锁）—— 每次只让被测模型变化。
-- **两种模式**：A 公平固定（主榜）/ B 各自最优（能力上限）。
-- **抗随机 + 抗污染**：每题跑 n≥3 记方差；任务库分 `public` / `private`，`private` 季度轮换、建议 gitignore。
-- **通用六轴 + 各类别专项**：评分卡见 [`shared/rubrics/`](shared/rubrics/)，各类别规则见 [`benchmark/categories/`](benchmark/categories/)。
-- **可复现**：测试单元 / 运行记录 schema 见 [`shared/schema/`](shared/schema/)，产物归档 `benchmark/runs/`。
-
-能力类别：`code-to-3d`（现役）· `code-to-ui`（现役）· `vlm-aesthetic` ★ · `agent-tooluse` ★ · `llm` · `text-to-image` · `text-to-video` · `text-to-3d`。
+`npm run sync:check` 检查结构、清单、文档、任务 schema、资源与配置；`npm run benchmark:check` 检查已归档运行记录；`npm run benchmark:check -- --formal` 还要求登记任务 frozen 且有 A 模式完整采样。结构通过不代表功能、帧率、视觉或正式评测通过。

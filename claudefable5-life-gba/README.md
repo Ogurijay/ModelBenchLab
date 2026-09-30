@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-life-gba/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-life-gba`，打开 `http://localhost:3041/`。下文子目录启动说明仅用于独立开发。
+
 # 像素小日子 — GBA 风模拟人生(Claude Fable 5)
 
 复刻 GBA 掌机质感的模拟人生(The Sims)玩法:240×160 逻辑分辨率的俯视像素小屋,

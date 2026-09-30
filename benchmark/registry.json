@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-07-27",
+  "updatedAt": "2026-10-01",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -10,27 +10,43 @@
   "capabilityCategories": {
     "code-to-3d": {
       "label": "代码生成 3D / 图形场景",
-      "status": "active"
+      "status": "active",
+      "priority": "normal"
     },
     "vlm-aesthetic": {
       "label": "视觉 / 审美理解 (VLM)",
-      "status": "planned"
+      "status": "planned",
+      "priority": "focus"
     },
     "agent-tooluse": {
       "label": "Agent 工具调用 / 任务执行",
-      "status": "planned"
+      "status": "planned",
+      "priority": "focus"
     },
     "text-to-image": {
       "label": "文生图",
-      "status": "planned"
+      "status": "planned",
+      "priority": "normal"
     },
     "text-to-3d": {
       "label": "文 / 图生 3D",
-      "status": "planned"
+      "status": "planned",
+      "priority": "normal"
     },
     "code-to-ui": {
       "label": "前端 UI 实现(性能工程 / 交互)",
-      "status": "active"
+      "status": "active",
+      "priority": "normal"
+    },
+    "llm": {
+      "label": "文本 / 对话",
+      "status": "planned",
+      "priority": "normal"
+    },
+    "text-to-video": {
+      "label": "文生视频",
+      "status": "planned",
+      "priority": "normal"
     }
   },
   "missions": {
@@ -52,7 +68,10 @@
     "digimon": "数码宝贝大乱斗",
     "history": "中国历史3D演变沙盘",
     "stormwind": "奇幻王都全景(内外可穿行)",
-    "stadium": "世界杯露天球场"
+    "stadium": "世界杯露天球场",
+    "protomotion": "原型移动系统(跑墙/攀爬/滑翔)",
+    "mini4wd": "迷你四驱车模拟器",
+    "devworld": "开发世界"
   },
   "projects": [
     {
@@ -71,8 +90,16 @@
       "desc": "TSL 节点着色器，8 Gerstner 波 GPU 全算，26万顶点 60fps，随机种子波谱",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -91,8 +118,16 @@
       "desc": "GLSL 着色器 5 Gerstner 波，晴/雾/雨/暴风/龙卷风 5 种天气切换",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -111,8 +146,16 @@
       "desc": "官方 WaterMesh + 法线贴图，泡沫粒子、海底地形、天穹系统",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -131,8 +174,16 @@
       "desc": "Pierson-Moskowitz 12 波谱，弹簧阻尼浮标浮力，模块化 TypeScript 架构",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -151,8 +202,16 @@
       "desc": "真实海浪与天空渲染，lil-gui 参数调试面板",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -171,8 +230,16 @@
       "desc": "浮体物理与海面交互",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -191,8 +258,16 @@
       "desc": "海面着色与参数联动，lil-gui 调试面板",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -211,8 +286,16 @@
       "desc": "浮标与物体物理演示，lil-gui 调试面板",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -231,8 +314,16 @@
       "desc": "卡丁车竞速赛道",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/kart.md",
+      "task_id": "code3d-kart-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -251,8 +342,16 @@
       "desc": "赛道与车辆控制",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/kart.md",
+      "task_id": "code3d-kart-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -271,8 +370,16 @@
       "desc": "霓虹赛道与音效",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/kart.md",
+      "task_id": "code3d-kart-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -290,11 +397,19 @@
       "title": "海洋模拟 — 极端天气系统",
       "desc": "多重 Gerstner 物理波谱，写实深水渲染与浪尖泡沫，暴雨/龙卷风/闪电 + 浮力木船交互",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
       },
-      "renamedFrom": "antigravity-ocean-storm"
+      "renamedFrom": "antigravity-ocean-storm",
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.5-ocean-webgpu",
@@ -314,6 +429,14 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -331,13 +454,21 @@
       "title": "海洋模拟 — 移动风暴单元",
       "desc": "风暴以独立单元在世界空间生成、漂移、消散，天气由距离风暴中心的远近实时驱动；程序化雷电与 WebAudio 合成雷声（按真实声速延迟）",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "gpt5.5-tank3D",
+      "dir": "gpt5.5-tank-campaign",
       "port": 3016,
       "model": "GPT 5.5",
       "category": "code-to-3d",
@@ -354,10 +485,21 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "gpt5.5-tank3D"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/tank.md",
+      "task_id": "code3d-tank-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "claudesonnet5-tank3D",
+      "dir": "claudesonnet5-tank-campaign",
       "port": 3017,
       "model": "Claude Sonnet 5",
       "category": "code-to-3d",
@@ -371,13 +513,24 @@
       "title": "3D 坦克大战 — 前 10 关",
       "desc": "正交倾角摄像机呈现经典俯视玩法，砖墙逐格销毁、钢墙/河流/树林/冰面地形、7 种经典道具与装甲/Boss 坦克，10 关难度曲线",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "claudesonnet5-tank3D"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/tank.md",
+      "task_id": "code3d-tank-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "gpt5.5-powdergame",
+      "dir": "gpt5.5-sandbox-powder",
       "port": 3018,
       "model": "GPT 5.5",
       "category": "code-to-3d",
@@ -394,10 +547,21 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "gpt5.5-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "mimov2.5-powdergame",
+      "dir": "mimov2.5-sandbox-powder",
       "port": 3019,
       "model": "Mimo V2.5",
       "category": "code-to-3d",
@@ -411,13 +575,24 @@
       "title": "粉末物理沙盒 — 全中文 100+ 元素",
       "desc": "The Powder Toy 复刻版，100+ 元素含中文符号，温度/压力/热传导物理，12+ 种化学反应，相变系统，全中文 UI",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "mimov2.5-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "claudefable5-powdergame",
+      "dir": "claudefable5-sandbox-powder",
       "port": 3020,
       "model": "Claude Fable 5",
       "category": "code-to-3d",
@@ -431,13 +606,24 @@
       "title": "粉末实验室 — 全中文元素沙盒",
       "desc": "62 种带化学式元素：温度场与全套相变、燃烧爆炸与冲击波殉爆、风压场、导电与电解水、酸碱盐化学、放射衰变、生态生长，三视图 + 示例场景",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "claudefable5-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "doubao2.1pro-powdergame",
+      "dir": "doubao2.1pro-sandbox-powder",
       "port": 3021,
       "model": "Doubao 2.1 Pro",
       "category": "code-to-3d",
@@ -453,13 +639,24 @@
       "desc": "React + Zustand + Tailwind 构建的粒子沙盒，模块化组件与状态管理",
       "docs": {
         "readme": true,
-        "handover": false,
-        "changelog": false
+        "handover": true,
+        "changelog": true
       },
-      "notes": "自带 vite.config.ts + React 插件,可能需独立 vite 版本;沿用共享 vite 启动如异常需单独处理"
+      "notes": "自带 vite.config.ts + React 插件,可能需独立 vite 版本;沿用共享 vite 启动如异常需单独处理",
+      "aliases": [
+        "doubao2.1pro-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
-      "dir": "geminiflash3.5-powdergame",
+      "dir": "geminiflash3.5-sandbox-powder",
       "port": 3022,
       "model": "Gemini Flash 3.5",
       "category": "code-to-3d",
@@ -473,11 +670,22 @@
       "title": "物理沙盒实验室 — The Powder Toy 中文版",
       "desc": "原生 TypeScript 粒子沙盒，中文元素与物理反应",
       "docs": {
-        "readme": false,
-        "handover": false,
-        "changelog": false
+        "readme": true,
+        "handover": true,
+        "changelog": true
       },
-      "renamedFrom": "gemini3.5flash-powdergame"
+      "renamedFrom": "gemini3.5flash-powdergame",
+      "aliases": [
+        "geminiflash3.5-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.5-ocean-pirate-ship",
@@ -497,10 +705,18 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "gpt5.6sol-ocean",
+      "dir": "gpt5.6sol-ocean-realistic",
       "port": 3024,
       "model": "GPT 5.6 SOL",
       "category": "code-to-3d",
@@ -517,6 +733,17 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "gpt5.6sol-ocean"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -537,10 +764,18 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md",
+      "task_id": "code3d-manhattan-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
-      "dir": "gpt5.6sol-powdergame",
+      "dir": "gpt5.6sol-sandbox-powder",
       "port": 3026,
       "model": "GPT 5.6 SOL",
       "category": "code-to-3d",
@@ -557,6 +792,17 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "aliases": [
+        "gpt5.6sol-powdergame"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "task_id": "code3d-sandbox-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -578,7 +824,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/gallery.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/gallery.md",
+      "task_id": "code3d-gallery-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-cloth-flag",
@@ -599,7 +852,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/cloth.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/cloth.md",
+      "task_id": "code3d-cloth-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-domino-rube",
@@ -620,7 +880,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/domino.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/domino.md",
+      "task_id": "code3d-domino-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-bowling-physics",
@@ -641,7 +908,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/bowling.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/bowling.md",
+      "task_id": "code3d-bowling-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-datagrid-virtual",
@@ -662,7 +936,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-ui/datagrid.md"
+      "taskDoc": "benchmark/tasks/code-to-ui/datagrid.md",
+      "task_id": "codeui-datagrid-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.5-fire-volumetric",
@@ -683,7 +964,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/fire.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/fire.md",
+      "task_id": "code3d-fire-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-fire-raymarch",
@@ -704,7 +992,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/fire.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/fire.md",
+      "task_id": "code3d-fire-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-portal-chambers",
@@ -725,7 +1020,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md",
+      "task_id": "code3d-portal-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.6solultra-portal-puzzle",
@@ -746,7 +1048,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md",
+      "task_id": "code3d-portal-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudeopus5-portal-recursive",
@@ -767,7 +1076,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/portal.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/portal.md",
+      "task_id": "code3d-portal-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.6solultra-manhattan-procedural",
@@ -788,7 +1104,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md",
+      "task_id": "code3d-manhattan-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.6solultra-life-gba",
@@ -809,7 +1132,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md"
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md",
+      "task_id": "codeui-life-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.6solultra-business-tycoon",
@@ -830,7 +1160,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md"
+      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md",
+      "task_id": "codeui-business-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-life-gba",
@@ -851,7 +1188,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md"
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md",
+      "task_id": "codeui-life-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-business-tycoon",
@@ -872,7 +1216,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md"
+      "taskDoc": "benchmark/tasks/code-to-ui/business-tycoon.md",
+      "task_id": "codeui-business-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "gpt5.6sol-digimon-rumble",
@@ -893,7 +1244,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/brawler.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/brawler.md",
+      "task_id": "code3d-brawler-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudefable5-digimon-rumble",
@@ -910,9 +1268,17 @@
       "title": "数码宝贝大乱斗 — PS2 格斗复刻",
       "desc": "复刻 Digimon Rumble Arena 2:11 名可选数码兽(DSCS 骨骼动画模型),2.5D 平台格斗、三段连击/必杀弹幕/防御击飞、战斗中数码进化究极体、CPU AI 与三局两胜,PS2 风格 HUD 与合成音效",
       "docs": {
-        "readme": false,
+        "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/digimon.md",
+      "task_id": "code3d-digimon-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     },
     {
@@ -934,7 +1300,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/history.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/history.md",
+      "task_id": "code3d-history-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "claudeopus5-stormwind-interiors",
@@ -955,7 +1328,14 @@
         "handover": true,
         "changelog": true
       },
-      "taskDoc": "benchmark/tasks/code-to-3d/stormwind.md"
+      "taskDoc": "benchmark/tasks/code-to-3d/stormwind.md",
+      "task_id": "code3d-stormwind-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     },
     {
       "dir": "grok4.7-stadium-worldcup",
@@ -975,6 +1355,184 @@
         "readme": true,
         "handover": true,
         "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/stadium.md",
+      "task_id": "code3d-stadium-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "claudeopus5-protomotion-parkour",
+      "port": 3048,
+      "model": "Claude Opus 5",
+      "category": "code-to-3d",
+      "mission": "protomotion",
+      "variant": "parkour",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "ProtoMotion — Prototype 移动系统 Web 对照实现",
+      "desc": "把 UE 5.8 工程 ProtoMotion_Lab 的移动系统 1:1 移植到 Three.js:身份层 MotionState 与物理模式解耦、两段式 MagneticBoots 墙探针、跑墙→攀爬动能交接、滑翔(只改重力与空中控制)、墙跳/下滑/胸高翻越;沿用 UE 的厘米 Z-up 坐标与全部手感常量,复刻 17 结构测试场与同一份 13 项无头自检,角色用同一份 Alex GLB(118 条动画)",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/protomotion.md",
+      "task_id": "code3d-protomotion-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "gpt6-ocean-observatory",
+      "port": 3049,
+      "model": "GPT 6",
+      "category": "code-to-3d",
+      "mission": "ocean",
+      "variant": "observatory",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8.1.2",
+      "workspace": true,
+      "title": "PELAGIC · 海洋观测站",
+      "desc": "八组连续 Gerstner 波、天空与海面光照联动、程序泡沫与随浪浮标；三种海况、风浪日照调节、海面观测曲线、纯净观海与截图",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "gpt6-life-gba",
+      "port": 3050,
+      "model": "GPT 6",
+      "category": "code-to-ui",
+      "mission": "life",
+      "variant": "gba",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "vite": "8",
+      "workspace": true,
+      "title": "晴日小镇 — GBA 像素生活模拟",
+      "desc": "原创像素小屋与小镇，点击寻路、六项需求、邻居社交、兼职经济、家具升级、昼夜与本地存档。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md",
+      "task_id": "codeui-life-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "gpt6-mini4wd-room-racing",
+      "port": 3051,
+      "model": "GPT 6",
+      "category": "code-to-3d",
+      "mission": "mini4wd",
+      "variant": "room-racing",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "疾风俱乐部 - 迷你四驱车模拟器",
+      "desc": "房间里的四车道竞速，八辆经典赛车、自动与手动驾驶、六部件爆炸图改装、三种场地和赛道、自定义赛车与本地存档。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "aliases": [
+        "gpt6-mini4wd"
+      ],
+      "taskDoc": "benchmark/tasks/code-to-3d/mini4wd.md",
+      "task_id": "code3d-mini4wd-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "grok4.7-dev-world",
+      "port": 3052,
+      "model": "Grok 4.7",
+      "category": "code-to-3d",
+      "mission": "devworld",
+      "variant": "settlement",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.186.0",
+      "vite": "8",
+      "workspace": true,
+      "title": "开洲 — 开发世界",
+      "desc": "在程序化淤洲上行走、铺路、盖屋、种田，经营木料、陶土、口粮和人口，把营地做成开洲。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/devworld.md",
+      "task_id": "code3d-devworld-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "claudeopus5-manhattan-procedural",
+      "port": 3044,
+      "model": "Claude Opus 5",
+      "category": "code-to-3d",
+      "mission": "manhattan",
+      "variant": "procedural",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "3D 曼哈顿 — Claude Opus 5 程序化活城",
+      "desc": "程序化城市、交通、天气、昼夜与地标；2026-10-01 纳入统一入口，运行验收状态见交接文档。",
+      "taskDoc": "benchmark/tasks/code-to-3d/manhattan.md",
+      "task_id": "code3d-manhattan-001",
+      "task_version": 1,
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
       }
     }
   ],
@@ -1092,6 +1650,27 @@
       "label": "Stadium — 世界杯露天球场",
       "missions": [
         "stadium"
+      ]
+    },
+    {
+      "id": "protomotion",
+      "label": "ProtoMotion · 原型移动系统",
+      "missions": [
+        "protomotion"
+      ]
+    },
+    {
+      "id": "mini4wd",
+      "label": "Mini 4WD - 迷你四驱车",
+      "missions": [
+        "mini4wd"
+      ]
+    },
+    {
+      "id": "devworld",
+      "label": "Dev World — 开发世界",
+      "missions": [
+        "devworld"
       ]
     }
   ],

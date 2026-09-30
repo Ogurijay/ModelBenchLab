@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { sampleHeight } from '../ocean/waves.js';
 
-const SHIP_URL = '/models/medium_pirate_ship.glb';
+import SHIP_URL from '../../../shared/assets/blender/models/medium_pirate_ship.glb?url';
 const SHIP_SCALE = 1.45;
 const WATERLINE_OFFSET = 0.58;
 

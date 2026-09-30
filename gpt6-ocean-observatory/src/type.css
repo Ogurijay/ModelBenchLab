@@ -1,0 +1,2 @@
+/* Local font stacks keep the observatory usable without external font requests. */
+:root{--mono:"Consolas","Liberation Mono",monospace}

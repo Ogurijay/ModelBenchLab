@@ -71,3 +71,7 @@
 
 - [`claudeopus5-stormwind-interiors`](../../../claudeopus5-stormwind-interiors/) — Claude Opus 5,
   80+ 栋空心建筑,墙体几何与碰撞盒同源;分区合并 + 室内距离 LOD + 10 盏光源池。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-stormwind-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

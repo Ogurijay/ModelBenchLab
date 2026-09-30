@@ -48,3 +48,9 @@ npm run dev:one -- 3036
 - 这是可辨认的程序化曼哈顿语义复现，不是 GIS（地理信息系统）测绘级数字孪生。
 - 程序化雷声需先点击“启用雷声”；未解锁时雷电仍正常显示，评测接口不会因此抛错。
 - 性能目标以桌面 1920×1080、DPR 1 为基准；低端移动设备会自动受浏览器/GPU 能力限制。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/gpt5.6solultra-manhattan-procedural/`。
+- 独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-manhattan-procedural`，端口 3036。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

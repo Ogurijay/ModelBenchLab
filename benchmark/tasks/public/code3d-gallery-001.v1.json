@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-gallery-001",
+  "category": "code-to-3d",
+  "mission": "gallery",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用 Three.js 建一个可第一人称漫游的小型美术馆室内场景。要求:\n① 至少 6 件展品(雕塑 / 画作混合),每件配说明牌(名称 + 一句介绍,中文);\n② 至少三种光源类型:聚光灯打展品(有半影)、面光源 / 补光做环境层次、可开关的自然天光(天窗或落地窗);\n③ 材质使用 PBR,至少含金属、粗糙石材、木质三种质感,地面有真实反射感;\n④ WASD + 鼠标视角漫游,不可穿墙穿展品;\n⑤ 整体色调统一、有明确视觉动线(观众自然被引导逛完全部展品);\n⑥ 不使用任何外部模型 / 贴图文件,几何与纹理全部程序化生成(canvas 纹理允许);\n⑦ 桌面 1080p 稳定 60fps,无控制台报错。\n\n工程要求(所有作答统一):Vite 项目,入口 `index.html`;暴露 `window.__bench = { ready, stepFrame(n), getState() }` 调试钩子供自动化验证;UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/gallery.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-domino-rube/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-domino-rube`，打开 `http://localhost:3029/`。下文子目录启动说明仅用于独立开发。
+
 # 多米诺·鲁布戈德堡机关(claudefable5-domino-rube)
 
 Claude Fable 5 对 benchmark mission **domino**(code-to-3d)的作答:

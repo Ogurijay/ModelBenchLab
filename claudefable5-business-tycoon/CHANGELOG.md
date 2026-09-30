@@ -14,3 +14,7 @@
   - 隐藏页 rAF 挂起 → 加 250ms interval 兜底模拟；后台现金转负自动暂停。
   - 并行项目触发的 vite 全站重载 → `beforeunload` 即时存档防进度丢失。
 - 登记：registry.json 新增条目（mission `business`，port 3040 仅 dev:one 用）、根 package.json workspaces 同步、`npm run sync:check` 通过。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

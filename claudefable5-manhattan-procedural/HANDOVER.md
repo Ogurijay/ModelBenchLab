@@ -50,3 +50,9 @@ src/
 - 种子固定集 {1337, 2026, 42};`__manhattan.stats()` 可取生成统计做确定性对拍;`__manhattan.strike()` 强制闪电。
 - 完整昼夜:自动昼夜 240× 下 6 分钟一天;720× 下 2 分钟。
 - 积雪/湿地面过渡各约 6s/4s,切天气后稍等再截图。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-manhattan-procedural/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-manhattan-procedural`，端口 3025。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

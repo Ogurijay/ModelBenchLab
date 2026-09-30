@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-kart-circuit/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-kart-circuit`，打开 `http://localhost:3009/`。下文子目录启动说明仅用于独立开发。
+
 # Claude Kart Circuit
 
 这是一个 Three.js（Web 3D 图形库）街机卡丁车竞速游戏测试用例，玩法借鉴「轻松、夸张、可漂移」的卡丁车竞速类型（马里奥赛车风格），但全部为原创实现，不使用任何 Mario / Nintendo 的角色、名称或素材。
@@ -19,7 +23,7 @@ npm install
 npm run dev
 ```
 
-默认地址类似 `http://127.0.0.1:5173/`；如需避免端口冲突可 `npm run dev -- --port 5188`。
+默认地址类似 `http://localhost:3009/`；如需避免端口冲突可 `npm run dev -- --port 3009`。
 
 ## 验证
 

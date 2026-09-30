@@ -7,7 +7,7 @@
 | 任务 | benchmark mission `portal`(冻结文档:`benchmark/tasks/code-to-3d/portal.md`) |
 | 实现方式 | Three.js `^0.185` + 自写 AABB 物理(零物理库),JavaScript ESM,Vite `^8`,纹理/音效全程序化 |
 | 作答模型 | Claude Fable 5(variant: chambers) |
-| 端口 | **3034**(`vite.config.js` 固定,与 `benchmark/registry.json` 登记一致) |
+| 调试端口 | 3034（registry 当前登记；常规服务使用3000） |
 | 启动 | 根目录 `npm run dev`(:3000 经 `/claudefable5-portal-chambers/`),或 `npm run dev:one claudefable5-portal-chambers` |
 
 ## 技术架构(文件职责)
@@ -64,3 +64,9 @@ __bench.game           // Game 实例(loadChamber/shoot/interact/player 全可�
 - 高能弹球/激光转向方块等更多 Portal 元素;第 6+ 间测试室。
 - 方块刚体旋转(穿门时角动量同样变换)。
 - GLaDOS 风格旁白字幕系统(现有横幅可扩展)。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-portal-chambers/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-portal-chambers`，端口 3034。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

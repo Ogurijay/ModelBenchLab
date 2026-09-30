@@ -1,0 +1,23 @@
+# 海洋模拟 — 写实渲染 · 交接
+
+## 当前可核验状态
+
+2026-10-01 补齐仓库结构文档。入口文件与项目登记存在；本次未验收玩法、视觉、性能和长期稳定性。旧 registry 描述仅供定位，不作为本次验收结论。
+
+## 技术方案
+
+- 渲染：WebGL；语言：JavaScript。
+- 依赖范围：{"three":"^0.179.1"}。实际版本以 lockfile 为准。
+- 任务文档：`benchmark/tasks/code-to-3d/ocean.md`。
+
+## 已知缺口与接手顺序
+
+1. 恢复原始 prompt 并核对输入锁。
+2. 通过根入口检查加载、交互、控制台、桌面与移动布局。
+3. 冻结参数与评分脚本，至少三次运行后将记录归档 benchmark/runs。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/geminiflash3.5-ocean-realistic/`。
+- 独立调试：根目录运行 `npm run dev:one -- geminiflash3.5-ocean-realistic`，端口 3006。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

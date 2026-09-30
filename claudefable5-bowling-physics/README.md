@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-bowling-physics/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-bowling-physics`，打开 `http://localhost:3030/`。下文子目录启动说明仅用于独立开发。
+
 # 霓虹保龄球馆 — claudefable5-bowling-physics
 
 Claude Fable 5 作答的 code-to-3d **bowling** mission:Three.js + cannon-es 实现的一局完整 3D 保龄球,深夜荧光球馆(cosmic bowling)氛围,全中文 UI。
@@ -18,7 +22,7 @@ Claude Fable 5 作答的 code-to-3d **bowling** mission:Three.js + cannon-es 实
 npm run dev      # vite,默认端口 3027(见 vite.config.js)
 ```
 
-浏览器打开 `http://127.0.0.1:3027/`。
+浏览器打开 `http://localhost:3030/`。
 
 ## 操作
 

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-fire-raymarch/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-fire-raymarch`，打开 `http://localhost:3033/`。下文子目录启动说明仅用于独立开发。
+
 # Claude Fable 5 实体火焰 — 夜营篝火 · 体积光线步进
 
 本项目是 `fire`(实体火焰)任务的 Claude Fable 5 实现(`benchmark/tasks/code-to-3d/fire.md`,冻结 v1 · 2026-07-15),使用 Three.js r185 与 WebGL2 构建可环绕观察的体积火焰场景。零外部资产,除 three 外无运行时依赖。

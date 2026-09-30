@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "shared/assets/models/digimon/wargreymon.glb",
+      "sha256": "d93d0fa8dbb6952d45666c28d4fa179847dca33c37a3450c4f4cdd8d55792f4f",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr027.glb",
+        "gpt5.6sol-digimon-rumble/public/models/wargreymon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/agumon.glb",
+      "sha256": "ea52c82c346e78eaad3d1355076da92cbe70b19c8b70dfc09a8fbe90d854c4db",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr050.glb",
+        "gpt5.6sol-digimon-rumble/public/models/agumon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/guilmon.glb",
+      "sha256": "eb53774d10854c351c9cbdc5e1b546174ec088938e7e9021bda9ce8696dff154",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr090.glb",
+        "gpt5.6sol-digimon-rumble/public/models/guilmon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/gatomon.glb",
+      "sha256": "a6f564392a1a9be2872b12733ccfa1d744619f64ad0f0c96145fed63e8550894",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr092.glb",
+        "gpt5.6sol-digimon-rumble/public/models/gatomon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/patamon.glb",
+      "sha256": "2924fceecd418695450add156504e48a713f4c486d686ea1ecd16e55b17fbdce",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr096.glb",
+        "gpt5.6sol-digimon-rumble/public/models/patamon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/veemon.glb",
+      "sha256": "d13ffed61171d3cdf8343246895d94c4db1a4f9cfb18f8c2c30d41ddae51e08b",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr114.glb",
+        "gpt5.6sol-digimon-rumble/public/models/veemon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/gallantmon.glb",
+      "sha256": "5717e0d4477046ebcb9b868ad3b9afa90c9f4ca3dea37d6560db11b6d09de875",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr126.glb",
+        "gpt5.6sol-digimon-rumble/public/models/gallantmon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/metalgarurumon.glb",
+      "sha256": "0531a8d2f2da719fc9a6d0195ec81542f180ea7ce3737f9df2185ed9a4523aae",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr135.glb",
+        "gpt5.6sol-digimon-rumble/public/models/metalgarurumon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/gabumon.glb",
+      "sha256": "53134147c36f65799108512c6c6c8063e3f92e66e7cdca3ed0d030c1e58ec4a4",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr151.glb",
+        "gpt5.6sol-digimon-rumble/public/models/gabumon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/seraphimon.glb",
+      "sha256": "72cedba8370302efd592dcd8f690f8e3358ac6cc562f6023e1d5e686550e421b",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr315.glb",
+        "gpt5.6sol-digimon-rumble/public/models/seraphimon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/renamon.glb",
+      "sha256": "5dfacf7e8238640e82f04f5237712ffea7bae7e3b8733988d1837873f9ddc0bc",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr391.glb",
+        "gpt5.6sol-digimon-rumble/public/models/renamon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/imperialdramon.glb",
+      "sha256": "d7573dcd35651ebf115b8060f8517358c293e0422dc6c2b5e8d16264926f87ae",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr419.glb",
+        "gpt5.6sol-digimon-rumble/public/models/imperialdramon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/sakuyamon.glb",
+      "sha256": "316e698ae3b0501e41f602b3ece99a299806e85318d79aa4e1f39c0cead24aa0",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr425.glb",
+        "gpt5.6sol-digimon-rumble/public/models/sakuyamon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/models/digimon/diaboromon.glb",
+      "sha256": "a44e37b06eb514893bea372f6d0605d1ee0f6231346a0a3a3aea27ca3b494a92",
+      "consumers": [
+        "claudefable5-digimon-rumble/models/chr632.glb",
+        "gpt5.6sol-digimon-rumble/public/models/diaboromon.glb"
+      ],
+      "source": "历史项目自包含 GLB；来源与再分发限制见 gpt5.6sol-digimon-rumble/docs/ASSET_PROVENANCE.md"
+    },
+    {
+      "path": "shared/assets/blender/models/medium_pirate_ship.glb",
+      "sha256": "24f71be0abde202b7740e351bb5967bed5d13171b4ee43f6f3f611c61d4010d4",
+      "consumers": [
+        "gpt5.5-ocean-pirate-ship/public/models/medium_pirate_ship.glb"
+      ],
+      "source": "shared/assets/blender 的本地程序化建模脚本"
+    }
+  ]
+}

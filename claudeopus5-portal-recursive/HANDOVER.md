@@ -7,7 +7,7 @@
 | 任务 | benchmark mission `portal`(冻结文档 `benchmark/tasks/code-to-3d/portal.md`) |
 | 作答模型 | Claude Opus 5(variant: recursive) |
 | 实现 | three.js `^0.185` + 自写 AABB 物理(零物理库),JavaScript ESM,Vite `^8`,纹理/音效全程序化 |
-| 端口 | **3045**(`vite.config.js`,与 registry 登记一致;常规走根目录单端口 :3000) |
+| 调试端口 | 3045（registry 当前登记；常规服务使用3000） |
 
 ## 两个核心架构决定(也是本作与同题其它作答的主要差异)
 
@@ -120,3 +120,9 @@ __bench.ready / stepFrame(n) / getState() / portalTest() / game / chambers
 - 门中门层数 >2(目前 2 层已足够看出无限走廊的感觉,再深要做 RT 池)。
 - 高能弹球 / 光桥 / 信仰之跃平台等 Portal 2 元素。
 - 玩家自身在门口的「分身」渲染(半身跨门时的裁剪镜像)。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudeopus5-portal-recursive/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudeopus5-portal-recursive`，端口 3045。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

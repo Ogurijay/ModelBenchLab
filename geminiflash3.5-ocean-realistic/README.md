@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/geminiflash3.5-ocean-realistic/`。
+独立调试：根目录运行 `npm run dev:one -- geminiflash3.5-ocean-realistic`，打开 `http://localhost:3006/`。下文子目录启动说明仅用于独立开发。
+
 # Gemini 3D 写实海洋物理与渲染模拟器
 
 本测试用例展示了 Gemini 开发的基于 **Three.js** 的 3D 写实海面仿真，支持物理浮力（Buoyancy）实时交互与多时段天色插值，旨在评估智能体在高水准物理计算与定制 WebGL Shader 材质上的开发质量。
@@ -61,7 +65,7 @@ npm run test
 ```bash
 npm run dev
 ```
-* 浏览器打开终端输出的本地地址（默认 `http://127.0.0.1:5173` 或同等端口）。
+* 浏览器打开终端输出的本地地址（默认 `http://localhost:3006/` 或同等端口）。
 * 可以在 Canvas 空白处任意点击，实时抛入小球，观察小球在海浪里随波逐流的重力浮力状态。
 * 切换天气，观察整体漫反射、次表面透光、菲涅尔反射以及高光颜色的和谐变化。
 

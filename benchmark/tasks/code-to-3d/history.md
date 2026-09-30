@@ -116,9 +116,7 @@
 
 ## 参与项目
 
-| 独立调试端口 | 目录 | 模型 | variant |
 |---:|---|---|---|
-| 3043 | `gpt5.6solultra-history-china3d` | GPT 5.6 SOL Ultra | `china3d` |
 
 统一门户访问地址为：
 
@@ -145,7 +143,7 @@
 - 至少切换两个 seed 并回到原 seed 验证确定性；
 - 全国、中国城市、世界区域三个层级均检查控制台错误和帧率。
 
-## 测试单元（冻结 JSON）
+## 历史测试单元示例（正式状态以中央 JSON 为准）
 
 ```json
 {
@@ -174,6 +172,35 @@
     "observe": "完整时间轴一次 + 三段局部播放 + 三座城市下钻 + 世界层检查"
   },
   "samples": 3,
-  "rubric": "shared/rubrics/code-to-3d.md"
+  "rubric": [
+  {
+    "key": "需求遵循与历史标签",
+    "weight": 0.25
+  },
+  {
+    "key": "视觉与时代辨识度",
+    "weight": 0.2
+  },
+  {
+    "key": "空间层级",
+    "weight": 0.15
+  },
+  {
+    "key": "时间轴与状态一致性",
+    "weight": 0.15
+  },
+  {
+    "key": "技术正确性与性能",
+    "weight": 0.15
+  },
+  {
+    "key": "可控性与文档",
+    "weight": 0.1
+  }
+]
 }
 ```
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-history-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

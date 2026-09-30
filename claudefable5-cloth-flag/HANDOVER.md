@@ -5,7 +5,7 @@
 - **任务**:`benchmark/tasks/code-to-3d/cloth.md`(冻结 v1 · 2026-07-10)— 旗帜布料模拟,mission=cloth / variant=flag / 模型 Claude Fable 5
 - **实现方式**:Three.js `^0.185.0` + **纯自写 Verlet 布料物理**(无任何物理 / 布料库),JavaScript ESM,Vite `^8.1.2`
 - **端口**:3025(`vite.config.js` 中 server/preview 均已固定;根 registry 已预留)
-- **启动**:依赖由仓库主会话统一安装,项目内**不要**单独 `npm install`;`npm run dev` → http://localhost:3025
+- **启动**:依赖由仓库主会话统一安装,项目内**不要**单独 `npm install`;`npm run dev` → http://localhost:3028
 
 ## 技术架构
 
@@ -60,3 +60,9 @@ __bench.getState()       // JSON 快照:fps/frame、resolution、particles、con
 - 弯曲约束(跨两格)与经纬各向异性刚度
 - 空间哈希自碰撞;撕裂边缘毛边 / 布纹细节
 - 旗杆顶滑轮 + 升旗动画;昼夜光照切换
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-cloth-flag/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-cloth-flag`，端口 3028。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

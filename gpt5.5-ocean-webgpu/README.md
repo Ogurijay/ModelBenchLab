@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-ocean-webgpu/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-ocean-webgpu`，打开 `http://localhost:3013/`。下文子目录启动说明仅用于独立开发。
+
 # GPT 5.5 Ocean WebGPU
 
 实时海面天气模拟 demo，使用 Three.js `WebGPURenderer`（WebGPU 渲染器）和 TSL（Three.js Shader Language，节点式着色语言）生成程序化海面，并叠加雨、云、雾、闪电和浮标响应。
@@ -5,10 +9,10 @@
 ## 运行
 
 ```bash
-npm run dev:gpt-webgpu
+npm run dev:one -- gpt5.5-ocean-webgpu
 ```
 
-门户批量启动时固定端口为 `3013`：
+独立调试使用 registry 登记端口 `3013`：
 
 ```bash
 npm run dev

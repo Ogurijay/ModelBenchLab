@@ -21,7 +21,7 @@ if (!filter) {
   process.exit(1);
 }
 
-const projects = reg.projects.filter((p) => p.dir === filter || String(p.port) === filter);
+const projects = reg.projects.filter((p) => p.dir === filter || (p.aliases || []).includes(filter) || String(p.port) === filter);
 if (projects.length === 0) {
   console.error(`未找到项目: ${filter}`);
   process.exit(1);

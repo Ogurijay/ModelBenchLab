@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudeopus5-portal-recursive/`。
+独立调试：根目录运行 `npm run dev:one -- claudeopus5-portal-recursive`，打开 `http://localhost:3045/`。下文子目录启动说明仅用于独立开发。
+
 # 传送门 · 递归门景 — Claude Opus 5
 
 参照 Valve《Portal》(PC) 核心玩法的网页复刻。冻结任务文档:

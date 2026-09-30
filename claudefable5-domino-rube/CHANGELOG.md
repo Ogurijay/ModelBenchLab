@@ -26,3 +26,7 @@
 - 中文 HUD:阶段芯片(带各阶段触达时刻)、帧率 / 仿真时间 / 铃响时刻、慢动作开关(`S`)。
 - `window.__bench = { ready, stepFrame(n), getState(), trigger(), reset() }` 调试钩子。
 - 文档:README / HANDOVER / CHANGELOG。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

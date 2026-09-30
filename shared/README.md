@@ -1,35 +1,18 @@
 # shared/ — 公用资源库
 
-所有测试**共享一份**资源,禁止各项目 / 各任务重复下载。新增资源前先在此搜同名文件,能复用就复用。
+共享资源以 assets/manifest.json 为索引，记录 SHA-256、来源与消费者。相同二进制只存一份；生产构建输出副本属于 dist 构建产物，允许生成。项目私有资源可暂存在项目中；一旦重复跨项目使用，移入共享库并补充来源。禁止把迁移共享资产解释为获得再分发许可。
 
-## 结构
+- assets/：共享模型、贴图等；blender/ 包含本地建模源文件、生成与验证脚本及报告。
+- fixtures/：冻结输入，分 vision、agent、code、prompts；private 子目录被忽略。
+- rubrics/：通用六轴、3D、UI 数据网格与 UI 游戏评分卡。
+- schema/：测试单元和运行记录 JSON Schema。
 
-```
-shared/
-├─ assets/      二进制资源:贴图 / HDRI / 模型 / 音频 / 字体(一份,按类型分目录)
-├─ fixtures/    测试输入素材(冻结、版本化):
-│  ├─ vision/   视觉·审美理解用图(构图 / 配色 / 光影 / OCR / 图表 / 找不同)
-│  ├─ agent/    Agent 任务的沙盒文件 / mock API / 可判定的成功条件
-│  ├─ code/     代码测试题(题面 + 参考实现 + 测试)
-│  └─ prompts/  各模型标准 prompt 库
-├─ rubrics/     评分卡:通用六轴 + 各类型专项
-└─ schema/      测试单元 / 运行记录 的 JSON Schema
-```
+## Vite 引用
 
-## 在 vite 项目里引用共享资源
+首选从源码导入相对路径，例如 import modelUrl from '../../shared/assets/models/digimon/agumon.glb?url'，根据当前源码文件层级调整路径。Vite 会在 root dev 与独立 build 中解析并输出资源。
 
-项目 `vite.config.*` 加别名:
+根 Vite 已声明 @shared。独立子项目若使用 @shared，需要在该项目配置中声明同一别名；子项目配置不会自动作用于根单端口服务。
 
-```js
-import path from 'node:path';
-export default { resolve: { alias: { '@shared': path.resolve(__dirname, '../shared') } } };
-```
+## 冻结
 
-然后 `import waterNormal from '@shared/assets/textures/water-normal.jpg?url'`。
-纯静态大文件也可直接用相对路径 `../shared/assets/...`。
-
-## 命名与冻结原则
-
-- 资源命名:`<类别>/<语义名>.<ext>`,如 `textures/water-normal.jpg`、`hdri/sky-dusk.hdr`。
-- 一旦某素材用于正式评测即**冻结**,不再修改;需要新版本就新建文件(`-v2`)。
-- 私有 / 未发布的评测集放 `fixtures/**/private/`(该目录建议 gitignore,防污染)。
+正式评测的输入使用新版本文件，不覆盖旧内容。二进制文件迁移以哈希一致为依据，引用路径变化不表示内容变化；修改内容须新增版本与哈希。fixtures/**/private/ 必须 gitignore。

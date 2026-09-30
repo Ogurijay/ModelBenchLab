@@ -96,3 +96,9 @@ __BENCH__.step(dt)         // 手动推进一帧(标签页隐藏时 rAF 停摆)
 __BENCH__.key('KeyW')      // 模拟按键,可跑"走进屋"这类端到端验证
 __BENCH__.setSize(w, h)    // 预览面板未显示时窗口是 0,取证前先定分辨率
 ```
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudeopus5-stormwind-interiors/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudeopus5-stormwind-interiors`，端口 3046。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

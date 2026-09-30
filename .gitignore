@@ -6,3 +6,7 @@ dist/
 *.local
 .playwright-mcp/
 tmp/
+
+build/
+benchmark/tasks/private/
+shared/fixtures/**/private/

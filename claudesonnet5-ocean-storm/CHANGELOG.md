@@ -7,3 +7,7 @@
 - 修复：`main.js` 引入 `three/examples/jsm/misc/Timer.js` 替换已弃用的 `THREE.Clock`，但该路径在 three@0.185 中不存在（`Timer` 已内置为核心导出）；改为直接使用 `THREE.Timer`。
 - 修复：控制台自定义的"开启声音"按钮与 lil-gui 面板默认停靠位置（右上角）重叠，导致按钮不可点击；将按钮移至左上角。
 - 接入根目录门户（`index.html` 新增卡片）与开发服务编排（`package.json` workspaces / dev 脚本，端口 3015），补全 `RULES.md` 端口分配表（含此前遗漏的 3014）。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

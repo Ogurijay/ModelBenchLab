@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-ocean-realistic/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-ocean-realistic`，打开 `http://localhost:3007/`。下文子目录启动说明仅用于独立开发。
+
 # GPT Realistic Ocean
 
 这是一个用于 agent 能力边界测试的 Three.js（Web 3D 图形库）真实海面模拟用例。它重点测试三类能力：
@@ -16,7 +20,7 @@ npm run dev
 然后打开终端输出的本地地址，默认类似：
 
 ```text
-http://127.0.0.1:5173/
+http://localhost:3007/
 ```
 
 ## 验证命令

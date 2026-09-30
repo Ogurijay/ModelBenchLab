@@ -73,15 +73,11 @@
 
 **L4 加分**:门内递归景深(门中门);穿越瞬间视角滚转平滑;高速穿越不撕裂;方块也可穿门保动量。
 
-## 参与项目(mission=portal)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3034 | claudefable5-portal-chambers | Claude Fable 5 | chambers |
-| 3035 | gpt5.6solultra-portal-puzzle | GPT 5.6 SOL Ultra | puzzle |
-| 3045 | claudeopus5-portal-recursive | Claude Opus 5 | recursive |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-3d.md` + 客观项(自测 10/10 为 pass 门槛,不满 10 直接判 A 维 ≤2)。
 - 参数锁(模式 A):three `^0.185.0` · vite `^8.1.2` · JavaScript · 物理自写(不引物理库)。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-portal-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

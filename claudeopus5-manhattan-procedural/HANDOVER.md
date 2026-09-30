@@ -19,3 +19,9 @@ npm run build
 - 交通车辆数和天气时间常数属于冻结评测参数，不应脱离合同单独调整。
 - Three.js 当前依赖范围为 `^0.185.1`。
 - 构建时可能出现大于 500 kB 的 chunk（代码块）提示，后续可单独做代码分割。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudeopus5-manhattan-procedural/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudeopus5-manhattan-procedural`，端口 3044。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

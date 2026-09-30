@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6solultra-portal-puzzle/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-portal-puzzle`，打开 `http://localhost:3035/`。下文子目录启动说明仅用于独立开发。
+
 # 折跃实验场 — 第一人称空间解谜
 
 `gpt5.6solultra-portal-puzzle` 是 ModelBenchLab 的 `portal`（双门空间谜题）测试项目，由 GPT 5.6 SOL Ultra 生成。项目只借鉴“双入口连接空间、动量继续”的通用玩法机制，场景、美术、叙事、图标和音效均为原创或程序化生成。

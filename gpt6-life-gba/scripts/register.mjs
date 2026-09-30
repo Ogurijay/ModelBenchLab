@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+const dir='gpt6-life-gba';
+const registry=JSON.parse(readFileSync('benchmark/registry.json','utf8'));
+const pkg=JSON.parse(readFileSync('package.json','utf8'));
+if(!registry.projects.some(p=>p.dir===dir))registry.projects.push({dir,port:Math.max(...registry.projects.map(p=>p.port),...(registry.retiredPorts||[]))+1,model:'GPT 6',category:'code-to-3d',mission:'life',variant:'gba',api:'Canvas 2D',lang:'JavaScript',vite:'8',workspace:true,title:'晴日小镇 — GBA 像素生活模拟',desc:'原创像素小屋与小镇，点击寻路、六项需求、邻居社交、兼职经济、家具升级、昼夜与本地存档。',docs:{readme:true,handover:true,changelog:true}});
+registry.updatedAt='2026-09-05';
+if(!pkg.workspaces.includes(dir))pkg.workspaces.push(dir);
+writeFileSync('benchmark/registry.json',JSON.stringify(registry,null,2)+'\n');
+writeFileSync('package.json',JSON.stringify(pkg,null,2)+'\n');
+console.log(`Registered ${dir}: http://localhost:3000/${dir}/`);

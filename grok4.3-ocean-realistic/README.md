@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/grok4.3-ocean-realistic/`。
+独立调试：根目录运行 `npm run dev:one -- grok4.3-ocean-realistic`，打开 `http://localhost:3008/`。下文子目录启动说明仅用于独立开发。
+
 # Grok Realistic Ocean
 
 Grok（xAI）实现的 Three.js 真实海面模拟测试用例，用于 agent 能力横向对比。
@@ -21,7 +25,7 @@ npm install
 npm run dev
 ```
 
-浏览器访问 `http://127.0.0.1:5176/` （端口避开其他 agent 项目）。
+浏览器访问 `http://localhost:3008/` （端口避开其他 agent 项目）。
 
 ## 验证命令
 

@@ -8,7 +8,7 @@ export default defineConfig({
   },
   preview: {
     host: '127.0.0.1',
-    port: 4046,
+    port: 3046,
     strictPort: true
   },
   build: {

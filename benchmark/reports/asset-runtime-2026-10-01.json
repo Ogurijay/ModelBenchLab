@@ -1,0 +1,40 @@
+[
+  {
+    "project": "claudeopus5-manhattan-procedural",
+    "ready": true
+  },
+  {
+    "project": "claudefable5-digimon-rumble",
+    "parsed": [
+      {
+        "id": "chr050",
+        "scene": true,
+        "animations": 18
+      },
+      {
+        "id": "chr151",
+        "scene": true,
+        "animations": 19
+      },
+      {
+        "id": "chr027",
+        "scene": true,
+        "animations": 12
+      }
+    ]
+  },
+  {
+    "project": "gpt5.6sol-digimon-rumble",
+    "state": {
+      "screen": "battle",
+      "ready": true,
+      "error": null,
+      "assets": {
+        "cached": 6,
+        "loading": 0,
+        "references": 6,
+        "errors": 0
+      }
+    }
+  }
+]

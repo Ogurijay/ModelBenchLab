@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6sol-digimon-rumble/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6sol-digimon-rumble`，打开 `http://localhost:3039/`。下文子目录启动说明仅用于独立开发。
+
 # DIGI-RUMBLE / 数码兽大乱斗
 
 使用 Three.js 制作的本地同屏 2.5D 平台格斗游戏。当前内容包括 8 条三段进化谱系、2 名单形态 Boss、5 个危险场地、4 种规则、1–4 人/CPU 对战与六战数码杯。
@@ -32,7 +36,7 @@ npm install
 npm run dev
 ```
 
-打开终端中 Vite 输出的本地地址，默认通常为 `http://localhost:5173/`；端口被占用时以实际输出为准。
+打开终端中 Vite 输出的本地地址，默认通常为 `http://localhost:3039/`；端口被占用时以实际输出为准。
 
 ### 方式二：从 ModelBenchLab 工作区启动
 

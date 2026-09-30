@@ -1,0 +1,8 @@
+{
+  "name": "mimov2.5-sandbox-powder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "零运行时依赖的静态 Canvas 粒子沙盒；由根 Vite 承载。",
+  "scripts": {}
+}

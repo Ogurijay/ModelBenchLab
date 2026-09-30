@@ -63,3 +63,9 @@ __bench.snapshot()               // 渲染一帧后返回 PNG dataURL(隐藏标�
 - 进行固定机位截图与多角度审美盲评(与 gpt5.5-fire-volumetric 同锁对比)。
 - 在真实显示器(非隐藏标签页)记录 rAF 帧率与各质量档表现。
 - 极档(88 步 × dpr 2)在中端 GPU 的表现,必要时在任务文档记录推荐档位。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-fire-raymarch/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-fire-raymarch`，端口 3033。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

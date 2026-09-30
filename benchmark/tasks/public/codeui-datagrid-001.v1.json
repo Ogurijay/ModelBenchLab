@@ -1,0 +1,57 @@
+{
+  "task_id": "codeui-datagrid-001",
+  "category": "code-to-ui",
+  "mission": "datagrid",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用原生 JavaScript(禁止任何框架 / 组件库)实现一个十万行数据网格,Vite 项目。要求:\n① 数据:100,000 行 × 7 列(工号、姓名、部门、城市、薪资、入职日期、状态),用**固定 seed 的 PRNG** 程序化生成(刷新后数据完全一致);\n② **虚拟滚动**:任意时刻 DOM 中的数据行节点 ≤ 80 个;滚动条高度正确反映总数据量;快速拖拽滚动条 / 惯性滚动均流畅(≥55fps);\n③ **实时搜索(防抖 300ms)**:跨姓名 / 部门 / 城市字段;连续输入期间不得执行过滤,停止输入 300ms 后恰好执行一次;命中关键字高亮;\n④ **窗口 resize(节流或 rAF 合帧)**:可视区行数随窗口高度自适应,resize 处理频率受限;\n⑤ 多列排序:点击表头三态循环(升 / 降 / 无),100k 行排序 UI 不失响应,显示排序耗时;\n⑥ 列宽拖拽调整(带拖拽指示线),表头吸顶;\n⑦ 键盘导航:↑↓ 移动活动行(自动滚动跟随)、PageUp/PageDown、Home/End;行选择:单击单选、Shift+单击范围多选、Ctrl+单击增删选;**排序 / 过滤后选中集合保持正确**(按行 id 而非行号);\n⑧ 状态与反馈:空态(搜索无结果)有插画式提示;选中计数;斑马纹 + hover 高亮;暗色主题、有设计感;\n⑨ **性能 HUD 自证**(右下角常驻):FPS、当前 DOM 行节点数、总行数 / 过滤后行数、最近一次过滤 / 排序耗时、过滤执行次数计数器;\n⑩ 中文 UI,1080p 与 390px 宽移动端均可用。\n\n工程要求(所有作答统一):入口 `index.html`;暴露 `window.__bench = { ready, getState(), scrollToRow(i), search(text) }` 调试钩子,`getState()` 返回 `{ domRowCount, totalRows, filteredRows, filterRuns, selectedCount }`;UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.05
+    },
+    {
+      "key": "G",
+      "weight": 0.1
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-ui/datagrid.md",
+  "rubric_profile": "shared/rubrics/code-to-ui.md"
+}

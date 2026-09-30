@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-fire-001",
+  "category": "code-to-3d",
+  "mission": "fire",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "使用 Three.js r185 实现一个可实时运行的实体火焰效果。要求：\n① 火焰从任意水平观察角度都应保持三维体积，不能只用始终朝向相机的单张平面贴图；\n② 至少表现高温核心、明亮主焰、橙红外焰三层，并具有连续的上升、卷曲、分叉与收尖运动；\n③ 火焰必须照亮周围实体，亮度随燃烧自然波动；\n④ 包含火星和烟羽两类伴随现象，运动方向受热流与风向影响；\n⑤ 提供中文实时控制，可调火势、湍流、风向与渲染质量，并支持暂停和重置视角；\n⑥ 不使用外部模型、图片或视频素材，几何、材质和纹理全部程序化生成；\n⑦ 桌面 1080p 目标 60fps，无控制台报错。\n\n工程要求：Vite 项目，入口 `index.html`；Three.js 版本 `^0.185.0`；暴露 `window.__bench = { ready, stepFrame(n), getState() }` 调试钩子；UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/fire.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6solultra-life-gba/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-life-gba`，打开 `http://localhost:3037/`。下文子目录启动说明仅用于独立开发。
+
 # 口袋日常
 
 一款运行在浏览器中的 GBA 风格生活模拟小游戏。内部画面固定为 240×160 像素，使用 Canvas 2D（二维画布）逐像素绘制，不依赖图片素材。

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6solultra-history-china3d/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-history-china3d`，打开 `http://localhost:3043/`。下文子目录启动说明仅用于独立开发。
+
 # 华夏时空沙盘
 
 `gpt5.6solultra-history-china3d` 是一个以中国为核心的 Web 3D 历史地理演变沙盘。它从前 770 年“春秋初期·周室东迁”延伸至 2025 年“现代中国·城市群时代”，可在全国势力版图、代表城市 3D 和世界粗粒度区域之间切换，并通过时间轴观察整体或局部演变。

@@ -27,14 +27,11 @@
 
 **L4 加分**：真正的体积光线步进（ray marching，沿视线在三维密度场中积分）而非多层切片；域扭曲（domain warping，用噪声扭曲采样空间）形成自然火舌；质量档位能单调改变采样数与性能。
 
-## 参与项目(mission=fire)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3032 | gpt5.5-fire-volumetric | GPT-5.5 | volumetric |
-| 3033 | claudefable5-fire-raymarch | Claude Fable 5 | raymarch |
-
 ## 评分与参数卡
 
 - 评分：`shared/rubrics/code-to-3d.md`（七维，B 审美轴权重最高）。
 - 参数锁(模式 A)：three `^0.185.0` · vite `^8.0.0` · JavaScript · 无其他运行时依赖。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-fire-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

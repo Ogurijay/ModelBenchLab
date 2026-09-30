@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-manhattan-procedural/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-manhattan-procedural`，打开 `http://localhost:3025/`。下文子目录启动说明仅用于独立开发。
+
 # 3D 曼哈顿场景复现 — 程序化活城
 
 **Claude Fable 5 · mission `manhattan` · variant `procedural` · 端口 3025**
@@ -9,7 +13,7 @@
 ## 运行
 
 ```bash
-npm run dev      # http://127.0.0.1:3025
+npm run dev      # http://localhost:3025/
 npm test         # 20 个单元测试(确定性/太阳公式/悬链线/规划裁剪)
 ```
 

@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-ocean-skill/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-ocean-skill`，打开 `http://localhost:3004/`。下文子目录启动说明仅用于独立开发。
+
 # GPTSkill Ocean
 
 Three.js + Vite 的真实感海面模拟。核心效果基于 Gerstner wave（盖斯特纳波）和深水波色散关系，支持风速、风向、浪涌、浪峰、白沫和时间倍率调整。
@@ -13,7 +17,7 @@ npm run dev
 
 ```powershell
 npm run build
-$env:OCEAN_URL="http://127.0.0.1:4173"; npm run verify
+$env:OCEAN_URL="http://localhost:3004/"; npm run verify
 ```
 
 `npm run verify` 会用 Playwright 检查桌面和移动端视口，确认 canvas 非空、画面有动态变化，并验证 OrbitControls（轨道相机控制）能拖动。

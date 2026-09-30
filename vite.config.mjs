@@ -11,6 +11,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
 const reg = JSON.parse(readFileSync(join(ROOT, 'benchmark/registry.json'), 'utf8'));
 const dirs = new Set(reg.projects.map((p) => p.dir));
+const aliases = new Map(reg.projects.flatMap(p => (p.aliases || []).map(a => [a, p.dir])));
 
 const isFile = (...p) => {
   try { return statSync(join(ROOT, ...p)).isFile(); } catch { return false; }
@@ -32,6 +33,12 @@ function benchRouting() {
         try { url = decodeURIComponent(qIdx === -1 ? raw : raw.slice(0, qIdx)); } catch { return next(); }
         if (url.includes('..')) return next();
         const seg = url.split('/').filter(Boolean);
+        if (aliases.has(seg[0])) {
+          seg[0] = aliases.get(seg[0]);
+          res.statusCode = 302;
+          res.setHeader('Location', '/' + seg.join('/') + (url.endsWith('/') ? '/' : '') + q);
+          return res.end();
+        }
 
         if (seg.length === 1 && dirs.has(seg[0]) && !url.endsWith('/')) {
           res.statusCode = 301;
@@ -77,8 +84,8 @@ export default defineConfig({
   plugins: [
     benchRouting(),
     // 仅 React 项目走 JSX 转换,其余项目不受影响
-    react({ include: [/doubao2\.1pro-powdergame[\\/].+\.[jt]sx?$/] }),
-    // doubao2.1pro-powdergame 源码使用 tsconfig 的 @/ 路径别名
-    tsconfigPaths({ projects: ['doubao2.1pro-powdergame/tsconfig.json'] }),
+    react({ include: [/doubao2\.1pro-sandbox-powder[\\/].+\.[jt]sx?$/] }),
+    // doubao2.1pro-sandbox-powder 源码使用 tsconfig 的 @/ 路径别名
+    tsconfigPaths({ projects: ['doubao2.1pro-sandbox-powder/tsconfig.json'] }),
   ],
 });

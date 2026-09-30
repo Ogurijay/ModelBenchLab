@@ -73,3 +73,11 @@
 - 帧率保护:dt 上限 1/20s;低端机粒子量可能需要下调。
 - 舞台仅 1 张;可按 RA2 增加多舞台选择。
 - BGM/音效为 WebAudio 合成,仅逻辑验证,音色未经人耳调校。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-digimon-rumble/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-digimon-rumble`，端口 3042。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。
+
+2026-10-01 共享资产迁移：相同 GLB 按 SHA-256 核对后移入 shared/assets，通过 Vite ?url 导入；生产构建会输出资源副本。资源来源与授权限制仍遵守原项目来源文档。

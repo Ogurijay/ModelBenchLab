@@ -4,7 +4,7 @@
 
 ## 原始任务描述(冻结 — 待补你当初给模型的原话)
 
-> 【在此粘贴当初下发给各模型的确切 prompt。一旦确定即冻结,不再修改;要改就在 registry 里升版本。】
+> 【在此粘贴当初下发给各模型的确切 prompt。一旦确定即冻结,不再修改;改题需新增测试单元版本并更新 benchmark/tasks/index.json 与项目 task_version。】
 
 ## 公共核心要求(所有 ocean 项目都应具备)
 
@@ -26,24 +26,17 @@
 
 ## 参与项目(源自 registry,mission=ocean)
 
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3001 | claudeopus4.8-ocean-webgpu | Claude Opus 4.8 | webgpu |
-| 3002 | gpt5.5-ocean-weather | GPT 5.5 | weather |
-| 3003 | doubao2.1-ocean-webgpu | Doubao 2.1 | webgpu |
-| 3013 | gpt5.5-ocean-webgpu | GPT 5.5 | webgpu |
-| 3004 | gpt5.5-ocean-skill | GPT 5.5 | skill |
-| 3005 | claudefable5-ocean-realistic | Claude Fable 5 | realistic |
-| 3006 | geminiflash3.5-ocean-realistic | Gemini Flash 3.5 | realistic |
-| 3007 | gpt5.5-ocean-realistic | GPT 5.5 | realistic |
-| 3008 | grok4.3-ocean-realistic | Grok 4.3 | realistic |
-| 3012 | geminiflash3.5-ocean-storm | Gemini Flash 3.5 | storm |
-| 3015 | claudesonnet5-ocean-storm | Claude Sonnet 5 | storm |
-| 3023 | gpt5.5-ocean-pirate-ship | GPT 5.5 | pirate-ship |
-| 3024 | gpt5.6sol-ocean | GPT 5.6 SOL | realistic |
 
-> **公平对比原则**:直接横向对比只在**同一 variant 内**进行(如 4 个 realistic 之间)。跨 variant 只比"公共核心要求"部分。
+> **公平对比原则**:直接横向对比只在**同一 variant 内**进行(如 realistic 变体之间)。跨 variant 只比"公共核心要求"部分。
 
 ## 评分
 
 用 `shared/rubrics/code-to-3d.md`(七维 + 审美子表)。评测环境锁定:桌面 1920×1080、固定 GPU 档、每场景观察 30s,截图归档 `benchmark/runs/<date>_<model>/`,匿名盲评。
+
+## 其他历史变体
+
+`pirate-ship`、`observatory` 的专项要求尚待冻结；现阶段仅可参考公共核心清单，不参与专项主榜。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-ocean-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

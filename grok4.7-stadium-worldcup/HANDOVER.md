@@ -24,3 +24,9 @@
 ## 核对
 
 `npm run audit` 打印座位数、C 值、疏散时间和俱乐部 / 上层的竖向净空。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/grok4.7-stadium-worldcup/`。
+- 独立调试：根目录运行 `npm run dev:one -- grok4.7-stadium-worldcup`，端口 3047。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

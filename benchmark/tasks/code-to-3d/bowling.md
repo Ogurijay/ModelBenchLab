@@ -43,13 +43,11 @@
 
 **L4 加分**:球瓶物理用真实质量分布(重心偏下);扫瓶机动画;多人轮流模式。
 
-## 参与项目(mission=bowling)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3027 | claudefable5-bowling-physics | Claude Fable 5 | physics |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-3d.md` + 客观项(自测 10/10 为 pass 门槛,不满 10 直接判 A 维 ≤2)。
 - 参数锁(模式 A):three `^0.185.0` · vite `^8.1.2` · JavaScript · 物理允许 cannon-es `^0.20.0` 或自写。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-bowling-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

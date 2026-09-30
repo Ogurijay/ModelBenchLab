@@ -1,0 +1,200 @@
+{
+  "date": "2026-10-01",
+  "renames": {
+    "gpt5.5-tank3D": "gpt5.5-tank-campaign",
+    "claudesonnet5-tank3D": "claudesonnet5-tank-campaign",
+    "gpt5.5-powdergame": "gpt5.5-sandbox-powder",
+    "mimov2.5-powdergame": "mimov2.5-sandbox-powder",
+    "claudefable5-powdergame": "claudefable5-sandbox-powder",
+    "doubao2.1pro-powdergame": "doubao2.1pro-sandbox-powder",
+    "geminiflash3.5-powdergame": "geminiflash3.5-sandbox-powder",
+    "gpt5.6sol-ocean": "gpt5.6sol-ocean-realistic",
+    "gpt5.6sol-powdergame": "gpt5.6sol-sandbox-powder",
+    "gpt6-mini4wd": "gpt6-mini4wd-room-racing"
+  },
+  "archive": "tmp/archive-2026-10-01/claudeopus4.8-gsapthreetest",
+  "integrated": "claudeopus5-manhattan-procedural",
+  "backup": "tmp/structure-backup-2026-10-01",
+  "threePolicy": "保持各项目原有解析版本",
+  "pending": {
+    "ocean": {
+      "category": "code-to-3d",
+      "task_id": "code3d-ocean-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/ocean.md",
+      "unit": "benchmark/tasks/public/code3d-ocean-001.v1.json"
+    },
+    "kart": {
+      "category": "code-to-3d",
+      "task_id": "code3d-kart-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/kart.md",
+      "unit": "benchmark/tasks/public/code3d-kart-001.v1.json"
+    },
+    "tank": {
+      "category": "code-to-3d",
+      "task_id": "code3d-tank-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/tank.md",
+      "unit": "benchmark/tasks/public/code3d-tank-001.v1.json"
+    },
+    "sandbox": {
+      "category": "code-to-3d",
+      "task_id": "code3d-sandbox-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/sandbox.md",
+      "unit": "benchmark/tasks/public/code3d-sandbox-001.v1.json"
+    },
+    "manhattan": {
+      "category": "code-to-3d",
+      "task_id": "code3d-manhattan-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/manhattan.md",
+      "unit": "benchmark/tasks/public/code3d-manhattan-001.v1.json"
+    },
+    "gallery": {
+      "category": "code-to-3d",
+      "task_id": "code3d-gallery-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/gallery.md",
+      "unit": "benchmark/tasks/public/code3d-gallery-001.v1.json"
+    },
+    "cloth": {
+      "category": "code-to-3d",
+      "task_id": "code3d-cloth-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/cloth.md",
+      "unit": "benchmark/tasks/public/code3d-cloth-001.v1.json"
+    },
+    "domino": {
+      "category": "code-to-3d",
+      "task_id": "code3d-domino-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/domino.md",
+      "unit": "benchmark/tasks/public/code3d-domino-001.v1.json"
+    },
+    "bowling": {
+      "category": "code-to-3d",
+      "task_id": "code3d-bowling-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/bowling.md",
+      "unit": "benchmark/tasks/public/code3d-bowling-001.v1.json"
+    },
+    "datagrid": {
+      "category": "code-to-ui",
+      "task_id": "codeui-datagrid-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/datagrid.md",
+      "unit": "benchmark/tasks/public/codeui-datagrid-001.v1.json"
+    },
+    "fire": {
+      "category": "code-to-3d",
+      "task_id": "code3d-fire-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/fire.md",
+      "unit": "benchmark/tasks/public/code3d-fire-001.v1.json"
+    },
+    "portal": {
+      "category": "code-to-3d",
+      "task_id": "code3d-portal-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/portal.md",
+      "unit": "benchmark/tasks/public/code3d-portal-001.v1.json"
+    },
+    "life": {
+      "category": "code-to-ui",
+      "task_id": "codeui-life-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/life-sim.md",
+      "unit": "benchmark/tasks/public/codeui-life-001.v1.json"
+    },
+    "business": {
+      "category": "code-to-ui",
+      "task_id": "codeui-business-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/business-tycoon.md",
+      "unit": "benchmark/tasks/public/codeui-business-001.v1.json"
+    },
+    "brawler": {
+      "category": "code-to-3d",
+      "task_id": "code3d-brawler-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/brawler.md",
+      "unit": "benchmark/tasks/public/code3d-brawler-001.v1.json"
+    },
+    "digimon": {
+      "category": "code-to-3d",
+      "task_id": "code3d-digimon-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/digimon.md",
+      "unit": "benchmark/tasks/public/code3d-digimon-001.v1.json"
+    },
+    "history": {
+      "category": "code-to-3d",
+      "task_id": "code3d-history-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/history.md",
+      "unit": "benchmark/tasks/public/code3d-history-001.v1.json"
+    },
+    "stormwind": {
+      "category": "code-to-3d",
+      "task_id": "code3d-stormwind-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/stormwind.md",
+      "unit": "benchmark/tasks/public/code3d-stormwind-001.v1.json"
+    },
+    "stadium": {
+      "category": "code-to-3d",
+      "task_id": "code3d-stadium-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/stadium.md",
+      "unit": "benchmark/tasks/public/code3d-stadium-001.v1.json"
+    },
+    "protomotion": {
+      "category": "code-to-3d",
+      "task_id": "code3d-protomotion-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/protomotion.md",
+      "unit": "benchmark/tasks/public/code3d-protomotion-001.v1.json"
+    },
+    "mini4wd": {
+      "category": "code-to-3d",
+      "task_id": "code3d-mini4wd-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/mini4wd.md",
+      "unit": "benchmark/tasks/public/code3d-mini4wd-001.v1.json"
+    },
+    "devworld": {
+      "category": "code-to-3d",
+      "task_id": "code3d-devworld-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/devworld.md",
+      "unit": "benchmark/tasks/public/code3d-devworld-001.v1.json"
+    }
+  },
+  "validation": {
+    "structure": "51 项目完整结构校验通过",
+    "policyTests": 6,
+    "workspaceTests": {
+      "claudeopus5-manhattan-procedural": 241
+    },
+    "builds": [
+      "gpt5.5-ocean-pirate-ship",
+      "gpt5.6sol-digimon-rumble",
+      "claudefable5-digimon-rumble",
+      "claudeopus5-manhattan-procedural"
+    ],
+    "httpEntries": 51,
+    "aliasChecks": 20,
+    "sharedGLBChecks": 15,
+    "portalCards": 51,
+    "browserStartupChecks": 7,
+    "runtime": "曼哈顿 ready；3 个共享角色 GLB 场景和动画解析；GPT 格斗 battle/ready 且资产 errors=0",
+    "threeResolvedVersionsChanged": 0,
+    "formalBenchmark": "未完成：22 个 draft，0 条正式记录；--formal 按预期拒绝"
+  },
+  "evidence": [
+    "benchmark/reports/structure-smoke-2026-10-01.json",
+    "benchmark/reports/asset-runtime-2026-10-01.json"
+  ]
+}

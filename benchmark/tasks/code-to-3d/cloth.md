@@ -30,13 +30,11 @@
 
 **验收陷阱(评委必做)**:抓住布料一角猛拽——顶点正弦波动的假布料立刻穿帮;把迭代次数调到 1 应明显变"松弛"。
 
-## 参与项目(mission=cloth)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3025 | claudefable5-cloth-flag | Claude Fable 5 | flag |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-3d.md`;C 技术正确性维在本题按"物理可信度"从重计。
 - 参数锁(模式 A):three `^0.185.0` · vite `^8.1.2` · JavaScript · **无物理库**。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-cloth-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

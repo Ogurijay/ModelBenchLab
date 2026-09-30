@@ -19,3 +19,7 @@
 - 漫游:PointerLockControls + WASD + Shift 快走,指数平滑加减速;房间 AABB 夹紧 + 隔断/长凳 AABB 推出 + 展台圆柱径向推挤。
 - 工程:Vite 入口 `index.html`,中文 UI(进入界面 / HUD / 天光按钮 / 展品说明浮层 / FPS);`window.__bench = { ready, stepFrame(n), getState(), setSkylight(on) }` 调试钩子;ACESFilmic + PCFSoft 阴影;渲染器创建失败时展示 WebGL2 不支持提示。
 - 文档:README / HANDOVER / CHANGELOG。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

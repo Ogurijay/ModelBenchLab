@@ -7,7 +7,7 @@
 | 任务 | benchmark mission `bowling`(冻结文档:`benchmark/tasks/code-to-3d/bowling.md`) |
 | 实现方式 | Three.js `^0.185.0` + cannon-es `^0.20.0`,JavaScript ESM,Vite `^8.1.2`,纹理/音效全程序化 |
 | 作答模型 | Claude Fable 5(variant: physics) |
-| 端口 | **3027**(`vite.config.js` 固定,与 `benchmark/registry.json` 登记一致;3026 属 domino-rube) |
+| 调试端口 | 3030（registry 当前登记；常规服务使用3000） |
 | 启动 | 仓库根统一安装依赖后 `npm run dev`(本目录),或根 `scripts/dev-all.mjs` 走 registry |
 
 ## 技术架构(文件职责)
@@ -60,3 +60,9 @@ __bench.scoreTest()    // { passed, total } — 期望 {passed:10, total:10}
 - 球指孔贴图 + 球体拖尾光效;strike 粒子彩带。
 - 移动端触控(目前按钮可点但未做手势蓄力)。
 - 把 `runScoreTests` 接入 vitest 做 CI 化(当前为页面按钮 + node 手跑)。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudefable5-bowling-physics/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudefable5-bowling-physics`，端口 3030。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

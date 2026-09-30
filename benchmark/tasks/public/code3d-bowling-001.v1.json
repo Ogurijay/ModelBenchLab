@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-bowling-001",
+  "category": "code-to-3d",
+  "mission": "bowling",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用 Three.js 实现一局完整的 3D 保龄球。要求:\n① 标准 10 瓶三角摆位,球道含两侧边沟(gutter),球落沟后不再碰瓶;\n② 投球三参数 UI:力度(蓄力条)+ 方向(左右瞄准)+ 侧旋(hook),侧旋必须实际影响球路曲线;\n③ 物理真实:瓶间连锁碰撞、瓶倒地判定(倾角阈值)、球出界判定;物理固定 timestep;\n④ 完整实现十轮计分规则:strike / spare 顺延加分、第 10 轮最多 3 投(strike/spare 补投);\n⑤ 记分板实时显示每轮两(三)投明细 + 累计分,当前轮高亮;\n⑥ **计分逻辑必须是独立纯函数模块**(rolls 数组 → 各轮得分),页面提供「运行计分自测」按钮:对下方 10 组固定投球序列断言总分,逐组显示 pass / fail;\n⑦ 一局结束显示总结,可「再来一局」完全重置;\n⑧ 桌面 1080p 稳定 60fps,无控制台报错。\n\n工程要求(所有作答统一):Vite 项目,入口 `index.html`;暴露 `window.__bench = { ready, stepFrame(n), getState(), scoreTest() }` 调试钩子,`scoreTest()` 返回 `{ passed, total }`;UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/bowling.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

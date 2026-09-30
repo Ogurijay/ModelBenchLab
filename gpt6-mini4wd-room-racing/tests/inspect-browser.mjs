@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+const dir=new URL('../docs/screenshots/',import.meta.url);await mkdir(dir,{recursive:true});
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await page.goto('http://127.0.0.1:3000/gpt6-mini4wd-room-racing/',{waitUntil:'networkidle'});
+await page.waitForFunction(()=>window.mini4wd,{timeout:15000}).catch(async error=>{console.log(JSON.stringify({errors,loading:await page.locator('#loading').textContent().catch(()=>null)}));await browser.close();throw error;});
+await page.screenshot({path:new URL('lobby.png',dir).pathname.replace(/^\/([A-Z]:)/,'$1'),fullPage:true});
+console.log(JSON.stringify({errors,snapshot:await page.evaluate(()=>window.mini4wd.snapshot()),overflow:await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}))},null,2));
+await writeFile(new URL('../docs/initial-browser.json',import.meta.url),JSON.stringify({errors,snapshot:await page.evaluate(()=>window.mini4wd.snapshot())},null,2));
+await browser.close();

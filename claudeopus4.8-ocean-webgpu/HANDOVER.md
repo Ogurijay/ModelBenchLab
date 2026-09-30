@@ -90,3 +90,9 @@ npx vite build claudeopus4.8-ocean-webgpu   # 生产构建
 - 质量档位（低/中/高网格分段，参考 Fable 的 `gridForQuality`）。
 - 日照变化时节流重建 PMREM 环境贴图，让船反射的太阳跟随日照方位。
 - FFT/Tessendorf 谱替代叠加 Gerstner，获得更真实的海浪统计特性。
+
+## 2026-10-01 仓库结构整理
+
+- 常规入口：`http://localhost:3000/claudeopus4.8-ocean-webgpu/`。
+- 独立调试：根目录运行 `npm run dev:one -- claudeopus4.8-ocean-webgpu`，端口 3001。
+- 交接与改动记录以根目录文件为准。测试单元目前为 draft；结构校验通过不代表正式评测完成。

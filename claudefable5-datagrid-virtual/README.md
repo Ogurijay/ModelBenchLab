@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-datagrid-virtual/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-datagrid-virtual`，打开 `http://localhost:3031/`。下文子目录启动说明仅用于独立开发。
+
 # 星轨人事 · 十万行虚拟数据网格(claudefable5-datagrid-virtual)
 
 用**原生 JavaScript(零框架、零运行时依赖)**实现的 100,000 行员工数据网格,ModelBenchLab `code-to-ui/datagrid` 评测题作答(模型:Claude Fable 5,variant:virtual,端口 3028)。

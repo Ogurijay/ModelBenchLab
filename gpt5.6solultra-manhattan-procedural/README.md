@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.6solultra-manhattan-procedural/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.6solultra-manhattan-procedural`，打开 `http://localhost:3036/`。下文子目录启动说明仅用于独立开发。
+
 # Manhattan Storm Shift（曼哈顿风暴换班）
 
 GPT 5.6 SOL Ultra 对仓库冻结任务 `code3d-manhattan-001` 的独立实现：在浏览器中用纯代码生成一座可辨认、可运行、可计算验证的 3D 曼哈顿。它不是静态城市模型，而是一套把建模、顶点雕刻、动画、天气和仿真绑在同一场景里的综合能力基准。

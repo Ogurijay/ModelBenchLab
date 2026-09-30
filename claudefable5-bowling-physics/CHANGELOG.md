@@ -20,3 +20,7 @@
 - WebAudio 程序化音效:滚球隆隆、撞瓶木响(节流)、洗沟闷响、strike/spare/结算旋律;全项目零外部资产
 - `window.__bench = { ready, stepFrame(n), getState(), scoreTest() }` 调试钩子
 - 文档:README(启动/操作)、HANDOVER(架构/钩子/限制)、CHANGELOG
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

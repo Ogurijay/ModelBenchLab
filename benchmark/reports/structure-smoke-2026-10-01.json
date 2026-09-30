@@ -1,0 +1,518 @@
+{
+  "date": "2026-10-01",
+  "entries": [
+    {
+      "dir": "claudeopus4.8-ocean-webgpu",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-ocean-weather",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "doubao2.1-ocean-webgpu",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-ocean-skill",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-ocean-realistic",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "geminiflash3.5-ocean-realistic",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-ocean-realistic",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "grok4.3-ocean-realistic",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-kart-circuit",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "geminiflash3.5-kart-circuit",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-kart-circuit",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "geminiflash3.5-ocean-storm",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-ocean-webgpu",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudesonnet5-ocean-storm",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-tank-campaign",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudesonnet5-tank-campaign",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "mimov2.5-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "doubao2.1pro-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "geminiflash3.5-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-ocean-pirate-ship",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6sol-ocean-realistic",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-manhattan-procedural",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6sol-sandbox-powder",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-gallery-lighting",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-cloth-flag",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-domino-rube",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-bowling-physics",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-datagrid-virtual",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.5-fire-volumetric",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-fire-raymarch",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-portal-chambers",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6solultra-portal-puzzle",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudeopus5-portal-recursive",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6solultra-manhattan-procedural",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6solultra-life-gba",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6solultra-business-tycoon",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-life-gba",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-business-tycoon",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6sol-digimon-rumble",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudefable5-digimon-rumble",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt5.6solultra-history-china3d",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudeopus5-stormwind-interiors",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "grok4.7-stadium-worldcup",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudeopus5-protomotion-parkour",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt6-ocean-observatory",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt6-life-gba",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "gpt6-mini4wd-room-racing",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "grok4.7-dev-world",
+      "status": 200,
+      "entry": true
+    },
+    {
+      "dir": "claudeopus5-manhattan-procedural",
+      "status": 200,
+      "entry": true
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "gpt5.5-tank3D",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/gpt5.5-tank-campaign/?audit=1"
+    },
+    {
+      "alias": "gpt5.5-tank3D",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/gpt5.5-tank-campaign/index.html?audit=1"
+    },
+    {
+      "alias": "claudesonnet5-tank3D",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/claudesonnet5-tank-campaign/?audit=1"
+    },
+    {
+      "alias": "claudesonnet5-tank3D",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/claudesonnet5-tank-campaign/index.html?audit=1"
+    },
+    {
+      "alias": "gpt5.5-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/gpt5.5-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "gpt5.5-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/gpt5.5-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "mimov2.5-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/mimov2.5-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "mimov2.5-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/mimov2.5-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "claudefable5-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/claudefable5-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "claudefable5-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/claudefable5-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "doubao2.1pro-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/doubao2.1pro-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "doubao2.1pro-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/doubao2.1pro-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "geminiflash3.5-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/geminiflash3.5-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "geminiflash3.5-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/geminiflash3.5-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "gpt5.6sol-ocean",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/gpt5.6sol-ocean-realistic/?audit=1"
+    },
+    {
+      "alias": "gpt5.6sol-ocean",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/gpt5.6sol-ocean-realistic/index.html?audit=1"
+    },
+    {
+      "alias": "gpt5.6sol-powdergame",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/gpt5.6sol-sandbox-powder/?audit=1"
+    },
+    {
+      "alias": "gpt5.6sol-powdergame",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/gpt5.6sol-sandbox-powder/index.html?audit=1"
+    },
+    {
+      "alias": "gpt6-mini4wd",
+      "suffix": "/?audit=1",
+      "status": 302,
+      "location": "/gpt6-mini4wd-room-racing/?audit=1"
+    },
+    {
+      "alias": "gpt6-mini4wd",
+      "suffix": "/index.html?audit=1",
+      "status": 302,
+      "location": "/gpt6-mini4wd-room-racing/index.html?audit=1"
+    }
+  ],
+  "assets": [
+    {
+      "path": "shared/assets/models/digimon/wargreymon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/agumon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/guilmon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/gatomon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/patamon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/veemon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/gallantmon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/metalgarurumon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/gabumon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/seraphimon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/renamon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/imperialdramon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/sakuyamon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/models/digimon/diaboromon.glb",
+      "status": 200,
+      "glb": true
+    },
+    {
+      "path": "shared/assets/blender/models/medium_pirate_ship.glb",
+      "status": 200,
+      "glb": true
+    }
+  ],
+  "browser": [
+    {
+      "dir": "claudeopus5-manhattan-procedural",
+      "errors": [],
+      "failed": [],
+      "title": "3D 曼哈顿 · 程序化活城（Claude Opus 5）",
+      "canvas": 1,
+      "body": "正在生成曼哈顿\n完成\nFPS\n--\n绘制调用\n--\n三角形\n--\n实例数\n--\n时间\n--\n天气\n--\n太阳高度角\n--\n在途车辆\n--\n城市种子\n--\n≡\n3D 曼哈顿\n\n全程序化生成 · 零外部资产\n\n天气\n晴\n多云\n雾\n雨\n雷暴\n雪\n风向\n215°\n风速\n6.0 m/s\n时间\n时刻\n17:00"
+    },
+    {
+      "dir": "gpt5.5-ocean-pirate-ship",
+      "errors": [],
+      "failed": [],
+      "title": "GPT Pirate Ship Ocean",
+      "canvas": 1,
+      "body": "海况\n3 级 · 强风中浪\n船体\n已加载\nFPS\n166\n顶点\n66,049\nOcean Controls\n海浪\n风速 m/s\n风向 °\n浪高比例\n浪尖锐度\n泡沫量\n光照\n太阳高度 °\n太阳方位 °\n网格质量\nlow\nmedium\nhigh\nmedium"
+    },
+    {
+      "dir": "gpt5.6sol-digimon-rumble",
+      "errors": [],
+      "failed": [],
+      "title": "DIGI-RUMBLE // 数码兽大乱斗",
+      "canvas": 1,
+      "body": "0101\n1100\n0010\nDIGI://00\n网络竞技协议\nDIGITAL LINK / STABLE\nBUILD 2026.07\n\nEVOLVE · COLLIDE · SURVIVE\n\nDIGI\nRUMBLE\n数码兽\n大乱斗\nPRESS START\n进入数码竞技网络\nENTER\nLOCAL "
+    },
+    {
+      "dir": "claudefable5-digimon-rumble",
+      "errors": [],
+      "failed": [],
+      "title": "数码宝贝大乱斗 — Digimon Rumble Arena",
+      "canvas": 1,
+      "body": "デジモン\n数码宝贝\nRUMBLE ARENA\nPRESS ENTER\nTHREE.JS TRIBUTE · 灵感来自 PS2《数码宝贝大乱斗》 · 模型: Digimon Story Cyber Sleuth"
+    },
+    {
+      "dir": "doubao2.1pro-sandbox-powder",
+      "errors": [],
+      "failed": [],
+      "title": "My Trae Project",
+      "canvas": 1,
+      "body": "粉末沙盒\n物理模拟实验室\n暂停清空\n速度:\n1x2x4x8x\n画笔:3\n沙子\nSAND\n元素选择\n⏣粉末💧液体☁气体▣固体⚡能源✦特殊\n沙子\nSAND\n盐\nSALT\n火药\nGUNP\n雪\nSNOW\n灰尘\nDUST\n灰烬\nASH\n煤粉\nCOAL\n水泥\nCMNT\n左键绘制 · 右键擦除\n重力方向\n无重力"
+    },
+    {
+      "dir": "gpt6-mini4wd-room-racing",
+      "errors": [],
+      "failed": [],
+      "title": "疾风俱乐部 · MINI 4WD CLUB",
+      "canvas": 1,
+      "body": "疾风俱乐部®\nMINI 4WD CLUB\n赛道大厅\n01\n改装工坊\n02\n我的车库\n03\n 本地练习赛\nGO\n SMALL MACHINES. BIG DREAMS.\n放学后，\n一起冲向终点。\n\n那个房间里的四驱梦，从未停下。\n\n放学后的房间\n☀ 16:30\n赛道已就绪\n四车道 / 8 台赛车 / "
+    },
+    {
+      "dir": "mimov2.5-sandbox-powder",
+      "errors": [],
+      "failed": [],
+      "title": "Mimo V2.5 粉末游戏 - 全中文物理沙盒",
+      "canvas": 2,
+      "body": "Mimo V2.5 粉末游戏\n|\n⏸ 暂停\n🔄 重置\n🗑 清空\n💾 保存\n📂 加载\n📸 截图\n|\n🔥 温度\n💨 压力\n🌊 流速\n|\n❓ 帮助\nFPS: 165\n粒子: 0\n位置: 0,0\n全部\n固体\n粉末\n液体\n气体\n爆炸物\n火焰\n特殊\n生命\n电子\n工具\n墙壁\n石头\nSTNE 固\n木"
+    }
+  ],
+  "portalCards": 51
+}

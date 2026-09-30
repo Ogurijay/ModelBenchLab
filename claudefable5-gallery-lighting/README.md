@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-gallery-lighting/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-gallery-lighting`，打开 `http://localhost:3027/`。下文子目录启动说明仅用于独立开发。
+
 # 回声画廊 · claudefable5-gallery-lighting
 
 Three.js 第一人称漫游小型美术馆(benchmark mission: `gallery`,模型 Claude Fable 5,variant `lighting`)。
@@ -8,8 +12,8 @@ Three.js 第一人称漫游小型美术馆(benchmark mission: `gallery`,模型 C
 
 ```bash
 # 依赖由仓库主会话统一安装(three ^0.185.0 · vite ^8.1.2)
-npm run dev -- --port 3024 --strictPort
-# 浏览器打开 http://localhost:3024
+npm run dev -- --port 3027 --strictPort
+# 浏览器打开 http://localhost:3027/
 ```
 
 构建:`npm run build`,预览:`npm run preview`。

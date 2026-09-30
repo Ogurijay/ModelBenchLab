@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudefable5-cloth-flag/`。
+独立调试：根目录运行 `npm run dev:one -- claudefable5-cloth-flag`，打开 `http://localhost:3028/`。下文子目录启动说明仅用于独立开发。
+
 # claudefable5-cloth-flag — 旗帜布料模拟
 
 Three.js 实现的挂旗布料模拟(ModelBenchLab · mission=cloth · Claude Fable 5)。
@@ -21,7 +25,7 @@ Three.js 实现的挂旗布料模拟(ModelBenchLab · mission=cloth · Claude Fa
 依赖由仓库主会话统一安装(根 node_modules 提升)。
 
 ```bash
-npm run dev   # http://localhost:3025
+npm run dev   # http://localhost:3028/
 ```
 
 ## 操作说明

@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-stormwind-001",
+  "category": "code-to-3d",
+  "mission": "stormwind",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用 Web 3D 技术(Three.js 等通用库允许,游戏引擎导出物禁止)实现一座 3D 奇幻人类王都全景,\n要求**建筑物内部也可以看**。具体:\n\n1. **城市结构**:环城城墙(含城门与可登上的马道)、贯穿城区的水系与桥梁、中心广场、\n   ≥2 座地标级建筑(大教堂 / 城堡等)、≥3 个风格可区分的街区。\n2. **可进入的建筑**:≥30 栋普通建筑必须是真空心 —— 门窗为几何洞口而非贴图,\n   可从街上推门走进任意一栋,内有地板/楼梯/家具/光源;多层建筑可上楼。\n   两座地标必须有完整可进入的大空间(中殿 / 王座厅)。\n3. **行走系统**:第一人称行走 + 重力 + 跳跃 + 台阶自动抬腿;墙体阻挡与门洞通行必须一致\n   (不允许\"门是画上去的\"或\"墙能穿过去\")。另需一个俯瞰全景视角。\n4. **光照与昼夜**:完整昼夜循环;入夜后窗户/路灯/炉火亮起;**室内白天也要有合理照明**。\n5. **性能**:桌面 1080p ≥60fps,并说明为支撑上百套内景做了什么工程结构\n   (合并批次 / 分区剔除 / 室内 LOD / 光源池等)。\n\n约束:禁止加载任何外部二进制资产(模型/贴图/音频),所有几何与纹理必须程序化生成;\nUI 用中文;无控制台报错。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/stormwind.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

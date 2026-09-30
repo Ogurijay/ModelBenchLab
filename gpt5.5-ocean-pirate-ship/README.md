@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-ocean-pirate-ship/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-ocean-pirate-ship`，打开 `http://localhost:3023/`。下文子目录启动说明仅用于独立开发。
+
 # GPT 5.5 Pirate Ship Ocean
 
 基于 `claudefable5-ocean-realistic` 的海面渲染版本，保留 fable 版最强的 Gerstner（特罗科伊德）波、菲涅尔反射、程序化天空、太阳高光、泡沫和远处雾化，并加载本仓库 `blender` 目录生成的中等面数海盗船 GLB 模型。
@@ -16,7 +20,7 @@ npm install
 npm run dev
 ```
 
-默认地址：`http://127.0.0.1:3023/`。
+默认地址：`http://localhost:3023/`。
 
 ## 验证命令
 

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "AI 模型能力测试合集 — 不同模型生成的 3D 场景对比。单端口 :3000,项目清单以 benchmark/registry.json 为单一事实源。",
+  "description": "AI 模型能力测试合集：3D 场景与交互应用。常规单端口 :3000，清单源 benchmark/registry.json。",
   "workspaces": [
     "claudeopus4.8-ocean-webgpu",
     "gpt5.5-ocean-weather",
@@ -19,17 +19,17 @@
     "geminiflash3.5-ocean-storm",
     "gpt5.5-ocean-webgpu",
     "claudesonnet5-ocean-storm",
-    "gpt5.5-tank3D",
-    "claudesonnet5-tank3D",
-    "gpt5.5-powdergame",
-    "mimov2.5-powdergame",
-    "claudefable5-powdergame",
-    "doubao2.1pro-powdergame",
-    "geminiflash3.5-powdergame",
+    "gpt5.5-tank-campaign",
+    "claudesonnet5-tank-campaign",
+    "gpt5.5-sandbox-powder",
+    "mimov2.5-sandbox-powder",
+    "claudefable5-sandbox-powder",
+    "doubao2.1pro-sandbox-powder",
+    "geminiflash3.5-sandbox-powder",
     "gpt5.5-ocean-pirate-ship",
-    "gpt5.6sol-ocean",
+    "gpt5.6sol-ocean-realistic",
     "claudefable5-manhattan-procedural",
-    "gpt5.6sol-powdergame",
+    "gpt5.6sol-sandbox-powder",
     "claudefable5-gallery-lighting",
     "claudefable5-cloth-flag",
     "claudefable5-domino-rube",
@@ -49,17 +49,27 @@
     "gpt5.6solultra-history-china3d",
     "claudeopus5-portal-recursive",
     "claudeopus5-stormwind-interiors",
-    "grok4.7-stadium-worldcup"
+    "grok4.7-stadium-worldcup",
+    "claudeopus5-protomotion-parkour",
+    "gpt6-ocean-observatory",
+    "gpt6-life-gba",
+    "gpt6-mini4wd-room-racing",
+    "grok4.7-dev-world",
+    "claudeopus5-manhattan-procedural"
   ],
   "scripts": {
     "dev": "vite",
     "dev:one": "node scripts/dev-one.mjs",
-    "sync:check": "node scripts/sync-check.mjs"
+    "sync:check": "node scripts/sync-check.mjs",
+    "benchmark:check": "node scripts/benchmark-check.mjs",
+    "policy:test": "node --test scripts/tests/*.test.mjs"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^9.1.0",
     "three": "^0.185.1",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "ajv": "6.15.0",
+    "vite-tsconfig-paths": "5.1.4"
   }
 }

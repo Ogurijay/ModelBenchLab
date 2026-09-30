@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-cloth-001",
+  "category": "code-to-3d",
+  "mission": "cloth",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用 Three.js 实现一面挂在旗杆上的旗帜布料模拟。要求:\n① 布料物理必须自行实现:Verlet 积分 + 距离约束迭代求解(结构约束 + 剪切约束),**禁止使用任何现成布料 / 物理库**;\n② 风力系统:方向 + 强度滑杆实时响应,带阵风扰动(非均匀恒定风),风对布料的作用须考虑面片朝向(法线投影);\n③ 鼠标可抓取布料任意点拖拽,松手后自然恢复;\n④ 固定点模式可切换:整边固定(旗帜)/ 仅两角固定(晾布);\n⑤ 法线实时重算、双面渲染、受场景光照,旗面有程序化图案;\n⑥ 参数面板:布料分辨率(重建)、约束迭代次数(刚度)、重力、阻尼、风参数;\n⑦ 场景有地面 / 天空 / 旗杆,整体有氛围(不是黑底一块布);\n⑧ 桌面 1080p 稳定 60fps(默认分辨率下),无控制台报错。\n\n工程要求(所有作答统一):Vite 项目,入口 `index.html`;暴露 `window.__bench = { ready, stepFrame(n), getState() }` 调试钩子;UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/cloth.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

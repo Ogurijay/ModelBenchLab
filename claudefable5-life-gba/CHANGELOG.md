@@ -24,3 +24,7 @@
   菜单标签与右侧价格重复;右上 HUD 面板宽度不足;CJK 全量提升至 12px 点阵字号。
 - 登记:registry(mission=life, port 3041)+ workspaces + sync:check 通过(与并行会话的
   gpt5.6solultra-life-gba / business-tycoon / digimon 登记合并,孤儿 sims 分区回收)。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

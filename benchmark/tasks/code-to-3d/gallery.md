@@ -27,13 +27,11 @@
 
 **L4 加分**:昼夜天光联动全场氛围;画作内容程序化生成且各不相同;烘焙感 AO。
 
-## 参与项目(mission=gallery)
-
-| 端口 | 目录 | 模型 | variant |
-|---|---|---|---|
-| 3024 | claudefable5-gallery-lighting | Claude Fable 5 | lighting |
-
 ## 评分与参数卡
 
 - 评分:`shared/rubrics/code-to-3d.md`(七维,B 审美轴权重最高)。评测环境锁定同 ocean。
 - 参数锁(模式 A):three `^0.185.0` · vite `^8.1.2` · JavaScript · 无其他运行时依赖。
+
+## 测试单元与项目索引
+
+测试单元：`benchmark/tasks/public/code3d-gallery-001.v1.json`（draft，待核对输入与冻结参数）。参与项目、调试端口与变体以 `benchmark/registry.json` 为准，不在本题面重复维护清单。

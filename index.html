@@ -107,7 +107,7 @@
 </head>
 <body>
   <h1>ModelBenchLab</h1>
-  <p class="subtitle">不同 AI 模型生成的 3D 场景对比测试 — 卡片由 benchmark/registry.json 动态生成</p>
+  <p class="subtitle">不同 AI 模型生成的 3D 场景与交互应用对比测试 — 卡片由 benchmark/registry.json 动态生成</p>
   <main id="portal" style="display:contents"></main>
 
   <script type="module">
@@ -165,7 +165,7 @@
         for (const p of rest) grid.append(card(p));
         portal.append(grid);
       }
-      document.title = `${reg.portalTitle || 'ModelBenchLab'} — AI 模型 3D 场景对比(${reg.projects.length} 项目)`;
+      document.title = `${reg.portalTitle || 'ModelBenchLab'} — AI 模型能力对比(${reg.projects.length} 项目)`;
     } catch (e) {
       document.getElementById('portal').append(el('p', 'error', '加载 benchmark/registry.json 失败: ' + e.message));
     }

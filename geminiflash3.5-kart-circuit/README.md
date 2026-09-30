@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/geminiflash3.5-kart-circuit/`。
+独立调试：根目录运行 `npm run dev:one -- geminiflash3.5-kart-circuit`，打开 `http://localhost:3010/`。下文子目录启动说明仅用于独立开发。
+
 # Gemini 3D 赛博朋克霓虹气垫卡丁车
 
 本测试用例展示了 Gemini 开发的基于 **Three.js** 的 3D 未来主义气垫赛车模拟器，支持真实的漂移甩尾侧滑角物理、三维样条投影赛道、纯代码 Web Audio 合成音效和磨砂玻璃 HUD 仪表盘。

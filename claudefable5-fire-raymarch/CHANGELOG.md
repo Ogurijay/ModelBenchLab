@@ -16,3 +16,7 @@
 - 增加中文实时控制和 `window.__bench` 评测接口。
 - 接入 ModelBenchLab 统一 registry、workspace 和门户。
 - 补齐 README、交接文档与改动记录。
+
+## 2026-10-01 · 结构与文档同步
+
+- 同步统一入口、registry 文档路径与中央任务索引；保持现有 Three.js 版本。

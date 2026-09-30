@@ -1,0 +1,11 @@
+{
+  "name": "gpt6-life-gba",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build --base=./",
+    "test": "node --test tests/model.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  }
+}

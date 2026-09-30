@@ -1,0 +1,57 @@
+{
+  "task_id": "code3d-domino-001",
+  "category": "code-to-3d",
+  "mission": "domino",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L3",
+  "input": {
+    "prompt": "用 Three.js 实现一个多米诺·鲁布戈德堡机关链场景。要求:\n① 至少 5 种不同类型的机关依次触发,形成一条完整链:例如 多米诺骨牌序列 → 球沿斜坡滚落 → 杠杆跷跷板 → 摆锤撞击 → 终点铃铛(响声 + 视觉反馈);\n② 物理引擎可用 cannon-es 或自写刚体,但必须**固定 timestep**(与渲染帧率解耦),保证同一初始条件多次运行结果确定一致;\n③ 「触发」按钮启动链条,「复位」按钮完全还原初始状态,可反复触发且每次结果一致;\n④ 相机:自动跟随当前活动机关的运镜模式 + 手动轨道控制模式,可切换;\n⑤ 全程链条能可靠走通(无卡死 / 无穿模断链),终点铃铛必响;\n⑥ 布景有设计感:灯光、材质、配色统一,不是灰盒子;\n⑦ 桌面 1080p 稳定 60fps,无控制台报错。\n\n工程要求(所有作答统一):Vite 项目,入口 `index.html`;暴露 `window.__bench = { ready, stepFrame(n), getState() }` 调试钩子,`getState()` 至少返回 `{ triggered, currentStage, bellRung }`;UI 为中文。",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "核对该题面是否与各模型实际收到的 prompt 一致",
+    "冻结确切参数、环境与评判脚本"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/domino.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

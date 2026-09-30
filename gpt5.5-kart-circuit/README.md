@@ -1,3 +1,7 @@
+<!-- modelbenchlab-access -->
+统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/gpt5.5-kart-circuit/`。
+独立调试：根目录运行 `npm run dev:one -- gpt5.5-kart-circuit`，打开 `http://localhost:3011/`。下文子目录启动说明仅用于独立开发。
+
 # GPT Kart Circuit
 
 这是一个 Three.js（Web 3D 图形库）街机卡丁车游戏测试用例。它借鉴“轻松、夸张、可漂移”的卡丁车竞速类型，但不使用任何 Mario / Nintendo 的角色、名称或素材。
@@ -31,13 +35,13 @@ npm run dev
 默认地址类似：
 
 ```text
-http://127.0.0.1:5173/
+http://localhost:3011/
 ```
 
 如需避免端口冲突，可以指定端口：
 
 ```powershell
-npm run dev -- --port 5174
+npm run dev -- --port 3011
 ```
 
 ## 验证
