@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-02T16:06:42.037Z",
+  "base": "http://localhost:3000/gpt6.1sol-initiald-story-racing/dist/",
+  "browser": "154.0.8037.58",
+  "checks": [
+    "Eight models render in four views with a bounded triangle/draw budget",
+    "Pop-up lamps switch on in the viewer",
+    "Real pointer drag rotates the model camera",
+    "390px viewer fits without horizontal overflow",
+    "A player and opponent of the same model render and animate together"
+  ],
+  "models": [
+    {
+      "car": "ae86",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.3
+      ],
+      "id": "ae86",
+      "triangles": 10088,
+      "drawCalls": 31,
+      "wheels": 4,
+      "render": {
+        "frame": 111,
+        "calls": 29,
+        "triangles": 10028,
+        "points": 0,
+        "lines": 132
+      }
+    },
+    {
+      "car": "ae85",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.3
+      ],
+      "id": "ae85",
+      "triangles": 10352,
+      "drawCalls": 23,
+      "wheels": 4,
+      "render": {
+        "frame": 216,
+        "calls": 25,
+        "triangles": 10436,
+        "points": 0,
+        "lines": 124
+      }
+    },
+    {
+      "car": "wuling",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.75,
+        8.3
+      ],
+      "id": "wuling",
+      "triangles": 10444,
+      "drawCalls": 22,
+      "wheels": 4,
+      "render": {
+        "frame": 322,
+        "calls": 24,
+        "triangles": 10544,
+        "points": 0,
+        "lines": 142
+      }
+    },
+    {
+      "car": "gtr",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.300000000000002
+      ],
+      "id": "gtr",
+      "triangles": 9820,
+      "drawCalls": 21,
+      "wheels": 4,
+      "render": {
+        "frame": 432,
+        "calls": 22,
+        "triangles": 9900,
+        "points": 0,
+        "lines": 124
+      }
+    },
+    {
+      "car": "evo",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7499999999999991,
+        8.3
+      ],
+      "id": "evo",
+      "triangles": 10110,
+      "drawCalls": 21,
+      "wheels": 4,
+      "render": {
+        "frame": 556,
+        "calls": 22,
+        "triangles": 10190,
+        "points": 0,
+        "lines": 126
+      }
+    },
+    {
+      "car": "evo3",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7499999999999991,
+        8.3
+      ],
+      "id": "evo3",
+      "triangles": 10134,
+      "drawCalls": 21,
+      "wheels": 4,
+      "render": {
+        "frame": 666,
+        "calls": 22,
+        "triangles": 10214,
+        "points": 0,
+        "lines": 126
+      }
+    },
+    {
+      "car": "fc",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.300000000000004
+      ],
+      "id": "fc",
+      "triangles": 9968,
+      "drawCalls": 29,
+      "wheels": 4,
+      "render": {
+        "frame": 778,
+        "calls": 26,
+        "triangles": 9904,
+        "points": 0,
+        "lines": 132
+      }
+    },
+    {
+      "car": "benz",
+      "three": "185",
+      "lights": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.300000000000002
+      ],
+      "id": "benz",
+      "triangles": 9908,
+      "drawCalls": 21,
+      "wheels": 4,
+      "render": {
+        "frame": 891,
+        "calls": 22,
+        "triangles": 9988,
+        "points": 0,
+        "lines": 129
+      }
+    }
+  ],
+  "errors": []
+}

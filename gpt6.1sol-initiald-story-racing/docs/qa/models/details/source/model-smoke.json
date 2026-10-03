@@ -1,0 +1,391 @@
+{
+  "date": "2026-10-02T18:40:33.441Z",
+  "base": "http://[::1]:3000/gpt6.1sol-initiald-story-racing/",
+  "browser": "145.0.7632.6",
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (NVIDIA)"
+  },
+  "checks": [
+    "Eight models render in four views with a bounded triangle/draw budget",
+    "Eight front lamp pairs, two pop-up assemblies and independent brake lights render in lit views",
+    "Pop-up lamps switch on in the viewer",
+    "Real pointer drag rotates the model camera",
+    "Cloned cars own independent animation and attachments; all four wheel openings stay clear",
+    "390px viewer fits without horizontal overflow",
+    "A player and opponent of the same model render and animate together"
+  ],
+  "models": [
+    {
+      "car": "ae86",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.3
+      ],
+      "lighting": {
+        "intensity": {
+          "signal": 0,
+          "head": 0,
+          "tail": 0,
+          "glow": 0
+        },
+        "popups": [
+          {
+            "angle": 0,
+            "visible": false
+          },
+          {
+            "angle": 0,
+            "visible": false
+          }
+        ],
+        "anchors": [
+          [
+            -0.495625,
+            0.7301695817978024,
+            1.8847712557680658
+          ],
+          [
+            0.495625,
+            0.7301695817978024,
+            1.8847712557680658
+          ]
+        ]
+      },
+      "id": "ae86",
+      "triangles": 11662,
+      "drawCalls": 38,
+      "wheels": 4,
+      "render": {
+        "frame": 37,
+        "calls": 37,
+        "triangles": 11112,
+        "points": 0,
+        "lines": 173
+      }
+    },
+    {
+      "car": "ae85",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.3
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.50375,
+            0.685,
+            2.181
+          ],
+          [
+            0.50375,
+            0.685,
+            2.181
+          ]
+        ]
+      },
+      "id": "ae85",
+      "triangles": 11264,
+      "drawCalls": 28,
+      "wheels": 4,
+      "render": {
+        "frame": 86,
+        "calls": 32,
+        "triangles": 11420,
+        "points": 0,
+        "lines": 161
+      }
+    },
+    {
+      "car": "wuling",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.75,
+        8.3
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.58,
+            0.86,
+            2.2605
+          ],
+          [
+            0.58,
+            0.86,
+            2.2605
+          ]
+        ]
+      },
+      "id": "wuling",
+      "triangles": 11986,
+      "drawCalls": 27,
+      "wheels": 4,
+      "render": {
+        "frame": 139,
+        "calls": 31,
+        "triangles": 13094,
+        "points": 0,
+        "lines": 171
+      }
+    },
+    {
+      "car": "gtr",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.300000000000002
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.47,
+            0.755,
+            2.3505
+          ],
+          [
+            0.47,
+            0.755,
+            2.3505
+          ]
+        ]
+      },
+      "id": "gtr",
+      "triangles": 13360,
+      "drawCalls": 27,
+      "wheels": 4,
+      "render": {
+        "frame": 195,
+        "calls": 31,
+        "triangles": 15482,
+        "points": 0,
+        "lines": 153
+      }
+    },
+    {
+      "car": "evo",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.3
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.52545,
+            0.755,
+            2.2359999999999998
+          ],
+          [
+            0.52545,
+            0.755,
+            2.2359999999999998
+          ]
+        ]
+      },
+      "id": "evo",
+      "triangles": 11532,
+      "drawCalls": 26,
+      "wheels": 4,
+      "render": {
+        "frame": 251,
+        "calls": 29,
+        "triangles": 12176,
+        "points": 0,
+        "lines": 155
+      }
+    },
+    {
+      "car": "evo3",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000009,
+        8.3
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.52545,
+            0.735,
+            2.2359999999999998
+          ],
+          [
+            0.52545,
+            0.735,
+            2.2359999999999998
+          ]
+        ]
+      },
+      "id": "evo3",
+      "triangles": 11580,
+      "drawCalls": 26,
+      "wheels": 4,
+      "render": {
+        "frame": 304,
+        "calls": 29,
+        "triangles": 12224,
+        "points": 0,
+        "lines": 155
+      }
+    },
+    {
+      "car": "fc",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.300000000000004
+      ],
+      "lighting": {
+        "intensity": {
+          "signal": 0,
+          "head": 0,
+          "tail": 0,
+          "glow": 0
+        },
+        "popups": [
+          {
+            "angle": 0,
+            "visible": false
+          },
+          {
+            "angle": 0,
+            "visible": false
+          }
+        ],
+        "anchors": [
+          [
+            -0.51545,
+            0.6844938897922135,
+            1.9372712557680656
+          ],
+          [
+            0.51545,
+            0.6844938897922135,
+            1.9372712557680656
+          ]
+        ]
+      },
+      "id": "fc",
+      "triangles": 13044,
+      "drawCalls": 35,
+      "wheels": 4,
+      "render": {
+        "frame": 359,
+        "calls": 32,
+        "triangles": 13436,
+        "points": 0,
+        "lines": 173
+      }
+    },
+    {
+      "car": "benz",
+      "three": "185",
+      "lights": false,
+      "braking": false,
+      "view": "front",
+      "camera": [
+        0,
+        1.7500000000000002,
+        8.300000000000002
+      ],
+      "lighting": {
+        "intensity": {
+          "head": 0,
+          "signal": 0,
+          "glow": 0,
+          "tail": 0
+        },
+        "popups": [],
+        "anchors": [
+          [
+            -0.61,
+            0.775,
+            2.6470000000000002
+          ],
+          [
+            0.61,
+            0.775,
+            2.6470000000000002
+          ]
+        ]
+      },
+      "id": "benz",
+      "triangles": 10958,
+      "drawCalls": 26,
+      "wheels": 4,
+      "render": {
+        "frame": 412,
+        "calls": 29,
+        "triangles": 11146,
+        "points": 0,
+        "lines": 165
+      }
+    }
+  ],
+  "errors": []
+}

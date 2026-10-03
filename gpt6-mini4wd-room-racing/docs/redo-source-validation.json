@@ -1,0 +1,715 @@
+{
+  "date": "2026-10-02T18:22:36.690Z",
+  "url": "http://127.0.0.1:3051/",
+  "label": "source",
+  "checks": [
+    "eight distinct stock cars load in an eight lane grid",
+    "long physical course and full eight-lane race distance",
+    "desktop has no horizontal overflow",
+    "cyclone has a rendered individual model",
+    "hurricane has a rendered individual model",
+    "triangle has a rendered individual model",
+    "evolution has a rendered individual model",
+    "cobra has a rendered individual model",
+    "spider has a rendered individual model",
+    "giant has a rendered individual model",
+    "devil has a rendered individual model",
+    "nine real subassemblies and four wheels per car",
+    "rendered hardware stays inside car inspection dimensions",
+    "all nine expanded labels are visible",
+    "expanded labels fit fully within the scene",
+    "nine component connector lines actually render",
+    "exploded label selects correct subassembly",
+    "shell replacement persists into race build",
+    "chassis replacement persists into race build",
+    "motor replacement persists into race build",
+    "gears replacement persists into race build",
+    "tires replacement persists into race build",
+    "rollers replacement persists into race build",
+    "brake replacement persists into race build",
+    "dampers replacement persists into race build",
+    "battery replacement persists into race build",
+    "all nine modifications survive a real reload",
+    "night venue and elevated crossover switch in the live renderer",
+    "manual car waits for power input",
+    "manual power moves the car",
+    "manual braking stops the car",
+    "pause freezes the runtime clock",
+    "mid-race part changes are refused",
+    "overspeed landing really retires the vehicle",
+    "corrected setup actually finishes all three lanes in the browser",
+    "custom livery car joins garage with nine working parts",
+    "five lane grid has five separate starters",
+    "1280 desktop remains usable without horizontal overflow",
+    "no browser page or console errors"
+  ],
+  "errors": [],
+  "models": [
+    {
+      "id": "cyclone",
+      "dimensions": [
+        97,
+        41.37947082519532,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "hurricane",
+      "dimensions": [
+        97,
+        41.37947082519532,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "triangle",
+      "dimensions": [
+        90,
+        44.29999923706055,
+        131
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "evolution",
+      "dimensions": [
+        97,
+        45.397525787353516,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "cobra",
+      "dimensions": [
+        97,
+        42.694903373718255,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "spider",
+      "dimensions": [
+        97,
+        41.37947082519532,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "giant",
+      "dimensions": [
+        97,
+        35,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    },
+    {
+      "id": "devil",
+      "dimensions": [
+        97,
+        43.36884307861328,
+        153
+      ],
+      "parts": [
+        "shell",
+        "chassis",
+        "motor",
+        "gears",
+        "tires",
+        "rollers",
+        "brake",
+        "dampers",
+        "battery"
+      ],
+      "wheels": 4
+    }
+  ],
+  "completedRace": {
+    "page": "race",
+    "mode": "auto",
+    "selected": "cyclone",
+    "venue": "club",
+    "track": "classic",
+    "count": 1,
+    "laps": 3,
+    "rounds": 1,
+    "laneCount": 3,
+    "trackLength": 64.97840614063608,
+    "totalDistance": 195.04488619846848,
+    "state": "finished",
+    "time": 30.491666666665257,
+    "carCount": 8,
+    "models": [
+      {
+        "id": "cyclone",
+        "dimensions": [
+          104.00000000000001,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "hurricane",
+        "dimensions": [
+          97,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "triangle",
+        "dimensions": [
+          90,
+          44.29999923706055,
+          131
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "evolution",
+        "dimensions": [
+          97,
+          45.397525787353516,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "cobra",
+        "dimensions": [
+          97,
+          42.694903373718255,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "spider",
+        "dimensions": [
+          97,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "giant",
+        "dimensions": [
+          97,
+          35,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "devil",
+        "dimensions": [
+          97,
+          43.36884307861328,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      }
+    ],
+    "build": {
+      "shell": 0,
+      "chassis": 0,
+      "motor": 1,
+      "gears": 0,
+      "tires": 1,
+      "rollers": 2,
+      "brake": 2,
+      "dampers": 2,
+      "battery": 0
+    },
+    "stats": [
+      108,
+      80,
+      109,
+      50
+    ],
+    "explode": 0,
+    "camera": "follow",
+    "render": {
+      "calls": 199,
+      "triangles": 230494
+    },
+    "racers": [
+      {
+        "id": "cyclone",
+        "progress": 3,
+        "speed": 0,
+        "lane": 0,
+        "heat": 63.425461653808696,
+        "battery": 98.80009645060008,
+        "finish": 30.491664387887855,
+        "status": "finished",
+        "reason": null,
+        "distance": 195.04196192663096,
+        "air": false
+      }
+    ],
+    "storageIssue": false
+  },
+  "final": {
+    "page": "race",
+    "mode": "auto",
+    "selected": "custom-1790965355551-oc8vc",
+    "venue": "club",
+    "track": "classic",
+    "count": 5,
+    "laps": 5,
+    "rounds": 1,
+    "laneCount": 5,
+    "trackLength": 64.97840614063608,
+    "totalDistance": 325.0890482936617,
+    "state": "ready",
+    "time": 0,
+    "carCount": 9,
+    "models": [
+      {
+        "id": "cyclone",
+        "dimensions": [
+          104.00000000000001,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "hurricane",
+        "dimensions": [
+          97,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "triangle",
+        "dimensions": [
+          90,
+          44.29999923706055,
+          131
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "evolution",
+        "dimensions": [
+          97,
+          45.397525787353516,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "cobra",
+        "dimensions": [
+          97,
+          42.694903373718255,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "spider",
+        "dimensions": [
+          97,
+          41.37947082519532,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "giant",
+        "dimensions": [
+          97,
+          35,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "devil",
+        "dimensions": [
+          97,
+          43.36884307861328,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      },
+      {
+        "id": "custom-1790965355551-oc8vc",
+        "dimensions": [
+          97,
+          43.36884307861328,
+          153
+        ],
+        "parts": [
+          "shell",
+          "chassis",
+          "motor",
+          "gears",
+          "tires",
+          "rollers",
+          "brake",
+          "dampers",
+          "battery"
+        ],
+        "wheels": 4
+      }
+    ],
+    "build": {
+      "shell": 0,
+      "chassis": 0,
+      "motor": 0,
+      "gears": 0,
+      "tires": 0,
+      "rollers": 0,
+      "brake": 0,
+      "dampers": 0,
+      "battery": 0
+    },
+    "stats": [
+      56,
+      75,
+      70,
+      50
+    ],
+    "explode": 0,
+    "camera": "orbit",
+    "render": {
+      "calls": 543,
+      "triangles": 439460
+    },
+    "racers": [
+      {
+        "id": "custom-1790965355551-oc8vc",
+        "progress": 0,
+        "speed": 0,
+        "lane": 0,
+        "heat": 22,
+        "battery": 100,
+        "finish": null,
+        "status": "ready",
+        "reason": null,
+        "distance": 0,
+        "air": false
+      },
+      {
+        "id": "cyclone",
+        "progress": 0,
+        "speed": 0,
+        "lane": 1,
+        "heat": 22,
+        "battery": 100,
+        "finish": null,
+        "status": "ready",
+        "reason": null,
+        "distance": 0,
+        "air": false
+      },
+      {
+        "id": "hurricane",
+        "progress": 0,
+        "speed": 0,
+        "lane": 2,
+        "heat": 22,
+        "battery": 100,
+        "finish": null,
+        "status": "ready",
+        "reason": null,
+        "distance": 0,
+        "air": false
+      },
+      {
+        "id": "triangle",
+        "progress": 0,
+        "speed": 0,
+        "lane": 3,
+        "heat": 22,
+        "battery": 100,
+        "finish": null,
+        "status": "ready",
+        "reason": null,
+        "distance": 0,
+        "air": false
+      },
+      {
+        "id": "evolution",
+        "progress": 0,
+        "speed": 0,
+        "lane": 4,
+        "heat": 22,
+        "battery": 100,
+        "finish": null,
+        "status": "ready",
+        "reason": null,
+        "distance": 0,
+        "air": false
+      }
+    ],
+    "storageIssue": false
+  }
+}

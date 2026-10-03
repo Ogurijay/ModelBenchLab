@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c2027" />
+  <meta name="description" content="潮汐 TIDELINE — GPT 6.1 SOL 实时海洋模拟。风、涌浪、光与一艘远洋小船。" />
+  <title>潮汐 · TIDELINE — GPT 6.1 SOL</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="sea" tabindex="0" aria-label="交互海洋，拖动旋转视角，滚轮缩放"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <header class="topbar ui">
+      <a class="brand" href="../" aria-label="返回 ModelBenchLab">
+        <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M4 15c6-7 12-7 18 0s12 7 17 0M4 23c6-7 12-7 18 0s12 7 17 0M4 31c6-7 12-7 18 0s12 7 17 0"/></svg>
+        <span>TIDELINE<small>潮汐 · 海洋实验室</small></span>
+      </a>
+      <div class="top-center"><span class="live-dot"></span><span id="live-label">LIVE SIMULATION</span><i></i><span class="model">GPT 6.1 SOL</span></div>
+      <nav class="tools" aria-label="模拟工具">
+        <button id="sound" class="icon-button" aria-label="开启海浪声" title="海浪声" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5V4Z"/><path class="sound-waves" d="M15 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14"/><path class="sound-muted" d="m16 9 5 6m0-6-5 6"/></svg></button>
+        <button id="capture" class="icon-button" aria-label="保存海面截图" title="保存截图"><svg viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3V7Z"/><circle cx="12" cy="13" r="4"/></svg></button>
+        <button id="immersive" class="icon-button" aria-label="纯净观海" title="纯净观海 · H"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+        <button id="info" class="icon-button" aria-label="关于海洋模拟" title="关于"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></svg></button>
+      </nav>
+    </header>
+
+    <main class="scene-caption ui">
+      <span class="eyebrow"><span id="scene-number">02</span> / OPEN WATER</span>
+      <h1 id="scene-title">风起，潮生。</h1>
+      <p id="scene-description">长浪越过海面，驶向看不见的岸。</p>
+      <div class="caption-rule"></div>
+      <span class="caption-sub">A SMALL WINDOW INTO AN INFINITE OCEAN</span>
+    </main>
+
+    <aside id="panel" class="control-panel ui" aria-label="海洋控制台">
+      <div class="panel-heading"><div><span class="eyebrow">THE ELEMENTS</span><h2>塑造这片海</h2></div><button id="close-panel" class="icon-button" aria-label="收起控制台"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+      <div class="tabs" role="tablist" aria-label="控制类型"><button id="tab-sea" role="tab" aria-selected="true" aria-controls="sea-controls">风与浪</button><button id="tab-sky" role="tab" aria-selected="false" aria-controls="sky-controls" tabindex="-1">光与天空</button></div>
+      <section id="sea-controls" role="tabpanel" aria-labelledby="tab-sea">
+        <label class="slider-label" for="wind">海面风速<output id="wind-value" for="wind">9.0 <small>m/s</small></output></label><input id="wind" type="range" min="1" max="24" step="0.5" value="9" /><div class="range-ends"><span>微风</span><span>烈风</span></div>
+        <label class="slider-label" for="height">有效波高<output id="height-value" for="height">2.4 <small>m</small></output></label><input id="height" type="range" min="0.2" max="6" step="0.1" value="2.4" /><div class="range-ends"><span>平滑</span><span>汹涌</span></div>
+        <label class="slider-label" for="direction">波浪行进方向<output id="direction-value" for="direction">125 <small>°</small></output></label><input id="direction" type="range" min="0" max="360" step="1" value="125" />
+        <div class="hint-row"><svg viewBox="0 0 24 24"><path d="m12 3 5 17-5-4-5 4 5-17Z"/></svg><span>风浪与远海涌浪共同叠加</span></div>
+      </section>
+      <section id="sky-controls" role="tabpanel" aria-labelledby="tab-sky" hidden>
+        <label class="slider-label" for="sun">太阳高度<output id="sun-value" for="sun">24 <small>°</small></output></label><input id="sun" type="range" min="1" max="75" step="1" value="24" /><div class="range-ends"><span>日出日落</span><span>正午</span></div>
+        <label class="slider-label" for="cloud">云层覆盖<output id="cloud-value" for="cloud">30 <small>%</small></output></label><input id="cloud" type="range" min="0" max="1" step="0.01" value="0.3" /><div class="range-ends"><span>晴空</span><span>阴云</span></div>
+        <label class="slider-label" for="azimuth">太阳方位<output id="azimuth-value" for="azimuth">−22 <small>°</small></output></label><input id="azimuth" type="range" min="-180" max="180" step="1" value="-22" />
+        <div class="hint-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></svg><span>天空与海面共享同一束光</span></div>
+      </section>
+      <div class="panel-divider"></div>
+      <div class="toggle-row"><label for="objects">船只与观测浮标</label><input id="objects" type="checkbox" role="switch" checked /></div>
+      <div class="objects-row"><span>投放漂浮物</span><div><button id="drop-crate" title="投放木箱" aria-label="投放木箱"><svg viewBox="0 0 24 24"><path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 10v9M3 8l9 5 9-5M7 6l10 6"/></svg></button><button id="drop-ring" title="投放救生圈" aria-label="投放救生圈"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m5 5 4 4m6 6 4 4M5 19l4-4m6-6 4-4"/></svg></button><button id="clear-objects" title="清除投放物" aria-label="清除投放物"><svg viewBox="0 0 24 24"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button></div></div>
+      <div class="quality-row"><label for="quality">渲染质量</label><select id="quality"><option value="low">流畅</option><option value="medium" selected>均衡</option><option value="high">精细</option></select></div>
+      <button id="reset" class="reset-button">恢复初始海况 <span>↺</span></button>
+      <div class="panel-foot"><span class="tiny-dot"></span><span>所有变化，即时发生。</span></div>
+    </aside>
+    <button id="open-panel" class="open-panel ui" aria-label="展开控制台" aria-expanded="true" aria-controls="panel"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6m8 0v6m-6 0v6"/></svg><span>海况控制</span></button>
+
+    <div class="observation ui">
+      <span class="eyebrow">OBSERVATION / 观测浮标</span>
+      <div class="metrics"><div><strong id="metric-height">2.4</strong><span>有效波高 / m</span></div><div><strong id="metric-period">7.0</strong><span>谱峰周期 / s</span></div><div><strong id="metric-wind">9.0</strong><span>风速 / m·s⁻¹</span></div></div>
+      <div class="graph-wrap"><canvas id="graph" width="300" height="58" aria-label="最近30秒浮标海面高度曲线"></canvas><span id="graph-value">+0.00 m</span></div>
+      <span class="graph-caption">海面高度 · 最近 30 秒 <span id="fps">— FPS</span></span>
+    </div>
+
+    <footer class="bottom-bar ui">
+      <div class="presets" aria-label="选择海况">
+        <button data-preset="calm"><span class="preset-art calm" aria-hidden="true"><i></i><i></i><i></i></span><span><small>01 / STILL</small><b>玻璃海</b></span></button>
+        <button data-preset="swell" class="active" aria-pressed="true"><span class="preset-art swell" aria-hidden="true"><i></i><i></i><i></i></span><span><small>02 / SWELL</small><b>远洋涌浪</b></span></button>
+        <button data-preset="sunset"><span class="preset-art sunset" aria-hidden="true"><i></i><i></i><i></i></span><span><small>03 / GOLDEN</small><b>日落航行</b></span></button>
+        <button data-preset="storm"><span class="preset-art storm" aria-hidden="true"><i></i><i></i><i></i></span><span><small>04 / SQUALL</small><b>风暴边缘</b></span></button>
+      </div>
+      <div class="playback"><button id="play" aria-label="暂停模拟"><svg viewBox="0 0 24 24"><path id="play-icon" d="M8 5v14M16 5v14"/></svg></button><span id="elapsed">00:00</span><span class="playback-rule"></span><select id="speed" aria-label="模拟速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></div>
+    </footer>
+    <div class="view-tools ui"><span>视角</span><button data-view="horizon" class="active" aria-pressed="true">海平线</button><button data-view="vessel">随船</button><button data-view="aerial">俯瞰</button><span class="view-hint">拖动环视 · 滚轮缩放</span></div>
+    <button id="restore" aria-label="退出纯净观海" hidden>返回控制台 <kbd>H</kbd></button>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <div id="loading"><svg viewBox="0 0 42 42"><path d="M4 15c6-7 12-7 18 0s12 7 17 0M4 23c6-7 12-7 18 0s12 7 17 0M4 31c6-7 12-7 18 0s12 7 17 0"/></svg><span>一片海，正在苏醒。</span></div>
+    <dialog id="about"><form method="dialog"><button class="dialog-close" aria-label="关闭说明">×</button><span class="eyebrow">TIDELINE / GPT 6.1 SOL</span><h2>每一片浪，都有自己的节奏。</h2><p>24 组定向波谱分量组成连续海面。长涌浪、风浪、细小波纹叠加在一起，天空与水面共享光照，船与浮标用多点弹簧阻尼响应浪面。</p><p>这是可交互的视觉模拟。波谱基于 JONSWAP 形状的离散近似，未求解完整流体方程；泡沫、云层、尾流与散射采用程序化近似。有效波高是谱参数，曲线是局部采样，均非真实海况数据。</p><div class="help-keys"><span><kbd>Space</kbd> 暂停</span><span><kbd>H</kbd> 纯净观海</span><span><kbd>R</kbd> 重置</span></div><button class="dialog-done">回到海上 ↗</button></form></dialog>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

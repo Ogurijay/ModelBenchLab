@@ -64,13 +64,6 @@
       "doc": "benchmark/tasks/code-to-3d/bowling.md",
       "unit": "benchmark/tasks/public/code3d-bowling-001.v1.json"
     },
-    "datagrid": {
-      "category": "code-to-ui",
-      "task_id": "codeui-datagrid-001",
-      "version": 1,
-      "doc": "benchmark/tasks/code-to-ui/datagrid.md",
-      "unit": "benchmark/tasks/public/codeui-datagrid-001.v1.json"
-    },
     "fire": {
       "category": "code-to-3d",
       "task_id": "code3d-fire-001",
@@ -134,13 +127,6 @@
       "doc": "benchmark/tasks/code-to-3d/stadium.md",
       "unit": "benchmark/tasks/public/code3d-stadium-001.v1.json"
     },
-    "protomotion": {
-      "category": "code-to-3d",
-      "task_id": "code3d-protomotion-001",
-      "version": 1,
-      "doc": "benchmark/tasks/code-to-3d/protomotion.md",
-      "unit": "benchmark/tasks/public/code3d-protomotion-001.v1.json"
-    },
     "mini4wd": {
       "category": "code-to-3d",
       "task_id": "code3d-mini4wd-001",
@@ -148,12 +134,12 @@
       "doc": "benchmark/tasks/code-to-3d/mini4wd.md",
       "unit": "benchmark/tasks/public/code3d-mini4wd-001.v1.json"
     },
-    "devworld": {
+    "initiald": {
       "category": "code-to-3d",
-      "task_id": "code3d-devworld-001",
+      "task_id": "code3d-initiald-001",
       "version": 1,
-      "doc": "benchmark/tasks/code-to-3d/devworld.md",
-      "unit": "benchmark/tasks/public/code3d-devworld-001.v1.json"
+      "doc": "benchmark/tasks/code-to-3d/initiald.md",
+      "unit": "benchmark/tasks/public/code3d-initiald-001.v1.json"
     }
   }
 }

@@ -1,0 +1,250 @@
+{
+  "_comment": "剧情脚本：每章一个步骤数组。say=[角色,表情,台词]；narr=旁白；race=比赛配置名（见 races.js）；silence=情绪静默（弹幕清空、HUD 隐藏、去饱和）。",
+  "chapters": [
+    {
+      "id": 0, "num": "序章", "title": "一秒钟有多长", "palette": "night", "type": "过场",
+      "steps": [
+        { "card": true },
+        { "bg": "summit_night" }, { "music": "piano" },
+        { "narr": "秋名山顶。凌晨一点。" },
+        { "say": ["nakazato", "normal", "陈老师也来了？这么晚，来看传说中的那台86？"] },
+        { "say": ["ryosuke", "normal", "传说不用看。传说只需要被验证。"] },
+        { "say": ["nakazato", "smile", "那就说好了。从秋名开始——南北征战。"] },
+        { "say": ["ryosuke", "normal", "你知道一秒钟有多长吗？"] },
+        { "say": ["nakazato", "normal", "……一秒就是一秒。"] },
+        { "say": ["ryosuke", "silent", "对普通人来说，是一次心跳。对车手来说，是一个发夹弯。"] },
+        { "cinematic": "prologue" },
+        { "title": ["头文字D", "秋名山 · 再快的86"], "hold": 2.6 }
+      ]
+    },
+    {
+      "id": 1, "num": "第一章", "title": "送豆腐", "palette": "dawn", "type": "教学", "motive": "送完才能回去补觉。",
+      "steps": [
+        { "card": true },
+        { "bg": "tofu_dawn" }, { "music": "none" },
+        { "narr": "凌晨四点。藤原豆腐店。" },
+        { "say": ["bunta", "silent", "……拓海……豆腐……装车了……"] },
+        { "say": ["takumi", "normal", "我知道。"] },
+        { "say": ["bunta", "smile", "杯子……嗝……放仪表台上。倒满。洒光了，你就自己走回来。"] },
+        { "say": ["bunta", "normal", "进弯之前……就把刹车踩完。弯里面……嗝……油门要像摸豆腐。"] },
+        { "say": ["bunta", "silent", "……zzz"] },
+        { "narr": "他睡着了。你拿起钥匙。" },
+        { "tip": "操作：↑ 油门 · ↓ 刹车 · ←→ 转向 · 空格 手刹（甩尾）\n水杯：横向猛甩、急刹会洒水，洒光即失败。平稳控车。" },
+        { "race": "ch1" },
+        { "bg": "tofu_dawn" },
+        { "narr": "送完了。天亮了。" },
+        { "say": ["bunta", "silent", "……回来了？水，洒了多少。"] },
+        { "say": ["takumi", "normal", "一点。"] }
+      ]
+    },
+    {
+      "id": 2, "num": "第二章", "title": "暑假前", "palette": "noon", "type": "剧情",
+      "steps": [
+        { "card": true },
+        { "bg": "school_noon" }, { "music": "race" },
+        { "say": ["itsuki", "smile", "拓海！我有车了！AE85！跟你家那台几乎一样！"] },
+        { "say": ["takumi", "normal", "是85。"] },
+        { "say": ["itsuki", "normal", "85跟86就差一！一！！"] },
+        { "danmaku": "是85不是86", "n": 10 },
+        { "narr": "走廊那头，夏树走了过来。" },
+        { "say": ["natsuki", "smile", "拓海，暑假的时候——"] },
+        { "narr": "你下意识躲到了阿木身后。" },
+        { "say": ["itsuki", "shock", "你躲什么？？"] },
+        { "say": ["natsuki", "normal", "……没什么。暑假见。"] },
+        { "music": "none" }, { "silence": true },
+        { "narr": "放学。校门口停着一辆黑色的奔驰。" },
+        { "narr": "夏树坐了进去。", "hold": 2 },
+        { "silence": false }, { "music": "race" },
+        { "say": ["itsuki", "normal", "刚才那是……算了！走，去加油站！今晚我要让秋名山记住我的名字！"] }
+      ]
+    },
+    {
+      "id": 3, "num": "第三章", "title": "加油站踢馆", "palette": "dusk", "type": "比赛", "motive": "阿木想在加油站门口出一次风头（他自己说的）。",
+      "steps": [
+        { "card": true },
+        { "bg": "gas_dusk" }, { "music": "race" },
+        { "say": ["yuichi", "normal", "阿木，今天别惹事。"] },
+        { "narr": "一台黑色 GT-R 开进了加油站。" },
+        { "say": ["nakazato", "normal", "听说秋名山有台黑白色的86。是这台？"] },
+        { "say": ["itsuki", "smile", "这是85！！不过——赢了我，再去找86吧！"] },
+        { "say": ["nakazato", "smile", "……行。上山，热热身。"] },
+        { "danmaku": "是85不是86", "n": 8 },
+        { "tip": "这一场你开的是阿木的 AE85。上坡，对手是四驱 GT-R。尽力就好。" },
+        { "race": "ch3" },
+        { "bg": "gas_dusk" },
+        { "say": ["itsuki", "shock", "他……他刚才是不是根本没用全力？"] },
+        { "say": ["nakazato", "normal", "85不错。但我要找的是86。"] },
+        { "say": ["yuichi", "silent", "拓海，你家那台车……算了，没什么。"] }
+      ]
+    },
+    {
+      "id": 4, "num": "第四章", "title": "深夜的86", "palette": "night", "type": "比赛", "motive": "送完豆腐，早点回家睡觉。",
+      "steps": [
+        { "card": true },
+        { "bg": "touge_night" }, { "music": "none" },
+        { "narr": "回程。下坡。" },
+        { "narr": "后视镜里有一对车灯，一直在闪。" },
+        { "say": ["takumi", "normal", "……后面的车，好像想超车。"] },
+        { "danmaku": "他不知道这是比赛", "n": 8 },
+        { "tip": "追逐赛：你在前，GT-R 在后。拉开 150 米或先到山脚即胜；被超车则失败。" },
+        { "race": "ch4" },
+        { "bg": "touge_night" },
+        { "say": ["nakazato", "shock", "那台86……司机到底是谁？！"] },
+        { "bg": "tofu_dawn" },
+        { "say": ["takumi", "smile", "哎哟，不错哦。"] },
+        { "say": ["bunta", "silent", "……回来了？"] }
+      ]
+    },
+    {
+      "id": 5, "num": "第五章", "title": "豆腐店的交易", "palette": "dusk", "type": "剧情",
+      "steps": [
+        { "card": true },
+        { "bg": "tofu_dusk" }, { "music": "piano" },
+        { "say": ["nakazato", "normal", "下周六晚上，秋名山下坡。我要跟那台86正式比一场。"] },
+        { "say": ["ryosuke", "normal", "我只是来听那台车的引擎声。"] },
+        { "say": ["bunta", "silent", "车是我的。"] },
+        { "narr": "他们走了。门口的风铃响了一下。" },
+        { "say": ["natsuki", "smile", "拓海。周日……要不要一起去海边？"] },
+        { "say": ["takumi", "silent", "……嗯。"] },
+        { "say": ["takumi", "normal", "爸。周日，车能借我吗。"] },
+        { "say": ["bunta", "smile", "周六赢了，车借你。"] },
+        { "say": ["bunta", "normal", "还有。下坡那几个发夹弯……内侧有条排水沟。嗝……把轮子放进去。"] },
+        { "say": ["takumi", "normal", "放进去？"] },
+        { "say": ["bunta", "silent", "……zzz"] }
+      ]
+    },
+    {
+      "id": 6, "num": "第六章", "title": "86上山了", "palette": "night", "type": "比赛", "motive": "赢了，就能借车去海边。",
+      "steps": [
+        { "card": true },
+        { "bg": "summit_night" }, { "music": "race" },
+        { "danmaku": "86上山了", "flood": 36 },
+        { "say": ["nakazato", "normal", "终于见面了。四驱不会输给后驱。这是信仰。"] },
+        { "say": ["takumi", "normal", "……哦。"] },
+        { "unlock": "ditch" },
+        { "tip": "排水渠过弯已解锁：发夹弯内侧有排水沟（路边深色槽）。\n贴住内侧、车身摆正（不要漂移）、速度别太快，把内侧车轮卡进去，就能不减速过弯。需要练习。" },
+        { "race": "ch6" },
+        { "bg": "summit_night" },
+        { "say": ["nakazato", "shock", "排水沟……他把轮子放进排水沟里过弯？！"] },
+        { "say": ["takumi", "smile", "哎哟，不错哦。"] },
+        { "unlockCar": "r32" }
+      ]
+    },
+    {
+      "id": 7, "num": "第七章", "title": "海滩", "palette": "noon", "type": "剧情",
+      "steps": [
+        { "card": true },
+        { "bg": "beach_noon" }, { "music": "piano" }, { "amb": { "waves": 1 } },
+        { "say": ["natsuki", "smile", "海好蓝。"] },
+        { "say": ["takumi", "normal", "嗯。"] },
+        { "say": ["natsuki", "normal", "拓海，你以后想做什么？"] },
+        { "say": ["takumi", "normal", "……不知道。送豆腐吧。"] },
+        { "say": ["natsuki", "smile", "那我每天早上，都在山脚等你送完豆腐。"] },
+        { "silence": true }, { "music": "none" },
+        { "say": ["natsuki", "normal", "拓海。我喜欢你。"], "quiet": true },
+        { "hold": 4.5, "panelOnly": true },
+        { "amb": { "waves": 0 } }, { "silence": false }
+      ]
+    },
+    {
+      "id": 8, "num": "第八章", "title": "刘教练", "palette": "night", "type": "比赛", "motive": "夏树说，今晚会在山顶等你。",
+      "steps": [
+        { "card": true },
+        { "bg": "touge_night" }, { "music": "race" },
+        { "say": ["seiji", "smile", "比赛之前！先做一套毽子操！跟我一起！"] },
+        { "say": ["itsuki", "shock", "现在？？"] },
+        { "qte": "jianzi" },
+        { "say": ["seiji", "smile", "腿热了！今晚我要把你的86踢下山！"] },
+        { "danmaku": "evo", "n": 6 },
+        { "race": "ch8" },
+        { "bg": "touge_night" },
+        { "say": ["seiji", "shock", "我……又撞了……"] },
+        { "say": ["takumi", "smile", "哎哟，不错哦。"] },
+        { "unlockCar": "evo" },
+        { "silence": true }, { "music": "none" },
+        { "narr": "山顶。没有夏树。", "hold": 1.5 },
+        { "silence": false }
+      ]
+    },
+    {
+      "id": 9, "num": "第九章", "title": "山鸡哥", "palette": "rain", "type": "比赛", "motive": "夏树说今晚有事。你只想快点跑完，去找她。",
+      "steps": [
+        { "card": true },
+        { "bg": "hotel_rain" }, { "music": "race" },
+        { "say": ["kyoichi", "normal", "刘教练是我的人。今晚，我来讨个说法。"] },
+        { "say": ["kyoichi", "normal", "下雨了。你的86，扛得住吗？"] },
+        { "danmaku": "evo3", "n": 6 },
+        { "race": "ch9" },
+        { "bg": "hotel_rain" }, { "silence": true }, { "music": "none" },
+        { "narr": "引擎盖下冒出白烟。86停在了最后一个弯。" },
+        { "say": ["kyoichi", "silent", "……车跑不动了。今晚到此为止。"] },
+        { "say": ["itsuki", "silent", "拓海……有件事，我一直不知道该不该说。"] },
+        { "say": ["itsuki", "silent", "前天晚上，我在酒店门口……看到夏树，从一辆奔驰上下来。"] },
+        { "say": ["takumi", "silent", "……"] }
+      ]
+    },
+    {
+      "id": 10, "num": "第十章", "title": "沉默", "palette": "rain", "type": "过场",
+      "steps": [
+        { "card": true },
+        { "silence": true }, { "music": "piano" },
+        { "bg": "garage_rain" },
+        { "narr": "那天晚上，秋生叔一句话也没有说。" },
+        { "narr": "他把86推进车库，打开引擎盖。" },
+        { "narr": "车库的灯，亮了一整夜。", "hold": 3 },
+        { "bg": "tofu_dawn" },
+        { "narr": "早上，车钥匙放在桌上。" },
+        { "silence": false }
+      ]
+    },
+    {
+      "id": 11, "num": "第十一章", "title": "秋名山车神", "palette": "night", "type": "比赛", "motive": "证明秋生叔连夜换的引擎，没有白换。",
+      "steps": [
+        { "card": true },
+        { "bg": "summit_night" }, { "music": "race" },
+        { "say": ["ryosuke", "normal", "开赛之前，给你上一课。轮胎的抓地力是一个圆。刹车、转向、加速，分的是同一个圆。"] },
+        { "say": ["ryosuke", "normal", "你的86比我的FC轻。但想赢我，每一个弯，都不能浪费这个圆。"] },
+        { "say": ["itsuki", "shock", "他在说什么？"] },
+        { "say": ["yuichi", "normal", "物理。"] },
+        { "danmaku": "fc", "n": 6 },
+        { "race": "ch11" },
+        { "bg": "summit_night" },
+        { "danmaku": "秋名山车神", "flood": 48 },
+        { "say": ["ryosuke", "smile", "我输了。……藤原拓海，你考虑一下，来我的队伍。"] },
+        { "say": ["takumi", "smile", "哎哟，不错哦。"] },
+        { "unlockCar": "fc" }
+      ]
+    },
+    {
+      "id": 12, "num": "终章", "title": "奔驰", "palette": "dawn", "type": "比赛",
+      "steps": [
+        { "card": true },
+        { "silence": true }, { "music": "none" },
+        { "bg": "tofu_dawn" },
+        { "narr": "封神第二天的早上。照常送豆腐。" },
+        { "narr": "快到山脚的时候，一辆奔驰从身边开了过去。" },
+        { "narr": "副驾驶上，是夏树。" },
+        { "narr": "你什么都没想。" },
+        { "silence": false },
+        { "race": "finale" },
+        { "unlockCar": "benz" }
+      ]
+    },
+    {
+      "id": 13, "num": "尾声", "title": "你考虑一下", "palette": "dawn", "type": "过场",
+      "steps": [
+        { "card": true },
+        { "silence": true }, { "music": "piano" },
+        { "bg": "epilogue" },
+        { "narr": "几天后的清晨。一台白色的 FC 停在豆腐店门口。" },
+        { "say": ["ryosuke", "normal", "考虑好了吗。"] },
+        { "narr": "拓海把水杯放在仪表台上。倒满。" },
+        { "say": ["takumi", "silent", "……走吧。"] },
+        { "sfx": "go" },
+        { "panel": "projectd", "hold": 3.5 },
+        { "title": ["PROJECT D", "再快的86追不上奔驰。可是86，还在跑。"], "hold": 4 },
+        { "silence": false }
+      ]
+    }
+  ]
+}

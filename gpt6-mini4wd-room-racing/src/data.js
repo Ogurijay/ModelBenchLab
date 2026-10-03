@@ -1,77 +1,52 @@
+// Reference identities and dimensions: docs/car-reference-research.md. Physics values are estimates.
 export const CARS = [
-  { id: 'cyclone', name: '旋风冲锋', en: 'CYCLONE MAGNUM', color: '#1974cc', accent: '#ffdb45', trim: '#f0f0e5', shape: 'magnum', number: '01', style: '直线突破', stats: [86, 78, 71, 78], desc: '蓝白旋风，向着终点全速冲锋。宽翼与轻量车身带来出色的极速。' },
-  { id: 'hurricane', name: '飓风音速号', en: 'HURRICANE SONIC', color: '#df333b', accent: '#ffd655', trim: '#f3ede2', shape: 'sonic', number: '02', style: '弯道专家', stats: [78, 82, 90, 77], desc: '红色飓风，划出最漂亮的弯线。高下压力车壳让高速过弯更加稳定。' },
-  { id: 'triangle', name: '新三角剑', en: 'NEO-TRIDAGGER ZMC', color: '#262b38', accent: '#ef5f32', trim: '#e2d8c6', shape: 'dagger', number: '03', style: '轻量先锋', stats: [89, 83, 69, 72], desc: '锋利的三角轮廓，轻量化的速度机器。优秀的加速需要精细的弯道控制。' },
-  { id: 'evolution', name: '进化者', en: 'EVOLUTION', color: '#e5c33a', accent: '#ef4b30', trim: '#e6e4d6', shape: 'evo', number: '04', style: '全能进化', stats: [79, 84, 82, 83], desc: '以平衡应对每一条赛道。兼顾动力、抓地与续航的全能型赛车。' },
-  { id: 'cobra', name: '极速眼镜蛇', en: 'FAST COBRA', color: '#178455', accent: '#f4dd61', trim: '#dbe1d8', shape: 'cobra', number: '05', style: '极速猎手', stats: [92, 72, 72, 73], desc: '低伏的车头与蛇形中脊。长直道上的速度优势，足以扭转比赛。' },
-  { id: 'spider', name: '蜘蛛王', en: 'BEAK SPIDER', color: '#8b4dab', accent: '#ed534b', trim: '#dedbe1', shape: 'spider', number: '06', style: '精准切线', stats: [83, 79, 87, 73], desc: '伸展的侧翼与蛛网纹路。灵巧的车体在连续弯道中游刃有余。' },
-  { id: 'giant', name: '巨无霸', en: 'BROCKEN GIGANT', color: '#25353c', accent: '#d3493c', trim: '#bbbfad', shape: 'giant', number: '07', style: '重装稳定', stats: [70, 88, 92, 89], desc: '宽大的装甲与强力底盘。虽然极速较低，却有坚实的抓地与长程续航。' },
-  { id: 'devil', name: '魔鬼司令', en: 'DIOSPADA', color: '#c72436', accent: '#70c7df', trim: '#e9e4d7', shape: 'devil', number: '08', style: '双刃疾行', stats: [87, 85, 79, 71], desc: '双刃车鼻与低矮驾驶舱。猛烈的起步加速，是它抢占先机的秘诀。' },
+ {id:'cyclone',name:'旋风冲锋',en:'CYCLONE MAGNUM',shape:'magnum',color:'#ffffff',accent:'#233fbc',trim:'#e12c36',wheel:'#15c757',glass:'#181d29',number:'01',style:'AR · 后置马达',chassis:'AR',length:155,width:97,weight:132,gear:3.5,cg:17,desc:'白色流线车壳、蓝色独立前轮罩、红色闪电与荧光绿五辐轮。'},
+ {id:'hurricane',name:'飓风音速号',en:'HURRICANE SONIC',shape:'sonic',color:'#ffffff',accent:'#e52837',trim:'#167960',wheel:'#efd035',glass:'#181d29',number:'02',style:'AR · 后置马达',chassis:'AR',length:155,width:97,weight:136,gear:3.5,cg:16,desc:'白底红绿涂装，跨接前轮罩的前翼与宽幅后翼。'},
+ {id:'triangle',name:'新三角剑',en:'NEO-TRIDAGGER ZMC',shape:'dagger',color:'#30353d',accent:'#f45124',trim:'#f5bf27',wheel:'#d32629',glass:'#c2a34a',number:'03',style:'Super-I · 后置马达',chassis:'Super-I',length:132,width:90,weight:128,gear:4,cg:16,desc:'枪灰色三叉车头，橙红火焰、金色分割座舱与高架尾翼。'},
+ {id:'evolution',name:'进化者',en:'PROTO-SABER EVOLUTION',shape:'evo',color:'#66549d',accent:'#e02d32',trim:'#c6cbd0',wheel:'#b4bdc6',glass:'#d1d9df',number:'04',style:'AR · 后置马达',chassis:'AR',length:155,width:97,weight:142,gear:3.5,cg:18,desc:'紫色全覆车壳，银色金属座舱、红色火焰与双尖鼻。'},
+ {id:'cobra',name:'极速眼镜蛇',en:'SPIN COBRA',shape:'cobra',color:'#2247a6',accent:'#ffd537',trim:'#ed4932',wheel:'#b18b40',glass:'#202630',number:'05',style:'Super-II · 后置马达',chassis:'Super-II',length:150,width:97,weight:139,gear:4,cg:17,desc:'蓝色弧形全覆车壳，黄红火焰、银色中央蛇背与铜金轮毂。'},
+ {id:'spider',name:'蜘蛛王',en:'BEAK SPIDER',shape:'spider',color:'#111722',accent:'#167ddd',trim:'#e73632',wheel:'#151a20',glass:'#c8a841',number:'06',style:'Super-II · 后置马达',chassis:'Super-II',length:150,width:97,weight:140,gear:4,cg:18,stockDiameter:24,desc:'黑色车壳与蓝银蜘蛛网，金色座舱、白色轮胎、三层阶梯尾翼。'},
+ {id:'giant',name:'巨无霸',en:'BROCKEN GIGANT',shape:'giant',color:'#e0242f',accent:'#1d222a',trim:'#c7cdd4',wheel:'#edd330',glass:'#125092',number:'07',style:'FM-A · 前置马达',chassis:'FM-A',length:156,width:97,weight:152,gear:3.5,cg:15,frontMotor:true,desc:'红黑裂纹车壳，前置马达脊罩、银色管架与夹住轮胎的外护翼。'},
+ {id:'devil',name:'魔鬼司令',en:'RAY STINGER',shape:'devil',color:'#d2d7de',accent:'#dd252f',trim:'#242630',wheel:'#f0f1ec',glass:'#161b24',number:'08',style:'Super-II · 后置马达',chassis:'Super-II',length:150,width:97,weight:137,gear:4,cg:16,desc:'银色三叉尖鼻、黑色座舱、四个金色喷口和单片中央竖鳍。'},
 ];
-
-// Slots and options are declarative: new cars reuse this same assembly contract.
 export const PARTS = {
-  shell: { name: '空气动力车壳', en: 'BODY SHELL', detail: '车壳决定风阻与下压力。', options: [
-    { name: '原厂彩绘车壳', type: 'STANDARD', delta: [0, 0, 0, 0], color: null },
-    { name: '轻量镂空车壳', type: 'LIGHTWEIGHT', delta: [5, 4, -2, 0], color: null },
-    { name: '低阻下压力车壳', type: 'AERO PRO', delta: [7, 1, 7, -1], color: null },
-  ] },
-  chassis: { name: '四驱底盘', en: 'CHASSIS', detail: '底盘的刚性与重量影响起步和稳定性。', options: [
-    { name: '标准 ABS 底盘', type: 'STANDARD', delta: [0, 0, 0, 0], color: '#353e45' },
-    { name: '强化纤维底盘', type: 'REINFORCED', delta: [0, 3, 8, 2], color: '#475366' },
-    { name: '碳纤维轻量底盘', type: 'CARBON PRO', delta: [5, 7, 6, 3], color: '#202528' },
-  ] },
-  motor: { name: '高转速马达', en: 'MOTOR', detail: '高转速提升极速，但会产生更多热量。', options: [
-    { name: '标准 FA 马达', type: 'STANDARD', delta: [0, 0, 0, 0], color: '#a7afb0' },
-    { name: '疾速冲刺马达', type: 'HYPER DASH', delta: [10, 6, 0, -5], color: '#db7740' },
-    { name: '高扭矩竞速马达', type: 'TORQUE PRO', delta: [7, 13, 0, -3], color: '#dfb952' },
-  ] },
-  tires: { name: '轮毂与轮胎', en: 'WHEELS & TIRES', detail: '软胎提升抓地，硬胎减少直线滚动阻力。', options: [
-    { name: '标准橡胶轮胎', type: 'STANDARD', delta: [0, 0, 0, 0], color: '#25282b' },
-    { name: '低摩擦硬质轮胎', type: 'LOW FRICTION', delta: [8, 2, -3, 3], color: '#444852' },
-    { name: '超软抓地海绵胎', type: 'SUPER GRIP', delta: [-1, 5, 12, 2], color: '#8b443b' },
-  ] },
-  rollers: { name: '导轮与防倾杆', en: 'GUIDE ROLLERS', detail: '导轮减少擦墙损失，提高弯道安全速度。', options: [
-    { name: '塑料导轮组', type: 'STANDARD', delta: [0, 0, 0, 0], color: '#9baba9' },
-    { name: '铝合金轴承导轮', type: 'BALL BEARING', delta: [4, 1, 8, 1], color: '#8bb7c2' },
-    { name: '双层竞速导轮', type: 'DOUBLE PRO', delta: [3, 2, 13, 2], color: '#d8b867' },
-  ] },
-  battery: { name: '动力电池', en: 'POWER CELL', detail: '电压影响加速，容量影响冲刺时间和续航。', options: [
-    { name: '标准 AA 电池', type: 'STANDARD', delta: [0, 0, 0, 0], color: '#448376' },
-    { name: '高电压镍氢电池', type: 'POWER BOOST', delta: [3, 8, 0, 5], color: '#dc7641' },
-    { name: '长效竞赛电池', type: 'ENDURANCE PRO', delta: [2, 4, 0, 17], color: '#61a66d' },
-  ] },
+ shell:{name:'车壳',en:'BODY',detail:'减轻上部重量能降低重心。保留车型的经典轮廓和涂装。',options:[{name:'原厂彩绘 ABS 车壳',hint:'经典涂装',mass:0},{name:'轻量彩绘车壳',hint:'减重 6 g · 重心降低 1 mm',mass:-6,cg:-1},{name:'强化彩绘车壳',hint:'增重 4 g · 刚性提高',mass:4,cg:.5}]},
+ chassis:{name:'底盘',en:'CHASSIS',detail:'四个轮子通过齿轮与传动轴连接。巨无霸保持前置马达布局。',options:[{name:'原厂四驱底盘',hint:'原车型马达布局',mass:0,color:'#31343b'},{name:'强化 ABS 底盘',hint:'增重 5 g · 稳定支撑',mass:5,color:'#474c58'},{name:'轻量镂空底盘',hint:'减重 7 g · 落地容错降低',mass:-7,color:'#22262c'}]},
+ motor:{name:'马达',en:'MOTOR',detail:'持续供电。高转速需要搭配刹车与导轮，单纯追求极速容易飞出赛道。',options:[{name:'标准马达',hint:'12,000 rpm · 入门平衡型',rpm:12000,torque:.0048,current:.65,color:'#bcc1c6'},{name:'高转速马达',hint:'22,000 rpm · 跳台风险高',rpm:22000,torque:.0062,current:1.7,color:'#cf4140'},{name:'高扭矩马达',hint:'16,000 rpm · 爬坡与起步',rpm:16000,torque:.008,current:1.1,color:'#d4b954'}]},
+ gears:{name:'齿轮与传动轴',en:'DRIVETRAIN',detail:'固定齿比，比赛中不能换挡。3.5:1 偏极速，5:1 偏扭矩。',options:[{name:'原厂固定齿比',hint:'依底盘采用 3.5:1 / 4:1',ratio:0,color:'#e0b44d'},{name:'高速齿轮 3.5:1',hint:'较高极速 · 起步扭矩较低',ratio:3.5,color:'#74c2bd'},{name:'扭矩齿轮 5:1',hint:'降低极速 · 提高起步扭矩',ratio:5,color:'#c771b4'}]},
+ tires:{name:'轮毂与轮胎',en:'WHEELS',detail:'小直径偏加速，大直径偏极速；硬胎减少弯道擦地损失，低反弹胎帮助落地。',options:[{name:'原厂轮组 · 依车型轮径',hint:'24 / 26 mm · 原厂轮毂配色',diameter:26,grip:.85,rolling:.032,bounce:.38,color:null},{name:'24 mm 超硬低反弹胎',hint:'降低极速 · 减少落地弹跳',diameter:24,grip:.72,rolling:.023,bounce:.18,color:'#33353a'},{name:'31 mm 大径软胎',hint:'提高极速 · 弹跳与弯道损失增大',diameter:31,grip:1,rolling:.045,bounce:.54,color:'#22242a'}]},
+ rollers:{name:'导轮与支架',en:'ROLLERS',detail:'导轮贴着 50 mm 高护墙被动转向。轴承减少擦墙损失，双层导轮提高抗倾翻能力。',options:[{name:'原厂塑料导轮',hint:'97 mm 整车宽 · 普通轴承',width:97,friction:.105,limit:75,mass:0,color:null},{name:'19 mm 铝合金轴承导轮',hint:'104 mm 整车宽 · 低擦墙损失',width:104,friction:.045,limit:94,mass:5,color:'#bdc6cf'},{name:'双层导轮与碳板',hint:'104 mm 整车宽 · 抗倾翻加强',width:104,friction:.055,limit:125,mass:9,color:'#dab355'}]},
+ brake:{name:'刹车海绵',en:'BRAKE',detail:'海绵在上坡接触赛道，发车后自动减速。厚海绵缩短飞行距离，也损失上坡速度。',options:[{name:'原厂滑条 · 无海绵',hint:'平路速度快 · 高速跳台风险高',strength:0,mass:0,color:'#383b42'},{name:'1 mm 蓝色刹车海绵',hint:'中等上坡制动 · 间隙 2 mm',strength:1.8,mass:2,color:'#559cde'},{name:'2 mm 粉色刹车海绵',hint:'强上坡制动 · 间隙 1 mm',strength:3.6,mass:3,color:'#e56e9d'}]},
+ dampers:{name:'质量阻尼器',en:'MASS DAMPERS',detail:'铜质砝码消耗落地能量，减少弹跳，但增加整车重量。',options:[{name:'无质量阻尼器',hint:'轻量 · 落地较易弹跳',mass:0,damping:0},{name:'双侧铜质阻尼器',hint:'+8 g · 减少落地弹跳',mass:8,damping:.5},{name:'前后阻尼器组',hint:'+14 g · 稳定跳台落地',mass:14,damping:.78}]},
+ battery:{name:'两节 AA 电池',en:'BATTERIES',detail:'两节 AA 电池，容量、电压与重量存在取舍。模拟参数使用负载估计值。',options:[{name:'两节碱性 AA',hint:'2.7 V 负载估值 · 1,200 mAh',voltage:2.7,capacity:1200,mass:0,color:'#d3a34e'},{name:'两节竞赛 Ni-MH',hint:'2.5 V 负载估值 · 1,900 mAh',voltage:2.5,capacity:1900,mass:7,color:'#64a489'},{name:'两节轻量 Ni-MH',hint:'2.4 V 负载估值 · 950 mAh',voltage:2.4,capacity:950,mass:-5,color:'#db774a'}]},
 };
-export const STAT_NAMES = ['极速', '加速', '稳定', '续航'];
-export const VENUES = [
-  { id: 'bedroom', name: '放学后的房间', en: 'AFTER SCHOOL', tag: '温暖木地板 · 午后阳光', wall: '#9faaa2', floor: '#bc9267', accent: '#e76940', light: '#fff0d3', grip: 1, ambient: 25 },
-  { id: 'club', name: '街角模型俱乐部', en: 'THE HOBBY CLUB', tag: '专业练习室 · 冷白灯光', wall: '#8098a0', floor: '#9b9e98', accent: '#1b817d', light: '#e6f5ff', grip: 1.08, ambient: 21 },
-  { id: 'night', name: '午夜车库', en: 'MIDNIGHT GARAGE', tag: '霓虹灯带 · 深夜竞速', wall: '#293b4c', floor: '#414850', accent: '#d95948', light: '#bfd7ff', grip: .96, ambient: 19 },
+export const STAT_NAMES=['极速','加速','稳定','续航'];
+export const VENUES=[
+ {id:'bedroom',name:'放学后的模型社',en:'AFTER SCHOOL',tag:'木地板活动室 · 午后阳光',wall:'#ddd8cd',floor:'#b58a5e',accent:'#e84636',light:'#fff0d5',grip:1,ambient:25},
+ {id:'club',name:'模型竞技俱乐部',en:'RACING CLUB',tag:'大型室内赛场 · 专业练习',wall:'#afb8bb',floor:'#8a8f8d',accent:'#167c8b',light:'#e9f3ff',grip:1,ambient:22},
+ {id:'night',name:'深夜改装工场',en:'NIGHT WORKSHOP',tag:'室内工场 · 灯带照明',wall:'#303c4b',floor:'#414752',accent:'#e85d44',light:'#c9ddff',grip:1,ambient:20},
 ];
-export const TRACKS = [
-  { id: 'classic', name: '旋风环线', en: 'CYCLONE CIRCUIT', level: '均衡型', desc: '长直道、连续弯与起伏桥面，适合第一场比赛。', points: [[-10,0,8],[0,0,8],[10,0,8],[15,0,4],[15,0,-3],[10,0,-7],[5,0,-4],[0,0,0],[-6,0,-4],[-11,0,-7],[-16,0,-3],[-16,0,3]], hill: true },
-  { id: 'speed', name: '闪电高速环', en: 'LIGHTNING OVAL', level: '高速型', desc: '流畅大弯连接超长直线，考验马达和电池。', points: [[-10,0,7],[0,0,7],[11,0,7],[16,0,3],[16,0,-3],[11,0,-7],[0,0,-7],[-11,0,-7],[-16,0,-3],[-16,0,3]], hill: false },
-  { id: 'cross', name: '双层交叉挑战', en: 'CROSSOVER EIGHT', level: '技术型', desc: '真正分层的立交八字赛道，连续弯道与爬坡。', points: [[-13,0,7],[-6,0,6],[0,3.4,0],[7,2.4,-6],[13,0,-7],[17,0,-2],[15,0,5],[9,0,7],[0,0,0],[-8,0,-7],[-15,0,-5],[-17,0,1]], hill: false },
+export const TRACKS=[
+ {id:'classic',name:'放学后 · 长程技术赛',en:'GRAND CIRCUIT',level:'均衡型',desc:'长直线、八个弯道、波浪段、双跳台与立体换道桥。',points:[[-7,4.5],[7,4.5],[7,-4.5],[-7,-4.5],[-7,-1.5],[4,-1.5],[4,1.5],[-7,1.5]],radius:.88,jumps:true},
+ {id:'speed',name:'疾风 · 高速耐力赛',en:'HYPER ENDURANCE',level:'高速型',desc:'超长折返直线、大半径回转与换道桥，适合调试动力组合。',points:[[-9,5.6],[9,5.6],[9,-5.6],[-9,-5.6],[-9,-1.9],[5.3,-1.9],[5.3,1.9],[-9,1.9]],radius:1.02,jumps:false},
+ {id:'cross',name:'ZMC · 双层立交赛',en:'ZMC CROSSOVER',level:'技术型',desc:'两翼长程回环、分层中央立交、陡坡跳台与换道桥。',points:[[-8.6,5.8],[-2.9,5.8],[2.9,-5.8],[8.6,-5.8],[8.6,5.8],[2.9,5.8],[-2.9,-5.8],[-8.6,-5.8]],radius:1.05,jumps:true,crossover:true},
 ];
-export function defaultBuild() { return Object.fromEntries(Object.keys(PARTS).map(key => [key, 0])); }
-export function normalizeBuild(build = {}) { return Object.fromEntries(Object.keys(PARTS).map(key => [key, Number.isInteger(build[key]) && PARTS[key].options[build[key]] ? build[key] : 0])); }
-export function getStats(car, build = {}) {
-  const result = [...car.stats];
-  for (const [key, part] of Object.entries(PARTS)) {
-    const option = part.options[build[key]] || part.options[0];
-    option.delta.forEach((value, index) => { result[index] += value; });
-  }
-  return result.map(value => Math.max(30, Math.min(125, value)));
+export const defaultBuild=()=>Object.fromEntries(Object.keys(PARTS).map(k=>[k,0]));
+export function normalizeBuild(raw={}){if(!raw||typeof raw!=='object')raw={};return Object.fromEntries(Object.keys(PARTS).map(k=>[k,Number.isInteger(raw[k])&&PARTS[k].options[raw[k]]?raw[k]:0]));}
+export function getSetup(car,raw={}){
+ const b=normalizeBuild(raw),p=Object.fromEntries(Object.keys(PARTS).map(k=>[k,PARTS[k].options[b[k]]]));
+ const mass=car.weight+Object.values(p).reduce((s,o)=>s+(o.mass||0),0),ratio=p.gears.ratio||car.gear,diameter=b.tires===0?(car.stockDiameter||26):p.tires.diameter;
+ const speed=p.motor.rpm/60/ratio*Math.PI*diameter/1000*(p.battery.voltage/2.7)*.91;
+ return {build:b,parts:p,mass,ratio,diameter,topSpeed:speed,acceleration:p.motor.torque*ratio/(diameter/2000)/(mass/1000),width:b.rollers===0?car.width:p.rollers.width,height:car.shape==='dagger'?46:car.shape==='spider'?43:40,length:b.brake||b.rollers?Math.max(car.length,154):car.length,cg:car.cg+(p.shell.cg||0),capacity:p.battery.capacity,cornerLoss:p.rollers.friction,cornerLimit:p.rollers.limit*(17/(car.cg+(p.shell.cg||0))),brake:p.brake.strength,bounce:p.tires.bounce*(1-p.dampers.damping),current:p.motor.current};
 }
-export function topSpeed(stats) { return 6.4 + stats[0] * .055; }
-export function validateCustomCar(raw, existing = []) {
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error('赛车数据必须是 JSON 对象。');
-  const name = String(raw.name || '').trim();
-  if (!name || name.length > 18) throw new Error('赛车名称需要 1–18 个字符。');
-  if (!/^#[\da-f]{6}$/i.test(raw.color || '')) throw new Error('车身颜色需要 #RRGGBB 格式。');
-  if (!Array.isArray(raw.stats) || raw.stats.length !== 4 || raw.stats.some(x => !Number.isInteger(x) || x < 45 || x > 95)) throw new Error('四项基础属性必须是 45–95 之间的整数。');
-  if (raw.stats.reduce((sum, n) => sum + n, 0) > 340) throw new Error('基础属性总和不能超过 340。');
-  if (existing.length >= 16) throw new Error('车库最多可保存 16 辆拓展赛车。');
-  const shape = CARS.some(c => c.shape === raw.shape) ? raw.shape : 'magnum';
-  return { id: `custom-${Date.now()}-${Math.random().toString(36).slice(2,7)}`, name, en: 'CUSTOM MACHINE', color: raw.color, accent: /^#[\da-f]{6}$/i.test(raw.accent || '') ? raw.accent : '#f9d36c', trim: '#efe9da', shape, stats: raw.stats.map(Math.round), number: 'EX', style: '专属改造', desc: '为自己的热爱打造一辆赛车。基础属性与六个改装槽均参与实际比赛。', custom: true };
+export function getStats(car,b={}){const s=getSetup(car,b);return [s.topSpeed*15,s.acceleration*7,s.cornerLimit*.72+(1-s.bounce)*20,s.capacity/24].map(n=>Math.round(Math.max(15,Math.min(125,n))));}
+export const topSpeed=stats=>stats[0]/15;
+export function inspectCar(car,b={}){const s=getSetup(car,b),reasons=[];if(s.width>=105)reasons.push('宽度必须小于 105 mm');if(s.length>=165)reasons.push('长度必须小于 165 mm');if(s.height>=70)reasons.push('高度必须小于 70 mm');if(s.mass<90)reasons.push('含电池质量至少 90 g');return {legal:reasons.length===0,reasons,...s};}
+export function validateCustomCar(raw,existing=[]){
+ if(!raw||typeof raw!=='object'||Array.isArray(raw))throw new Error('赛车数据必须是 JSON 对象。');
+ const name=String(raw.name||'').trim();if(!name||name.length>18)throw new Error('赛车名称需要 1–18 个字符。');
+ if(!/^#[\da-f]{6}$/i.test(raw.color||''))throw new Error('车身颜色需要 #RRGGBB 格式。');
+ if(existing.length>=16)throw new Error('车库最多可保存 16 辆拓展赛车。');
+ const base=CARS.find(c=>c.shape===raw.shape)||CARS[0];
+ return {...base,id:`custom-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,name,en:'CUSTOM MACHINE',color:raw.color,accent:/^#[\da-f]{6}$/i.test(raw.accent||'')?raw.accent:base.accent,number:'EX',style:`${base.chassis} · 专属涂装`,desc:`基于${base.name}的自定义涂装，采用同一套配件调校规则。`,custom:true};
 }

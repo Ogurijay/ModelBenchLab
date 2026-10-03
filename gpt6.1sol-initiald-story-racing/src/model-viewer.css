@@ -1,0 +1,55 @@
+.model-viewer { margin:0; color:#ece7dc; background:#111c29; overflow:hidden; font-family:"Microsoft YaHei",sans-serif; }
+.model-header { position:relative; display:flex; align-items:center; justify-content:space-between; height:72px; padding:0 42px; border-bottom:1px solid #36414d; font-size:12px; letter-spacing:2px; }
+.model-header a { color:#ece7dc; text-decoration:none; letter-spacing:1px; }
+.model-header span { color:#91a6b8; font-size:10px; }
+.model-header b { font-weight:400; }
+.model-layout { display:grid; grid-template-columns:315px 1fr; height:calc(100dvh - 72px); }
+.model-info { padding:35px 29px 20px; border-right:1px solid #36414d; overflow:auto; background:#111c29; }
+.model-eyebrow { font-size:11px; color:#df9975; letter-spacing:3px; margin:0 0 16px; }
+.model-info h1 { font-family:"Microsoft YaHei",sans-serif; font-size:27px; line-height:1.2; letter-spacing:-1px; margin:0 0 18px; }
+.model-info #model-note { font-size:12px; line-height:1.9; color:#a4b6c4; min-height:52px; }
+#model-spec { display:flex; gap:20px; padding:12px 0 23px; font-size:10px; color:#d7d1bd; letter-spacing:1px; }
+#model-list { display:grid; gap:0; border-top:1px solid #36414d; }
+#model-list button { background:transparent; color:#a5b6c2; display:flex; align-items:center; gap:15px; text-align:left; height:48px; padding:0 13px 0 2px; border:0; border-bottom:1px solid #36414d; font-size:12px; cursor:pointer; }
+#model-list button small { color:#5e7b91; font-size:9px; width:17px; }
+#model-list button b { margin-left:auto; font-size:15px; font-weight:400; }
+#model-list button.selected { color:#ede7d8; padding-left:12px; box-shadow:inset 3px 0 #df9975; background:#1b2a39; }
+#model-list button.selected small { color:#df9975; }
+.model-disclaimer { color:#6f899d; font-size:10px; line-height:1.8; padding-top:20px; }
+.model-stage { position:relative; overflow:hidden; }
+#model-canvas { width:100%; height:100%; }
+#model-canvas canvas { display:block; width:100%; height:100%; cursor:grab; touch-action:none; }
+#model-canvas canvas:active { cursor:grabbing; }
+.model-watermark { position:absolute; top:31px; right:35px; font-size:55px; letter-spacing:10px; font-family:serif; color:#294052; pointer-events:none; opacity:.45; }
+.model-tools { position:absolute; top:24px; left:25px; display:flex; gap:10px; flex-wrap:wrap; }
+.model-tools button { color:#9db0bd; background:#152331dd; border:1px solid #405467; font-size:11px; padding:10px 14px; cursor:pointer; }
+.model-tools button.selected,.model-tools button[aria-pressed=true] { color:#f2dfc8; border-color:#d2a282; background:#293541; }
+.model-tools>div { display:flex; gap:4px; }
+.model-help { position:absolute; bottom:23px; left:28px; font-size:10px; letter-spacing:1px; color:#8fa5b5; pointer-events:none; }
+#model-number { position:absolute; bottom:30px; right:36px; color:#bca58e; font-size:17px; letter-spacing:4px; }
+.model-viewer button:focus-visible,.model-header a:focus-visible { outline:2px solid #f2dfc8; outline-offset:3px; }
+@media(max-width:850px){
+  .model-layout { grid-template-columns:250px 1fr; }
+  .model-info { padding:28px 20px 10px; }
+  .model-tools { left:16px; right:16px; top:18px; gap:8px; }
+  .model-tools button { padding:9px 10px; }
+}
+@media(max-width:650px){
+  .model-header { height:55px; padding:0 16px; font-size:10px; letter-spacing:1px; }
+  .model-header span { display:none; }
+  .model-layout { display:flex; flex-direction:column-reverse; height:calc(100dvh - 55px); }
+  .model-stage { height:54%; min-height:285px; flex-shrink:0; }
+  .model-info { height:46%; padding:18px 20px; border-top:1px solid #36414d; border-right:0; }
+  .model-eyebrow { display:none; }
+  .model-info h1 { font-size:23px; margin:0 0 8px; }
+  .model-info #model-note { margin:0; min-height:0; font-size:11px; }
+  #model-spec { padding:9px 0 13px; }
+  #model-list { grid-template-columns:1fr 1fr; }
+  #model-list button { height:44px; font-size:10px; gap:9px; padding-right:8px; }
+  .model-disclaimer { padding:8px 0 0; font-size:9px; }
+  .model-tools { top:13px; flex-direction:column; gap:5px; }
+  .model-tools button { padding:8px 11px; min-height:36px; font-size:10px; }
+  .model-watermark { top:110px; right:14px; font-size:38px; }
+  .model-help { left:18px; bottom:9px; font-size:9px; }
+  #model-number { right:16px; bottom:20px; font-size:12px; }
+}

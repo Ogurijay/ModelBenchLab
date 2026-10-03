@@ -24,6 +24,8 @@ registry 的 `docs` 布尔标记与 `docPaths` 路径须对应真实文件。补
 
 项目、模型、调试端口与门户信息以 `benchmark/registry.json` 为唯一清单源，门户动态读取它。全部项目都需有 package.json 并纳入 workspaces；纯静态任务使用零运行时依赖 manifest，无需添加构建工具。
 
+门户按“主题大类 → 项目系列 → 模型实现”展示：`portalSections[]` 定义主题，`groups[]` 定义系列，系列的 `missions[]` 引用已有任务。每个 mission 必须且只能归属一个系列，主题与系列 ID 各自唯一。相似玩法可合组展示（如 brawler/digimon），但展示分类不改变能力类别、task_id/task_version 或评测可比范围。物理目录继续平铺，不随门户主题移动项目。
+
 常规服务唯一端口为 **3000**：根目录 `npm run dev`；门户 `/`，项目 `/<dir>/`。`dev:one` 是明确的独立调试例外：根目录 `npm run dev:one -- <目录、旧别名或登记端口>`。项目配置及当前 README 的调试端口须一致。
 
 新端口递增且不复用。历史待整合项目可以恢复其原已分配端口；删除的端口列入 `retiredPorts`。新增/改名/删除项目需同步 registry、workspaces、lockfile，执行 npm install（结构整理使用 `--offline --ignore-scripts`，保持已解析版本），最后运行 `npm run sync:check`。

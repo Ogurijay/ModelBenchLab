@@ -1,86 +1,55 @@
-import { getStats, topSpeed } from './data.js';
-import { Track } from './track.js';
-export const STEP = 1/120;
-const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
-
-export class Race {
-  constructor({cars, builds, playerId, track, venue, count=8, laps=3, seed=42}) {
-    this.track = track instanceof Track ? track : new Track(track);
-    this.venue=venue; this.laps=clamp(laps,1,9); this.seed=seed>>>0;
-    this.state='ready'; this.time=0; this.countdown=3; this.mode='auto'; this.accumulator=0; this.events=[];
-    const player=cars.find(car=>car.id===playerId)||cars[0];
-    const roster=[player,...cars.filter(car=>car.id!==player.id)].slice(0,clamp(count,1,8));
-    this.racers=roster.map((car,i)=>({ car, stats:getStats(car,builds[car.id]), player:i===0, lane:i%4, targetLane:i%4, progress:-.012-Math.floor(i/4)*.018, speed:0, battery:100, heat:venue.ambient, wobble:0, recover:0, cooldown:0, finish:null, bestLap:null, lapStart:0, completed:0, lastNotice:-10, boost:false }));
-  }
-  get player() { return this.racers[0]; }
-  random() { this.seed=(Math.imul(1664525,this.seed)+1013904223)>>>0; return this.seed/4294967296; }
-  start() { if (this.state==='ready') this.state='countdown'; }
-  pause() { if (this.state==='running'||this.state==='countdown') { this.resumeState=this.state; this.state='paused'; } else if (this.state==='paused') this.state=this.resumeState; }
-  changeLane(direction) {
-    if (this.mode!=='manual'||this.state!=='running'||this.player.finish!==null) return false;
-    const r=this.player, next=clamp(r.targetLane+direction,0,3);
-    if (!this.track.canChange(r.progress)) return false;
-    if (this.racers.some(o=>o!==r && o.finish===null && Math.abs(o.lane-next)<.6 && Math.abs(o.progress-r.progress)*this.track.length<1.6)) return false;
-    r.targetLane=next; return true;
-  }
-  update(dt,input={}) {
-    if (!['running','countdown'].includes(this.state)) { this.accumulator=0; return; }
-    this.accumulator+=Math.min(.1,Math.max(0,dt));
-    while (this.accumulator>=STEP) { this.step(STEP,input); this.accumulator-=STEP; }
-  }
-  step(dt,input={}) {
-    if (this.state==='countdown') { this.countdown-=dt; if (this.countdown<=0) { this.state='running'; this.events.push({type:'start'}); } return; }
-    if (this.state!=='running') return;
-    this.time+=dt;
-    for (const r of this.racers) {
-      if (r.finish!==null) { r.speed=Math.max(0,r.speed-dt*9); continue; }
-      const pose=this.track.pose(r.progress,r.lane), manual=r.player&&this.mode==='manual';
-      const safe=clamp(Math.sqrt((5.8+r.stats[2]*.085)*this.venue.grip/Math.max(.065,pose.curvature)),6.4,19);
-      const thermal=r.heat>85 ? .77 : 1, charge=r.battery<12 ? .72+r.battery/12*.28 : 1;
-      const max=topSpeed(r.stats)*thermal*charge;
-      const boosting=manual&&input.boost&&r.battery>10&&r.heat<92&&r.recover<=0;
-      r.boost=boosting;
-      let target=manual ? (input.throttle ? max*(boosting?1.32:1):0) : Math.min(max,safe*.99);
-      if (manual&&input.brake) target=0;
-      if (r.recover>0) { r.recover-=dt; target=Math.min(target,3.2); }
-      if (r.cooldown>0) r.cooldown-=dt;
-      if (!manual && this.track.canChange(r.progress) && r.cooldown<=0) {
-        const blocker=this.racers.find(o=>o!==r&&o.finish===null&&Math.abs(o.lane-r.lane)<.6&&o.progress>r.progress&&(o.progress-r.progress)*this.track.length<3.5);
-        if (blocker) {
-          for (const next of [r.targetLane-1,r.targetLane+1]) {
-            if(next>=0&&next<4&&!this.racers.some(o=>o!==r&&o.finish===null&&Math.abs(o.lane-next)<.7&&Math.abs(o.progress-r.progress)*this.track.length<2.5)) { r.targetLane=next; break; }
-          }
-        }
-        r.cooldown=.8+this.random()*.4;
-      }
-      r.lane += clamp(r.targetLane-r.lane,-dt*2.8,dt*2.8);
-      const blocker=this.racers.find(o=>o!==r&&o.finish===null&&Math.abs(o.lane-r.lane)<.55&&o.progress>r.progress&&(o.progress-r.progress)*this.track.length<1.5);
-      if(blocker) target=Math.min(target,Math.max(0,blocker.speed-.5));
-      const accel=(2.6+r.stats[1]*.07)*(100/(80+r.stats[3]*.15));
-      r.speed+=clamp(target-r.speed,-dt*(input.brake&&manual?18:7.5),dt*accel);
-      r.speed=Math.max(0,r.speed-pose.slope*dt*3.4);
-      if(manual&&input.brake&&r.speed<.45)r.speed=0;
-      if (r.speed>safe*1.13 && r.recover<=0) {
-        r.wobble+=dt*(r.speed/safe-1)*2.6;
-        if(r.wobble>.55) { r.recover=.75; r.wobble=0; if(r.player&&this.time-r.lastNotice>3){this.events.push({type:'warning',text:'过弯太快！导轮碰壁减速，入弯前试试刹车。'});r.lastNotice=this.time;} }
-      } else r.wobble=Math.max(0,r.wobble-dt);
-      r.heat=clamp(r.heat+dt*((r.speed/max)*3.2+(boosting?11:0)-(r.heat-this.venue.ambient)*.17),this.venue.ambient,105);
-      r.battery=clamp(r.battery-dt*(r.speed>0?(.28*(85/r.stats[3])+(boosting?2.8:0)):0),0,100);
-      const previous=r.progress, next=previous+r.speed*dt/pose.localLength;
-      r.progress=next;
-      if(previous<0&&next>=0) r.lapStart=this.time-dt+(0-previous)/(next-previous)*dt;
-      const crossed=Math.floor(next);
-      if(crossed>r.completed) {
-        const crossingTime=this.time-dt+(crossed-previous)/(next-previous)*dt;
-        const lapTime=crossingTime-r.lapStart; r.bestLap=r.bestLap===null?lapTime:Math.min(r.bestLap,lapTime); r.lapStart=crossingTime; r.completed=crossed;
-        if(r.player) this.events.push({type:'lap',lap:crossed,time:lapTime});
-      }
-      if(next>=this.laps) { r.finish=this.time-dt+(this.laps-previous)/(next-previous)*dt; r.progress=this.laps; r.boost=false; this.events.push({type:'finish',id:r.car.id}); }
+import {Track} from './track.js';
+import {getSetup,inspectCar,normalizeBuild} from './data.js';
+const STEP=1/240,G=9.81;
+export class Race{
+ constructor({cars,builds={},playerId,track,venue,count=8,laps=1,laneCount=8}){
+  this.track=new Track(track,laneCount);this.venue=venue;this.rounds=Math.max(1,Math.min(3,laps|0));this.laps=laneCount*this.rounds;this.mode='auto';this.time=0;this.state='ready';this.events=[];this.accumulator=0;
+  const player=cars.find(c=>c.id===playerId)||cars[0],grid=[player,...cars.filter(c=>c.id!==player.id)].slice(0,Math.min(laneCount,Math.max(1,count|0)));
+  this.racers=grid.map((car,i)=>({car,player:i===0,initialLane:i,lane:i,setup:getSetup(car,builds[car.id]),build:normalizeBuild(builds[car.id]),progress:0,distance:0,completed:0,speed:0,battery:100,heat:venue.ambient,finish:null,bestLap:null,lastLap:0,status:'ready',reason:null,air:null,airOffset:0,bounceCount:0,wobble:0,boost:false,turnLoad:0}));this.player=this.racers[0];
+ }
+ start(){if(this.state!=='ready')return false;for(const r of this.racers){const inspection=inspectCar(r.car,r.build);if(!inspection.legal){this.events.push({type:'warning',text:r.car.name+'未通过车检：'+inspection.reasons.join('、')});return false;}}this.countdown=3;this.state='countdown';return true;}
+ pause(){if(this.state==='paused')this.state=this.resumeState;else if(['running','countdown'].includes(this.state)){this.resumeState=this.state;this.state='paused';}}
+ changeLane(){return false;}
+ retire(r,reason){if(r.status!=='running')return;r.status='dnf';r.reason=reason;r.speed=0;if(r.player)this.events.push({type:'warning',text:'退赛：'+reason+'。回工坊调整刹车、轮胎或阻尼器。'});}
+ update(dt,input={}){
+  if(!Number.isFinite(dt)||dt<=0||['ready','paused','finished'].includes(this.state))return;this.accumulator+=Math.min(dt,.1);
+  while(this.accumulator>=STEP){this.accumulator-=STEP;if(this.state==='countdown'){this.countdown-=STEP;if(this.countdown<=0){this.state='running';for(const r of this.racers)r.status='running';}}else if(this.state==='running')this.step(STEP,input);}
+ }
+ step(dt,input){
+  this.time+=dt;
+  for(const r of this.racers){
+   if(r.status!=='running')continue;const s=r.setup,pose=this.track.pose(r.progress,r.initialLane),manual=r.player&&this.mode==='manual';
+   // Competition motors stay on. No AI throttle, active steering, boost or mid-race tuning.
+   const throttle=manual?(input.throttle?1:0):1,voltageFactor=.94+.06*r.battery/100,thermal=Math.max(.7,1-Math.max(0,r.heat-60)*.007),maxSpeed=s.topSpeed*voltageFactor*thermal;
+   const motor=s.acceleration*throttle*Math.max(0,1-r.speed/maxSpeed),rolling=s.parts.tires.rolling*G;
+   r.turnLoad=r.speed*r.speed*pose.curvature;const rollerLoss=r.turnLoad*s.cornerLoss,rampBrake=pose.slope>.075?s.brake*4:0;
+   const acceleration=r.air?0:motor-rolling-rollerLoss-G*pose.slope-rampBrake-(manual&&input.brake?12:0);
+   r.speed=Math.max(0,r.speed+acceleration*dt);r.boost=false;
+   const ds=r.speed*dt,old=r.progress;r.progress+=ds/this.track.length/Math.max(.35,pose.scale);r.distance+=ds;r.lane=this.track.laneAt(r.progress,r.initialLane);
+   r.battery=Math.max(0,r.battery-s.current*1000/3600/s.capacity*100*dt*(.6+throttle*.4));r.heat+=(s.current*1.3-(r.heat-this.venue.ambient)*.035)*dt;
+   if(!r.air)for(const jump of this.track.jumps){const lap=Math.floor(old),launch=lap+jump.launch/this.track.length;if(old<launch&&r.progress>=launch){const origin=this.track.rawPoint(launch,r.initialLane),p=this.track.pose(launch-.000001,r.initialLane);r.air={origin,heading:p.tangent.clone().setY(0).normalize(),time:0,vy:r.speed*(jump.height/(jump.launch-jump.start)),horizontal:0};break;}}
+   if(r.air){
+    const a=r.air;a.time+=dt;a.horizontal+=ds;const floor=this.track.rawPoint(r.progress,r.initialLane),height=a.origin.y+a.vy*a.time-G*a.time*a.time/2;
+    r.airOffset=Math.max(0,height-floor.y);r.airPosition=a.origin.clone().addScaledVector(a.heading,a.horizontal);r.airPosition.y=height;
+    if(a.time>.015&&height<=floor.y){
+     const lateral=Math.hypot(r.airPosition.x-floor.x,r.airPosition.z-floor.z);
+     if(lateral>this.track.laneWidth*.48){this.retire(r,'跳台落地越过护墙 / 串道');continue;}
+     const impact=Math.abs(a.vy-G*a.time),bounce=impact*s.bounce;r.air=null;r.airOffset=0;r.airPosition=null;r.bounceCount++;
+     if(bounce>.3)r.air={origin:floor,heading:this.track.pose(r.progress,r.initialLane).tangent.clone().setY(0).normalize(),time:0,vy:bounce,horizontal:0};
     }
-    if (this.racers.every(r=>r.finish!==null)) this.state='finished';
-    // A stopped manual driver cannot hold the session open forever after the field finishes.
-    const firstFinish=Math.min(...this.racers.filter(r=>r.finish!==null).map(r=>r.finish));
-    if(Number.isFinite(firstFinish)&&this.time-firstFinish>60) { this.state='finished'; this.events.push({type:'timeout'}); }
+   }else if(r.turnLoad>s.cornerLimit){this.retire(r,'高速弯道倾翻冲出赛道');continue;}
+   r.wobble=Math.max(0,r.turnLoad/s.cornerLimit-.65);
+   if(Math.floor(r.progress)>r.completed){
+    r.completed=Math.floor(r.progress);const crossing=this.time-dt+(r.completed-old)/(r.progress-old)*dt,lapTime=crossing-r.lastLap;r.bestLap=r.bestLap===null?lapTime:Math.min(r.bestLap,lapTime);r.lastLap=crossing;
+    if(r.player)this.events.push({type:'lap',lap:r.completed,time:lapTime});
+    if(r.completed>=this.laps){r.finish=crossing;r.status='finished';r.progress=this.laps;r.speed=0;}
+   }
+   r.stalled=r.speed<.025&&throttle>0?(r.stalled||0)+dt:0;
+   if(r.stalled>4)this.retire(r,'坡道失速 / 阻塞赛道，刹车过强或扭矩不足');
+   if(r.battery<=0)this.retire(r,'电池耗尽');
   }
-  get standings() { return [...this.racers].sort((a,b)=>a.finish!==null&&b.finish!==null ? a.finish-b.finish : a.finish!==null ? -1 : b.finish!==null ? 1 : b.progress-a.progress); }
+  if(this.racers.every(r=>['finished','dnf'].includes(r.status)))this.state='finished';
+  else if(this.time>600){for(const r of this.racers)this.retire(r,'达到十分钟练习赛时限');this.state='finished';}
+ }
+ get standings(){return [...this.racers].sort((a,b)=>a.finish!==null&&b.finish!==null?a.finish-b.finish:a.finish!==null?-1:b.finish!==null?1:a.status==='dnf'&&b.status!=='dnf'?1:b.status==='dnf'&&a.status!=='dnf'?-1:b.progress-a.progress);}
 }

@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-01",
+  "problems": [
+    "缺少文件 claudeopus5.5-initiald-akina/README.md",
+    "缺少文件 claudeopus5.5-initiald-akina/HANDOVER.md",
+    "缺少文件 claudeopus5.5-initiald-akina/CHANGELOG.md"
+  ],
+  "warnings": [
+    "23 个任务为 draft，正式评测仍待输入与参数冻结"
+  ],
+  "projectCount": 53,
+  "draftCount": 23,
+  "note": "Global problems are preserved verbatim; other concurrent projects were not edited to make the check pass."
+}

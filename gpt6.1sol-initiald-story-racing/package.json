@@ -1,0 +1,12 @@
+{
+  "name": "gpt6.1sol-initiald-story-racing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3054",
+    "build": "vite build --base ./",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": { "three": "0.185.1" }
+}

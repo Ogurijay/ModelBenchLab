@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-02T18:36:37.201Z",
+  "browser": "145.0.7632.6",
+  "url": "http://[::1]:3000/gpt6.1sol-initiald-story-racing/?bench=1",
+  "checks": [
+    {
+      "label": "KeyD steers to the visible right",
+      "delta": 0.32624168927036556,
+      "noseScreenOffset": 0.02469336335657747
+    },
+    {
+      "label": "KeyA steers to the visible left",
+      "delta": -0.14236338486514571,
+      "noseScreenOffset": -0.0186430486753199
+    },
+    {
+      "label": "ArrowRight steers to the visible right",
+      "delta": 0.1423633848651439,
+      "noseScreenOffset": 0.018779083570438747
+    },
+    {
+      "label": "ArrowLeft steers to the visible left",
+      "delta": -0.14213926336535504,
+      "noseScreenOffset": -0.018936084797173416
+    },
+    {
+      "label": "Dawn headlamps open and the actual brake key brightens then releases the tail lamps",
+      "headlights": 2,
+      "running": 0.26,
+      "braking": 1.9
+    },
+    {
+      "label": "Actual handbrake animates body, smoke and two tire tracks",
+      "angle": -0.4787501559063723,
+      "visual": {
+        "drift": {
+          "intensity": 0.8623854977415254,
+          "smoke": 28,
+          "skidSegments": 8,
+          "capacity": {
+            "smoke": 160,
+            "skidSegments": 640
+          },
+          "drawCalls": 2
+        },
+        "bodyRoll": -0.028787537870936346,
+        "wheelSteering": -0.42999541690670406,
+        "noseScreenOffset": 0.05514781304383616,
+        "lights": {
+          "intensity": {
+            "signal": 0.13,
+            "head": 1.25,
+            "tail": 0.26,
+            "glow": 0.55
+          },
+          "popups": [
+            {
+              "angle": -0.64,
+              "visible": true
+            },
+            {
+              "angle": -0.64,
+              "visible": true
+            }
+          ],
+          "anchors": [
+            [
+              -7.700147892225088,
+              68.86693142052634,
+              61.706277692377974
+            ],
+            [
+              -6.987660839008047,
+              68.83840735883723,
+              62.39484514688251
+            ]
+          ]
+        },
+        "headlights": 2,
+        "cameraHeading": -0.2746504756272902,
+        "drawCalls": 85,
+        "course": {
+          "trees": 740,
+          "mountains": 14,
+          "terrainTriangles": 20124,
+          "minTreeClearance": 12.135986504293502,
+          "minMountainClearance": 173.53944406895496,
+          "layoutVersion": 2,
+          "cameraClearance": 4.301031399697578
+        }
+      }
+    },
+    {
+      "label": "Countersteering responds after handbrake release"
+    },
+    {
+      "label": "Pause freezes simulation and drift effects"
+    },
+    {
+      "label": "Tire smoke expires after grip returns"
+    },
+    {
+      "label": "Mobile right button follows its label",
+      "delta": 0.19383112268851538
+    },
+    {
+      "label": "Mobile left button follows its label",
+      "delta": -0.19419676173595044
+    },
+    {
+      "label": "Mobile viewport renders drift smoke"
+    },
+    {
+      "label": "Observed animation frame intervals in this browser QA session",
+      "frames": 119,
+      "medianMs": 100,
+      "p95Ms": 100.09999999999854
+    },
+    {
+      "label": "No browser or shader errors"
+    }
+  ],
+  "errors": []
+}

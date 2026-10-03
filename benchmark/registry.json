@@ -1,6 +1,6 @@
 {
-  "_comment": "ModelBenchLab 单一事实源。新增/改名/删除项目只改这里(projects + 必要时 portalSections.missions),门户卡片由 index.html 运行时读取本文件自动生成;再把目录加入根 package.json workspaces,运行 `npm run sync:check` 校验。开发统一用 `npm run dev`(单端口 :3000,项目经 /<dir>/ 访问)。",
-  "updatedAt": "2026-10-01",
+  "_comment": "ModelBenchLab 单一事实源。projects 登记模型实现；portalSections[].groups[] 按主题大类和项目系列组织展示，每个 mission 只归属一个系列。展示合组不改变 task_id/task_version，也不意味着可直接横向排名。新增/改名/删除项目需同步 workspaces 与 lockfile，再运行 npm run sync:check。根开发服务统一端口 3000。",
+  "updatedAt": "2026-10-03",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -59,7 +59,6 @@
     "cloth": "布料模拟",
     "domino": "多米诺机关",
     "bowling": "保龄球",
-    "datagrid": "虚拟滚动数据网格",
     "fire": "实体火焰模拟",
     "portal": "传送门解谜",
     "life": "GBA 风格生活模拟",
@@ -69,9 +68,8 @@
     "history": "中国历史3D演变沙盘",
     "stormwind": "奇幻王都全景(内外可穿行)",
     "stadium": "世界杯露天球场",
-    "protomotion": "原型移动系统(跑墙/攀爬/滑翔)",
     "mini4wd": "迷你四驱车模拟器",
-    "devworld": "开发世界"
+    "initiald": "头文字D 剧情漂移赛车"
   },
   "projects": [
     {
@@ -918,34 +916,6 @@
       }
     },
     {
-      "dir": "claudefable5-datagrid-virtual",
-      "port": 3031,
-      "model": "Claude Fable 5",
-      "category": "code-to-ui",
-      "mission": "datagrid",
-      "variant": "virtual",
-      "api": "DOM",
-      "lang": "JavaScript",
-      "three": null,
-      "vite": "8",
-      "workspace": true,
-      "title": "十万行虚拟滚动数据网格",
-      "desc": "原生 JS 零依赖:DOM ≤80 行虚拟化,300ms 防抖搜索,rAF 节流 resize,三态排序/列宽拖拽/键盘导航,性能 HUD 自证",
-      "docs": {
-        "readme": true,
-        "handover": true,
-        "changelog": true
-      },
-      "taskDoc": "benchmark/tasks/code-to-ui/datagrid.md",
-      "task_id": "codeui-datagrid-001",
-      "task_version": 1,
-      "docPaths": {
-        "handover": "HANDOVER.md",
-        "changelog": "CHANGELOG.md",
-        "readme": "README.md"
-      }
-    },
-    {
       "dir": "gpt5.5-fire-volumetric",
       "port": 3032,
       "model": "GPT-5.5",
@@ -1366,34 +1336,6 @@
       }
     },
     {
-      "dir": "claudeopus5-protomotion-parkour",
-      "port": 3048,
-      "model": "Claude Opus 5",
-      "category": "code-to-3d",
-      "mission": "protomotion",
-      "variant": "parkour",
-      "api": "WebGL",
-      "lang": "JavaScript",
-      "three": "0.185",
-      "vite": "8",
-      "workspace": true,
-      "title": "ProtoMotion — Prototype 移动系统 Web 对照实现",
-      "desc": "把 UE 5.8 工程 ProtoMotion_Lab 的移动系统 1:1 移植到 Three.js:身份层 MotionState 与物理模式解耦、两段式 MagneticBoots 墙探针、跑墙→攀爬动能交接、滑翔(只改重力与空中控制)、墙跳/下滑/胸高翻越;沿用 UE 的厘米 Z-up 坐标与全部手感常量,复刻 17 结构测试场与同一份 13 项无头自检,角色用同一份 Alex GLB(118 条动画)",
-      "docs": {
-        "readme": true,
-        "handover": true,
-        "changelog": true
-      },
-      "taskDoc": "benchmark/tasks/code-to-3d/protomotion.md",
-      "task_id": "code3d-protomotion-001",
-      "task_version": 1,
-      "docPaths": {
-        "handover": "HANDOVER.md",
-        "changelog": "CHANGELOG.md",
-        "readme": "README.md"
-      }
-    },
-    {
       "dir": "gpt6-ocean-observatory",
       "port": 3049,
       "model": "GPT 6",
@@ -1480,34 +1422,6 @@
       }
     },
     {
-      "dir": "grok4.7-dev-world",
-      "port": 3052,
-      "model": "Grok 4.7",
-      "category": "code-to-3d",
-      "mission": "devworld",
-      "variant": "settlement",
-      "api": "WebGL",
-      "lang": "JavaScript",
-      "three": "0.186.0",
-      "vite": "8",
-      "workspace": true,
-      "title": "开洲 — 开发世界",
-      "desc": "在程序化淤洲上行走、铺路、盖屋、种田，经营木料、陶土、口粮和人口，把营地做成开洲。",
-      "docs": {
-        "readme": true,
-        "handover": true,
-        "changelog": true
-      },
-      "taskDoc": "benchmark/tasks/code-to-3d/devworld.md",
-      "task_id": "code3d-devworld-001",
-      "task_version": 1,
-      "docPaths": {
-        "handover": "HANDOVER.md",
-        "changelog": "CHANGELOG.md",
-        "readme": "README.md"
-      }
-    },
-    {
       "dir": "claudeopus5-manhattan-procedural",
       "port": 3044,
       "model": "Claude Opus 5",
@@ -1534,148 +1448,353 @@
         "changelog": "CHANGELOG.md",
         "readme": "README.md"
       }
+    },
+    {
+      "dir": "claudeopus5.5-initiald-akina",
+      "port": 3053,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "initiald",
+      "variant": "akina",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "头文字D · 秋名山 — Claude Opus 5.5",
+      "desc": "剧情驱动漂移赛车：13 段章节、街机漂移、水杯、排水渠、弹幕、奔驰终章与自由赛车库。",
+      "taskDoc": "benchmark/tasks/code-to-3d/initiald.md",
+      "task_id": "code3d-initiald-001",
+      "task_version": 1,
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "gpt6.1sol-initiald-story-racing",
+      "port": 3054,
+      "model": "GPT 6.1 SOL",
+      "category": "code-to-3d",
+      "mission": "initiald",
+      "variant": "story-racing",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "秋名山 · 再快的86 — GPT 6.1 SOL",
+      "desc": "可玩首版：120Hz街机漂移、水杯与排水渠、14段剧情、奔驰终章、八车型与五赛制。美术与手感验收状态见交接。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/initiald.md",
+      "task_id": "code3d-initiald-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "claudeopus5.5-ocean-realistic",
+      "port": 3055,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "ocean",
+      "variant": "realistic",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "远洋 · FFT 海洋模拟 — Claude Opus 5.5",
+      "desc": "GPU 三级 cascade Tessendorf FFT 海面（JONSWAP 风浪 + 涌浪），雅可比泡沫、Sky-View LUT 大气散射与程序云、CPU 低频 FFT 副本驱动的多点浮力（渔船/航标锚泊/木箱/油桶/救生圈），点击投放与拖拽抛掷，五档海况与 lil-gui 面板",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
+    },
+    {
+      "dir": "grok4.7-ocean-realistic",
+      "port": 3056,
+      "model": "Grok 4.7",
+      "category": "code-to-3d",
+      "mission": "ocean",
+      "variant": "realistic",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "潮镜 · 解析海浪 — Grok 4.7",
+      "desc": "JONSWAP 离散谱 Gerstner 海面，三层跟随网格，解析法线与雅可比泡沫，程序化天空与云，渔船/航标/木箱/油桶多点浮力，灯塔岛，五档海况与 lil-gui",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6.1sol-ocean-realistic",
+      "port": 3057,
+      "model": "GPT 6.1 SOL",
+      "category": "code-to-3d",
+      "mission": "ocean",
+      "variant": "realistic",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8.1.2",
+      "workspace": true,
+      "title": "潮汐 · TIDELINE — GPT 6.1 SOL",
+      "desc": "24 组定向波谱海面、细浪与雅可比泡沫、联动天空与反射；四点弹簧浮体、投放木箱与救生圈、四种海况、日照调节、三视角、曲线与截图。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "claudeopus5.5-mini4wd-replica",
+      "port": 3058,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "mini4wd",
+      "variant": "replica",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "四驱兄弟 · 原型复刻赛 — Claude Opus 5.5",
+      "desc": "八台《四驱兄弟》田宫原型车按官方照片标定相机三角测量后程序化建模（AR / Super-II / Super-1 / FM-A 四种底盘），七槽改装与拆解点选，日本杯五车道换道赛道、飞台冲出判定、竞技 / 动画双模式。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/mini4wd.md",
+      "task_id": "code3d-mini4wd-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     }
   ],
   "portalSections": [
     {
-      "id": "ocean",
-      "label": "Ocean — 海洋模拟",
-      "missions": [
-        "ocean"
+      "id": "nature",
+      "label": "自然与特效",
+      "groups": [
+        {
+          "id": "ocean",
+          "label": "海洋模拟",
+          "missions": [
+            "ocean"
+          ]
+        },
+        {
+          "id": "fire",
+          "label": "火焰与体积特效",
+          "missions": [
+            "fire"
+          ]
+        }
       ]
     },
     {
-      "id": "kart",
-      "label": "Kart — 卡丁车赛道",
-      "missions": [
-        "kart"
-      ]
-    },
-    {
-      "id": "tank",
-      "label": "Tank — 坦克大战",
-      "missions": [
-        "tank"
-      ]
-    },
-    {
-      "id": "sandbox",
-      "label": "Sandbox — 粒子物理沙盒",
-      "missions": [
-        "sandbox"
-      ]
-    },
-    {
-      "id": "manhattan",
-      "label": "Manhattan — 3D 曼哈顿场景复现",
-      "missions": [
-        "manhattan"
-      ]
-    },
-    {
-      "id": "gallery",
-      "label": "Gallery — 美术馆布光",
-      "missions": [
-        "gallery"
+      "id": "scenes",
+      "label": "城市与空间场景",
+      "groups": [
+        {
+          "id": "manhattan",
+          "label": "曼哈顿城市复现",
+          "missions": [
+            "manhattan"
+          ]
+        },
+        {
+          "id": "stormwind",
+          "label": "奇幻王都",
+          "missions": [
+            "stormwind"
+          ]
+        },
+        {
+          "id": "stadium",
+          "label": "世界杯球场",
+          "missions": [
+            "stadium"
+          ]
+        },
+        {
+          "id": "gallery",
+          "label": "美术馆布光",
+          "missions": [
+            "gallery"
+          ]
+        },
+        {
+          "id": "history",
+          "label": "中国历史沙盘",
+          "missions": [
+            "history"
+          ]
+        }
       ]
     },
     {
       "id": "physics",
-      "label": "Physics — 物理模拟",
-      "missions": [
-        "cloth",
-        "domino",
-        "bowling"
+      "label": "物理模拟",
+      "groups": [
+        {
+          "id": "sandbox",
+          "label": "粒子物理沙盒",
+          "missions": [
+            "sandbox"
+          ]
+        },
+        {
+          "id": "cloth",
+          "label": "布料与旗帜",
+          "missions": [
+            "cloth"
+          ]
+        },
+        {
+          "id": "domino",
+          "label": "多米诺机关",
+          "missions": [
+            "domino"
+          ]
+        },
+        {
+          "id": "bowling",
+          "label": "保龄球",
+          "missions": [
+            "bowling"
+          ]
+        }
       ]
     },
     {
-      "id": "fire",
-      "label": "Fire — 实体火焰模拟",
-      "missions": [
-        "fire"
+      "id": "racing",
+      "label": "赛车与竞速",
+      "groups": [
+        {
+          "id": "kart",
+          "label": "卡丁车赛道",
+          "missions": [
+            "kart"
+          ]
+        },
+        {
+          "id": "initiald",
+          "label": "头文字 D · 剧情漂移赛车",
+          "missions": [
+            "initiald"
+          ]
+        },
+        {
+          "id": "mini4wd",
+          "label": "迷你四驱车",
+          "missions": [
+            "mini4wd"
+          ]
+        }
       ]
     },
     {
-      "id": "ui",
-      "label": "UI — 前端界面工程",
-      "missions": [
-        "datagrid",
-        "business"
+      "id": "action",
+      "label": "动作与解谜",
+      "groups": [
+        {
+          "id": "digimon-rumble",
+          "label": "数码宝贝 · 竞技格斗",
+          "missions": [
+            "brawler",
+            "digimon"
+          ]
+        },
+        {
+          "id": "tank",
+          "label": "坦克大战",
+          "missions": [
+            "tank"
+          ]
+        },
+        {
+          "id": "portal",
+          "label": "传送门解谜",
+          "missions": [
+            "portal"
+          ]
+        }
       ]
     },
     {
-      "id": "life",
-      "label": "Life Sim — 像素生活模拟",
-      "missions": [
-        "life"
-      ]
-    },
-    {
-      "id": "portal",
-      "label": "Portal — 传送门解谜",
-      "missions": [
-        "portal"
-      ]
-    },
-    {
-      "id": "brawler",
-      "label": "Brawler — 3D 竞技格斗",
-      "missions": [
-        "brawler"
-      ]
-    },
-    {
-      "id": "digimon",
-      "label": "Digimon — 数码宝贝大乱斗",
-      "missions": [
-        "digimon"
-      ]
-    },
-    {
-      "id": "history",
-      "label": "History — 中国历史3D演变沙盘",
-      "missions": [
-        "history"
-      ]
-    },
-    {
-      "id": "stormwind",
-      "label": "Stormhold — 奇幻王都全景",
-      "missions": [
-        "stormwind"
-      ]
-    },
-    {
-      "id": "stadium",
-      "label": "Stadium — 世界杯露天球场",
-      "missions": [
-        "stadium"
-      ]
-    },
-    {
-      "id": "protomotion",
-      "label": "ProtoMotion · 原型移动系统",
-      "missions": [
-        "protomotion"
-      ]
-    },
-    {
-      "id": "mini4wd",
-      "label": "Mini 4WD - 迷你四驱车",
-      "missions": [
-        "mini4wd"
-      ]
-    },
-    {
-      "id": "devworld",
-      "label": "Dev World — 开发世界",
-      "missions": [
-        "devworld"
+      "id": "simulation",
+      "label": "生活与经营",
+      "groups": [
+        {
+          "id": "life",
+          "label": "像素生活模拟",
+          "missions": [
+            "life"
+          ]
+        },
+        {
+          "id": "business",
+          "label": "像素商业大亨",
+          "missions": [
+            "business"
+          ]
+        }
       ]
     }
   ],
   "retiredPorts": [
-    3014
+    3014,
+    3031,
+    3048,
+    3052
   ],
   "deletedDirs": [
     {
@@ -1687,6 +1806,11 @@
       "dir": "claudeopus4.8-gsapthreetest",
       "reason": "迁出:移至 E:\\WebDesignLab(AI 网页设计合集仓库),端口 3014 退役",
       "deletedAt": "2026-07-13"
+    },
+    {
+      "dir": "claudeopus5-protomotion-parkour",
+      "reason": "按用户要求整体移除 ProtoMotion · 原型移动系统 mission（项目、题面、测试单元、门户分区），端口 3048 退役",
+      "deletedAt": "2026-10-02"
     }
   ]
 }

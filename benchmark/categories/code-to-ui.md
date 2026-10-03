@@ -36,7 +36,7 @@
 
 ## 任务库
 
-- [`../tasks/code-to-ui/datagrid.md`](../tasks/code-to-ui/datagrid.md) — 十万行虚拟滚动数据网格(现役第一题)
+当前任务以 [`../tasks/index.json`](../tasks/index.json) 为准。数据网格项目及其任务已于 2026-10-03 移除。
 
 ## 游戏任务与总索引
 

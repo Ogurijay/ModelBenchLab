@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-02T16:52:03.757Z",
+  "scope": "gpt6.1sol-initiald-story-racing",
+  "three": "0.185.1",
+  "physics": {
+    "passed": 18,
+    "failed": 0
+  },
+  "build": {
+    "passed": true,
+    "vite": "8.1.2",
+    "note": "Existing vendor chunk size warning"
+  },
+  "browser": {
+    "sourceHandling": 13,
+    "productionHandling": 13,
+    "sourceCampaign": 21,
+    "productionCampaign": 21,
+    "errors": 0
+  },
+  "repository": {
+    "syncProjects": 55,
+    "policyTests": 6,
+    "formalRuns": 0,
+    "diffWhitespace": true,
+    "syntax": true
+  },
+  "notes": [
+    "Browser direction checks use real keyboard and camera projection",
+    "Mobile pointer checks use a 390x844 viewport, not a physical phone",
+    "Internal QA is not a formal benchmark or human handling score"
+  ]
+}

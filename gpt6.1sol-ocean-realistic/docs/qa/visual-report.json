@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-02T15:42:17.664Z",
+  "url": "http://localhost:3000/gpt6.1sol-ocean-realistic/",
+  "checks": [
+    "Actual WebGL render initializes without shader errors"
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "initial": {
+    "revision": "185",
+    "seed": 61,
+    "time": 12,
+    "quality": "medium",
+    "view": "horizon",
+    "parameters": {
+      "wind": 9,
+      "height": 2.4,
+      "direction": 125,
+      "sun": 24,
+      "cloud": 0.3,
+      "azimuth": -22,
+      "number": "02",
+      "title": "风起，潮生。",
+      "description": "长浪越过海面，驶向看不见的岸。",
+      "objects": true
+    },
+    "camera": [
+      0,
+      8.000000000000005,
+      27.999999999999996
+    ],
+    "minimumCameraY": 4.870627230890722,
+    "surfaceHeight": 0.7539543263401751,
+    "floatCount": 2,
+    "dropped": 0,
+    "objectsVisible": true,
+    "boat": {
+      "height": 0.25400457261214165,
+      "pitch": 0,
+      "roll": 0
+    },
+    "triangles": 189183,
+    "drawCalls": 14,
+    "resolution": [
+      1440,
+      900
+    ],
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "shaderErrors": 0,
+    "target": {
+      "wind": 9,
+      "height": 2.4,
+      "direction": 125,
+      "sun": 24,
+      "cloud": 0.3,
+      "azimuth": -22,
+      "number": "02",
+      "title": "风起，潮生。",
+      "description": "长浪越过海面，驶向看不见的岸。",
+      "objects": true
+    },
+    "preset": "swell",
+    "paused": true,
+    "speed": 1,
+    "immersive": false,
+    "audioEnabled": false,
+    "frameMeanMs": 6.06111111111111
+  }
+}

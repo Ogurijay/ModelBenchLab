@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ModelBenchLab — AI 模型 3D 场景对比</title>
+  <title>ModelBenchLab — AI 模型项目对比</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -30,15 +30,41 @@
       margin-bottom: 3rem;
     }
     .section-title {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #aaa;
-      margin: 2rem 0 1rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #d5d9e4;
+      margin: 3rem 0 0;
       width: 100%;
       max-width: 1200px;
       border-bottom: 1px solid #2a2a35;
       padding-bottom: 0.5rem;
     }
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .section-nav a {
+      color: #aab9d6;
+      text-decoration: none;
+      border: 1px solid #2a2a35;
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+    }
+    .section-nav a:hover, .section-nav a:focus-visible { color: #93c5fd; border-color: #60a5fa; }
+    .section-title, .group-title { scroll-margin-top: 1.5rem; }
+    .group-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #aaa;
+      margin: 1.8rem 0 1rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .count { color: #777; font-size: 0.8rem; margin-left: 0.8rem; font-weight: 400; }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -94,7 +120,9 @@
       color: #666;
     }
     .path {
-      float: right;
+      display: block;
+      margin-top: 0.5rem;
+      overflow-wrap: anywhere;
       color: #60a5fa;
       font-family: monospace;
     }
@@ -107,7 +135,8 @@
 </head>
 <body>
   <h1>ModelBenchLab</h1>
-  <p class="subtitle">不同 AI 模型生成的 3D 场景与交互应用对比测试 — 卡片由 benchmark/registry.json 动态生成</p>
+  <p class="subtitle" id="subtitle">按主题和项目系列，浏览不同 AI 模型的场景、游戏与交互应用</p>
+  <nav class="section-nav" id="section-nav" aria-label="项目分类"></nav>
   <main id="portal" style="display:contents"></main>
 
   <script type="module">
@@ -122,6 +151,7 @@
       const a = el('a', 'card');
       a.href = `./${p.dir}/`;
       a.target = '_blank';
+      a.rel = 'noopener';
 
       const head = el('div', 'card-header');
       head.append(el('span', 'badge badge-model', p.model));
@@ -146,17 +176,37 @@
     try {
       const reg = await (await fetch('./benchmark/registry.json')).json();
       const portal = document.getElementById('portal');
+      const nav = document.getElementById('section-nav');
       const rendered = new Set();
 
-      for (const sec of reg.portalSections || []) {
-        const missions = sec.missions || [sec.id];
-        const items = reg.projects.filter((p) => missions.includes(p.mission));
-        if (!items.length) continue;
-        portal.append(el('h2', 'section-title', sec.label));
-        const grid = el('div', 'grid');
-        for (const p of items) { grid.append(card(p)); rendered.add(p.dir); }
-        portal.append(grid);
+      function heading(tag, cls, label, count) {
+        const title = el(tag, cls, label);
+        title.append(el('span', 'count', `${count} 个实现`));
+        return title;
       }
+
+      for (const sec of reg.portalSections || []) {
+        const groups = sec.groups || [{ id: sec.id, label: sec.label, missions: sec.missions || [sec.id] }];
+        const missions = groups.flatMap(group => group.missions);
+        const total = reg.projects.filter(p => missions.includes(p.mission)).length;
+        if (!total) continue;
+        const title = heading('h2', 'section-title', sec.label, total);
+        title.id = `section-${sec.id}`;
+        portal.append(title);
+        const link = el('a', '', `${sec.label} · ${total}`);
+        link.href = `#${title.id}`;
+        nav.append(link);
+        for (const group of groups) {
+          const items = reg.projects.filter(p => group.missions.includes(p.mission) && !rendered.has(p.dir));
+          if (!items.length) continue;
+          if (sec.groups) portal.append(heading('h3', 'group-title', group.label, items.length));
+          const grid = el('div', 'grid');
+          grid.dataset.group = group.id;
+          for (const p of items) { grid.append(card(p)); rendered.add(p.dir); }
+          portal.append(grid);
+        }
+      }
+      document.getElementById('subtitle').textContent = `${reg.projects.length} 个模型实现 · 按主题和项目系列浏览场景、游戏与交互应用`;
 
       const rest = reg.projects.filter((p) => !rendered.has(p.dir));
       if (rest.length) {

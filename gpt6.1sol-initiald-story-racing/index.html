@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827"><link rel="icon" href="data:,">
+  <title>秋名山 · 再快的86</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <div id="world" aria-label="秋名山赛车画面"></div>
+  <div id="grain" aria-hidden="true"></div><div id="speed-lines" aria-hidden="true"></div>
+  <div id="danmaku" aria-hidden="true"></div><div id="letterbox" aria-hidden="true"></div>
+  <header id="masthead"><a href="../">MODEL BENCH LAB</a><span>私藏放映 · 2005 / 秋名</span><button id="sound" aria-label="切换声音">声音 OFF</button></header>
+  <main id="menu">
+    <div class="edition"><span class="seal">藤原</span><span>AKINA / A PRIVATE FAN GAME<br>一部可以开车的青春电影</span></div>
+    <p class="eyebrow">笑着笑着，就哭了。</p><h1>秋名山<span>再快的<span class="outline">86</span></span></h1>
+    <p class="tagline">有些弯，一辈子只过一次。<br>有些人，怎么开都追不上。</p>
+    <nav class="main-actions"><button id="story" class="primary">开始这趟旅程 <span>↗</span></button><button id="practice">先练一段漂移 <span>01</span></button><button id="free">自由赛 / 车库 <span>02</span></button><button id="chapters">章节试驾 <span>03</span></button></nav>
+    <footer class="menu-foot"><span>前置后驱 · 凌晨四点 · 一杯水</span><button id="reset">重新开始</button></footer>
+    <div class="vertical">秋名山に、朝が来る。</div>
+    <div class="cover-caption">TOYOTA<br><strong>AE86 TRUENO</strong><span>藤原とうふ店（自家用）</span></div>
+  </main>
+  <section id="hud" hidden aria-label="赛车仪表">
+    <div class="race-top"><div><p id="race-kicker"></p><h2 id="race-title"></h2><span id="race-objective"></span></div><div class="race-tools"><button id="pause">暂停 Ⅱ</button><button id="comments">弹幕 ON</button></div></div>
+    <div id="navigation"><svg id="map" viewBox="0 0 150 150" aria-label="赛道地图"></svg><b id="turn-sign">起点</b><span id="gap"></span></div>
+    <div id="toast" role="status"></div>
+    <div class="race-bottom"><div class="cluster"><span class="lcd-label">SPEED / KM·H</span><div><strong id="speed">000</strong><span id="gear">1</span></div><div id="rpm"><i></i></div><span id="time">00:00.000</span></div><div class="drift-meter"><span id="drift-label">GRIP</span><strong id="angle">00°</strong><span id="score">DRIFT 0000</span><small id="mechanic">手刹起漂 · 反打稳住</small></div><div id="cup"><span>豆腐，不能碎。</span><div class="glass"><i id="water"></i></div><b id="water-value">100%</b></div></div>
+    <div class="progress"><i id="progress"></i></div>
+    <p id="keys">W / ↑ 油门 · S / ↓ 刹车 · A D / ← → 转向 · 空格 手刹 · P 暂停 · R 重试</p>
+    <div id="touch"><button data-control="left" aria-label="左转">◀</button><button data-control="right" aria-label="右转">▶</button><button data-control="brake">刹车</button><button data-control="handbrake">漂移</button><button data-control="throttle">油门</button></div>
+  </section>
+  <section id="panel" hidden aria-label="选择面板"></section>
+  <section id="dialogue" hidden aria-label="剧情对话"><div id="scene-art"></div><div id="portrait"></div><div class="dialogue-box"><span id="speaker"></span><p id="line"></p><button id="next">继续 <span>↵</span></button></div></section>
+  <section id="cinematic" hidden></section>
+  <section id="result" hidden></section>
+  <div id="fatal" hidden role="alert"></div>
+  <script type="module" src="./src/entry.js"></script>
+</body>
+</html>

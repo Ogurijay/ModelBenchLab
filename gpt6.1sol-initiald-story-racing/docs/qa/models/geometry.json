@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ae86",
+    "vertices": 30100,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "ae85",
+    "vertices": 30876,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "wuling",
+    "vertices": 31188,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "gtr",
+    "vertices": 29280,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "evo",
+    "vertices": 30154,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "evo3",
+    "vertices": 30226,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "fc",
+    "vertices": 29740,
+    "cloned": true,
+    "wheelClearance": true
+  },
+  {
+    "id": "benz",
+    "vertices": 29554,
+    "cloned": true,
+    "wheelClearance": true
+  }
+]

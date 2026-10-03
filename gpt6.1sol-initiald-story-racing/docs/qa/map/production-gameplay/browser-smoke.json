@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-02T18:41:11.622Z",
+  "browser": "145.0.7632.6",
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (NVIDIA)"
+  },
+  "viewport": [
+    1440,
+    900
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "note": "Keyboard checks use live rendering; long story checks use explicit bench-mode fixed-step advance. This is internal QA, not human handling acceptance or formal model evaluation.",
+  "checks": [
+    {
+      "label": "Desktop WebGL menu boots"
+    },
+    {
+      "label": "Audio context opens and suspends by user gesture"
+    },
+    {
+      "label": "Real keyboard throttle moves the rendered vehicle",
+      "meters": 18.899628518631907,
+      "speed": 18.200392039820816
+    },
+    {
+      "label": "Pause stops simulation and resume releases keys"
+    },
+    {
+      "label": "Real keyboard handbrake creates heading / velocity slip",
+      "angle": -0.20674454091558958,
+      "grip": 0.17700320561447566
+    },
+    {
+      "label": "Tofu delivery reaches finish with remaining water",
+      "time": 74.01666666667164,
+      "water": 55.673888976773874,
+      "collisions": 28
+    },
+    {
+      "label": "AE85 defeat completes as authored"
+    },
+    {
+      "label": "Chapter 9 engine breaks near the final bend"
+    },
+    {
+      "label": "Freeplay 86 / Benz downhill outcome",
+      "outcome": "win",
+      "time": 74.8416666666723,
+      "collisions": 30
+    },
+    {
+      "label": "Finale forced eye shot clears HUD and existing comments"
+    },
+    {
+      "label": "Benz straight segment uses fixed 80 m/s"
+    },
+    {
+      "label": "Finale stops the 86 and holds silence before the first comment"
+    },
+    {
+      "label": "Ending title leads to Project D epilogue"
+    },
+    {
+      "label": "Battle spawns seven opponents plus the Wuling"
+    },
+    {
+      "label": "390px mobile controls fit on screen",
+      "boxes": [
+        {
+          "bottom": 826,
+          "left": 12,
+          "right": 62,
+          "height": 52
+        },
+        {
+          "bottom": 826,
+          "left": 68,
+          "right": 118,
+          "height": 52
+        },
+        {
+          "bottom": 826,
+          "left": 216,
+          "right": 266,
+          "height": 52
+        },
+        {
+          "bottom": 826,
+          "left": 272,
+          "right": 322,
+          "height": 52
+        },
+        {
+          "bottom": 826,
+          "left": 328,
+          "right": 378,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "label": "Ordinary defeat blocks progression and offers a real retry"
+    },
+    {
+      "label": "Chapter 8 QTE grants a start bonus"
+    },
+    {
+      "label": "FC technical race is winnable with steering/braking and no direction assist",
+      "time": 90.21666666668453,
+      "collisions": 29
+    },
+    {
+      "label": "Full 14-part campaign completes and unlocks all eight vehicles via actual rules"
+    },
+    {
+      "label": "Reload restores garage locks and story progress"
+    },
+    {
+      "label": "No browser console errors"
+    }
+  ],
+  "errors": []
+}

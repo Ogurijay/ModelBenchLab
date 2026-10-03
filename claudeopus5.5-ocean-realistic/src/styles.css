@@ -1,0 +1,178 @@
+:root {
+  --ink: #e8f1f4;
+  --muted: rgba(220, 234, 240, 0.62);
+  --glass: rgba(8, 20, 30, 0.42);
+  --line: rgba(190, 225, 240, 0.16);
+  --accent: #7fd6d0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0b1a24;
+  color: var(--ink);
+}
+
+#canvas-root, #canvas-root canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+body.grabbing canvas { cursor: grabbing; }
+
+#hud {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  width: 300px;
+  padding: 14px 16px 12px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  pointer-events: none;
+  user-select: none;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.brand-title span {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.brand-sub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+#hud-stats {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  display: grid;
+  gap: 3px;
+}
+#hud-stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+#hud-stats span { color: var(--muted); }
+#hud-stats b { font-weight: 500; font-variant-numeric: tabular-nums; }
+
+#presets {
+  position: fixed;
+  left: 50%;
+  bottom: 46px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+#presets button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
+}
+#presets button:hover { background: rgba(255, 255, 255, 0.08); }
+#presets button.active {
+  background: rgba(127, 214, 208, 0.18);
+  border-color: rgba(127, 214, 208, 0.55);
+}
+#presets kbd, #help kbd {
+  display: inline-block;
+  min-width: 16px;
+  margin-right: 6px;
+  padding: 0 4px;
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+#help kbd { margin: 0 2px; }
+
+#help {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+#help b { color: var(--ink); font-weight: 500; }
+
+.ocean-gui {
+  --background-color: rgba(8, 20, 30, 0.72);
+  --title-background-color: rgba(12, 34, 46, 0.9);
+  --widget-color: rgba(255, 255, 255, 0.1);
+  --hover-color: rgba(255, 255, 255, 0.16);
+  --focus-color: rgba(255, 255, 255, 0.22);
+  --number-color: #7fd6d0;
+  --string-color: #c8e6a0;
+  --font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --width: 290px;
+  backdrop-filter: blur(8px);
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 60%, #12354a, #050d13 70%);
+  transition: opacity 0.8s ease;
+  z-index: 10;
+}
+#loading.done { opacity: 0; pointer-events: none; }
+.load-title { font-size: 34px; letter-spacing: 0.4em; padding-left: 0.4em; }
+.load-sub { margin-top: 10px; color: var(--muted); font-size: 13px; letter-spacing: 0.1em; }
+
+body.clean #hud, body.clean #presets, body.clean #help, body.clean .ocean-gui { display: none; }
+
+@media (max-width: 760px) {
+  #hud { top: 10px; left: 10px; width: 220px; padding: 10px 12px; }
+  .brand-title { font-size: 18px; }
+  .brand-sub { display: none; }
+  #hud-stats { font-size: 11px; }
+  #presets { bottom: 12px; max-width: calc(100vw - 20px); overflow-x: auto; }
+  #presets kbd { display: none; }
+  #help { display: none; }
+}

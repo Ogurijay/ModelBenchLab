@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-02T18:44:39.599Z",
+  "scope": "gpt6.1sol-initiald-story-racing",
+  "three": "0.185.1",
+  "unit": {
+    "command": "npm test --workspace gpt6.1sol-initiald-story-racing",
+    "passed": 33,
+    "failed": 0
+  },
+  "build": {
+    "command": "npm run build --workspace gpt6.1sol-initiald-story-racing",
+    "exitCode": 0,
+    "warning": "Vite shared Three.js chunk exceeds 500kB; no dependency or global configuration change."
+  },
+  "browserReports": [
+    {
+      "file": "models/details/source/model-smoke.json",
+      "date": "2026-10-02T18:40:33.441Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 7,
+      "errors": []
+    },
+    {
+      "file": "models/details/production/model-smoke.json",
+      "date": "2026-10-02T18:40:44.131Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 6,
+      "errors": []
+    },
+    {
+      "file": "map/latest-gameplay/browser-smoke.json",
+      "date": "2026-10-02T18:40:57.784Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 21,
+      "errors": []
+    },
+    {
+      "file": "map/production-gameplay/browser-smoke.json",
+      "date": "2026-10-02T18:41:11.622Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 21,
+      "errors": []
+    },
+    {
+      "file": "map/source/map-smoke.json",
+      "date": "2026-10-02T18:41:24.158Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 9,
+      "errors": []
+    },
+    {
+      "file": "map/production/map-smoke.json",
+      "date": "2026-10-02T18:41:37.277Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 9,
+      "errors": []
+    },
+    {
+      "file": "handling/map-source/handling-smoke.json",
+      "date": "2026-10-02T18:40:11.480Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 14,
+      "errors": []
+    },
+    {
+      "file": "handling/map-production/handling-smoke.json",
+      "date": "2026-10-02T18:40:21.896Z",
+      "browser": "145.0.7632.6",
+      "graphics": {
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "vendor": "Google Inc. (NVIDIA)"
+      },
+      "checks": 14,
+      "errors": []
+    }
+  ],
+  "syntax": {
+    "files": 26,
+    "errors": 0
+  },
+  "whitespace": {
+    "files": 32,
+    "errors": 0
+  },
+  "repository": {
+    "sync": {
+      "command": "npm run sync:check",
+      "exitCode": 1,
+      "issues": [
+        "Unknown root entry claudeopus5.5-mini4wd-replica; concurrent project outside this task."
+      ]
+    },
+    "policy": {
+      "command": "npm run policy:test",
+      "passed": 8,
+      "failed": 0
+    },
+    "benchmark": {
+      "command": "npm run benchmark:check",
+      "exitCode": 0,
+      "formalRuns": 0
+    }
+  },
+  "note": "Internal source/production acceptance with live keyboard/pointer checks and bench-mode campaign advances. Not a human handling score, device-wide FPS guarantee or formal model evaluation."
+}

@@ -1,0 +1,19 @@
+{
+  "name": "claudeopus5.5-ocean-realistic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3055 --strictPort",
+    "build": "vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "lil-gui": "^0.20.0",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "vitest": "^3.2.6"
+  }
+}

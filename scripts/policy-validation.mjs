@@ -29,6 +29,10 @@ export function validateStructure(root) {
   for (const d of dirs) if (!workspaces.includes(d)) issue('workspaces 缺少 ' + d);
   for (const d of workspaces) if (!dirs.includes(d)) issue('workspaces 未登记 ' + d);
   if (JSON.stringify(workspaces) !== JSON.stringify(lock.packages[''].workspaces)) issue('lockfile 根 workspaces 不一致');
+  for (const [key, value] of Object.entries(lock.packages)) {
+    if (key && !key.startsWith('node_modules/') && !workspaces.some(dir => key === dir || key.startsWith(dir + '/node_modules/'))) issue('lockfile 残留未登记 workspace 包 ' + key);
+    if (value.link && !workspaces.includes(value.resolved)) issue('lockfile 残留未登记 workspace 链接 ' + key);
+  }
   const permitted = new Set([...dirs, '.git', '.agents', '.claude', '.codex', '.playwright-mcp', 'tmp', 'node_modules', 'dist', 'build', 'scripts', 'benchmark', 'shared', '.gitignore', 'RULES.md', 'index.html', 'package.json', 'package-lock.json', 'vite.config.mjs']);
   for (const e of fs.readdirSync(root)) if (!permitted.has(e)) issue('未知根条目 ' + e);
   const ports = new Set(), names = new Set(dirs);
@@ -75,7 +79,25 @@ export function validateStructure(root) {
       for(const match of rm.matchAll(/--port\s+(\d+)/g))if(+match[1]!==p.port)issue('README 调试端口漂移 '+p.dir);
     }
   }
-  const covered = new Set(reg.portalSections.flatMap(s => s.missions || [s.id]));
+  const covered = new Set(), sectionIds = new Set(), groupIds = new Set();
+  for (const section of reg.portalSections || []) {
+    if (section.id && sectionIds.has(section.id)) issue('门户主题 ID 重复 ' + section.id);
+    sectionIds.add(section.id);
+    if (section.groups && section.missions) issue('门户主题不能同时定义 groups 与 missions ' + section.id);
+    if (section.groups && (!Array.isArray(section.groups) || !section.groups.length)) { issue('门户主题 groups 无效 ' + section.id); continue; }
+    const groups = section.groups || [{ id: section.id, missions: section.missions || [section.id] }];
+    for (const group of groups) {
+      if (section.groups && (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(section.id || '') || !section.label || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(group.id || '') || !group.label)) issue('门户主题或系列缺少有效 ID/标题 ' + section.id);
+      if (group.id && groupIds.has(group.id)) issue('门户系列 ID 重复 ' + group.id);
+      groupIds.add(group.id);
+      if (!Array.isArray(group.missions) || !group.missions.length) { issue('门户系列 missions 无效 ' + group.id); continue; }
+      for (const mission of group.missions) {
+        if (!Object.hasOwn(reg.missions, mission)) issue('门户分组引用未定义 mission ' + mission);
+        if (covered.has(mission)) issue('mission 重复分区 ' + mission);
+        covered.add(mission);
+      }
+    }
+  }
   for (const m of Object.keys(reg.missions)) if (!covered.has(m) || !index.missions[m]) issue('mission 未分区或缺少题面映射 ' + m);
   let draftCount=0;
   for (const [mission, t] of Object.entries(index.missions)) {

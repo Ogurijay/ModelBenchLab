@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>头文字D · 秋名山 — 再快的86（Claude Opus 5.5）</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="canvas-root"></div>
+    <canvas id="speedlines"></canvas>
+
+    <!-- 弹幕层：情绪开关 -->
+    <div id="danmaku"></div>
+
+    <!-- HUD：80 年代液晶仪表 -->
+    <div id="hud" class="hidden">
+      <div id="hud-tl">
+        <div id="hud-goal"></div>
+        <div class="lcd-row"><span class="lcd-label">TIME</span><span id="hud-time" class="lcd"></span></div>
+        <div id="hud-pos-box" class="lcd-row"><span class="lcd-label">POS</span><span id="hud-pos" class="pos"></span></div>
+        <div id="hud-gap"></div>
+        <div id="hud-wuling"></div>
+      </div>
+      <div id="hud-meter">
+        <div id="hud-tach" class="lcd"></div>
+        <div class="meter-row">
+          <div id="hud-speed" class="lcd big"></div><span class="unit">km/h</span>
+          <div class="gear-box"><span class="lcd-label">GEAR</span><div id="hud-gear" class="lcd"></div></div>
+        </div>
+        <div id="hud-grip"></div>
+      </div>
+      <div id="hud-drift"></div>
+      <div id="hud-progress"></div>
+      <div id="cup-box"><canvas id="cup-canvas" width="120" height="110"></canvas><span id="cup-pct">100%</span></div>
+      <div id="hud-flash"></div>
+      <div id="hud-help">←→ 转向 · ↑ 油门 · ↓ 刹车/倒车 · 空格 手刹 · R 复位 · Esc 暂停</div>
+    </div>
+    <div id="countdown"></div>
+
+    <!-- 电影化：黑边、漫画分格、标题卡 -->
+    <div id="letterbox"><i class="top"></i><i class="bot"></i></div>
+    <div id="panels"></div>
+    <div id="titlecard"></div>
+
+    <!-- 视觉小说层 -->
+    <div id="vn" class="hidden">
+      <div id="vn-bg"></div>
+      <div id="vn-portraits"><div id="vn-left" class="portrait"></div><div id="vn-right" class="portrait"></div></div>
+      <div id="vn-box"><div id="vn-name"></div><div id="vn-text"></div><div id="vn-next">▼</div></div>
+      <div id="vn-skip">跳过 ▶▶</div>
+    </div>
+    <div id="chapter-card"></div>
+    <div id="qte"></div>
+
+    <!-- 菜单 -->
+    <div id="menu"></div>
+    <div id="pause" class="hidden"></div>
+
+    <!-- 触屏控制 -->
+    <div id="touch">
+      <div class="touch-l"><button class="touch-btn" data-touch="left">◀</button><button class="touch-btn" data-touch="right">▶</button></div>
+      <div class="touch-r"><button class="touch-btn hb" data-touch="hb">手刹</button><button class="touch-btn" data-touch="brake">刹</button><button class="touch-btn gas" data-touch="gas">油</button></div>
+    </div>
+    <button id="touch-pause">Ⅱ</button>
+
+    <div id="loading"><div class="load-title">秋名山</div><div class="load-sub">正在铺路……</div></div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -33,6 +33,31 @@ test('port drift, alias collisions and absent lock package fail the audit',t=>{
   const f=fixture(t);f.reg.projects[0].aliases=[f.project.dir];f.write('benchmark/registry.json',f.reg);f.write(f.project.dir+'/vite.config.js','export default {server:{port:3002}}');f.write('package-lock.json',{packages:{'':{workspaces:[f.project.dir]}}});
   const errors=validateStructure(f.root).problems;assert(errors.some(e=>e.includes('别名冲突')));assert(errors.some(e=>e.includes('端口漂移')));assert(errors.some(e=>e.includes('workspace 包')));
 });
+test('nested portal groups cover missions exactly once and reject stale classifications',t=>{
+  const f=fixture(t);
+  const group={id:'ocean',label:'海洋模拟',missions:['ocean']};
+  f.reg.portalSections=[{id:'nature',label:'自然与特效',groups:[group]}];
+  f.write('benchmark/registry.json',f.reg);assert.deepEqual(validateStructure(f.root).problems,[]);
+  f.reg.portalSections[0].groups.push({...group});
+  f.write('benchmark/registry.json',f.reg);
+  let errors=validateStructure(f.root).problems;assert(errors.some(e=>e.includes('mission 重复分区')));assert(errors.some(e=>e.includes('系列 ID 重复')));
+  f.reg.portalSections[0].groups=[{...group,missions:['removed']}];
+  f.write('benchmark/registry.json',f.reg);errors=validateStructure(f.root).problems;
+  assert(errors.some(e=>e.includes('引用未定义 mission')));assert(errors.some(e=>e.includes('未分区')));
+  f.reg.portalSections[0].groups=[];
+  f.write('benchmark/registry.json',f.reg);assert(validateStructure(f.root).problems.some(e=>e.includes('groups 无效')));
+});
+test('removed workspace packages and links cannot remain in the lockfile',t=>{
+  const f=fixture(t),lockPath=path.join(f.root,'package-lock.json');
+  const lock=JSON.parse(fs.readFileSync(lockPath));
+  lock.packages['old-world-demo']={version:'1.0.0',extraneous:true};
+  lock.packages['old-world-demo/node_modules/three']={version:'0.186.0'};
+  lock.packages['node_modules/old-world-demo']={link:true,resolved:'old-world-demo'};
+  f.write('package-lock.json',lock);
+  const errors=validateStructure(f.root).problems;
+  assert.equal(errors.filter(e=>e.includes('残留未登记 workspace 包')).length,2);
+  assert(errors.some(e=>e.includes('残留未登记 workspace 链接')));
+});
 test('UI/video categories accepted; samples<3 and history string rubric rejected',()=>{
   const validate=schemas(repository)['test-unit'];const original=JSON.parse(fs.readFileSync(path.join(repository,'benchmark/tasks/public/code3d-history-001.v1.json')));
   for(const category of ['code-to-ui','text-to-video']){const u={...original,category};assert.equal(validate(u),true);}

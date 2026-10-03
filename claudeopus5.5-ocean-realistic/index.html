@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>远洋 · FFT 海洋模拟 — Claude Opus 5.5</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="canvas-root"></div>
+
+  <header id="hud">
+    <div class="brand">
+      <div class="brand-title">远洋 <span>OPEN OCEAN</span></div>
+      <div class="brand-sub">GPU FFT · JONSWAP 波谱 · 大气散射天空 · 多点浮力</div>
+    </div>
+    <div id="hud-stats"></div>
+  </header>
+
+  <nav id="presets" aria-label="海况预设"></nav>
+
+  <footer id="help">
+    拖拽旋转 · 滚轮缩放 · 右键平移 · <b>点击海面</b>投放浮体 · <b>拖住浮体</b>提起抛出 ·
+    <kbd>1</kbd>–<kbd>5</kbd> 海况 · <kbd>F</kbd> 跟随渔船 · <kbd>C</kbd> 清空 · <kbd>空格</kbd> 暂停 · <kbd>H</kbd> 隐藏界面
+  </footer>
+
+  <div id="loading"><div class="load-title">远洋</div><div class="load-sub">正在生成波谱……</div></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

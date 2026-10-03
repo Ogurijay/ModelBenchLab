@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-02T18:41:24.158Z",
+  "browser": "145.0.7632.6",
+  "graphics": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (NVIDIA)"
+  },
+  "note": "Actual rendered mesh raycasts and chase screenshots; internal QA, not a human gameplay score.",
+  "checks": [
+    {
+      "label": "Rendered road and terrain agree through every downhill sector",
+      "probes": 719,
+      "maxHeightError": 0.005458676555939235,
+      "minRoadClearance": 0.6000210344277264,
+      "scenery": {
+        "trees": 740,
+        "mountains": 14,
+        "terrainTriangles": 20124,
+        "minTreeClearance": 12.135986504293502,
+        "minMountainClearance": 173.53944406895496,
+        "layoutVersion": 2,
+        "cameraClearance": 1154.6468673060524
+      }
+    },
+    {
+      "label": "Rendered road and terrain agree through every uphill sector",
+      "probes": 719,
+      "maxHeightError": 0.005458676555939235,
+      "minRoadClearance": 0.6000135180689767,
+      "scenery": {
+        "trees": 740,
+        "mountains": 14,
+        "terrainTriangles": 20124,
+        "minTreeClearance": 12.135986504293502,
+        "minMountainClearance": 173.53944406895496,
+        "layoutVersion": 2,
+        "cameraClearance": 1109.1455702681344
+      }
+    },
+    {
+      "label": "Rendered road and terrain agree through every rain sector",
+      "probes": 719,
+      "maxHeightError": 0.005458676555939235,
+      "minRoadClearance": 0.6000210344277264,
+      "scenery": {
+        "trees": 740,
+        "mountains": 14,
+        "terrainTriangles": 20124,
+        "minTreeClearance": 12.135986504293502,
+        "minMountainClearance": 173.53944406895496,
+        "layoutVersion": 2,
+        "cameraClearance": 1154.6468673060524
+      }
+    },
+    {
+      "label": "Rendered road and terrain agree through every highway sector",
+      "probes": 890,
+      "maxHeightError": 0.005458676555939235,
+      "minRoadClearance": 0.6000210344277264,
+      "scenery": {
+        "trees": 740,
+        "mountains": 14,
+        "terrainTriangles": 27300,
+        "minTreeClearance": 12.037856367271864,
+        "minMountainClearance": 184.12272563240947,
+        "layoutVersion": 2,
+        "cameraClearance": 1679.9732729493765
+      }
+    },
+    {
+      "label": "Nine chase views include switchbacks, finish and safe runoff",
+      "minimumCameraClearance": 3.97213322475163,
+      "maximumDrawCalls": 88
+    },
+    {
+      "label": "Mobile map and hairpin view render"
+    },
+    {
+      "label": "Old progress and lap record survive; new layout records use a separate key"
+    },
+    {
+      "label": "Inspection controls are absent from the normal game"
+    },
+    {
+      "label": "No browser or shader errors"
+    }
+  ],
+  "errors": []
+}

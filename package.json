@@ -34,7 +34,6 @@
     "claudefable5-cloth-flag",
     "claudefable5-domino-rube",
     "claudefable5-bowling-physics",
-    "claudefable5-datagrid-virtual",
     "gpt5.5-fire-volumetric",
     "claudefable5-fire-raymarch",
     "claudefable5-portal-chambers",
@@ -50,12 +49,16 @@
     "claudeopus5-portal-recursive",
     "claudeopus5-stormwind-interiors",
     "grok4.7-stadium-worldcup",
-    "claudeopus5-protomotion-parkour",
     "gpt6-ocean-observatory",
     "gpt6-life-gba",
     "gpt6-mini4wd-room-racing",
-    "grok4.7-dev-world",
-    "claudeopus5-manhattan-procedural"
+    "claudeopus5-manhattan-procedural",
+    "claudeopus5.5-initiald-akina",
+    "gpt6.1sol-initiald-story-racing",
+    "claudeopus5.5-ocean-realistic",
+    "grok4.7-ocean-realistic",
+    "gpt6.1sol-ocean-realistic",
+    "claudeopus5.5-mini4wd-replica"
   ],
   "scripts": {
     "dev": "vite",

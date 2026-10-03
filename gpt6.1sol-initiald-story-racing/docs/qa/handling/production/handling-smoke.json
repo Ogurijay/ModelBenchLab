@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-02T16:47:35.739Z",
+  "browser": "154.0.8037.58",
+  "url": "http://localhost:3000/gpt6.1sol-initiald-story-racing/dist/?bench=1",
+  "checks": [
+    {
+      "label": "KeyD steers to the visible right",
+      "delta": 0.1608523527912309,
+      "noseScreenOffset": 0.026721342285415495
+    },
+    {
+      "label": "KeyA steers to the visible left",
+      "delta": -0.14621755851778226,
+      "noseScreenOffset": -0.02627460132125712
+    },
+    {
+      "label": "ArrowRight steers to the visible right",
+      "delta": 0.16087647349590764,
+      "noseScreenOffset": 0.026987987708113604
+    },
+    {
+      "label": "ArrowLeft steers to the visible left",
+      "delta": -0.1764526414417227,
+      "noseScreenOffset": -0.027478056618711798
+    },
+    {
+      "label": "Actual handbrake animates body, smoke and two tire tracks",
+      "angle": -0.5270686537840988,
+      "visual": {
+        "drift": {
+          "intensity": 0.9481297558078146,
+          "smoke": 32,
+          "skidSegments": 150,
+          "capacity": {
+            "smoke": 160,
+            "skidSegments": 640
+          },
+          "drawCalls": 2
+        },
+        "bodyRoll": -0.0159542077997245,
+        "wheelSteering": -0.4299970353273751,
+        "noseScreenOffset": 0.06498319252558066,
+        "cameraHeading": -0.0883517453578636,
+        "drawCalls": 74
+      }
+    },
+    {
+      "label": "Countersteering responds after handbrake release"
+    },
+    {
+      "label": "Pause freezes simulation and drift effects"
+    },
+    {
+      "label": "Tire smoke expires after grip returns"
+    },
+    {
+      "label": "Mobile right button follows its label",
+      "delta": 0.1461074528207652
+    },
+    {
+      "label": "Mobile left button follows its label",
+      "delta": -0.1618821580977196
+    },
+    {
+      "label": "Mobile viewport renders drift smoke"
+    },
+    {
+      "label": "Observed animation frame intervals in this Chrome QA session",
+      "frames": 119,
+      "medianMs": 6.099999999999454,
+      "p95Ms": 6.199999999998909
+    },
+    {
+      "label": "No browser or shader errors"
+    }
+  ],
+  "errors": []
+}
