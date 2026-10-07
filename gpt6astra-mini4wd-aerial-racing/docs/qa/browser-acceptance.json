@@ -1,0 +1,201 @@
+{
+  "url": "http://127.0.0.1:3059/",
+  "date": "2026-10-07T04:28:16.528Z",
+  "browser": "154.0.4258.62",
+  "checks": [
+    {
+      "name": "eight renderable cars and genuine model thumbnails",
+      "passed": true
+    },
+    {
+      "name": "all eight primary classic reference links are accessible in the archive",
+      "passed": true
+    },
+    {
+      "name": "all eight separately authored models expose 13 exploded assemblies",
+      "passed": true
+    },
+    {
+      "name": "reference comparison distinguishes photograph from rendered model",
+      "passed": true
+    },
+    {
+      "name": "exploded view separates shell, canopy and wheel assemblies",
+      "passed": true
+    },
+    {
+      "name": "clicking an exposed motor selects its component editor",
+      "passed": true
+    },
+    {
+      "name": "motor replacement updates visible performance figures",
+      "passed": true
+    },
+    {
+      "name": "roller replacement adds four visible upper bearing rollers",
+      "passed": true
+    },
+    {
+      "name": "configuration survives a real browser reload",
+      "passed": true
+    },
+    {
+      "name": "repeated garage selection releases replaced GPU geometry and textures",
+      "passed": true
+    },
+    {
+      "name": "export contains a valid independent build",
+      "passed": true
+    },
+    {
+      "name": "custom car keeps its own name, color and build",
+      "passed": true
+    },
+    {
+      "name": "invalid import is rejected without adding a car",
+      "passed": true
+    },
+    {
+      "name": "valid import creates an independent car",
+      "passed": true
+    },
+    {
+      "name": "custom selection replaces one starter while preserving the eight-car limit",
+      "passed": true
+    },
+    {
+      "name": "three long tracks, three rooms and 2/4/8-car grids switch through actual controls",
+      "passed": true
+    },
+    {
+      "name": "actual W and S keyboard input powers and brakes the player",
+      "passed": true
+    },
+    {
+      "name": "race settings lock while running",
+      "passed": true
+    },
+    {
+      "name": "garage pauses a race and rejects mid-race component changes",
+      "passed": true
+    },
+    {
+      "name": "paused race resumes from the control panel",
+      "passed": true
+    },
+    {
+      "name": "close-follow camera enters and inverts on a physically simulated loop",
+      "passed": true
+    },
+    {
+      "name": "eight cars finish eight laps and the live table shows results",
+      "passed": true
+    },
+    {
+      "name": "finished race can start again",
+      "passed": true
+    },
+    {
+      "name": "V switches camera mode",
+      "passed": true
+    },
+    {
+      "name": "desktop layout stays within the viewport at 1280 × 800",
+      "passed": true
+    },
+    {
+      "name": "no browser JavaScript, WebGL or network console errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "observations": {
+    "memory": {
+      "before": {
+        "geometries": 631,
+        "textures": 59
+      },
+      "after": {
+        "geometries": 631,
+        "textures": 59
+      }
+    },
+    "lengths": {
+      "helix": 124.04591280280361,
+      "technical": 99.40384428982232,
+      "aerial": 110.59600206642766
+    },
+    "manual": {
+      "fast": 5.977770261350604,
+      "slow": 3.5032181416258013
+    },
+    "follow": {
+      "up": [
+        -0.06742389892167275,
+        -0.970589819682664,
+        -0.23110478096001155
+      ],
+      "normal": [
+        -0.06742710440374586,
+        -0.9706011571695686,
+        -0.23105622539291332
+      ],
+      "distance": 0.3464231516512717,
+      "status": "running",
+      "support": 1.5229495716651347
+    },
+    "race": {
+      "status": "finished",
+      "cars": [
+        {
+          "id": "cyclone",
+          "lap": 8,
+          "status": "finished",
+          "finish": 143.02083333328542
+        },
+        {
+          "id": "hurricane",
+          "lap": 8,
+          "status": "finished",
+          "finish": 143.56666666661826
+        },
+        {
+          "id": "dagger",
+          "lap": 8,
+          "status": "finished",
+          "finish": 141.35833333328694
+        },
+        {
+          "id": "evolution",
+          "lap": 8,
+          "status": "finished",
+          "finish": 142.73333333328569
+        },
+        {
+          "id": "cobra",
+          "lap": 8,
+          "status": "finished",
+          "finish": 143.27499999995186
+        },
+        {
+          "id": "spider",
+          "lap": 8,
+          "status": "finished",
+          "finish": 142.1708333332862
+        },
+        {
+          "id": "gigant",
+          "lap": 8,
+          "status": "finished",
+          "finish": 145.97916666661607
+        },
+        {
+          "id": "stinger",
+          "lap": 8,
+          "status": "finished",
+          "finish": 142.4499999999526
+        }
+      ]
+    }
+  }
+}

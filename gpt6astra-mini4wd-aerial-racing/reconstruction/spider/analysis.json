@@ -1,0 +1,24 @@
+{
+  "identity": {
+    "name": "BEAK SPIDER",
+    "sku": "19408",
+    "domain": "object",
+    "confidence": 1
+  },
+  "reference": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\spider.png",
+  "form": "Bilateral injection moulded miniature car body with open wheel clearances; catalog dimensions in millimetres.",
+  "hierarchy": "chassis > drive and batteries; shell > thin panels and local painted regions; independent canopy/wing/wheels/rollers.",
+  "materials": "Gloss painted ABS shell, matte black rubber tires, polished metallic axles; black or gold opaque canopy except the two clear Real Mini 4WD canopies.",
+  "details": [
+    "宽曲面前铲与两侧红色梯形灯",
+    "贯穿前壳的蓝白双线蛛网",
+    "窄长金色座舱",
+    "红色后肩尖角纹、外露绿色齿箱",
+    "纵向脊梁贯穿百叶双尾翼"
+  ],
+  "unknowns": [
+    "Panel coordinates are visual estimates, not CAD measurements.",
+    "Hidden shell thickness and battery mounts are inferred."
+  ],
+  "adaptation": "Classic chassis family retained; simulated physical parameters are tuneable."
+}

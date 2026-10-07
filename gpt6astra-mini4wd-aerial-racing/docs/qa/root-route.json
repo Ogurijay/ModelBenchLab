@@ -1,0 +1,21 @@
+{
+  "url": "http://127.0.0.1:3000/gpt6astra-mini4wd-aerial-racing/",
+  "date": "2026-10-07T04:30:56.028Z",
+  "portalEntry": true,
+  "nestedRoute": true,
+  "state": {
+    "models": 8,
+    "images": [
+      1000,
+      1000,
+      1000,
+      1000,
+      1000,
+      1000,
+      1000,
+      1000
+    ],
+    "length": 110.59600206642766
+  },
+  "errors": []
+}

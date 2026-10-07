@@ -1,0 +1,24 @@
+{
+  "identity": {
+    "name": "NEO-TRIDAGGER ZMC",
+    "sku": "19409",
+    "domain": "object",
+    "confidence": 1
+  },
+  "reference": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\dagger.png",
+  "form": "Bilateral injection moulded miniature car body with open wheel clearances; catalog dimensions in millimetres.",
+  "hierarchy": "chassis > drive and batteries; shell > thin panels and local painted regions; independent canopy/wing/wheels/rollers.",
+  "materials": "Gloss painted ABS shell, matte black rubber tires, polished metallic axles; black or gold opaque canopy except the two clear Real Mini 4WD canopies.",
+  "details": [
+    "前轮明显外露，三叉宽扁前缘",
+    "前半身 U 形三级阶梯槽",
+    "金色多面长座舱",
+    "石墨色大拱后轮罩",
+    "红黄火焰、黑色宽尾翼"
+  ],
+  "unknowns": [
+    "Panel coordinates are visual estimates, not CAD measurements.",
+    "Hidden shell thickness and battery mounts are inferred."
+  ],
+  "adaptation": "Classic chassis family retained; simulated physical parameters are tuneable."
+}

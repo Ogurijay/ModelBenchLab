@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\hurricane.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.2947,
+    "largestComponentFraction": 0.989,
+    "pHash": 12065366366031074548,
+    "duplicateOfHash": null
+  }
+}

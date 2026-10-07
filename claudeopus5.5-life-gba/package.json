@@ -1,0 +1,10 @@
+{
+  "name": "claudeopus5.5-life-gba",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "像素人生·绿钻镇物语 — GBA 版模拟人生风格像素生活模拟(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "projection": {
+    "applicable": false,
+    "reason": "Identity paint has flat hard boundaries. The later Gates rule in SKILL.md requires geometry for flat livery regions, never a projected texture. Author bounded surface polygons; no photo highlights are baked into paint."
+  },
+  "materialEvidence": {
+    "applicable": false,
+    "reason": "Clean flat-colour moulded ABS, smooth opaque decal film, plain rubber and metal. No patterned texture extraction or recovered PBR claim; analytic independent channels and authored paint boundaries are used. Real glass canopy gets transmission."
+  },
+  "identity": {
+    "name": "PROTO-SABER EVOLUTION",
+    "sku": "19302 · 95568",
+    "domain": "object",
+    "confidence": 1
+  }
+}

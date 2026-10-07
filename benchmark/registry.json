@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。projects 登记模型实现；portalSections[].groups[] 按主题大类和项目系列组织展示，每个 mission 只归属一个系列。展示合组不改变 task_id/task_version，也不意味着可直接横向排名。新增/改名/删除项目需同步 workspaces 与 lockfile，再运行 npm run sync:check。根开发服务统一端口 3000。",
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-07",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -1615,6 +1615,64 @@
         "handover": "HANDOVER.md",
         "changelog": "CHANGELOG.md",
         "readme": "README.md"
+      }
+    },
+    {
+      "dir": "gpt6astra-mini4wd-aerial-racing",
+      "port": 3059,
+      "model": "GPT 6 ASTRA",
+      "category": "code-to-3d",
+      "mission": "mini4wd",
+      "variant": "aerial-racing",
+      "api": "WebGL 2",
+      "lang": "TypeScript / JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "ASTRA · 四驱实验室",
+      "desc": "经典八车参考重建、立体双环赛道、近距离随车镜头与可拆解改装",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/mini4wd.md",
+      "task_id": "code3d-mini4wd-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      },
+      "name": "ASTRA · 四驱实验室",
+      "description": "经典八车参考重建、立体双环赛道、近距离随车镜头与可拆解改装"
+    },
+    {
+      "dir": "claudeopus5.5-life-gba",
+      "port": 3060,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-ui",
+      "mission": "life",
+      "variant": "gba",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "像素人生 · 绿钻镇物语",
+      "desc": "致敬 GBA 版模拟人生:可走动的小镇与六个室内场景、八项需求与绿钻心情、饼状交互菜单、7 位镇民日程与 9 种社交、6 项技能、咖啡馆/修车厂打工小游戏与升职、家具店、账单收债、四章目标与别墅结局,美术音频全程序化",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/life-sim.md",
+      "task_id": "codeui-life-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
       }
     }
   ],

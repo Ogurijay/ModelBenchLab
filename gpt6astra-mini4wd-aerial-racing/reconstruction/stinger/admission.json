@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\stinger.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.1508,
+    "largestComponentFraction": 0.9041,
+    "pHash": 17721939243640034385,
+    "duplicateOfHash": null
+  }
+}

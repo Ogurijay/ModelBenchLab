@@ -1,0 +1,24 @@
+{
+  "identity": {
+    "name": "PROTO-SABER EVOLUTION",
+    "sku": "19302 · 95568",
+    "domain": "object",
+    "confidence": 1
+  },
+  "reference": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\evolution.png",
+  "form": "Bilateral injection moulded miniature car body with open wheel clearances; catalog dimensions in millimetres.",
+  "hierarchy": "chassis > drive and batteries; shell > thin panels and local painted regions; independent canopy/wing/wheels/rollers.",
+  "materials": "Gloss painted ABS shell, matte black rubber tires, polished metallic axles; black or gold opaque canopy except the two clear Real Mini 4WD canopies.",
+  "details": [
+    "车头两条贯穿深槽与三叉短鼻",
+    "无色透明罩下的银色机械",
+    "座舱前框连入长侧翼端板",
+    "黄色双圆灯与红色火焰",
+    "银色涡轮轮毂、胎面枝状纹"
+  ],
+  "unknowns": [
+    "Panel coordinates are visual estimates, not CAD measurements.",
+    "Hidden shell thickness and battery mounts are inferred."
+  ],
+  "adaptation": "Original is a non-powered display model. Racing chassis and guide rollers are simulator adaptations."
+}

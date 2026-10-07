@@ -58,7 +58,9 @@
     "claudeopus5.5-ocean-realistic",
     "grok4.7-ocean-realistic",
     "gpt6.1sol-ocean-realistic",
-    "claudeopus5.5-mini4wd-replica"
+    "claudeopus5.5-mini4wd-replica",
+    "gpt6astra-mini4wd-aerial-racing",
+    "claudeopus5.5-life-gba"
   ],
   "scripts": {
     "dev": "vite",

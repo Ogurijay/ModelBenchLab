@@ -1,0 +1,16 @@
+{
+  "schema": "astra-mini4wd/1",
+  "baseId": "cyclone",
+  "name": "旋风冲锋",
+  "color": "#f5f3e7",
+  "build": {
+    "motor": 2,
+    "gear": 1,
+    "tire": 0,
+    "roller": 1,
+    "brake": 0,
+    "battery": 0,
+    "chassis": 0,
+    "body": 0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "path": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\spider.png",
+  "type": "png",
+  "bytes": 697153,
+  "width": 1000,
+  "height": 750,
+  "aspectRatio": 1.3333333333333333,
+  "technicalSuitability": "pass",
+  "warnings": [],
+  "note": "This is only technical image probing. Semantic object suitability still requires visual inspection."
+}

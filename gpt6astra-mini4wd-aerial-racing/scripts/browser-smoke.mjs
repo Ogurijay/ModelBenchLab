@@ -1,0 +1,15 @@
+import {chromium} from 'playwright';import fs from 'node:fs';import path from 'node:path';
+const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'docs/qa');fs.mkdirSync(out,{recursive:true});
+const browser=await chromium.launch({channel:'msedge',headless:true});const page=await browser.newPage({viewport:{width:1600,height:1000},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await page.goto(process.env.ASTRA_URL||'http://localhost:3059/',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.astra?.ready,{timeout:30000});
+await page.waitForTimeout(1600);await page.screenshot({path:path.join(out,'race-overview.png')});
+console.log('initial',await page.evaluate(()=>({state:window.astra.state,render:window.astra.renderer.info.render,errors:window.astra.race.cars.length})));
+await page.getByRole('button',{name:'02 改装工房'}).click();await page.waitForTimeout(700);await page.screenshot({path:path.join(out,'garage-cyclone.png')});
+await page.getByRole('button',{name:'展开结构',exact:true}).click();await page.waitForTimeout(500);await page.screenshot({path:path.join(out,'garage-exploded.png')});
+console.log('garage',await page.evaluate(()=>({parts:Object.keys(window.astra.garageModel.userData.parts),state:window.astra.state,render:window.astra.renderer.info.render})));
+await page.getByRole('button',{name:'配置已保存 · 返回比赛 ↗'}).click();await page.getByRole('button',{name:'开始比赛'}).click();await page.waitForTimeout(3400);await page.screenshot({path:path.join(out,'race-chase.png')});
+await page.evaluate(()=>{const a=window.astra; a.race.status='paused';const p=a.course.lanes[0].path.find(p=>p.loop&&p.u.y<-.97);a.seek(p.s);a.setCamera('chase');});
+await page.waitForTimeout(800);await page.screenshot({path:path.join(out,'loop-inverted-chase.png')});
+console.log('loop',await page.evaluate(()=>({up:window.astra.camera.up.toArray(),frame:window.astra.race.cars[0].frame.u.toArray(),camera:window.astra.camera.position.toArray(),car:window.astra.race.cars[0].frame.p.toArray(),render:window.astra.renderer.info.render})));
+fs.writeFileSync(path.join(out,'smoke.json'),JSON.stringify({errors},null,2));console.log('errors',errors);await browser.close();if(errors.length)process.exitCode=1;

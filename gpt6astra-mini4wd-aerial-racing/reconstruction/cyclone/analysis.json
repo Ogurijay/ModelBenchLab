@@ -1,0 +1,24 @@
+{
+  "identity": {
+    "name": "CYCLONE MAGNUM",
+    "sku": "19412",
+    "domain": "object",
+    "confidence": 1
+  },
+  "reference": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\cyclone.png",
+  "form": "Bilateral injection moulded miniature car body with open wheel clearances; catalog dimensions in millimetres.",
+  "hierarchy": "chassis > drive and batteries; shell > thin panels and local painted regions; independent canopy/wing/wheels/rollers.",
+  "materials": "Gloss painted ABS shell, matte black rubber tires, polished metallic axles; black or gold opaque canopy except the two clear Real Mini 4WD canopies.",
+  "details": [
+    "楔形前轮导流罩，轮胎后半外露",
+    "宽白色鼻翼包围蓝色中轴",
+    "低长黑座舱与白色顶桥",
+    "后肩红色闪电、蓝色侧面",
+    "白色尾翼端板与黄色 MAGNUM"
+  ],
+  "unknowns": [
+    "Panel coordinates are visual estimates, not CAD measurements.",
+    "Hidden shell thickness and battery mounts are inferred."
+  ],
+  "adaptation": "Classic chassis family retained; simulated physical parameters are tuneable."
+}

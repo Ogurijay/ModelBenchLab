@@ -1,0 +1,154 @@
+/* 像素人生 · GBA 掌机外壳。画面 240×160 由 JS 按整数倍(必要时小数)放大,最近邻采样。 */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  background:
+    radial-gradient(900px 600px at 50% 15%, #34306a 0%, #1d1b40 55%, #0e0d22 100%) fixed;
+  color: #cfd0ff;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  overflow: hidden;
+  user-select: none; -webkit-user-select: none;
+  touch-action: none;
+}
+button { font: inherit; border: 0; cursor: pointer; color: inherit; }
+
+.stage {
+  height: 100%; min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: env(safe-area-inset-top) 8px env(safe-area-inset-bottom);
+}
+
+/* ---------- 机身 ---------- */
+.gba {
+  --pad: clamp(118px, 15vw, 168px);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--pad) auto var(--pad);
+  grid-template-areas: "lp scr rp" "lp sys rp";
+  align-items: center;
+  column-gap: 10px;
+  padding: 22px 26px 14px;
+  border-radius: 34px 34px 64px 64px / 34px 34px 80px 80px;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.18), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, #5a4fc4 0%, #4a3fb0 55%, #3a3096 100%);
+  box-shadow:
+    inset 0 3px 2px rgba(255,255,255,.28),
+    inset 0 -8px 14px rgba(0,0,0,.35),
+    0 24px 60px rgba(0,0,0,.6);
+}
+.speaker { position: absolute; right: 46px; bottom: 26px; display: grid; grid-template-columns: repeat(3, 6px); gap: 5px; transform: rotate(-28deg); }
+.speaker i { width: 6px; height: 6px; border-radius: 50%; background: #241e66; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); }
+
+/* ---------- 屏幕 ---------- */
+.screen-wrap { grid-area: scr; display: flex; justify-content: center; }
+.bezel {
+  background: linear-gradient(180deg, #34345a, #22223c);
+  border-radius: 12px 12px 12px 12px;
+  padding: 8px 18px 16px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.18);
+}
+.bezel-top { display: flex; align-items: center; gap: 8px; height: 16px; font-size: 10px; letter-spacing: 1px; color: #9a9ac8; font-weight: 700; font-style: italic; }
+.power { width: 7px; height: 7px; border-radius: 50%; background: #3b2; box-shadow: 0 0 6px #6f6; transition: background .3s; }
+.power.low { background: #c33; box-shadow: 0 0 6px #f55; }
+.lcd {
+  width: var(--sw, 480px); height: calc(var(--sw, 480px) * 2 / 3);
+  background: #000;
+  box-shadow: 0 0 0 2px #0a0a14, inset 0 0 0 1px #000;
+  overflow: hidden;
+}
+#screen {
+  display: block; width: 100%; height: 100%;
+  image-rendering: pixelated; image-rendering: crisp-edges;
+}
+
+/* ---------- 方向键 ---------- */
+.left-pad { grid-area: lp; display: flex; justify-content: center; align-items: center; }
+.dpad { position: relative; width: calc(var(--pad) * .78); aspect-ratio: 1; touch-action: none; }
+.dp, .dp-center { position: absolute; background: linear-gradient(180deg, #2b2b3a, #18181f); }
+.dp-up, .dp-down { left: 33.3%; width: 33.4%; height: 36%; }
+.dp-left, .dp-right { top: 33.3%; height: 33.4%; width: 36%; }
+.dp-up { top: 0; border-radius: 6px 6px 0 0; }
+.dp-down { bottom: 0; border-radius: 0 0 6px 6px; }
+.dp-left { left: 0; border-radius: 6px 0 0 6px; }
+.dp-right { right: 0; border-radius: 0 6px 6px 0; }
+.dp-center { left: 32%; top: 32%; width: 36%; height: 36%; }
+.dpad::before {
+  content: ""; position: absolute; inset: -8px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,.25), rgba(0,0,0,0) 70%);
+}
+.dpad::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 22%; height: 22%; transform: translate(-50%,-50%);
+  border-radius: 50%; background: radial-gradient(circle at 40% 35%, #3a3a4a, #15151c); pointer-events: none;
+}
+.dp.on { background: #0b0b10; }
+.dp-up::after, .dp-down::after, .dp-left::after, .dp-right::after {
+  content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  border: 6px solid transparent;
+}
+.dp-up::after { border-bottom-color: #4b4b60; margin-top: -4px; }
+.dp-down::after { border-top-color: #4b4b60; margin-top: 4px; }
+.dp-left::after { border-right-color: #4b4b60; margin-left: -4px; }
+.dp-right::after { border-left-color: #4b4b60; margin-left: 4px; }
+
+/* ---------- A/B ---------- */
+.right-pad { grid-area: rp; display: flex; justify-content: center; align-items: center; }
+.ab { position: relative; width: calc(var(--pad) * .9); height: calc(var(--pad) * .7); transform: rotate(-22deg); }
+.round {
+  position: absolute; width: 44%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #bdb8d8 0%, #8f8ab2 45%, #6a6590 100%);
+  box-shadow: 0 4px 0 #2c2766, 0 6px 10px rgba(0,0,0,.45), inset 0 -3px 4px rgba(0,0,0,.25);
+  color: #3a3478; font-weight: 900; font-size: clamp(13px, 1.6vw, 18px);
+  touch-action: none;
+}
+.btn-a { right: 0; top: 0; }
+.btn-b { left: 0; bottom: 0; }
+.round.on, .pill.on, .shoulder.on { transform: translateY(3px); box-shadow: 0 1px 0 #2c2766, inset 0 2px 4px rgba(0,0,0,.4); filter: brightness(.9); }
+
+/* ---------- START / SELECT ---------- */
+.sys { grid-area: sys; display: flex; justify-content: center; gap: 22px; margin-top: 12px; }
+.pill {
+  min-width: 70px; padding: 6px 10px; border-radius: 999px;
+  background: linear-gradient(180deg, #3a3478, #2a2460);
+  box-shadow: 0 3px 0 #1a1640, inset 0 1px 0 rgba(255,255,255,.15);
+  color: #a9a4e6; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  touch-action: none;
+}
+
+/* ---------- 肩键 ---------- */
+.shoulder {
+  position: absolute; top: -10px; width: 120px; height: 26px;
+  background: linear-gradient(180deg, #8a84c8, #5a52a8);
+  color: #2c2570; font-weight: 900; font-size: 12px;
+  box-shadow: 0 2px 0 #2c2766;
+  touch-action: none;
+}
+.sh-l { left: 22px; border-radius: 22px 8px 0 0; text-align: left; padding-left: 18px; }
+.sh-r { right: 22px; border-radius: 8px 22px 0 0; text-align: right; padding-right: 18px; }
+
+.hint { font-size: 12px; color: #8b88c6; text-align: center; max-width: 900px; line-height: 1.6; }
+
+/* ---------- 窄屏 / 竖屏:屏幕在上,按键在下 ---------- */
+@media (max-aspect-ratio: 1/1), (max-width: 640px) {
+  .stage { justify-content: flex-start; padding-top: max(10px, env(safe-area-inset-top)); }
+  .gba {
+    --pad: clamp(120px, 40vw, 190px);
+    width: min(100%, 560px);
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "scr scr" "lp rp" "sys sys";
+    padding: 26px 14px 26px;
+    row-gap: 14px;
+    border-radius: 26px 26px 56px 56px;
+  }
+  .bezel { padding: 6px 10px 10px; }
+  .shoulder { width: 34%; }
+  .speaker { right: 22px; bottom: 18px; }
+  .hint { display: none; }
+}
+@media (max-height: 420px) and (min-aspect-ratio: 1/1) {
+  .gba { padding: 14px 18px 8px; --pad: clamp(100px, 18vw, 150px); }
+  .sys { margin-top: 6px; }
+  .hint { display: none; }
+  .bezel { padding: 4px 10px 8px; }
+  .bezel-top { display: none; }
+}

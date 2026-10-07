@@ -134,6 +134,134 @@
         "gpt5.5-ocean-pirate-ship/public/models/medium_pirate_ship.glb"
       ],
       "source": "shared/assets/blender 的本地程序化建模脚本"
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/cyclone.png",
+      "sha256": "f3dcdf117e19f9e8b3d6bd54dfb3e25a9f6b748d25c67ea42cb373f8196717b5",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19412/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/hurricane.png",
+      "sha256": "4c99f494c892c1a16260eb98ce5e7ba1fa51fb69468112d6a39be6d03575de31",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19415/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/dagger.png",
+      "sha256": "517d0df49b55a73726ffca7d6ed824eb0ef8c6770aa3b02703ecb31fd617f984",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19409/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/evolution.png",
+      "sha256": "16e3da6a9b350b6de0ca0b40e180ee18846126799dd61d5d4208b1efc9d373f8",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/95568/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/cobra.png",
+      "sha256": "c147bc7b883ff6e2130f3130f9f8dd0773237d8b317fe3ad82e563b9c0cee8f8",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19301/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/spider.png",
+      "sha256": "7586e9f0f4b068f12e41fb84c805890cb42c02bbd586afae0cdcc4d175e5b6f5",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19408/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/gigant.png",
+      "sha256": "0189fd4cc03fee491aeaaf62befa9ef88bb542151911730d1263cc5e8091ad24",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19411/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/references/stinger.png",
+      "sha256": "c4987fa86c0b47cd08536460ab57ea9af951219bcf23020b1aaa5cda9485f278",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/references.ts"
+      ],
+      "source": "Tamiya original product reference screenshot; https://www.tamiya.com/japan/products/19413/index.html ; local visual comparison only, not a game texture or claim of redistribution rights."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/cyclone.png",
+      "sha256": "f85deb56e5386203b0d5930feb4efb48e5691f4ca3016e155f78e9d1b84bfe57",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/hurricane.png",
+      "sha256": "7aef7c0ab8d8f21b0f63a987e23a8cdbab9a94c75642e953d5c5fd5219a61a67",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/dagger.png",
+      "sha256": "274cfcb294305db856a0bcfd1f9efb04d593ab3c3819ac299d322cc905fe4cca",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/evolution.png",
+      "sha256": "781afe9c1dbcced5d229663dcb5c80391faae4c3987e6a578ffc55be701050ee",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/cobra.png",
+      "sha256": "f3cd051b610753de9d4b0f1d60a241c95173a664a94eaca7b00fee640d34f2c0",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/spider.png",
+      "sha256": "15fe6648f49464f9599085c1d018b6738ebffed4705560a4a88ea495e406b939",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/gigant.png",
+      "sha256": "04d23fbbd5ed371d748f57a3d80d3e695cbeb09d5fd74a4ede1e7cb56da2cd10",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/mini4wd-astra/previews/stinger.png",
+      "sha256": "902ecd66bd060d57d9fdd30bfcf1cbabcd73465bf8f1e0e3ff94416e404feffd",
+      "consumers": [
+        "gpt6astra-mini4wd-aerial-racing/src/main.ts"
+      ],
+      "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
     }
   ]
 }

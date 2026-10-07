@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\evolution.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.3523,
+    "largestComponentFraction": 0.9997,
+    "pHash": 17938392518389159120,
+    "duplicateOfHash": null
+  }
+}

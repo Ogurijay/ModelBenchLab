@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\cobra.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.4033,
+    "largestComponentFraction": 0.9985,
+    "pHash": 13713930173141005325,
+    "duplicateOfHash": null
+  }
+}

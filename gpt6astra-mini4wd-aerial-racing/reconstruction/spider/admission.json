@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\spider.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.3949,
+    "largestComponentFraction": 1.0,
+    "pHash": 18049561802747417328,
+    "duplicateOfHash": null
+  }
+}

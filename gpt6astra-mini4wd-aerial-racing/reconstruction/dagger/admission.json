@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "front-three-quarter",
+    "sourcePath": "D:\\Administartor\\Study\\WorkStation\\ModelBenchLab\\shared\\assets\\mini4wd-astra\\references\\dagger.png",
+    "width": 1000,
+    "height": 750,
+    "foregroundCoverage": 0.2907,
+    "largestComponentFraction": 0.9997,
+    "pHash": 16751957910182697072,
+    "duplicateOfHash": null
+  }
+}

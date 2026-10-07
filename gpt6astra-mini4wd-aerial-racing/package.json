@@ -1,0 +1,17 @@
+{
+  "name": "gpt6astra-mini4wd-aerial-racing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3059 --strictPort",
+    "build": "vite build --base ./",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node scripts/browser-acceptance.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 3059 --strictPort",
+    "capture:models": "node scripts/capture-models.mjs final-review",
+    "previews": "node scripts/publish-previews.mjs"
+  },
+  "dependencies": { "three": "0.185.1" },
+  "devDependencies": { "vite": "^8.0.16", "playwright": "1.61.1" }
+}

@@ -1,0 +1,533 @@
+{
+  "verifiedAt": "2026-10-07",
+  "researcher": "astra_refs_a",
+  "method": "Independent headless Edge screenshots of public pages and their actual image URLs; no user tab operation.",
+  "primaryClassicSkus": [
+    "19412",
+    "19415",
+    "19409",
+    "19302 (95568 rerelease)"
+  ],
+  "entries": [
+    {
+      "file": "19412-classic-0.png",
+      "source": "https://www.tamiya.com/japan/products/19412/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19412/19412_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19412-classic-0.png",
+      "kind": "manufacturer-original-image",
+      "version": "classic"
+    },
+    {
+      "file": "19415-classic-0.png",
+      "source": "https://www.tamiya.com/japan/products/19415/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19415/19415_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19415-classic-0.png",
+      "kind": "manufacturer-original-image",
+      "version": "classic"
+    },
+    {
+      "file": "95568-classic-0.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-0.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-1.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_p.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-1.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-2.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c2.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-2.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-3.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c3.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-3.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-4.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c4.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-4.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-5.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c5.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-5.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-6.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c6.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-6.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "95568-classic-7.png",
+      "source": "https://www.tamiya.com/japan/products/95568/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95568/95568_4c7.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/95568-classic-7.png",
+      "kind": "manufacturer-original-image",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "cyclone-review-0.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8403-1536x1536.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-0.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-1.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8384-800x600.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-1.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-2.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8385-800x600.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-2.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-3.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8386-800x600.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-3.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-4.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8389-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-4.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-5.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8390-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-5.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-6.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8391-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-6.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-7.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8392-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-7.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-8.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8388-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-8.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-9.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8387-800x600.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-9.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-10.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8400-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-10.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-11.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8394-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-11.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-12.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8396-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-12.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-13.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8397-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-13.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-14.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8399-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-14.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "cyclone-review-15.png",
+      "source": "https://www.mega3hobbylife.com/review-miniyonku-cyclonemagnum/",
+      "image": "https://www.mega3hobbylife.com/wp-content/uploads/2022/12/IMG_8403-800x800.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/cyclone-review-15.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-0.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/fe/d1/j/o0674050613552498717.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-0.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-1.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/a0/c7/j/o0674050613552498718.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-1.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-2.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/5d/42/j/o0674050613552498719.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-2.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-3.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/15/c2/j/o0674050613552498919.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-3.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-4.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/cb/40/j/o0674050613552498918.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-4.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-5.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/a3/3a/j/o0674050613552498920.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-5.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-6.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/69/90/j/o0674050613552498921.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-6.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-7.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/f6/6e/j/o0674050613552498922.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-7.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-8.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/eb/8d/j/o0661088213552498720.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-8.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-assembly-9.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12122556401.html",
+      "image": "https://stat.ameba.jp/user_images/20160128/22/exia-jam/29/2a/j/o0661088213552498721.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-assembly-9.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "evo-real-review-0.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/d4/c7/j/o1210090814912063001.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-0.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-1.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/a2/bb/j/o1141072514912063139.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-1.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-2.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/fb/8a/j/o1210090814912063137.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-2.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-3.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/24/82/j/o1210090814912063135.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-3.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-4.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/12/shining-leo/a1/6f/j/o1210090814912067050.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-4.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-5.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/54/90/j/o1210090814912063132.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-5.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-6.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/24/ee/j/o1210090814912063130.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-6.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-7.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/5c/b9/j/o1210090814912063003.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-7.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-8.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/14/eb/j/o1210090814912063000.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-8.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-9.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/00/f6/j/o1210090814912062999.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-9.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-10.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/2f/c6/j/o1210090814912062882.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-10.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-11.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/c4/c8/j/o1210090814912062997.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-11.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-12.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/b4/bf/j/o1210090814912062885.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-12.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-13.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/f6/1d/j/o1210090814912062884.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-13.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-14.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/13/ce/j/o1210090814912062881.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-14.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "evo-real-review-15.png",
+      "source": "https://ameblo.jp/shining-leo/entry-12663083780.html",
+      "image": "https://stat.ameba.jp/user_images/20210318/11/shining-leo/15/3a/j/o1210090814912062879.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/evo-real-review-15.png",
+      "kind": "author-original-assembly-photo",
+      "version": "19302/95568 classic Real Mini 4WD"
+    },
+    {
+      "file": "dagger-carbon-0.png",
+      "source": "https://www.tamiya.com/japan/products/95508/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/9/95508/95508_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/dagger-carbon-0.png",
+      "kind": "manufacturer-original-image",
+      "version": "95508 Carbon: supplement shell geometry only"
+    },
+    {
+      "file": "dagger-carbon-1.png",
+      "source": "https://www.tamiya.com/japan/products/95508/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/9/95508/95508_4c1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/dagger-carbon-1.png",
+      "kind": "manufacturer-original-image",
+      "version": "95508 Carbon: supplement shell geometry only"
+    },
+    {
+      "file": "dagger-carbon-2.png",
+      "source": "https://www.tamiya.com/japan/products/95508/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95508/95508_4c2.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/dagger-carbon-2.png",
+      "kind": "manufacturer-original-image",
+      "version": "95508 Carbon: supplement shell geometry only"
+    },
+    {
+      "file": "dagger-carbon-3.png",
+      "source": "https://www.tamiya.com/japan/products/95508/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95508/95508_4c3.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/dagger-carbon-3.png",
+      "kind": "manufacturer-original-image",
+      "version": "95508 Carbon: supplement shell geometry only"
+    },
+    {
+      "file": "dagger-carbon-4.png",
+      "source": "https://www.tamiya.com/japan/products/95508/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/cms/img/usr/item/9/95508/95508_4c4.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/dagger-carbon-4.png",
+      "kind": "manufacturer-original-image",
+      "version": "95508 Carbon: supplement shell geometry only"
+    },
+    {
+      "file": "19440-official-main.png",
+      "source": "https://www.tamiya.com/japan/products/19440/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19440/19440_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19440-official-main.png",
+      "kind": "manufacturer-original-image",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "19441-official-main.png",
+      "source": "https://www.tamiya.com/japan/products/19441/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19441/19441_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19441-official-main.png",
+      "kind": "manufacturer-original-image",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "19409-official-main.png",
+      "source": "https://www.tamiya.com/japan/products/19409/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19409/19409_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19409-official-main.png",
+      "kind": "manufacturer-original-image",
+      "version": "classic"
+    },
+    {
+      "file": "19448-official-main.png",
+      "source": "https://www.tamiya.com/japan/products/19448/index.html",
+      "image": "https://d7z22c0gz59ng.cloudfront.net/japan_contents/img/usr/item/1/19448/19448_1.jpg",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/19448-official-main.png",
+      "kind": "manufacturer-original-image",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-views-0.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12123193733.html",
+      "image": "https://stat.ameba.jp/user_images/20160130/19/exia-jam/83/f7/j/o0674050613553963807.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-views-0.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-views-1.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12123193733.html",
+      "image": "https://stat.ameba.jp/user_images/20160130/19/exia-jam/1e/a8/j/o0674050613553963809.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-views-1.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-views-2.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12123193733.html",
+      "image": "https://stat.ameba.jp/user_images/20160130/19/exia-jam/6c/1d/j/o0674050613553963806.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-views-2.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    },
+    {
+      "file": "sonic-views-3.png",
+      "source": "https://ameblo.jp/exia-jam/entry-12123193733.html",
+      "image": "https://stat.ameba.jp/user_images/20160130/19/exia-jam/e0/75/j/o0674050613553963808.jpg?caw=800",
+      "path": "D:/Administartor/Study/WorkStation/ModelBenchLab/tmp/astra-reference-a/sonic-views-3.png",
+      "kind": "author-original-assembly-photo",
+      "version": "Premium: supplement shell geometry only"
+    }
+  ]
+}
