@@ -1,6 +1,8 @@
 # 角色美术生成记录
 
-`assets/art/` 中的角色美术由 **OpenAI Codex CLI 0.162.1 的 image_generation 工具**生成(2026-10-11),再经本地脚本后处理。全部角色为本项目原创设计;**这部分美术不是 Claude Opus 5.5 自身产出**,评测时需单独看待。场景、特效、界面、音效与音乐仍为代码生成。
+`assets/art/` 中的角色美术由 **OpenAI Codex CLI 0.162.1 的 image_generation 工具**生成(2026-10-11),再经本地脚本后处理。
+
+**模型与版本(可查证部分)**:Codex CLI 0.162.1(首张 `full_shippu` 为 0.161.0)内置 `image_gen`(imagegen 技能的内置路径,非 API/CLI 回退);负责调用工具的对话模型为本机 Codex 配置中的 `gpt-6-astra`(推理强度 low)。生成的 PNG 内嵌 C2PA 来源凭证,softwareAgent 记为 `ChatGPT` / 版本 `gpt-image`,签发方 OpenAI Media Service,**未写明具体子版本号**。imagegen 技能文档注明其 API/CLI 回退路径默认 `gpt-image-2`,但内置路径的具体版本无法从本机日志或文件元数据确认。全部角色为本项目原创设计;**这部分美术不是 Claude Opus 5.5 自身产出**,评测时需单独看待。场景、特效、界面、音效与音乐仍为代码生成。
 
 ## 经过
 

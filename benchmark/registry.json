@@ -65,7 +65,6 @@
     "business": "像素商业大亨",
     "brawler": "3D 竞技格斗",
     "digimon": "数码宝贝大乱斗",
-    "history": "中国历史3D演变沙盘",
     "stormwind": "奇幻王都全景(内外可穿行)",
     "stadium": "世界杯露天球场",
     "mini4wd": "迷你四驱车模拟器",
@@ -1256,34 +1255,6 @@
       }
     },
     {
-      "dir": "gpt5.6solultra-history-china3d",
-      "port": 3043,
-      "model": "GPT 5.6 SOL Ultra",
-      "category": "code-to-3d",
-      "mission": "history",
-      "variant": "china3d",
-      "api": "WebGL",
-      "lang": "JavaScript",
-      "three": "0.185",
-      "vite": "8",
-      "workspace": true,
-      "title": "山河纪 · 中国历史3D演变沙盘",
-      "desc": "12 个历史关键帧串联春秋战国至现代，61 座城市可下钻的程序化 3D 沙盘，包含全国地形、历代势力与国土演变、粗粒度域外版图和重大事件",
-      "docs": {
-        "readme": true,
-        "handover": true,
-        "changelog": true
-      },
-      "taskDoc": "benchmark/tasks/code-to-3d/history.md",
-      "task_id": "code3d-history-001",
-      "task_version": 1,
-      "docPaths": {
-        "handover": "HANDOVER.md",
-        "changelog": "CHANGELOG.md",
-        "readme": "README.md"
-      }
-    },
-    {
       "dir": "claudeopus5-stormwind-interiors",
       "port": 3046,
       "model": "Claude Opus 5",
@@ -1899,13 +1870,6 @@
           "label": "美术馆布光",
           "missions": [
             "gallery"
-          ]
-        },
-        {
-          "id": "history",
-          "label": "中国历史沙盘",
-          "missions": [
-            "history"
           ]
         }
       ]

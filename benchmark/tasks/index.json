@@ -106,13 +106,6 @@
       "doc": "benchmark/tasks/code-to-3d/digimon.md",
       "unit": "benchmark/tasks/public/code3d-digimon-001.v1.json"
     },
-    "history": {
-      "category": "code-to-3d",
-      "task_id": "code3d-history-001",
-      "version": 1,
-      "doc": "benchmark/tasks/code-to-3d/history.md",
-      "unit": "benchmark/tasks/public/code3d-history-001.v1.json"
-    },
     "stormwind": {
       "category": "code-to-3d",
       "task_id": "code3d-stormwind-001",

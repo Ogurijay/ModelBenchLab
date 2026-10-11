@@ -59,7 +59,7 @@ test('removed workspace packages and links cannot remain in the lockfile',t=>{
   assert(errors.some(e=>e.includes('残留未登记 workspace 链接')));
 });
 test('UI/video categories accepted; samples<3 and history string rubric rejected',()=>{
-  const validate=schemas(repository)['test-unit'];const original=JSON.parse(fs.readFileSync(path.join(repository,'benchmark/tasks/public/code3d-history-001.v1.json')));
+  const validate=schemas(repository)['test-unit'];const original=JSON.parse(fs.readFileSync(path.join(repository,'benchmark/tasks/public/code3d-digimon-001.v1.json')));
   for(const category of ['code-to-ui','text-to-video']){const u={...original,category};assert.equal(validate(u),true);}
   assert.equal(validate({...original,samples:1}),false);assert.equal(validate({...original,rubric:'shared/rubrics/code-to-3d.md'}),false);
 });
