@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>场景预览 · stages.js</title>
+<style>
+  html, body { margin: 0; background: #111; color: #ddd; font: 12px/1.4 system-ui, sans-serif; }
+  #bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding: 6px 10px; background: #1c1c22; }
+  #bar label { display: flex; align-items: center; gap: 6px; }
+  #bar input[type=range] { width: 150px; }
+  #stage { display: block; margin: 0 auto; background: #000; }
+  #thumbs { display: flex; gap: 6px; padding: 6px 10px; overflow-x: auto; background: #1c1c22; }
+  #thumbs figure { margin: 0; cursor: pointer; text-align: center; }
+  #thumbs canvas { display: block; border: 2px solid #333; border-radius: 3px; }
+  #thumbs figure.on canvas { border-color: #ff9a3a; }
+  #perf { font-family: ui-monospace, monospace; color: #9f9; min-width: 210px; }
+</style>
+</head>
+<body>
+<div id="bar">
+  <label>场景 <select id="sel"></select></label>
+  <label>cam.x <input id="cx" type="range" min="0" max="1" step="0.001" value="0.5"><span id="cxv"></span></label>
+  <label>cam.y <input id="cy" type="range" min="-430" max="-120" step="1" value="-200"><span id="cyv"></span></label>
+  <label>zoom <input id="cz" type="range" min="0.85" max="1.3" step="0.01" value="1"><span id="czv"></span></label>
+  <label><input id="anim" type="checkbox" checked> 动画</label>
+  <label><input id="figs" type="checkbox" checked> 人形</label>
+  <span id="perf"></span>
+</div>
+<canvas id="stage"></canvas>
+<div id="thumbs"></div>
+<script type="module">
+import { STAGES, STAGE_W, createStage, renderThumb } from '../src/stages.js';
+
+const $ = (id) => document.getElementById(id);
+const cv = $('stage'), ctx = cv.getContext('2d');
+let stage = null, dpr = 1;
+
+function resize() {
+  dpr = Math.min(2, window.devicePixelRatio || 1);
+  const availW = window.innerWidth, availH = window.innerHeight - 150;
+  const k = Math.min(availW / 960, availH / 540);
+  cv.style.width = Math.floor(960 * k) + 'px'; cv.style.height = Math.floor(540 * k) + 'px';
+  cv.width = Math.round(960 * dpr * Math.max(1, k)); cv.height = Math.round(540 * dpr * Math.max(1, k));
+}
+addEventListener('resize', resize); resize();
+
+for (const s of STAGES) { const o = document.createElement('option'); o.value = s.id; o.textContent = `${s.name} · ${s.sub}`; $('sel').appendChild(o); }
+function pick(id) {
+  $('sel').value = id; stage = createStage(id);
+  document.querySelectorAll('#thumbs figure').forEach(f => f.classList.toggle('on', f.dataset.id === id));
+}
+$('sel').onchange = () => pick($('sel').value);
+
+// 缩略图条
+for (const s of STAGES) {
+  const f = document.createElement('figure'); f.dataset.id = s.id;
+  f.appendChild(renderThumb(s.id, 192, 108));
+  const cap = document.createElement('figcaption'); cap.textContent = s.name; f.appendChild(cap);
+  f.onclick = () => pick(s.id);
+  $('thumbs').appendChild(f);
+}
+const q = new URLSearchParams(location.search);
+pick(q.get('s') || STAGES[0].id);
+if (q.has('y')) $('cy').value = q.get('y');
+if (q.has('z')) $('cz').value = q.get('z');
+if (q.has('x')) $('cx').value = q.get('x');
+
+function cam() {
+  const zoom = +$('cz').value, lo = 480 / zoom, hi = STAGE_W - 480 / zoom;
+  return { x: lo + (hi - lo) * +$('cx').value, y: +$('cy').value, zoom };
+}
+// 简易人形剪影(约 110 高,2px 深色描边)
+function figure(c, cm, wx, col) {
+  const z = cm.zoom, sx = 480 + (wx - cm.x) * z, sy = 270 + (0 - cm.y) * z;
+  c.save(); c.translate(sx, sy); c.scale(z, z);
+  c.fillStyle = 'rgba(0,0,0,0.25)'; c.beginPath(); c.ellipse(0, 0, 26, 6, 0, 0, Math.PI * 2); c.fill();
+  c.lineWidth = 2; c.strokeStyle = '#1a1018'; c.lineJoin = 'round';
+  c.fillStyle = col;
+  const P = (pts) => { c.beginPath(); pts.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath(); c.fill(); c.stroke(); };
+  P([[-14, 0], [-6, 0], [-2, -46], [2, -46], [6, 0], [14, 0], [10, -52], [-10, -52]]);       // 腿
+  P([[-16, -50], [16, -50], [18, -84], [-18, -84]]);                                          // 躯干
+  P([[-18, -82], [-26, -54], [-20, -52], [-12, -76]]); P([[18, -82], [28, -58], [22, -54], [12, -76]]); // 手臂
+  c.fillStyle = '#f2d2b0'; c.beginPath(); c.arc(0, -96, 13, 0, Math.PI * 2); c.fill(); c.stroke();
+  c.fillStyle = '#2a1e24'; c.beginPath(); c.arc(0, -100, 13, Math.PI * 1.05, Math.PI * 1.95); c.fill();
+  c.restore();
+}
+let last = performance.now(), acc = 0, n = 0, worst = 0, t0 = performance.now(), tFrozen = 1.5;
+function frame(now) {
+  const t = $('anim').checked ? (now - t0) / 1000 : tFrozen;
+  if ($('anim').checked) tFrozen = t;
+  const cm = cam();
+  $('cxv').textContent = cm.x.toFixed(0); $('cyv').textContent = cm.y.toFixed(0); $('czv').textContent = cm.zoom.toFixed(2);
+  ctx.setTransform(cv.width / 960, 0, 0, cv.height / 540, 0, 0);
+  ctx.clearRect(0, 0, 960, 540);
+  const a = performance.now();
+  stage.drawBack(ctx, cm, t);
+  const b = performance.now();
+  if ($('figs').checked) { figure(ctx, cm, 600, '#d8602a'); figure(ctx, cm, 1000, '#3a6ad0'); }
+  const c = performance.now();
+  stage.drawFront(ctx, cm, t);
+  const d = performance.now();
+  const ms = (b - a) + (d - c);
+  acc += ms; n++; worst = Math.max(worst, ms);
+  if (now - last > 500) {
+    $('perf').textContent = `back+front ${(acc / n).toFixed(3)} ms (max ${worst.toFixed(2)}) · ${cv.width}×${cv.height}`;
+    window.__perf = { avg: acc / n, max: worst, w: cv.width, h: cv.height };
+    acc = 0; n = 0; worst = 0; last = now;
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+window.__stagesApi = { pick, cam, STAGES };
+</script>
+</body>
+</html>

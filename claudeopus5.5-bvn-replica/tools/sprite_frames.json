@@ -1,0 +1,97 @@
+{
+ "idle": {
+  "fist": "standing in a ready fighting stance, knees slightly bent, fists raised in front of the chest",
+  "blade": "standing in a ready fighting stance, knees slightly bent, holding WEAPON with both hands pointing forward and up",
+  "sand": "standing calmly with arms crossed over the chest, feet apart"
+ },
+ "walk": {
+  "fist": "walking forward mid-stride, one leg stepping forward, fists up in guard",
+  "blade": "walking forward mid-stride, one leg stepping forward, WEAPON held ready in front",
+  "sand": "walking forward mid-stride slowly, arms crossed"
+ },
+ "run": {
+  "fist": "sprinting forward at full speed, torso leaning far forward, both arms trailing straight back behind the body, one leg kicked up behind",
+  "blade": "dashing forward at full speed, torso leaning far forward, WEAPON held low and trailing behind",
+  "sand": "gliding forward fast, leaning forward, cloak flowing back"
+ },
+ "jump": {
+  "fist": "in mid-air jumping high, both knees pulled up toward the chest, arms up, feet off the ground",
+  "blade": "in mid-air jumping high, knees pulled up, WEAPON held close, feet off the ground",
+  "sand": "in mid-air jumping, knees bent up, arms slightly spread, feet off the ground"
+ },
+ "fall": {
+  "fist": "falling down through the air, legs extended below, arms spread out for balance, feet off the ground",
+  "blade": "falling down through the air, legs extended below, WEAPON held to the side, feet off the ground",
+  "sand": "descending through the air, legs extended below, cloak flaring up, feet off the ground"
+ },
+ "crouch": {
+  "fist": "crouching low on one knee after landing, one hand touching the ground",
+  "blade": "crouching low on one knee after landing, WEAPON held down at the side",
+  "sand": "crouching low on one knee, one hand on the ground"
+ },
+ "guard": {
+  "fist": "blocking defensively, both forearms crossed in front of the face, knees bent",
+  "blade": "blocking defensively, WEAPON held vertically in front of the body with both hands",
+  "sand": "protecting himself, one arm raised in front of the face, a thin wall of sand rising in front of him"
+ },
+ "hit": {
+  "fist": "recoiling backward from a hit to the face, head snapped back, body bent backward, eyes shut in pain",
+  "blade": "recoiling backward from a hit, head snapped back, body bent backward, eyes shut in pain, WEAPON still in hand",
+  "sand": "recoiling backward from a hit, head snapped back, body bent backward, eyes shut in pain"
+ },
+ "knock": {
+  "fist": "flying backward through the air after being struck, whole body horizontal and arched, arms and legs flung out, head thrown back",
+  "blade": "flying backward through the air after being struck, whole body horizontal and arched, limbs flung out, WEAPON still in one hand",
+  "sand": "flying backward through the air after being struck, whole body horizontal and arched, limbs flung out"
+ },
+ "down": {
+  "fist": "lying knocked out flat on his back on the ground, body horizontal, head to the LEFT and feet to the RIGHT, eyes closed",
+  "blade": "lying knocked out flat on his back on the ground, body horizontal, head to the LEFT and feet to the RIGHT, eyes closed, WEAPON lying beside him",
+  "sand": "lying knocked out flat on his back on the ground, body horizontal, head to the LEFT and feet to the RIGHT, eyes closed"
+ },
+ "attack1": {
+  "fist": "throwing a powerful straight punch forward, punching arm fully extended straight ahead, lunging stance",
+  "blade": "mid horizontal slash, WEAPON swept fully forward at chest height, arms extended, lunging stance",
+  "sand": "thrusting one open hand straight forward, a stream of sand shooting forward from the hand"
+ },
+ "attack2": {
+  "fist": "high roundhouse kick, kicking leg raised and extended forward at head height",
+  "blade": "end of a powerful diagonal downward slash, WEAPON swung down in front, body leaning forward",
+  "sand": "sweeping one arm forward from the side, a wave of sand following the arm"
+ },
+ "launch": {
+  "fist": "rising uppercut, jumping slightly, one fist thrust straight up high above the head",
+  "blade": "rising upward slash, WEAPON swung up high above the head, body stretching upward",
+  "sand": "raising both hands upward, a pillar of sand erupting upward in front of him"
+ },
+ "sweep": {
+  "fist": "crouched very low on one bent leg, the other leg stretched straight out forward sweeping along the floor, one hand on the ground",
+  "blade": "crouched very low, slashing WEAPON horizontally just above the floor in front",
+  "sand": "crouched low with one palm pressed to the ground, sand spreading forward along the floor"
+ },
+ "airatk": {
+  "fist": "mid-air flying kick, body diagonal, one leg fully extended forward and downward, other leg tucked, feet off the ground",
+  "blade": "mid-air diving slash, body diagonal, WEAPON swung forward and down, feet off the ground",
+  "sand": "in mid-air thrusting both hands downward, sand pouring down, feet off the ground"
+ },
+ "cast": {
+  "fist": "performing a ninja hand sign with both hands together in front of the chest, focused expression",
+  "blade": "pointing two fingers of one hand forward to cast a spell, WEAPON held in the other hand",
+  "sand": "holding one hand forward with fingers spread, controlling sand"
+ },
+ "charge": {
+  "fist": "powering up, fists clenched at the sides, legs braced wide, shouting, hair blown upward",
+  "blade": "powering up, holding WEAPON raised high overhead with both hands, legs braced, shouting",
+  "sand": "powering up, both arms spread wide, legs braced, cloak blown upward, intense glare"
+ },
+ "lunge": {
+  "fist": "lunging far forward in a deep low stance, one palm thrust as far forward as possible at chest height",
+  "blade": "lunging far forward in a deep low stance with a long straight forward thrust of WEAPON",
+  "sand": "lunging forward in a low stance, one hand thrust forward clenched into a fist"
+ },
+ "victory": {
+  "fist": "confident victory pose, one fist raised high, grinning",
+  "blade": "confident victory pose, resting WEAPON on the shoulder",
+  "sand": "calm victory pose, arms crossed, eyes closed"
+ }
+}

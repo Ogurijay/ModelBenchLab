@@ -1,0 +1,14 @@
+/* LF2 复刻:794×550 逻辑分辨率,按窗口等比放大,最近邻采样保持像素感。 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; background: #000; overflow: hidden; }
+body { display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; touch-action: none; }
+#wrap { position: relative; line-height: 0; }
+#screen {
+  display: block;
+  width: var(--sw, 794px);
+  height: calc(var(--sw, 794px) * 550 / 794);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #000;
+  outline: none;
+}

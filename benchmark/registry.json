@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。projects 登记模型实现；portalSections[].groups[] 按主题大类和项目系列组织展示，每个 mission 只归属一个系列。展示合组不改变 task_id/task_version，也不意味着可直接横向排名。新增/改名/删除项目需同步 workspaces 与 lockfile，再运行 npm run sync:check。根开发服务统一端口 3000。",
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-11",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -69,7 +69,11 @@
     "stormwind": "奇幻王都全景(内外可穿行)",
     "stadium": "世界杯露天球场",
     "mini4wd": "迷你四驱车模拟器",
-    "initiald": "头文字D 剧情漂移赛车"
+    "initiald": "头文字D 剧情漂移赛车",
+    "terraria": "2D 无限世界沙盒生存",
+    "fps": "Three.js 第一人称射击",
+    "lf2": "LF2 式 2.5D 横版格斗",
+    "bvn": "死神vs火影式 2D 动漫格斗"
   },
   "projects": [
     {
@@ -1674,6 +1678,174 @@
         "handover": "HANDOVER.md",
         "changelog": "CHANGELOG.md"
       }
+    },
+    {
+      "dir": "claudeopus5.5-terraria-infinite",
+      "port": 3062,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-ui",
+      "mission": "terraria",
+      "variant": "infinite",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "无垠拓荒 · 艾泽拉斯无限",
+      "desc": "泰拉瑞亚画风 + 我的世界玩法 + 魔兽世界元素的 2D 无限沙盒 RPG:10 个种族(含可滑翔的天裔)与种族出生地、9 职业 45 技能与职业融合、联盟/部落营地与敌对阵营 NPC、两阵营任务线与掉落、角色定制、建造前哨;左右无限延伸的区块世界与独立历法(四季昼长、月相血月、天气、离线区块按世界时间补算、睡眠跳夜),挖掘合成冶炼饥饿刷怪流体种田,美术音效全程序化",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/terraria-sandbox.md",
+      "task_id": "codeui-terraria-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "claudeopus5.5-fps-blackstone",
+      "port": 3061,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "fps",
+      "variant": "blackstone",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.185.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "黑石行动 BLACKSTONE — Claude Opus 5.5",
+      "desc": "一句话需求扩展成完整 FPS：自写盒体碰撞 + 多层导航网格，四把枪（步枪/手枪/泵动霰弹/栓动狙击）含后坐散布开镜换弹与第一人称手臂动画，手雷/近战/爆炸油桶；哨兵/猎犬/无人机/主宰者四类机器人 AI（视线+听觉、寻路、可躲避弹丸、部件解体）；剧情任务（骇入闸门→守住下载→安放炸药→限时直升机撤离）与无尽生存；程序化贴图、合成音效音乐、HUD 雷达指南针与后期泛光",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/fps.md",
+      "task_id": "code3d-fps-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "claudeopus5.5-lf2-replica",
+      "port": 3063,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-ui",
+      "mission": "lf2",
+      "variant": "replica",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "Little Brawlers 2 · LF2 玩法复刻",
+      "desc": "按 Little Fighter 2 复刻 2.5D 横版格斗:LF2 式帧数据引擎(30 TU/s、重力 1.7、itr/bdy 判定、fall 累积 受击/晕眩/倒地、破防、空翻卸力、抓投、轻重武器与饮料、飞行道具反弹对消),D+方向+A/J 出招;10 名英雄 + 13 名关卡敌人/隐藏角色(原创形象,对应原版各定位,含卸甲变身、冰火合体、分身与变身);VS/闯关(5 关×5 幕 + 生存)/锦标赛/军团战/演示五模式;招式指令、MP、fall/防御/盔甲规则与道具数值对照原版出招表与 v2.0a 数据,4 人同屏键盘 + 1–7 电脑四档难度;骨架姿势程序化像素精灵、8 张原创场景、合成音效与原创配乐;23 张角色头像由 Grok Build 生图(见 docs/portraits.md)",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/lf2-fighter.md",
+      "task_id": "codeui-lf2-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "claudeopus5.5-bvn-replica",
+      "port": 3064,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-ui",
+      "mission": "bvn",
+      "variant": "replica",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "魂叶乱斗 SOUL × LEAF · 死神vs火影式格斗复刻",
+      "desc": "按 BVN(死神vs火影)复刻 2D 动漫格斗:J/K/L/U/I/O 六键 + W/S 方向出招、按住 S 防御,普攻→技能→必杀命中取消、挑空跳追空中连段、受身 / 替身术 / 破防 / 硬直上限强制倒地;体力 + 3 格气 + 查克拉(灵力)+ 援助四槽;忍界 / 魂界两阵营 10 名原创角色(分别对应影分身螺旋丸、千鸟麒麟、操砂、雷切神威、瞳术须佐;月牙卍解虚化、冰龙冰牢、千本樱、狂战剑八、黑棺崩玉等定位)共 182 招(技能 40、必杀 40)+ 6 名援助,奥义冻结 cut-in,镜头缩放;闯关(8 连战 + 首领 + 续关)/ 人机 / 双人 / 团队 3v3 接力 / 生存 / 训练 / 观战七模式,电脑四档难度会连段、用必杀、替身与躲陷阱;角色立绘 / 头像 / cut-in / 190 帧战斗精灵由 Codex 生图(非本模型产出,见 docs/art.md,缺图回退程序化骨架人物),8 张原创场景、60 种合成音效与 12 首原创配乐",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/bvn-fighter.md",
+      "task_id": "codeui-bvn-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6-bvn-shinobi-soul",
+      "port": 3065,
+      "model": "GPT 6",
+      "category": "code-to-ui",
+      "mission": "bvn",
+      "variant": "shinobi-soul",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "火影 VS 死神 · SHINOBI / SOUL",
+      "desc": "8 名同人角色，7 种模式，3 张场景；二段跳、连击取消、替身受身、技能与奥义、觉醒、援助、三档 CPU、本地双人和触屏操作。原创程序绘制。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/bvn-fighter.md",
+      "task_id": "codeui-bvn-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6.1sol-terraria-infinite",
+      "port": 3066,
+      "model": "GPT 6.1 SOL",
+      "category": "code-to-ui",
+      "mission": "terraria",
+      "variant": "infinite",
+      "api": "Canvas 2D",
+      "lang": "JavaScript",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "艾泽拉斯 · 无垠之境",
+      "desc": "像素沙盒 RPG v3：8 种族、24 战斗技能；8 制作专业、161 物品、129 配方、11 制作站；角色状态与昼夜 HUD、探索迷雾地图；独立世界时间、无限水平区块、建造住房、阵营任务与存档。职业融合待扩展。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/terraria-sandbox.md",
+      "task_id": "codeui-terraria-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
     }
   ],
   "portalSections": [
@@ -1804,6 +1976,27 @@
       "label": "动作与解谜",
       "groups": [
         {
+          "id": "fps",
+          "label": "第一人称射击",
+          "missions": [
+            "fps"
+          ]
+        },
+        {
+          "id": "lf2",
+          "label": "2.5D 横版格斗 · LF2",
+          "missions": [
+            "lf2"
+          ]
+        },
+        {
+          "id": "bvn",
+          "label": "2D 动漫格斗 · 死神vs火影",
+          "missions": [
+            "bvn"
+          ]
+        },
+        {
           "id": "digimon-rumble",
           "label": "数码宝贝 · 竞技格斗",
           "missions": [
@@ -1843,6 +2036,19 @@
           "label": "像素商业大亨",
           "missions": [
             "business"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survival",
+      "label": "沙盒与生存",
+      "groups": [
+        {
+          "id": "terraria",
+          "label": "2D 沙盒生存 · 无限世界",
+          "missions": [
+            "terraria"
           ]
         }
       ]

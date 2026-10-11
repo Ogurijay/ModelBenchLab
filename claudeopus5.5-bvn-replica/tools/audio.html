@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>音频测试 — 魂叶乱斗</title>
+  <link rel="icon" href="data:," />
+  <style>
+    body { margin: 0; padding: 16px 20px; background: #140a0c; color: #eee; font: 14px/1.5 system-ui, "Microsoft YaHei", sans-serif; }
+    h1 { font-size: 18px; margin: 0 0 8px; color: #ff9a3c; }
+    h2 { font-size: 14px; margin: 18px 0 6px; color: #f6c36b; border-bottom: 1px solid #442; padding-bottom: 2px; }
+    button { margin: 3px; padding: 4px 9px; background: #2a1a1e; color: #eee; border: 1px solid #644; border-radius: 4px; cursor: pointer; font: inherit; }
+    button:hover { background: #4a2a2e; }
+    button.on { background: #a33a1a; border-color: #f84; }
+    #init { background: #a33a1a; font-weight: bold; padding: 6px 16px; }
+    .row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+    label { display: flex; gap: 6px; align-items: center; }
+    #log { margin-top: 12px; font: 12px/1.4 Consolas, monospace; white-space: pre-wrap; color: #9c9; max-height: 40vh; overflow: auto; background: #0c0608; padding: 8px; }
+    table { border-collapse: collapse; font: 12px Consolas, monospace; }
+    td, th { border: 1px solid #333; padding: 2px 6px; text-align: right; }
+    td:first-child { text-align: left; }
+    .bad { color: #f66; }
+  </style>
+</head>
+<body>
+  <h1>魂叶乱斗 · 音频模块测试</h1>
+  <div class="row">
+    <button id="init">点击初始化音频 (init)</button>
+    <label>主音量 <input type="range" id="v-master" min="0" max="1" step="0.01" /></label>
+    <label>配乐 <input type="range" id="v-bgm" min="0" max="1" step="0.01" /></label>
+    <label>音效 <input type="range" id="v-sfx" min="0" max="1" step="0.01" /></label>
+    <label>声像 <input type="range" id="pan" min="-1" max="1" step="0.1" value="0" /></label>
+    <label>音高 <input type="range" id="pitch" min="0.5" max="2" step="0.05" value="1" /></label>
+  </div>
+  <h2>配乐 BGM</h2>
+  <div id="bgm"></div>
+  <h2>音效 SFX</h2>
+  <div id="sfx"></div>
+  <h2>压力测试</h2>
+  <button id="spam">连击 15 次/秒 × 2 秒 (hit_light/hit_mid)</button>
+  <button id="multi">多投射物 (kunai ×12 + explode_small ×8)</button>
+  <button id="duck">duck(2) + cutin</button>
+  <button id="check">离线电平检查(全部)</button>
+  <div id="log"></div>
+  <div id="table"></div>
+
+  <script type="module">
+    import audio, { SFX_NAMES, BGM_KEYS, renderOffline, analyzeBuffer } from '../src/audio.js';
+    window.audio = audio; window.renderOffline = renderOffline; window.analyzeBuffer = analyzeBuffer;
+    window.SFX_NAMES = SFX_NAMES; window.BGM_KEYS = BGM_KEYS;
+    const $ = (id) => document.getElementById(id);
+    const log = (s) => { $('log').textContent += s + '\n'; };
+
+    $('init').onclick = () => { audio.init(); $('init').textContent = '音频已初始化'; };
+    for (const k of ['master', 'bgm', 'sfx']) {
+      const el = $('v-' + k); el.value = audio.volumes[k];
+      el.oninput = () => audio.setVolumes({ [k]: +el.value });
+    }
+    const opts = () => ({ pan: +$('pan').value, pitch: +$('pitch').value });
+
+    const bgmBox = $('bgm');
+    const mkBgm = (key, label) => {
+      const b = document.createElement('button'); b.textContent = label; b.dataset.key = key ?? '';
+      b.onclick = () => { audio.init(); audio.bgm(key); for (const x of bgmBox.children) x.classList.toggle('on', x === b && key != null); };
+      bgmBox.appendChild(b);
+    };
+    BGM_KEYS.forEach((k) => mkBgm(k, k));
+    mkBgm(null, '■ 停止');
+
+    for (const n of SFX_NAMES) {
+      const b = document.createElement('button'); b.textContent = n;
+      b.onclick = () => { audio.init(); audio.sfx(n, opts()); };
+      $('sfx').appendChild(b);
+    }
+
+    $('spam').onclick = () => {
+      audio.init(); let i = 0;
+      const id = setInterval(() => { audio.sfx(i % 3 ? 'hit_light' : 'hit_mid', { pan: Math.sin(i) * 0.5 }); if (++i >= 30) clearInterval(id); }, 66);
+    };
+    $('multi').onclick = () => {
+      audio.init();
+      for (let i = 0; i < 12; i++) setTimeout(() => audio.sfx('kunai', { pan: (i / 6) - 1 }), i * 20);
+      for (let i = 0; i < 8; i++) setTimeout(() => audio.sfx('explode_small', { pan: (i / 4) - 1 }), 300 + i * 15);
+    };
+    $('duck').onclick = () => { audio.init(); audio.duck(2); audio.sfx('cutin'); };
+
+    // 离线检查:返回结果数组(也供自动化调用)
+    window.runChecks = async (bgmSeconds = 8) => {
+      const rows = [];
+      for (const n of SFX_NAMES) {
+        const raw = analyzeBuffer(await renderOffline('sfx', n, 3, { raw: true }));
+        const fin = analyzeBuffer(await renderOffline('sfx', n, 3));
+        rows.push({ kind: 'sfx', name: n, rawPeak: raw.peak, peak: fin.peak, rmsDb: fin.rmsDb, len: raw.len, nan: raw.nan + fin.nan });
+      }
+      for (const k of BGM_KEYS) {
+        const raw = analyzeBuffer(await renderOffline('bgm', k, bgmSeconds, { raw: true }));
+        const fin = analyzeBuffer(await renderOffline('bgm', k, bgmSeconds));
+        rows.push({ kind: 'bgm', name: k, rawPeak: raw.peak, peak: fin.peak, rmsDb: fin.rmsDb, len: raw.len, nan: raw.nan + fin.nan });
+      }
+      return rows;
+    };
+    $('check').onclick = async () => {
+      $('table').textContent = '渲染中…';
+      const rows = await window.runChecks();
+      const f = (x, d = 3) => x.toFixed(d);
+      $('table').innerHTML = '<table><tr><th>类型</th><th>名称</th><th>原始峰值</th><th>输出峰值</th><th>RMS dB</th><th>有效长度 s</th><th>NaN</th></tr>' +
+        rows.map((r) => `<tr><td>${r.kind}</td><td>${r.name}</td><td class="${r.rawPeak > 1 ? 'bad' : ''}">${f(r.rawPeak)}</td><td>${f(r.peak)}</td><td>${f(r.rmsDb, 1)}</td><td>${f(r.len, 2)}</td><td class="${r.nan ? 'bad' : ''}">${r.nan}</td></tr>`).join('') + '</table>';
+    };
+    log('模块已加载:' + SFX_NAMES.length + ' 个音效,' + BGM_KEYS.length + ' 首配乐');
+  </script>
+</body>
+</html>

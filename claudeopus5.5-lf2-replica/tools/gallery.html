@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>LF2R 精灵图库(开发工具)</title>
+<style>body{background:#556;margin:0;font:12px sans-serif;color:#fff}canvas{image-rendering:pixelated}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+import { renderSprite, SPR_W, SPR_H } from '../src/skeleton.js';
+import { POSES } from '../src/poses.js';
+const q = new URLSearchParams(location.search);
+const scale = +(q.get('s') || 2);
+let looks;
+const modp = '../src/chars.js'; try { looks = (await import(/* @vite-ignore */ modp)).LOOKS; } catch (e) { looks = null; }
+const look = (looks && looks[q.get('c') || Object.keys(looks)[0]]) || { skin:'#f2c08a', hair:'spiky', hairCol:'#2a1a12', shirt:'#d03030', top:'tshirt', pants:'#2c3550', shoes:'#3a2a1a', belt:'#222' };
+const names = q.get('p') ? q.get('p').split(',') : Object.keys(POSES);
+const cols = +(q.get('cols') || 12);
+const cw = 96, ch = 110;
+const c = document.getElementById('c');
+c.width = cols * cw * scale; c.height = Math.ceil(names.length / cols) * ch * scale;
+const ctx = c.getContext('2d'); ctx.imageSmoothingEnabled = false;
+ctx.fillStyle = '#6a7a6a'; ctx.fillRect(0,0,c.width,c.height);
+names.forEach((n, i) => {
+  const s = renderSprite(look, POSES[n]);
+  const x = (i % cols) * cw, y = Math.floor(i / cols) * ch;
+  ctx.fillStyle = '#5a6a5a'; ctx.fillRect((x+cw/2-30)*scale, (y+96)*scale, 60*scale, 2*scale);
+  ctx.drawImage(s.canvas, (x + cw/2 - 72) * scale, (y + 96 - 124) * scale, SPR_W * scale, SPR_H * scale);
+  ctx.fillStyle = '#fff'; ctx.font = `${10*scale}px sans-serif`; ctx.fillText(n, (x+2)*scale, (y+108)*scale);
+});
+window.__done = true;
+</script></body></html>

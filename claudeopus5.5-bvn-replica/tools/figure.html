@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>人物骨架预览</title>
+<style>body{background:#556;margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080" style="width:960px;height:540px"></canvas>
+<script type="module">
+// 用法:?pose=stand&s=2(放大倍数)&bust=1(画头像)&only=souga
+import { drawFigure, drawBust, BASE_POSE } from '../src/skeleton.js';
+import { LOOKS } from '../src/looks.js';
+import { POSES } from '../src/poses.js';
+const c = document.getElementById('c'), ctx = c.getContext('2d');
+const params = new URLSearchParams(location.search);
+const sc = +(params.get('s') || 1);
+const poseNames = (params.get('pose') || 'stand').split(',');
+let list = Object.entries(LOOKS).map(([name, look]) => ({ name, look }));
+if (params.get('only')) list = list.filter((x) => params.get('only').split(',').includes(x.name));
+ctx.setTransform(2, 0, 0, 2, 0, 0);
+ctx.fillStyle = '#7a8aa0'; ctx.fillRect(0, 0, 960, 540);
+const cols = Math.max(1, Math.floor(960 / (110 * sc)));
+const rowH = 135 * sc;
+let i = 0;
+for (const ch of list) for (const pn of poseNames) {
+  const x = 55 * sc + (i % cols) * 110 * sc, gy = 125 * sc + Math.floor(i / cols) * rowH + (params.get('bust') ? 120 : 0);
+  ctx.fillStyle = '#5a4a3a'; ctx.fillRect(x - 50 * sc, gy, 100 * sc, 4);
+  ctx.save(); ctx.translate(x, gy); ctx.scale(sc, sc);
+  drawFigure(ctx, 0, 0, 1, ch.look, { ...BASE_POSE, ...(POSES[pn] || {}) }, { grounded: true, lie: pn === 'down', rs: { chains: {} } });
+  ctx.restore();
+  ctx.fillStyle = '#fff'; ctx.font = '12px sans-serif'; ctx.fillText(ch.name + ' ' + pn, x - 40, gy + 16);
+  i++;
+}
+if (params.get('bust')) list.slice(0, 8).forEach((ch, i) => { ctx.save(); ctx.beginPath(); ctx.rect(10 + i * 118, 6, 110, 110); ctx.fillStyle = '#223'; ctx.fill(); ctx.clip(); drawBust(ctx, ch.look, 65 + i * 118, 64, 90); ctx.restore(); });
+window.__done = true;
+</script></body></html>

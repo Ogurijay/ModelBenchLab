@@ -140,6 +140,34 @@
       "version": 1,
       "doc": "benchmark/tasks/code-to-3d/initiald.md",
       "unit": "benchmark/tasks/public/code3d-initiald-001.v1.json"
+    },
+    "terraria": {
+      "category": "code-to-ui",
+      "task_id": "codeui-terraria-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/terraria-sandbox.md",
+      "unit": "benchmark/tasks/public/codeui-terraria-001.v1.json"
+    },
+    "fps": {
+      "category": "code-to-3d",
+      "task_id": "code3d-fps-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/fps.md",
+      "unit": "benchmark/tasks/public/code3d-fps-001.v1.json"
+    },
+    "lf2": {
+      "category": "code-to-ui",
+      "task_id": "codeui-lf2-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/lf2-fighter.md",
+      "unit": "benchmark/tasks/public/codeui-lf2-001.v1.json"
+    },
+    "bvn": {
+      "category": "code-to-ui",
+      "task_id": "codeui-bvn-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-ui/bvn-fighter.md",
+      "unit": "benchmark/tasks/public/codeui-bvn-001.v1.json"
     }
   }
 }

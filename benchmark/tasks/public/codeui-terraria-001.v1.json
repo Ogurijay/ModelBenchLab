@@ -1,0 +1,57 @@
+{
+  "task_id": "codeui-terraria-001",
+  "category": "code-to-ui",
+  "mission": "terraria",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L4",
+  "input": {
+    "prompt": "实现一个类似泰拉瑞亚的游戏，但是要有独立的时间观和无限拓展地图的能力。你可以理解为泰拉瑞亚的风格+我的世界的玩法和机制。\n可以无剧情",
+    "assets": []
+  },
+  "fixed_params": {},
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.05
+    },
+    {
+      "key": "G",
+      "weight": 0.1
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "冻结确切参数、浏览器环境与评判脚本",
+    "补充 A 模式三次采样记录"
+  ],
+  "source_doc": "benchmark/tasks/code-to-ui/terraria-sandbox.md",
+  "rubric_profile": "shared/rubrics/code-to-ui-game.md"
+}

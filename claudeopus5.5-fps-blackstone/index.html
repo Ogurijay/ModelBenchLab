@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>黑石行动 BLACKSTONE — Three.js 第一人称射击（Claude Opus 5.5）</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="canvas-root"></div>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div id="lowhp"></div>
+      <div id="hitflash"></div>
+      <div id="scope"><div class="scope-ring"></div><div class="scope-h"></div><div class="scope-v"></div><div class="scope-dot"></div><div class="scope-marks"></div></div>
+      <div id="crosshair"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i><b class="dot"></b></div>
+      <div id="hitmarker"><i></i><i></i><i></i><i></i></div>
+      <div id="dmgdirs"></div>
+
+      <div id="compass"><canvas id="compass-canvas" width="560" height="30"></canvas></div>
+      <div id="location"></div>
+      <div id="timer"></div>
+      <div id="objective"><div class="obj-title"></div><div class="obj-text"></div><div class="obj-bar"><i></i></div></div>
+      <div id="wave"></div>
+      <div id="score"></div>
+      <div id="killfeed"></div>
+      <div id="waypoint"><div class="diamond"></div><span></span></div>
+
+      <div id="radar"><canvas id="radar-canvas" width="190" height="190"></canvas></div>
+      <div id="vitals">
+        <div class="row"><span class="lab">护甲</span><div class="bar ar"><i></i></div><span class="ar-num num">0</span></div>
+        <div class="row"><span class="lab">生命</span><div class="bar hp"><i></i></div><span class="hp-num num">100</span></div>
+      </div>
+      <div id="ammo">
+        <div class="wname"></div>
+        <div class="count"><span class="mag num">30</span><span class="reserve num">/ 120</span></div>
+        <div class="nades"></div>
+      </div>
+      <div id="reloadhint"></div>
+      <div id="prompt"><span class="pkey">E</span><span class="ptext"></span><div class="pring"></div></div>
+      <div id="pickups"></div>
+      <div id="subtitle"></div>
+      <div id="banner"><div class="b-title"></div><div class="b-sub"></div></div>
+      <div id="flashmsg"></div>
+      <div id="fps"></div>
+    </div>
+
+    <!-- 菜单层 -->
+    <div id="menu" class="screen">
+      <div class="menu-bg"></div>
+      <div class="menu-inner">
+        <div class="logo">
+          <div class="logo-hex"></div>
+          <div class="logo-text"><h1>黑石行动</h1><h2>OPERATION&nbsp;BLACKSTONE</h2></div>
+        </div>
+        <p class="tagline">2087 年，自律兵器工厂“黑石前哨站”的中枢 AI <b>VEGA</b> 失控。你是唯一潜入的“幽灵-1”。</p>
+        <div class="menu-cols">
+          <div class="menu-col">
+            <button class="mbtn primary" data-act="mission"><span>开始行动</span><small>剧情任务 · 突破 → 夺取数据 → 摧毁反应堆 → 撤离</small></button>
+            <button class="mbtn" data-act="survival"><span>生存模式</span><small>无尽波次 · 全武器 · 记录最高分</small></button>
+            <button class="mbtn" data-act="settings"><span>设置</span><small>灵敏度 · 视野 · 画质 · 音量</small></button>
+            <button class="mbtn" data-act="controls"><span>操作说明</span><small>键鼠按键一览</small></button>
+          </div>
+          <div class="menu-col side">
+            <div class="diff">
+              <div class="diff-title">难度</div>
+              <label><input type="radio" name="diff" value="easy" /><span>新兵<small>敌人伤害 ×0.55 · 反应慢</small></span></label>
+              <label><input type="radio" name="diff" value="normal" checked /><span>老兵<small>标准体验</small></span></label>
+              <label><input type="radio" name="diff" value="hard" /><span>精英<small>伤害 ×1.4 · 枪法精准</small></span></label>
+            </div>
+            <div class="best" id="best-score"></div>
+          </div>
+        </div>
+        <div class="menu-foot">WASD 移动 · 鼠标瞄准 · 左键射击 · 右键瞄准 · R 换弹 · E 交互 · G 手雷 · V 近战 · Esc 暂停</div>
+      </div>
+    </div>
+
+    <div id="pause" class="screen hidden">
+      <div class="panel">
+        <h3>行动暂停</h3>
+        <div class="pause-stats" id="pause-stats"></div>
+        <button class="mbtn primary" data-act="resume"><span>继续</span></button>
+        <button class="mbtn" data-act="restart"><span>重新开始</span></button>
+        <button class="mbtn" data-act="settings"><span>设置</span></button>
+        <button class="mbtn" data-act="controls"><span>操作说明</span></button>
+        <button class="mbtn" data-act="quit"><span>返回主菜单</span></button>
+      </div>
+    </div>
+
+    <div id="settings" class="screen hidden">
+      <div class="panel wide">
+        <h3>设置</h3>
+        <div class="setting"><label>鼠标灵敏度</label><input type="range" id="s-sens" min="0.2" max="3" step="0.05" /><span class="val" id="v-sens"></span></div>
+        <div class="setting"><label>瞄准灵敏度倍率</label><input type="range" id="s-adssens" min="0.3" max="1.5" step="0.05" /><span class="val" id="v-adssens"></span></div>
+        <div class="setting"><label>视野 FOV</label><input type="range" id="s-fov" min="65" max="110" step="1" /><span class="val" id="v-fov"></span></div>
+        <div class="setting"><label>主音量</label><input type="range" id="s-vol" min="0" max="1" step="0.05" /><span class="val" id="v-vol"></span></div>
+        <div class="setting"><label>音乐</label><input type="range" id="s-music" min="0" max="1" step="0.05" /><span class="val" id="v-music"></span></div>
+        <div class="setting"><label>画质</label><select id="s-quality"><option value="low">低（无阴影/泛光）</option><option value="medium">中</option><option value="high">高</option></select><span class="val note">改画质需重新载入</span></div>
+        <div class="setting"><label>反转 Y 轴</label><input type="checkbox" id="s-invert" /></div>
+        <div class="setting"><label>显示帧率</label><input type="checkbox" id="s-fps" /></div>
+        <button class="mbtn primary" data-act="back"><span>返回</span></button>
+      </div>
+    </div>
+
+    <div id="controls" class="screen hidden">
+      <div class="panel wide">
+        <h3>操作说明</h3>
+        <div class="keys">
+          <div><kbd>W A S D</kbd>移动</div><div><kbd>鼠标</kbd>视角</div>
+          <div><kbd>左键</kbd>射击</div><div><kbd>右键</kbd>瞄准 / 开镜（按住）</div>
+          <div><kbd>Shift</kbd>冲刺</div><div><kbd>C</kbd>/<kbd>Ctrl</kbd>蹲伏（冲刺中按下滑铲）</div>
+          <div><kbd>空格</kbd>跳跃</div><div><kbd>R</kbd>换弹</div>
+          <div><kbd>1-4</kbd>/<kbd>滚轮</kbd>切换武器</div><div><kbd>Q</kbd>上一把武器</div>
+          <div><kbd>G</kbd>投掷手雷</div><div><kbd>V</kbd>/<kbd>F</kbd>近战枪托</div>
+          <div><kbd>E</kbd>交互（部分需按住）</div><div><kbd>Esc</kbd>暂停</div>
+        </div>
+        <p class="hint">提示：敌方能量弹可见，可侧移闪避；红色油桶可引爆；猎犬怕近战，主宰者的头部是弱点，打出硬直后火力会中断。</p>
+        <button class="mbtn primary" data-act="back"><span>返回</span></button>
+      </div>
+    </div>
+
+    <div id="results" class="screen hidden">
+      <div class="panel wide">
+        <h3 id="res-title">任务完成</h3>
+        <p id="res-sub"></p>
+        <div class="res-grid" id="res-grid"></div>
+        <button class="mbtn primary" data-act="restart"><span>再来一次</span></button>
+        <button class="mbtn" data-act="quit"><span>返回主菜单</span></button>
+      </div>
+    </div>
+
+    <div id="clicklock" class="hidden"><div>点击屏幕继续</div></div>
+    <div id="loading"><div class="load-hex"></div><div class="load-title">黑石前哨站</div><div class="load-sub" id="load-sub">正在构建设施……</div><div class="load-bar"><i id="load-fill"></i></div></div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

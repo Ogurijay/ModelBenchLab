@@ -1,6 +1,6 @@
 # 专项评分卡：浏览器生活与经营游戏
 
-适用于 code-to-ui 的 life/business mission；与数据网格使用不同的专项 rubric，不要求列表虚拟化或搜索防抖 HUD。A 必跑，B 可选；其他评测约束遵守 methodology。
+适用于 code-to-ui 的 life/business/terraria/lf2/bvn mission；与数据网格使用不同的专项 rubric，不要求列表虚拟化或搜索防抖 HUD。A 必跑，B 可选；其他评测约束遵守 methodology。
 
 | key | 维度 | 权重 | 0 / 3 / 5 锚点 |
 |---|---|---|---|

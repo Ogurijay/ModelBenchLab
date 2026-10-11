@@ -1,0 +1,27 @@
+// Offline rendering smoke test; no browser or desktop automation.
+import {createRequire} from 'node:module';
+import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+const dependencyRoot=process.env.CODEX_NODE_MODULES;
+if(!dependencyRoot)throw Error('Set CODEX_NODE_MODULES to the bundled runtime node_modules directory');
+const require=createRequire(resolve(dependencyRoot,'package.json'));
+const {createCanvas}=require('@napi-rs/canvas');
+globalThis.document={createElement(type){if(type!=='canvas')throw Error(type);return createCanvas(1,1);}};
+globalThis.innerWidth=1280;globalThis.innerHeight=720;
+const {Game}=await import('../src/game.js');
+const {Renderer}=await import('../src/render-v2.js');
+const {CLASSES,ITEMS,RECIPES,STATIONS}=await import('../src/data.js');
+const {PROFESSIONS}=await import('../src/professions.js');
+const {atlasCanvas,skillIconURL,character}=await import('../src/assets.js');
+const output='tmp/azeroth-sol-qa/v3';mkdirSync(output,{recursive:true});
+const world=new Game({race:'human'}),canvas=createCanvas(1280,720),renderer=new Renderer(canvas,world);renderer.camera={x:-26.67,y:13.04};
+renderer.draw(1/60);writeFileSync(output+'/world.png',canvas.toBuffer('image/png'));
+const map=createCanvas(280,156);renderer.minimap(map);writeFileSync(output+'/fog-start.png',map.toBuffer('image/png'));
+const before=world.world.fog.count;world.player.x=20;world.player.y=world.world.surface(20)-1.75;world.reveal();renderer.minimap(map);writeFileSync(output+'/fog-explored.png',map.toBuffer('image/png'));if(world.world.fog.count<=before)throw Error('Exploration did not expand');
+const restored=Game.restore(JSON.parse(JSON.stringify(world.serialize())));renderer.game=restored;renderer.minimap(map);writeFileSync(output+'/fog-reloaded.png',map.toBuffer('image/png'));
+const portrait=createCanvas(64,64);character(portrait.getContext('2d'),31,114,world.config,2.6,0,1,{});writeFileSync(output+'/portrait.png',portrait.toBuffer('image/png'));
+const skills=[];for(const cls of CLASSES)for(let i=0;i<4;i++)skills.push({class:cls.id,skill:cls.skills[i].name,url:skillIconURL(cls,cls.skills[i],i)});
+const {loadImage}=require('@napi-rs/canvas'),sheet=createCanvas(36*4,36*6),c=sheet.getContext('2d');for(let i=0;i<skills.length;i++)c.drawImage(await loadImage(skills[i].url),i%4*36,Math.floor(i/4)*36);writeFileSync(output+'/skills.png',sheet.toBuffer('image/png'));
+mkdirSync('shared/assets/azeroth-sol',{recursive:true});writeFileSync('shared/assets/azeroth-sol/item-atlas-v3.png',atlasCanvas().toBuffer('image/png'));
+const manifest={version:3,source:'src/assets.js',tilePixels:24,characterPixels:[20,42],iconPixels:[32,32],externalTextures:0,items:Object.values(ITEMS).map((it,n)=>({id:it.id,name:it.name,category:it.category,atlas:[n%16*40,Math.floor(n/16)*40,32,32],tile:it.tile,size:it.size})),recipeCount:RECIPES.length,stations:STATIONS};writeFileSync('gpt6.1sol-terraria-infinite/docs/asset-manifest.json',JSON.stringify(manifest,null,2));
+const result={scope:'offline canvas rendering, not browser UI validation',items:Object.keys(ITEMS).length,recipes:RECIPES.length,professions:PROFESSIONS.length,stations:STATIONS.length,skillIcons:skills.length,exploredStart:before,exploredAfter:world.world.fog.count,exploredReloaded:restored.world.fog.count};writeFileSync(output+'/render-check.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));

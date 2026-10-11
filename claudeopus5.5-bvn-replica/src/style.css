@@ -1,0 +1,6 @@
+/* 魂叶乱斗:960×540 逻辑分辨率,按窗口等比放大,画布背板按 devicePixelRatio 提高清晰度。 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; background: #050304; overflow: hidden; }
+body { display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; touch-action: none; }
+#wrap { position: relative; line-height: 0; box-shadow: 0 0 40px #000; }
+#screen { display: block; width: var(--sw, 960px); height: var(--sh, 540px); background: #000; outline: none; cursor: default; }

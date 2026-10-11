@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>LF2R 引擎试验场(开发工具)</title>
+<style>body{background:#000;margin:0}canvas{image-rendering:pixelated;width:1588px}</style></head>
+<body><canvas id="c" width="794" height="550"></canvas>
+<script type="module">
+import { World } from '../src/world.js';
+import { CHARS, ROSTER } from '../src/roster.js';
+import '../src/roster-ex.js';
+import { renderWorld, warmSprites } from '../src/render.js';
+import { drawHud } from '../src/hud.js';
+import { Controller, installKeyboard, playerState } from '../src/input.js';
+import { AI } from '../src/ai.js';
+const q = new URLSearchParams(location.search);
+const bg = { id: 'test', name: 'Test', width: 1600, zMin: 350, zMax: 535, draw(ctx, camX) { ctx.fillStyle = '#5a7a9a'; ctx.fillRect(0, 0, 794, 550); ctx.fillStyle = '#6a8a4a'; ctx.fillRect(0, 340, 794, 210); ctx.strokeStyle='#5a7a3a'; for (let x = -camX % 80; x < 794; x += 80) { ctx.beginPath(); ctx.moveTo(x, 340); ctx.lineTo(x - 60, 550); ctx.stroke(); } } };
+const w = new World(bg, { difficulty: 1 });
+window.w = w;
+const slots = [];
+function spawn(id, o) { const def = CHARS[id]; warmSprites(def); const ctrl = new Controller(); const f = w.addFighter(def, { ...o, ctrl }); if (o.human) f.ctrlFeed = () => ctrl.update(playerState(0, window.inj)); else if (o.ai !== false) { f.ai = new AI(f, +(q.get('lvl') ?? 1)); f.ctrlFeed = () => f.ai.feed(); } else f.ctrlFeed = () => ctrl.update(window.inj2 || {}); slots.push(f); return f; }
+const a = spawn(q.get('a') || ROSTER[0], { x: 600, z: 440, team: 1, teamShown: 1, human: true, name: 'P1' });
+const b = spawn(q.get('b') || ROSTER[0], { x: 760, z: 440, team: 2, teamShown: 3, ai: q.get('ai') !== '0', facing: -1 });
+w.camX = 400;
+installKeyboard(document.body);
+const ctx = document.getElementById('c').getContext('2d');
+window.inj = {};
+window.stepN = (n = 1) => { for (let i = 0; i < n; i++) w.step(); render(); };
+function render() { renderWorld(ctx, w); drawHud(ctx, slots, w.tick); }
+let last = performance.now(), acc = 0;
+function loop(t) { acc += Math.min(200, t - last); last = t; if (!window.manual) while (acc > 33.33) { w.step(); acc -= 33.33; } else acc = 0; render(); requestAnimationFrame(loop); }
+requestAnimationFrame(loop);
+window.snapshot = () => { render(); return document.getElementById('c').toDataURL(); };
+window.ready = true;
+</script></body></html>

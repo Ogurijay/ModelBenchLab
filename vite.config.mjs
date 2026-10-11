@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { projectHmr } from './scripts/project-hmr.mjs';
 
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
 const reg = JSON.parse(readFileSync(join(ROOT, 'benchmark/registry.json'), 'utf8'));
@@ -83,6 +84,7 @@ export default defineConfig({
   },
   plugins: [
     benchRouting(),
+    projectHmr({ root: ROOT, projects: dirs }),
     // 仅 React 项目走 JSX 转换,其余项目不受影响
     react({ include: [/doubao2\.1pro-sandbox-powder[\\/].+\.[jt]sx?$/] }),
     // doubao2.1pro-sandbox-powder 源码使用 tsconfig 的 @/ 路径别名

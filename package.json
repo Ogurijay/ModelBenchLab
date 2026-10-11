@@ -60,7 +60,13 @@
     "gpt6.1sol-ocean-realistic",
     "claudeopus5.5-mini4wd-replica",
     "gpt6astra-mini4wd-aerial-racing",
-    "claudeopus5.5-life-gba"
+    "claudeopus5.5-life-gba",
+    "claudeopus5.5-terraria-infinite",
+    "claudeopus5.5-fps-blackstone",
+    "claudeopus5.5-lf2-replica",
+    "claudeopus5.5-bvn-replica",
+    "gpt6-bvn-shinobi-soul",
+    "gpt6.1sol-terraria-infinite"
   ],
   "scripts": {
     "dev": "vite",

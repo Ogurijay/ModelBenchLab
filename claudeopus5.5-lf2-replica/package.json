@@ -1,0 +1,10 @@
+{
+  "name": "claudeopus5.5-lf2-replica",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Little Fighter 2 复刻 — 2.5D 横版格斗:帧数据驱动引擎、十名英雄与关卡敌人、VS/闯关/锦标赛/军团/演示五模式,美术音效全程序化(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./"
+  }
+}

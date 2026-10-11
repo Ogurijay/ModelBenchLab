@@ -1,0 +1,10 @@
+{
+  "name": "claudeopus5.5-bvn-replica",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "死神vs火影(BVN)式 2D 动漫格斗复刻:BVN 操作与规则、忍界/魂界两阵营原创角色、援助系统、奥义 cut-in、闯关/对战/团队/生存/训练模式,美术音效全程序化(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./"
+  }
+}

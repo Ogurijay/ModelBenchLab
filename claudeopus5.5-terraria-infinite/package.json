@@ -1,0 +1,10 @@
+{
+  "name": "claudeopus5.5-terraria-infinite",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "无垠拓荒 — 泰拉瑞亚画风 + 我的世界玩法的 2D 无限世界沙盒,独立历法时间系统(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./"
+  }
+}

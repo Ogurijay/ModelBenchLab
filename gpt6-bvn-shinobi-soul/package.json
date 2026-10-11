@@ -1,0 +1,12 @@
+{
+  "name": "gpt6-bvn-shinobi-soul",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3065 --strictPort",
+    "build": "vite build --base=./",
+    "test": "node --test tests/combat.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  }
+}

@@ -1,0 +1,1937 @@
+{
+  "version": 3,
+  "source": "src/assets.js",
+  "tilePixels": 24,
+  "characterPixels": [
+    20,
+    42
+  ],
+  "iconPixels": [
+    32,
+    32
+  ],
+  "externalTextures": 0,
+  "items": [
+    {
+      "id": "pick",
+      "name": "拓荒镐",
+      "category": "工具",
+      "atlas": [
+        0,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "sword",
+      "name": "旅人短剑",
+      "category": "武器",
+      "atlas": [
+        40,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stonePick",
+      "name": "石镐",
+      "category": "工具",
+      "atlas": [
+        80,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironPick",
+      "name": "铁镐",
+      "category": "工具",
+      "atlas": [
+        120,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironSword",
+      "name": "铁阔剑",
+      "category": "武器",
+      "atlas": [
+        160,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "dirt",
+      "name": "泥土",
+      "category": "建材",
+      "atlas": [
+        200,
+        0,
+        32,
+        32
+      ],
+      "tile": 2
+    },
+    {
+      "id": "stone",
+      "name": "石块",
+      "category": "建材",
+      "atlas": [
+        240,
+        0,
+        32,
+        32
+      ],
+      "tile": 3
+    },
+    {
+      "id": "wood",
+      "name": "原木",
+      "category": "建材",
+      "atlas": [
+        280,
+        0,
+        32,
+        32
+      ],
+      "tile": 4
+    },
+    {
+      "id": "leaf",
+      "name": "树叶",
+      "category": "建材",
+      "atlas": [
+        320,
+        0,
+        32,
+        32
+      ],
+      "tile": 5
+    },
+    {
+      "id": "copper",
+      "name": "铜矿",
+      "category": "矿石",
+      "atlas": [
+        360,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "iron",
+      "name": "铁矿",
+      "category": "矿石",
+      "atlas": [
+        400,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "coal",
+      "name": "煤炭",
+      "category": "材料",
+      "atlas": [
+        440,
+        0,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "plank",
+      "name": "木板",
+      "category": "建材",
+      "atlas": [
+        480,
+        0,
+        32,
+        32
+      ],
+      "tile": 9
+    },
+    {
+      "id": "bench",
+      "name": "工作台",
+      "category": "制作站",
+      "atlas": [
+        520,
+        0,
+        32,
+        32
+      ],
+      "tile": 10,
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "furnace",
+      "name": "熔炉",
+      "category": "制作站",
+      "atlas": [
+        560,
+        0,
+        32,
+        32
+      ],
+      "tile": 11,
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "torch",
+      "name": "火把",
+      "category": "建材",
+      "atlas": [
+        600,
+        0,
+        32,
+        32
+      ],
+      "tile": 12
+    },
+    {
+      "id": "bed",
+      "name": "旅人床铺",
+      "category": "家具",
+      "atlas": [
+        0,
+        40,
+        32,
+        32
+      ],
+      "tile": 13,
+      "size": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "seed",
+      "name": "麦种",
+      "category": "建材",
+      "atlas": [
+        40,
+        40,
+        32,
+        32
+      ],
+      "tile": 14
+    },
+    {
+      "id": "brick",
+      "name": "石砖",
+      "category": "建材",
+      "atlas": [
+        80,
+        40,
+        32,
+        32
+      ],
+      "tile": 15
+    },
+    {
+      "id": "crystal",
+      "name": "奥术水晶",
+      "category": "材料",
+      "atlas": [
+        120,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "berry",
+      "name": "林间浆果",
+      "category": "食物",
+      "atlas": [
+        160,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "category": "材料",
+      "atlas": [
+        200,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "bread",
+      "name": "烤面包",
+      "category": "食物",
+      "atlas": [
+        240,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ingot",
+      "name": "铁锭",
+      "category": "金属",
+      "atlas": [
+        280,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "potion",
+      "name": "治疗药剂",
+      "category": "药剂",
+      "atlas": [
+        320,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "allianceSeal",
+      "name": "联盟徽记",
+      "category": "材料",
+      "atlas": [
+        360,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hordeSeal",
+      "name": "部落徽记",
+      "category": "材料",
+      "atlas": [
+        400,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "relic",
+      "name": "先祖遗物",
+      "category": "材料",
+      "atlas": [
+        440,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "coin",
+      "name": "金币",
+      "category": "材料",
+      "atlas": [
+        480,
+        40,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "sand",
+      "name": "沙块",
+      "category": "建材",
+      "atlas": [
+        520,
+        40,
+        32,
+        32
+      ],
+      "tile": 17
+    },
+    {
+      "id": "clay",
+      "name": "黏土",
+      "category": "建材",
+      "atlas": [
+        560,
+        40,
+        32,
+        32
+      ],
+      "tile": 18
+    },
+    {
+      "id": "snow",
+      "name": "雪块",
+      "category": "建材",
+      "atlas": [
+        600,
+        40,
+        32,
+        32
+      ],
+      "tile": 19
+    },
+    {
+      "id": "mud",
+      "name": "淤泥",
+      "category": "建材",
+      "atlas": [
+        0,
+        80,
+        32,
+        32
+      ],
+      "tile": 20
+    },
+    {
+      "id": "silver",
+      "name": "银矿",
+      "category": "矿石",
+      "atlas": [
+        40,
+        80,
+        32,
+        32
+      ],
+      "tile": 21
+    },
+    {
+      "id": "gold",
+      "name": "金矿",
+      "category": "矿石",
+      "atlas": [
+        80,
+        80,
+        32,
+        32
+      ],
+      "tile": 22
+    },
+    {
+      "id": "mithril",
+      "name": "秘银矿",
+      "category": "矿石",
+      "atlas": [
+        120,
+        80,
+        32,
+        32
+      ],
+      "tile": 23
+    },
+    {
+      "id": "obsidian",
+      "name": "黑曜石",
+      "category": "矿石",
+      "atlas": [
+        160,
+        80,
+        32,
+        32
+      ],
+      "tile": 24
+    },
+    {
+      "id": "hellstone",
+      "name": "狱岩",
+      "category": "矿石",
+      "atlas": [
+        200,
+        80,
+        32,
+        32
+      ],
+      "tile": 25
+    },
+    {
+      "id": "glass",
+      "name": "玻璃",
+      "category": "建材",
+      "atlas": [
+        240,
+        80,
+        32,
+        32
+      ],
+      "tile": 26
+    },
+    {
+      "id": "platform",
+      "name": "木平台",
+      "category": "建材",
+      "atlas": [
+        280,
+        80,
+        32,
+        32
+      ],
+      "tile": 27
+    },
+    {
+      "id": "door",
+      "name": "木门",
+      "category": "家具",
+      "atlas": [
+        320,
+        80,
+        32,
+        32
+      ],
+      "tile": 28,
+      "size": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "chest",
+      "name": "木箱",
+      "category": "家具",
+      "atlas": [
+        360,
+        80,
+        32,
+        32
+      ],
+      "tile": 30,
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "anvil",
+      "name": "铁砧",
+      "category": "制作站",
+      "atlas": [
+        400,
+        80,
+        32,
+        32
+      ],
+      "tile": 31,
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "sawmill",
+      "name": "锯木机",
+      "category": "制作站",
+      "atlas": [
+        440,
+        80,
+        32,
+        32
+      ],
+      "tile": 32,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "loom",
+      "name": "织布机",
+      "category": "制作站",
+      "atlas": [
+        480,
+        80,
+        32,
+        32
+      ],
+      "tile": 33,
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "alchemy",
+      "name": "炼药台",
+      "category": "制作站",
+      "atlas": [
+        520,
+        80,
+        32,
+        32
+      ],
+      "tile": 34,
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "forge",
+      "name": "精金熔炉",
+      "category": "制作站",
+      "atlas": [
+        560,
+        80,
+        32,
+        32
+      ],
+      "tile": 35,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "arcane",
+      "name": "奥术祭坛",
+      "category": "制作站",
+      "atlas": [
+        600,
+        80,
+        32,
+        32
+      ],
+      "tile": 36,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "chair",
+      "name": "木椅",
+      "category": "家具",
+      "atlas": [
+        0,
+        120,
+        32,
+        32
+      ],
+      "tile": 37,
+      "size": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "table",
+      "name": "木桌",
+      "category": "家具",
+      "atlas": [
+        40,
+        120,
+        32,
+        32
+      ],
+      "tile": 38,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "bookcase",
+      "name": "书架",
+      "category": "家具",
+      "atlas": [
+        80,
+        120,
+        32,
+        32
+      ],
+      "tile": 39,
+      "size": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "lantern",
+      "name": "吊灯",
+      "category": "家具",
+      "atlas": [
+        120,
+        120,
+        32,
+        32
+      ],
+      "tile": 40,
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "campfire",
+      "name": "营火",
+      "category": "家具",
+      "atlas": [
+        160,
+        120,
+        32,
+        32
+      ],
+      "tile": 41,
+      "size": [
+        2,
+        1
+      ]
+    },
+    {
+      "id": "rope",
+      "name": "绳索",
+      "category": "家具",
+      "atlas": [
+        200,
+        120,
+        32,
+        32
+      ],
+      "tile": 42,
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "flowerpot",
+      "name": "花盆",
+      "category": "家具",
+      "atlas": [
+        240,
+        120,
+        32,
+        32
+      ],
+      "tile": 43,
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "banner",
+      "name": "阵营旗帜",
+      "category": "家具",
+      "atlas": [
+        280,
+        120,
+        32,
+        32
+      ],
+      "tile": 44,
+      "size": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "cooking",
+      "name": "烹饪锅",
+      "category": "制作站",
+      "atlas": [
+        320,
+        120,
+        32,
+        32
+      ],
+      "tile": 45,
+      "size": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "fence",
+      "name": "木栅栏",
+      "category": "家具",
+      "atlas": [
+        360,
+        120,
+        32,
+        32
+      ],
+      "tile": 46,
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "roof",
+      "name": "红瓦",
+      "category": "建材",
+      "atlas": [
+        400,
+        120,
+        32,
+        32
+      ],
+      "tile": 47
+    },
+    {
+      "id": "goldBrick",
+      "name": "镶金砖",
+      "category": "建材",
+      "atlas": [
+        440,
+        120,
+        32,
+        32
+      ],
+      "tile": 48
+    },
+    {
+      "id": "woodWall",
+      "name": "木背景墙",
+      "category": "背景墙",
+      "atlas": [
+        480,
+        120,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stoneWall",
+      "name": "石背景墙",
+      "category": "背景墙",
+      "atlas": [
+        520,
+        120,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "brickWall",
+      "name": "砖背景墙",
+      "category": "背景墙",
+      "atlas": [
+        560,
+        120,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "glassWall",
+      "name": "玻璃背景墙",
+      "category": "背景墙",
+      "atlas": [
+        600,
+        120,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hammer",
+      "name": "木锤",
+      "category": "工具",
+      "atlas": [
+        0,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "axe",
+      "name": "伐木斧",
+      "category": "工具",
+      "atlas": [
+        40,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "gel",
+      "name": "凝胶",
+      "category": "掉落",
+      "atlas": [
+        80,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silk",
+      "name": "丝绸",
+      "category": "材料",
+      "atlas": [
+        120,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "fiber",
+      "name": "植物纤维",
+      "category": "材料",
+      "atlas": [
+        160,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "leather",
+      "name": "皮革",
+      "category": "掉落",
+      "atlas": [
+        200,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "bone",
+      "name": "骨头",
+      "category": "掉落",
+      "atlas": [
+        240,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "herb",
+      "name": "日光草",
+      "category": "材料",
+      "atlas": [
+        280,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mushroom",
+      "name": "蘑菇",
+      "category": "材料",
+      "atlas": [
+        320,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "bottle",
+      "name": "玻璃瓶",
+      "category": "材料",
+      "atlas": [
+        360,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "manaPotion",
+      "name": "法力药水",
+      "category": "药剂",
+      "atlas": [
+        400,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "regenPotion",
+      "name": "再生药剂",
+      "category": "药剂",
+      "atlas": [
+        440,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironPotion",
+      "name": "铁肤药剂",
+      "category": "药剂",
+      "atlas": [
+        480,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "speedPotion",
+      "name": "迅捷药剂",
+      "category": "药剂",
+      "atlas": [
+        520,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stew",
+      "name": "香草炖菜",
+      "category": "食物",
+      "atlas": [
+        560,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "arrow",
+      "name": "木箭",
+      "category": "弹药",
+      "atlas": [
+        600,
+        160,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "fireArrow",
+      "name": "燃烧箭",
+      "category": "弹药",
+      "atlas": [
+        0,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "woodBow",
+      "name": "木弓",
+      "category": "武器",
+      "atlas": [
+        40,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "apprenticeStaff",
+      "name": "学徒法杖",
+      "category": "武器",
+      "atlas": [
+        80,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "rune",
+      "name": "奥术符文",
+      "category": "材料",
+      "atlas": [
+        120,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "amulet",
+      "name": "星辉护符",
+      "category": "饰品",
+      "atlas": [
+        160,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "boots",
+      "name": "疾风长靴",
+      "category": "饰品",
+      "atlas": [
+        200,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "shield",
+      "name": "守卫纹章",
+      "category": "饰品",
+      "atlas": [
+        240,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperBar",
+      "name": "铜锭",
+      "category": "金属",
+      "atlas": [
+        280,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperPick",
+      "name": "铜镐",
+      "category": "工具",
+      "atlas": [
+        320,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperSword",
+      "name": "铜阔剑",
+      "category": "武器",
+      "atlas": [
+        360,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperBow",
+      "name": "铜战弓",
+      "category": "武器",
+      "atlas": [
+        400,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperHelm",
+      "name": "铜头盔",
+      "category": "护甲",
+      "atlas": [
+        440,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperArmor",
+      "name": "铜胸甲",
+      "category": "护甲",
+      "atlas": [
+        480,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperGreaves",
+      "name": "铜护腿",
+      "category": "护甲",
+      "atlas": [
+        520,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironBow",
+      "name": "铁战弓",
+      "category": "武器",
+      "atlas": [
+        560,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironHelm",
+      "name": "铁头盔",
+      "category": "护甲",
+      "atlas": [
+        600,
+        200,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironArmor",
+      "name": "铁胸甲",
+      "category": "护甲",
+      "atlas": [
+        0,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "ironGreaves",
+      "name": "铁护腿",
+      "category": "护甲",
+      "atlas": [
+        40,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverBar",
+      "name": "银锭",
+      "category": "金属",
+      "atlas": [
+        80,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverPick",
+      "name": "银镐",
+      "category": "工具",
+      "atlas": [
+        120,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverSword",
+      "name": "银阔剑",
+      "category": "武器",
+      "atlas": [
+        160,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverBow",
+      "name": "银战弓",
+      "category": "武器",
+      "atlas": [
+        200,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverHelm",
+      "name": "银头盔",
+      "category": "护甲",
+      "atlas": [
+        240,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverArmor",
+      "name": "银胸甲",
+      "category": "护甲",
+      "atlas": [
+        280,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "silverGreaves",
+      "name": "银护腿",
+      "category": "护甲",
+      "atlas": [
+        320,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldBar",
+      "name": "金锭",
+      "category": "金属",
+      "atlas": [
+        360,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldPick",
+      "name": "金镐",
+      "category": "工具",
+      "atlas": [
+        400,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldSword",
+      "name": "金阔剑",
+      "category": "武器",
+      "atlas": [
+        440,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldBow",
+      "name": "金战弓",
+      "category": "武器",
+      "atlas": [
+        480,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldHelm",
+      "name": "金头盔",
+      "category": "护甲",
+      "atlas": [
+        520,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldArmor",
+      "name": "金胸甲",
+      "category": "护甲",
+      "atlas": [
+        560,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goldGreaves",
+      "name": "金护腿",
+      "category": "护甲",
+      "atlas": [
+        600,
+        240,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilBar",
+      "name": "秘银锭",
+      "category": "金属",
+      "atlas": [
+        0,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilPick",
+      "name": "秘银镐",
+      "category": "工具",
+      "atlas": [
+        40,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilSword",
+      "name": "秘银阔剑",
+      "category": "武器",
+      "atlas": [
+        80,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilBow",
+      "name": "秘银战弓",
+      "category": "武器",
+      "atlas": [
+        120,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilHelm",
+      "name": "秘银头盔",
+      "category": "护甲",
+      "atlas": [
+        160,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilArmor",
+      "name": "秘银胸甲",
+      "category": "护甲",
+      "atlas": [
+        200,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "mithrilGreaves",
+      "name": "秘银护腿",
+      "category": "护甲",
+      "atlas": [
+        240,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellBar",
+      "name": "狱岩锭",
+      "category": "金属",
+      "atlas": [
+        280,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstonePick",
+      "name": "狱岩镐",
+      "category": "工具",
+      "atlas": [
+        320,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstoneSword",
+      "name": "狱岩阔剑",
+      "category": "武器",
+      "atlas": [
+        360,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstoneBow",
+      "name": "狱岩战弓",
+      "category": "武器",
+      "atlas": [
+        400,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstoneHelm",
+      "name": "狱岩头盔",
+      "category": "护甲",
+      "atlas": [
+        440,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstoneArmor",
+      "name": "狱岩胸甲",
+      "category": "护甲",
+      "atlas": [
+        480,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "hellstoneGreaves",
+      "name": "狱岩护腿",
+      "category": "护甲",
+      "atlas": [
+        520,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "astralStaff",
+      "name": "星界法杖",
+      "category": "武器",
+      "atlas": [
+        560,
+        280,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "tannery",
+      "name": "鞣皮架",
+      "category": "制作站",
+      "atlas": [
+        600,
+        280,
+        32,
+        32
+      ],
+      "tile": 49,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "engineeringBench",
+      "name": "工程台",
+      "category": "制作站",
+      "atlas": [
+        0,
+        320,
+        32,
+        32
+      ],
+      "tile": 50,
+      "size": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "treatedLeather",
+      "name": "熟化皮革",
+      "category": "材料",
+      "atlas": [
+        40,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "curedLeather",
+      "name": "硬化兽皮",
+      "category": "材料",
+      "atlas": [
+        80,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "thread",
+      "name": "纺线",
+      "category": "材料",
+      "atlas": [
+        120,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "linen",
+      "name": "亚麻布",
+      "category": "材料",
+      "atlas": [
+        160,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "runeCloth",
+      "name": "符文布",
+      "category": "材料",
+      "atlas": [
+        200,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "copperWire",
+      "name": "铜线",
+      "category": "材料",
+      "atlas": [
+        240,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "gear",
+      "name": "铁齿轮",
+      "category": "材料",
+      "atlas": [
+        280,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "powder",
+      "name": "爆破火药",
+      "category": "材料",
+      "atlas": [
+        320,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "steel",
+      "name": "淬火钢锭",
+      "category": "材料",
+      "atlas": [
+        360,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "essence",
+      "name": "奥术精华",
+      "category": "材料",
+      "atlas": [
+        400,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "scoutHood",
+      "name": "斥候兜帽",
+      "category": "护甲",
+      "atlas": [
+        440,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "scoutVest",
+      "name": "斥候皮甲",
+      "category": "护甲",
+      "atlas": [
+        480,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "scoutBoots",
+      "name": "斥候长靴",
+      "category": "护甲",
+      "atlas": [
+        520,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stalkerHood",
+      "name": "追猎兜帽",
+      "category": "护甲",
+      "atlas": [
+        560,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stalkerVest",
+      "name": "追猎皮甲",
+      "category": "护甲",
+      "atlas": [
+        600,
+        320,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "stalkerBoots",
+      "name": "追猎长靴",
+      "category": "护甲",
+      "atlas": [
+        0,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "linenHood",
+      "name": "亚麻兜帽",
+      "category": "护甲",
+      "atlas": [
+        40,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "linenVest",
+      "name": "亚麻法袍",
+      "category": "护甲",
+      "atlas": [
+        80,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "linenBoots",
+      "name": "亚麻长靴",
+      "category": "护甲",
+      "atlas": [
+        120,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "runicHood",
+      "name": "符文兜帽",
+      "category": "护甲",
+      "atlas": [
+        160,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "runicVest",
+      "name": "符文法袍",
+      "category": "护甲",
+      "atlas": [
+        200,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "runicBoots",
+      "name": "符文长靴",
+      "category": "护甲",
+      "atlas": [
+        240,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "quiver",
+      "name": "猎手箭袋",
+      "category": "饰品",
+      "atlas": [
+        280,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "goggles",
+      "name": "勘探目镜",
+      "category": "饰品",
+      "atlas": [
+        320,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "grapple",
+      "name": "机械抓钩",
+      "category": "工具",
+      "atlas": [
+        360,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "bomb",
+      "name": "采掘炸弹",
+      "category": "消耗品",
+      "atlas": [
+        400,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "fieldKit",
+      "name": "野战绷带",
+      "category": "药剂",
+      "atlas": [
+        440,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "feast",
+      "name": "丰收炖菜",
+      "category": "食物",
+      "atlas": [
+        480,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "elixir",
+      "name": "浓缩法力药剂",
+      "category": "药剂",
+      "atlas": [
+        520,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "focus",
+      "name": "霜纹护符",
+      "category": "饰品",
+      "atlas": [
+        560,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "steelSword",
+      "name": "淬火长剑",
+      "category": "武器",
+      "atlas": [
+        600,
+        360,
+        32,
+        32
+      ]
+    },
+    {
+      "id": "steelArmor",
+      "name": "淬火胸甲",
+      "category": "护甲",
+      "atlas": [
+        0,
+        400,
+        32,
+        32
+      ]
+    }
+  ],
+  "recipeCount": 129,
+  "stations": [
+    "bench",
+    "furnace",
+    "anvil",
+    "sawmill",
+    "loom",
+    "alchemy",
+    "cooking",
+    "forge",
+    "arcane",
+    "tannery",
+    "engineeringBench"
+  ]
+}

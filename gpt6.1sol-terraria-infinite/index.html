@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111b1c"><link rel="icon" href="data:,">
+  <title>艾泽拉斯 · 无垠之境</title>
+  <link rel="stylesheet" href="./src/style.css"><link rel="stylesheet" href="./src/hud.css">
+</head>
+<body>
+  <canvas id="world" aria-label="可挖掘、建造与探索的艾泽拉斯像素世界"></canvas>
+  <div id="vignette"></div>
+  <header><div class="brand"><span class="crest">ᛟ</span><div>无垠之境<small>AZEROTH · UNBOUND</small></div></div><div class="header-right"><span id="save-status">本地单人世界</span><button id="sound" title="开启环境音效">♫</button><button id="help" title="操作指南">?</button><button id="settings" title="世界与存档">☰</button></div></header>
+  <main id="hud" hidden>
+    <section class="player-hud glass" aria-label="角色状态"><div id="portrait-frame" class="portrait-frame"><canvas id="portrait" width="64" height="64"></canvas><span id="avatar-level">1</span></div><div class="vitals"><div class="player-title"><b id="player-name"></b><span id="level"></span></div><small id="player-origin"></small><div class="meter health"><i id="health-bar"></i><em>生命</em><span id="health-text"></span></div><div class="meter mana"><i id="mana-bar"></i><em>法力</em><span id="mana-text"></span></div><div class="survival-row"><span id="hunger-label">饱食 100%</span><span id="xp-text"></span></div><div class="hunger"><i id="hunger-bar"></i></div><div class="xp-track"><i id="xp-bar"></i></div></div></section>
+    <section class="clock glass" aria-label="世界时间"><div id="clock-dial" class="clock-dial"><span id="time-icon">☀</span><i></i></div><div class="clock-readout"><div><span id="clock-phase">晨光</span><span id="weather">晴</span></div><b id="clock-time">08:00</b><small id="calendar"></small><small id="clock-next"></small></div></section>
+    <aside class="right-hud"><section class="map glass"><div class="section-label"><span id="biome-name"></span><span id="map-depth">地表</span></div><canvas id="minimap" width="280" height="156" aria-label="带探索迷雾的地形地图"></canvas><div class="map-legend"><span><i></i>当前位置</span><span id="map-discovered">已绘 0 格</span></div><div class="map-bottom"><span id="coords"></span><button id="map-open">地图 <kbd>M</kbd></button></div></section><section class="quest glass"><div class="section-label"><span>旅途日志</span><button id="journal-open">全部 <kbd>J</kbd></button></div><div id="quest-tracker"></div></section></aside>
+    <div class="location" id="location-banner"></div>
+    <div id="interact-hint"></div>
+    <div class="bottom-hud"><div class="skill-row" id="skill-row"></div><div id="hotbar" aria-label="快捷栏"></div><div class="toolbar"><span id="selected-name"></span><button data-panel="inventory">背包 <kbd>B</kbd></button><button data-panel="craft">工艺 <kbd>C</kbd></button><button data-panel="talents">职业 <kbd>K</kbd></button><button data-panel="catalog">图鉴 <kbd>N</kbd></button><button data-panel="build">建造 <kbd>H</kbd></button></div></div>
+    <div class="controls-hint"><span><kbd>A</kbd><kbd>D</kbd> 移动　<kbd>空格</kbd> 跳跃</span><span>左键 采集 / 攻击 · 右键 建造 · <kbd>E</kbd> 交互</span></div>
+    <div class="world-tag"><span class="live-dot"></span> 种子 <span id="seed-label"></span><small>区块生成 · 自动保存</small></div>
+    <div id="touch"><button data-key="a">◀</button><button data-key="d">▶</button><button data-key=" ">↑</button><button id="touch-use">⚒</button><button id="touch-interact">E</button></div>
+  </main>
+  <div id="overlay"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <script type="module" src="./src/main.js"></script>
+</body></html>

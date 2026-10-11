@@ -1,0 +1,93 @@
+{
+  "shippu": {
+    "desc": "a cheerful 15-year-old wind ninja boy with messy swept-back golden-blond hair, bright amber eyes, freckles, a long crimson scarf trailing behind him, round ninja goggles with green lenses pushed up on his forehead, an orange sleeveless hooded vest with black trim over a fitted black long-sleeve shirt, charcoal-grey baggy pants tucked into white shin wraps, black split-toe sandals",
+    "cutin": "thrusting forward a swirling sphere of pale-blue wind energy held in his right palm, wind streaks around him",
+    "main": true
+  },
+  "yasha": {
+    "desc": "a cool 17-year-old lightning swordsman ninja with jaw-length straight black hair that has one white streak in the front, sharp violet eyes, pale skin, a short dark-indigo kimono-style jacket with a high collar and lightning-bolt pattern on the sleeves, black fitted pants, black arm guards, a straight katana with a white hilt worn across his back (in battle he fights unarmed with kicks and punches, the katana stays sheathed on his back)",
+    "cutin": "charging crackling white-blue lightning in his left hand held low, electricity arcing up his arm, eyes glowing violet",
+    "main": true
+  },
+  "ryusa": {
+    "desc": "a quiet 16-year-old sand-controlling ninja boy with short dusty copper-red hair, pale skin, calm teal eyes, a sand-colored hooded cloak with dark brown trim open over a dark brown bodysuit, leather straps across the chest, and a large round clay urn with a wooden stopper strapped on his back",
+    "pose": "standing calmly with arms crossed, sand swirling at his feet",
+    "cutin": "raising one open hand as a huge wave of golden sand rises behind him and grains swirl around his cloak",
+    "main": true,
+    "fight": "sand"
+  },
+  "raiga": {
+    "desc": "a laid-back adult elite ninja man with shaggy silver-white hair tied in a short low tail, a dark-grey cloth mask covering his nose and mouth, one grey eye and one eye with a thin vertical scar, a dark olive tactical vest with pouches over navy-blue long sleeves, fingerless black gloves, navy pants with taped ankles, black sandals",
+    "cutin": "lunging forward with his right hand sheathed in a blade of white crackling lightning, sparks flying",
+    "main": true
+  },
+  "karasu": {
+    "desc": "a calm, melancholic 20-year-old ninja man with long black hair in a loose low ponytail and side bangs, crimson-red eyes, faint lines under the eyes, a long black coat with a tall collar decorated with a pattern of small silver crescent moons, dark grey pants",
+    "pose": "standing composed with one hand inside his coat",
+    "cutin": "his crimson eyes glowing as a swarm of black crows bursts outward around him, black flames flickering",
+    "main": true
+  },
+  "souga": {
+    "desc": "a hot-blooded 17-year-old swordsman with spiky dark-crimson hair, brown determined eyes, a black samurai kimono and wide black hakama with a white inner collar and white sash, a red leather strap across his chest, and an enormous broad single-edged greatsword with a red cloth-wrapped hilt resting on his shoulder",
+    "pose": "standing in a ready stance holding the huge greatsword over his shoulder",
+    "cutin": "swinging the huge greatsword upward releasing a giant crescent-shaped wave of black and crimson spiritual energy",
+    "main": true,
+    "fight": "blade",
+    "weapon": "the huge single-edged greatsword"
+  },
+  "hyorin": {
+    "desc": "a short serious 14-year-old swordsman captain with spiky pale icy-blue hair, ice-blue eyes, a white captain's long coat with frost-crystal patterns along the hem worn over a black kimono and hakama, a teal sash, a katana with a snowflake-shaped frost-blue guard",
+    "cutin": "slashing his katana as an enormous dragon made of ice coils up from the blade, frost particles everywhere",
+    "main": true,
+    "fight": "blade",
+    "weapon": "the katana"
+  },
+  "hizakura": {
+    "desc": "an elegant aloof 25-year-old noble swordsman with long straight dark-violet hair tied in a high ponytail with a silver hair ornament, cold grey eyes, a white haori with pink cherry-blossom embroidery along the hem over a black kimono and hakama, a katana with a pink silk tassel on the hilt",
+    "pose": "standing gracefully with the katana lowered at his side",
+    "cutin": "holding his katana point-down as it dissolves into a storm of thousands of tiny glowing pink blade petals swirling around him",
+    "main": true,
+    "fight": "blade",
+    "weapon": "the katana"
+  },
+  "kyouken": {
+    "desc": "a huge, battle-hungry, muscular swordsman over two meters tall with a wild mane of long spiky black hair, a black eyepatch over his left eye, a long scar down his right cheek, a savage grin, a torn and ragged grey sleeveless coat over a black kimono and hakama, and a long chipped and notched katana",
+    "pose": "standing menacingly with the notched katana held low in one hand",
+    "cutin": "raising his notched katana with both hands overhead, wrapped in a towering golden-yellow aura of spiritual pressure, grinning madly",
+    "main": true,
+    "fight": "blade",
+    "weapon": "the long notched katana"
+  },
+  "genshu": {
+    "desc": "a tall elegant 35-year-old man with silver-white hair slicked back with one strand falling over his forehead, calm golden eyes, a gentle but sinister smile, a long white high-collared coat with purple trim and a deep purple sash, white hakama, a slender katana",
+    "pose": "standing calmly and confidently with one hand resting on his katana hilt",
+    "cutin": "extending one hand as a giant coffin of black energy panels forms in front of him, purple light and dark shards around",
+    "main": true,
+    "fight": "blade",
+    "weapon": "the katana"
+  },
+  "suiei": {
+    "desc": "an athletic, energetic 16-year-old martial artist boy with short spiky black hair, thick eyebrows, a red headband with long tails, a green sleeveless martial arts gi with a white belt, orange leg warmers and bandaged fists",
+    "pose": "in a dynamic flying kick pose"
+  },
+  "senjin": {
+    "desc": "a jovial old hermit sage man with long wild white hair, a big white beard, a wide conical straw hat, a moss-green robe with a plain unmarked red tabard (no writing or symbols on it), wooden geta sandals and a large rolled scroll on his back",
+    "pose": "standing with one hand raised making a summoning hand sign"
+  },
+  "juushou": {
+    "desc": "a calm, gentle 16-year-old kunoichi girl with long navy-blue hair in a single long braid, pale lilac eyes, a lavender hooded jacket with white trim, dark navy pants and fingerless gloves",
+    "pose": "in a graceful palm-strike martial arts stance"
+  },
+  "messhi": {
+    "desc": "a slim, serious 17-year-old archer boy with short neat black hair and thin rectangular glasses, a white and royal-blue high-collared uniform with a short white cape, holding a bow made of glowing blue light",
+    "pose": "drawing the glowing light bow and aiming to the right"
+  },
+  "tatehana": {
+    "desc": "a kind, gentle 16-year-old girl with long chestnut-brown hair and two small star-shaped hair clips, warm brown eyes, a cream cardigan over a white blouse and navy pleated skirt, black knee socks",
+    "pose": "standing with both hands raised as a golden hexagonal barrier of light appears in front of her"
+  },
+  "boukage": {
+    "desc": "a mysterious relaxed shopkeeper man with messy straw-blond hair under a plain dark-green bucket hat that shades his eyes, light stubble, a dark green coat over a black kimono, wooden geta sandals, holding a plain wooden cane and a closed folding fan",
+    "pose": "standing casually leaning on his cane"
+  }
+}
