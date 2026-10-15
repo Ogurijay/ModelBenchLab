@@ -1817,6 +1817,34 @@
         "handover": "HANDOVER.md",
         "changelog": "CHANGELOG.md"
       }
+    },
+    {
+      "dir": "claudeopus5.5-stormwind-replica",
+      "port": 3067,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "stormwind",
+      "variant": "replica",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.185",
+      "vite": "8",
+      "workspace": true,
+      "title": "暴风城还原 — 按原作方位重建的王都，每扇门都能推开",
+      "desc": "忠实还原《魔兽世界》暴风城地标与方位：英雄谷连拱大桥与八尊英雄像、运河分隔的岛状街区、光明大教堂（中殿可进）、12 m 高台上的暴风要塞（王座厅可进）、法师区紫塔、矮人区熔炉与地铁口、北墙外暴风港；216 栋民居全部真空心可上楼，墙体与碰撞同源；昼夜 + GTAO + 16 盏光源池；经 3d-scene-builder skill 五轮独立 Critic 迭代",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/stormwind.md",
+      "task_id": "code3d-stormwind-001",
+      "task_version": 1,
+      "docPaths": {
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md",
+        "readme": "README.md"
+      }
     }
   ],
   "portalSections": [

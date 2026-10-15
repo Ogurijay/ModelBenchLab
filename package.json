@@ -65,7 +65,8 @@
     "claudeopus5.5-lf2-replica",
     "claudeopus5.5-bvn-replica",
     "gpt6-bvn-shinobi-soul",
-    "gpt6.1sol-terraria-infinite"
+    "gpt6.1sol-terraria-infinite",
+    "claudeopus5.5-stormwind-replica"
   ],
   "scripts": {
     "dev": "vite",

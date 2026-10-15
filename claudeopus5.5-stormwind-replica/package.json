@@ -1,0 +1,11 @@
+{
+  "name": "claudeopus5.5-stormwind-replica",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "暴风城还原 — 按《魔兽世界》原作方位还原英雄谷、运河街区与地标，每栋房子都能走进去(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./",
+    "floorplan": "node tools/floorplan.mjs"
+  }
+}
