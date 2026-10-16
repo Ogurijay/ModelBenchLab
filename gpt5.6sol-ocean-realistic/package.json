@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 3024 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1 --port 4024",
+    "preview": "vite preview --host 127.0.0.1 --port 3024 --strictPort",
     "test": "vitest run"
   },
   "dependencies": {

@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { projectHmr } from './scripts/project-hmr.mjs';
+import { projectHmr, projectWatchOptions } from './scripts/project-hmr.mjs';
 
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
 const reg = JSON.parse(readFileSync(join(ROOT, 'benchmark/registry.json'), 'utf8'));
@@ -70,8 +70,15 @@ function benchRouting() {
 
 export default defineConfig({
   appType: 'mpa',
-  server: { port: 3000, strictPort: true },
+  server: { port: 3000, strictPort: true, watch: projectWatchOptions(ROOT) },
   optimizeDeps: {
+    // 后打开的项目不能触发全局重新预打包；CJS 和需预打包的入口在启动时一次处理。
+    // 新增此类依赖时维护 include。其余 ESM 依赖按项目就近解析、直接服务。
+    noDiscovery: true,
+    include: [
+      'react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime',
+      'lucide-react', 'clsx', 'tailwind-merge', 'zustand',
+    ],
     // three 绝不能进预打包:预打包按裸名只保留一份,会把多版本(0.160/0.179/0.184/0.185)
     // 坍缩成同一副本。排除后每个 import 按就近 node_modules 逐项目解析(three 为纯 ESM,可直接服务)。
     exclude: ['three'],

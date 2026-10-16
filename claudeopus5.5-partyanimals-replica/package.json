@@ -1,0 +1,14 @@
+{
+  "name": "claudeopus5.5-partyanimals-replica",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "动物派对(Party Animals)复刻 — Three.js + Rapier 主动布娃娃毛绒动物物理乱斗:拳/踢/头槌/飞踢/抓举投掷/攀爬、击晕与淘汰、五张机关地图、武器与 AI(Claude Opus 5.5)",
+  "scripts": {
+    "build": "vite build --base=./"
+  },
+  "dependencies": {
+    "three": "0.186.1",
+    "@dimforge/rapier3d-compat": "^0.12.0"
+  }
+}

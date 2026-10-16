@@ -33,6 +33,26 @@ test('port drift, alias collisions and absent lock package fail the audit',t=>{
   const f=fixture(t);f.reg.projects[0].aliases=[f.project.dir];f.write('benchmark/registry.json',f.reg);f.write(f.project.dir+'/vite.config.js','export default {server:{port:3002}}');f.write('package-lock.json',{packages:{'':{workspaces:[f.project.dir]}}});
   const errors=validateStructure(f.root).problems;assert(errors.some(e=>e.includes('别名冲突')));assert(errors.some(e=>e.includes('端口漂移')));assert(errors.some(e=>e.includes('workspace 包')));
 });
+
+test('development and preview commands pin registered ports and reject fallback or forced optimization', t => {
+  const f = fixture(t), manifest = f.project.dir + '/package.json';
+  f.write(manifest, { scripts: { dev: 'vite', preview: 'vite preview --port 4173' } });
+  let errors = validateStructure(f.root).problems;
+  assert(errors.some(e => e.includes('dev 脚本未固定登记端口')));
+  assert(errors.some(e => e.includes('preview 脚本端口漂移')));
+  assert(errors.some(e => e.includes('脚本允许自动换端口')));
+  f.write(manifest, { scripts: { dev: 'vite --port 3001 --strictPort', preview: 'vite preview --port 3001 --strictPort' } });
+  assert.deepEqual(validateStructure(f.root).problems, []);
+  f.write(manifest, { scripts: { dev: 'vite --port 3001 --strictPort --force' } });
+  assert(validateStructure(f.root).problems.some(e => e.includes('强制重建依赖缓存')));
+  f.write(manifest, { scripts: { dev: 'vite', preview: 'vite preview' } });
+  f.write(f.project.dir + '/vite.config.js', '// previous port: 9999\nexport default {server:{port:3001,strictPort:true},preview:{port:3001}}');
+  assert.deepEqual(validateStructure(f.root).problems, []);
+  f.write(f.project.dir + '/vite.config.js', 'export default {server:{port:3001,hmr:false},preview:{port:3001}}');
+  errors = validateStructure(f.root).problems;
+  assert(errors.some(e => e.includes('缺少 strictPort')));
+  assert(errors.some(e => e.includes('禁用 HMR')));
+});
 test('nested portal groups cover missions exactly once and reject stale classifications',t=>{
   const f=fixture(t);
   const group={id:'ocean',label:'海洋模拟',missions:['ocean']};

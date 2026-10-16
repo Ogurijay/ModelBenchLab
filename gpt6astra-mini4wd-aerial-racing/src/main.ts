@@ -57,7 +57,7 @@ el('app').innerHTML=`
  <footer class="fleet"><div class="fleet-label"><b>THE ORIGINAL<br>EIGHT.</b><span>选择 / 跟随</span></div><div class="fleet-cards" id="fleet-cards"></div></footer>
  <dialog id="modal"><button id="modal-close" class="modal-close" aria-label="关闭">×</button><div id="modal-content"></div></dialog>`;
 
-const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.96;el('webgl').append(renderer.domElement);
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.96;el('webgl').append(renderer.domElement);
 const environment=makeEnvironment(renderer),scene=new THREE.Scene();scene.environment=environment;
 const garage=new THREE.Scene();garage.environment=environment;garage.environmentIntensity=.72;garage.background=new THREE.Color('#e4e5de');
 garage.add(new THREE.HemisphereLight(0xe3eeff,0x706954,.8));const garageKey=new THREE.DirectionalLight(0xfff2dc,2.3);garageKey.position.set(-.3,.6,.4);garageKey.castShadow=true;garageKey.shadow.mapSize.set(2048,2048);Object.assign(garageKey.shadow.camera,{left:-.23,right:.23,top:.23,bottom:-.23,near:.01,far:2});garageKey.shadow.bias=-.00006;garage.add(garageKey);

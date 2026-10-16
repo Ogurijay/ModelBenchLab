@@ -10,17 +10,3 @@ export async function graphicsInfo(page){
     return {renderer:gl.getParameter(debug?debug.UNMASKED_RENDERER_WEBGL:gl.RENDERER),vendor:gl.getParameter(debug?debug.UNMASKED_VENDOR_WEBGL:gl.VENDOR)};
   });
 }
-
-// Other workspace projects share Vite. Freeze only its reload/update commands
-// during a QA run; application traffic and server errors still pass through.
-export async function isolateLiveReload(page){
-  await page.routeWebSocket(/.*/,socket=>{
-    const server=socket.connectToServer();
-    if(!socket.protocols().includes('vite-hmr'))return;
-    server.onMessage(message=>{
-      let payload;try{payload=JSON.parse(String(message));}catch{}
-      if(['update','full-reload'].includes(payload?.type))return;
-      socket.send(message);
-    });
-  });
-}

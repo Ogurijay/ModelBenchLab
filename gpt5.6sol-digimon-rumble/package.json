@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3039 --strictPort",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 3039 --strictPort",
     "test": "node --test --test-isolation=none"
   },
   "dependencies": {
-    "three": "^0.185.1"
+    "three": "0.186.1"
   },
   "devDependencies": {
     "vite": "^8.0.16"

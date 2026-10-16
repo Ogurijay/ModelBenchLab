@@ -1,0 +1,6 @@
+# Preserve the bytes recorded in runtime-provenance.json.
+openlf2.js -text
+openlf2.data -text
+openlf2.wasm binary
+lf2-resources.bin binary
+license.txt -text whitespace=cr-at-eol

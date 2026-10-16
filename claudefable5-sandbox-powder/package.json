@@ -5,9 +5,9 @@
   "type": "module",
   "description": "粉末实验室 — 全中文落沙物理沙盒（原创实现）：62 种带化学式元素，温度场/相变/燃烧爆炸/风压场/导电电解/酸碱化学/放射衰变/生态生长",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 3020 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1 --port 3020 --strictPort"
   },
   "devDependencies": {
     "vite": "^8.1.2"

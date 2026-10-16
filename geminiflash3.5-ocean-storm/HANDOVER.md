@@ -1,5 +1,15 @@
 # 任务交接文档 (HANDOVER.md) — antigravity-ocean-storm
 
+## 2026-10-13 并行开发规则同步
+
+- 生产预览也固定登记端口 3012 并启用 strictPort，与本项目独立开发服务交替使用；先停止自己启动的旧服务再切换。
+
+- 修正子目录 `npm run dev`：固定登记端口 3012，端口被占用时报错，不自动换号。
+- 独立 Vite 配置补齐登记端口/strictPort，直接启动也遵守端口约定。
+- 同步统一预览、并行独立调试、服务复用与依赖安装串行约定。
+- 本轮范围为开发服务和产物路径；不新增玩法、画面或正式评测结论。核验明细见 [批量检查记录](../benchmark/reports/parallel-development-2026-10-13.json)。
+
+
 ## 1. 项目基本状态
 本项目根据 `RULES.md` 规范创建，是一个基于 **Three.js (WebGL)** 实现的物理海洋与极端天气交互模拟场景。
 * **开发负责人**：Antigravity (AI Coding Assistant)

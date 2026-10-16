@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
-const folder=fileURLToPath(new URL('../docs/qa/',import.meta.url));await mkdir(folder,{recursive:true});
+const folder=fileURLToPath(new URL('../tmp/qa/',import.meta.url));await mkdir(folder,{recursive:true});
 const url=process.env.OCEAN_URL||'http://localhost:3000/gpt6.1sol-ocean-realistic/';
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1,acceptDownloads:true});

@@ -1,5 +1,14 @@
 # HANDOVER — claudefable5-business-tycoon
 
+## 2026-10-13 并行开发规则同步
+
+- 生产预览也固定登记端口 3040 并启用 strictPort，与本项目独立开发服务交替使用；先停止自己启动的旧服务再切换。
+
+- 修正子目录 `npm run dev`：固定登记端口 3040，端口被占用时报错，不自动换号。
+- 同步统一预览、并行独立调试、服务复用与依赖安装串行约定。
+- 本轮范围为开发服务和产物路径；不新增玩法、画面或正式评测结论。核验明细见 [批量检查记录](../benchmark/reports/parallel-development-2026-10-13.json)。
+
+
 ## 当前状态（2026-07-17）
 
 功能完整、可通关、自测 16/16 通过。已按单端口规范登记 registry（port 3040 仅供 `dev:one`）、加入 workspaces、`npm run sync:check` 通过。

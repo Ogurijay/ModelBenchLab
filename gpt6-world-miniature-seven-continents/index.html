@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9eee6"><title>世界一隅 · 七大洲微缩公园</title><link rel="icon" href="data:,"></head>
+<body>
+  <main id="app">
+    <div id="scene" aria-label="七大洲互动三维公园"></div>
+    <header class="topbar ui">
+      <a class="brand" href="../" title="返回项目门户"><span class="brand-symbol">◎</span><span>世界一隅<small>WORLD IN MINIATURE</small></span></a>
+      <div class="top-description"><span class="status-dot"></span>一座可以走进去的世界地图</div>
+      <button id="help-toggle" class="icon-button" aria-label="操作说明">?</button>
+    </header>
+    <section class="intro ui"><div class="eyebrow">A LITTLE WORLD, A LONG JOURNEY</div><h1>把世界，<br>收进一座花园。</h1><p>跨过一座桥，遇见另一个大洲。<br>从这里开始，你的微缩世界之旅。</p><div class="intro-count"><b>07<small>大洲</small></b><span></span><b>18<small>地标</small></b><span></span><b>∞<small>种风景</small></b></div></section>
+    <nav class="continent-nav ui" aria-label="大洲导览" id="continent-nav"></nav>
+    <aside class="detail-panel ui" id="detail-panel">
+      <div class="panel-top"><span class="eyebrow" id="detail-kicker">YOUR WORLD GUIDE</span><button id="detail-close" class="text-button" aria-label="收起地标详情">×</button></div>
+      <h2 id="detail-title">七洲之间，自在漫游</h2><p id="detail-copy">旋转沙盘发现世界，选择一个大洲，或沿着滨水步道亲自走一程。</p>
+      <div id="landmark-list" class="landmark-list"></div>
+      <div class="minimap-wrap"><svg id="minimap" viewBox="-220 -170 440 340" role="img" aria-label="园区小地图"></svg><span class="map-north">N ↑</span></div>
+      <div class="map-caption"><span id="location-label">全园总览</span><span>420 × 320 m</span></div>
+    </aside>
+    <div class="view-controls ui"><button id="overview" class="active">◈ <span>俯瞰世界</span></button><button id="walk">↟ <span>步行漫游</span></button><button id="tour">▷ <span>自动游园</span></button><i></i><button id="daytime" title="切换日景与夜景">☀ <span>金色时刻</span></button><button id="photo" title="隐藏界面后保存画面">▣ <span>拍照</span></button></div>
+    <footer class="bottomline ui"><span id="controls-hint">拖动旋转 · 滚轮缩放 · 右键平移</span><span>SEVEN CONTINENTS / ONE GARDEN</span><span id="fps">加载场景…</span></footer>
+    <div id="world-labels"></div><div id="crosshair" hidden>+</div>
+    <div id="toast" role="status"></div>
+    <dialog id="help"><button id="help-close" class="text-button">×</button><div class="eyebrow">A SMALL GUIDE</div><h2>慢一点，看见更多。</h2><p>俯瞰：拖动旋转，滚轮缩放，右键平移。</p><p>步行：WASD / 方向键移动，按住鼠标拖动转头，Shift 加速。点击画面可锁定鼠标，Esc 释放。</p><p>点击大洲或地标可切换观景机位。自动游园沿园区步道缓慢前进。</p><p>P 隐藏 / 恢复界面；Esc 退出自动游园；右下角拍照可保存当前画面。</p></dialog>
+    <dialog id="photo-dialog"><button id="photo-close" class="text-button" aria-label="关闭照片">×</button><div class="eyebrow">A POSTCARD FROM YOUR JOURNEY</div><h2>把这一刻，带走。</h2><img id="photo-preview" alt="当前公园画面的照片"><div class="photo-actions"><span id="photo-size"></span><a id="photo-save" download>保存 PNG ↗</a></div></dialog>
+    <div id="fatal" hidden></div>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body></html>

@@ -1,6 +1,17 @@
+<!-- three-r186-migration -->
+## 2026-10-15 · Three.js r186 升级
+
+按用户本轮授权，当前 Three.js 依赖已从 0.185.x 升级并固定为 **0.186.1**。历史条目中的旧版本与验收结果保留原记录；它们不代表 r186 的运行验收。
+已核对官方迁移指南和安装版源码：r186 的 WebGLShadowMap 也已移除 PCFSoftShadowMap，遇到旧值会警告并自动回退 PCFShadowMap。六个旧项目已显式改用 PCFShadowMap，消除该警告；其他已扫描的迁移项未发现需调整的使用。
+构建、已有单元测试、仓库检查和运行抽查结果统一记录在仓库临时报告 `tmp/three186-migration/report.json`；未进行全部场景的视觉与性能回归。
+<!-- /three-r186-migration -->
+
 <!-- modelbenchlab-access -->
-统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/claudeopus5.5-mini4wd-replica/`。
-独立调试：根目录运行 `npm run dev:one -- claudeopus5.5-mini4wd-replica`，打开 `http://localhost:3058/`。下文子目录启动说明仅用于独立开发。
+统一预览（仓库根目录）：复用已有 3000 服务；未启动时执行 `npm run dev`，访问 http://localhost:3000/claudeopus5.5-mini4wd-replica/ 。
+并行开发（仓库根目录）：`npm run dev:one -- claudeopus5.5-mini4wd-replica`，访问 http://localhost:3058/ 。项目 root 和依赖缓存独立，登记端口占用时先核对进程归属，不自动换号或结束其他会话的服务。
+需要安装依赖时，在仓库根目录统一串行执行；不要在多个子项目中同时安装。截图、测试报告及生成中间产物写入项目 `tmp/`，构建产物使用 `dist/` 或 `build/`；保留正常热更新。历史归档证据仍保留原位置。
+完整约定见 [公共规则 §4.1](../RULES.md#41-并行开发与刷新隔离)。下文子目录启动说明仅用于独立调试。
+<!-- /modelbenchlab-access -->
 
 # 四驱兄弟 · 原型复刻赛（Claude Opus 5.5）
 
@@ -61,7 +72,7 @@ node claudeopus5.5-mini4wd-replica/tests/browser-smoke.mjs
 ```
 
 - `tests/sim.test.js`：赛道闭合与换道、零件规范化、调校效果、确定性、动画模式（11 项）。
-- `tests/browser-smoke.mjs`：隔离的无头 Edge 实测点击改装、拆解、存档恢复、三赛道比赛、镜头与暂停，结果写入 `docs/browser-validation.json`，截图在 `docs/screenshots/`。
+- `tests/browser-smoke.mjs`：隔离的无头 Edge 实测点击改装、拆解、存档恢复、三赛道比赛、镜头与暂停，新结果写入 `tmp/browser-validation.json`，新截图在 `tmp/screenshots/`；`docs/` 中保留历史归档。
 - 建模对照实验室：`?lab=<车型 id>&view=ref|rear|top|side|front`（例如 `?lab=stinger&view=ref`），按标定机位渲染白底图，`tests/compare.mjs` 批量导出。
 
 `window.mini4wd.snapshot()` 返回只读状态（车型、改装、比赛进程、渲染统计），`window.mini4wd.step(秒)` 可在后台标签页里确定性推进比赛。

@@ -9,6 +9,6 @@
     "test": "node --test tests/ocean.test.mjs",
     "test:browser": "node tests/browser.mjs"
   },
-  "dependencies": { "three": "0.185.1" },
+  "dependencies": { "three": "0.186.1" },
   "devDependencies": { "vite": "8.1.2" }
 }

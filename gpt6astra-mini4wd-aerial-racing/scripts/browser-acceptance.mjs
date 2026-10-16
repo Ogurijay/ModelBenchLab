@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-const project=path.resolve(import.meta.dirname,'..'),out=path.join(project,'docs/qa');fs.mkdirSync(out,{recursive:true});
+const project=path.resolve(import.meta.dirname,'..'),out=path.join(project,'tmp/qa');fs.mkdirSync(out,{recursive:true});
 const url=process.env.ASTRA_URL||'http://127.0.0.1:3059/';
 const browser=await chromium.launch({channel:'msedge',headless:true});
 const page=await browser.newPage({viewport:{width:1600,height:1000},deviceScaleFactor:1});

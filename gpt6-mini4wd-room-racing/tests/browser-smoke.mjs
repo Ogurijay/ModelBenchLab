@@ -11,8 +11,8 @@ const snapshot=()=>page.evaluate(()=>window.mini4wd.snapshot());
 const check=(name,pass)=>{assert.ok(pass,name);checks.push(name);console.log('PASS '+name);};
 let completedRace;
 const click=action=>page.locator('[data-action="'+action+'"]').first().click();
-const capture=async name=>page.screenshot({path:path.join(root,'docs/screenshots','redo-'+label+'-'+name+'.png')});
-await fs.mkdir(path.join(root,'docs/screenshots'),{recursive:true});
+const capture=async name=>page.screenshot({path:path.join(root,'tmp/screenshots','redo-'+label+'-'+name+'.png')});
+await fs.mkdir(path.join(root,'tmp/screenshots'),{recursive:true});
 try{
  await page.goto(process.env.BENCH_URL||'http://localhost:3000/gpt6-mini4wd-room-racing/',{waitUntil:'networkidle'});
  await page.waitForFunction(()=>window.mini4wd);let s=await snapshot();check('eight distinct stock cars load in an eight lane grid',s.racers.length===8&&new Set(s.racers.map(r=>r.lane)).size===8);
@@ -22,7 +22,7 @@ try{
  await click('page-garage');await page.waitForTimeout(450);
  for(const id of ['cyclone','hurricane','triangle','evolution','cobra','spider','giant','devil']){
   await page.locator('[data-car="'+id+'"]').click();await page.waitForTimeout(160);await click('inspect-front');await page.waitForTimeout(180);await capture('car-'+id);
-  for(const angle of ['top','side']){await click('inspect-'+angle);await page.waitForTimeout(180);await page.screenshot({path:path.join(root,'docs/screenshots','redo-'+label+'-car-'+id+'-'+angle+'.png'),clip:{x:240,y:230,width:780,height:470}});}await click('inspect-front');
+  for(const angle of ['top','side']){await click('inspect-'+angle);await page.waitForTimeout(180);await page.screenshot({path:path.join(root,'tmp/screenshots','redo-'+label+'-car-'+id+'-'+angle+'.png'),clip:{x:240,y:230,width:780,height:470}});}await click('inspect-front');
   check(id+' has a rendered individual model',(await snapshot()).selected===id&&(await snapshot()).render.triangles>4000);
  }
  // Render independent top and side views directly from the same real model factory.
@@ -57,5 +57,5 @@ try{
  await page.setViewportSize({width:1280,height:900});check('1280 desktop remains usable without horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await capture('desktop-1280');
  check('no browser page or console errors',errors.length===0);
  const evidence={date:new Date().toISOString(),url:process.env.BENCH_URL||'http://localhost:3000/gpt6-mini4wd-room-racing/',label,checks,errors,models:shapes,completedRace,final:await snapshot()};
- await fs.writeFile(path.join(root,'docs','redo-'+label+'-validation.json'),JSON.stringify(evidence,null,2));console.log(JSON.stringify({checks:checks.length,errors,finish:completedRace.racers[0].finish}));
+ await fs.writeFile(path.join(root,'tmp','redo-'+label+'-validation.json'),JSON.stringify(evidence,null,2));console.log(JSON.stringify({checks:checks.length,errors,finish:completedRace.racers[0].finish}));
 }finally{await page.close();await browser.close();}

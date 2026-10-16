@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>毛绒派对 · 动物派对玩法复刻(Claude Opus 5.5)</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="view"></div>
+
+  <div id="loading" class="screen show"><div class="load-box"><div class="paw"></div><p>正在给动物们梳毛…</p></div></div>
+
+  <!-- 标题 -->
+  <div id="title" class="screen">
+    <div class="logo"><span class="l1">毛绒</span><span class="l2">派对</span><small>FLUFFY BRAWL · 动物派对玩法复刻</small></div>
+    <div class="menu-btns">
+      <button class="btn big" data-go="select">开始派对</button>
+      <button class="btn" data-go="practice">练习场</button>
+      <button class="btn" data-go="help">操作说明</button>
+      <button class="btn" data-go="settings">设置</button>
+    </div>
+    <p class="foot">物理布娃娃乱斗:把对手打晕,再把他们扔出场外,最后站着的就是赢家。</p>
+  </div>
+
+  <!-- 选择角色与比赛设置 -->
+  <div id="select" class="screen">
+    <div class="panel left">
+      <h2>选择你的动物</h2>
+      <div id="animal-grid" class="grid"></div>
+      <h3>毛色</h3>
+      <div id="palettes" class="swatches"></div>
+      <h3>昵称</h3>
+      <input id="pname" maxlength="8" value="我" />
+    </div>
+    <div class="panel right">
+      <h2>比赛设置</h2>
+      <div class="opt"><label>模式</label><div class="seg" id="opt-mode"><button data-v="ffa" class="on">个人混战</button><button data-v="team">团队对抗</button></div></div>
+      <div class="opt"><label>对手数量</label><div class="seg" id="opt-bots"><button data-v="1">1</button><button data-v="3">3</button><button data-v="5" class="on">5</button><button data-v="7">7</button></div></div>
+      <div class="opt"><label>电脑难度</label><div class="seg" id="opt-diff"><button data-v="0">简单</button><button data-v="1" class="on">普通</button><button data-v="2">困难</button></div></div>
+      <div class="opt"><label>胜利回合</label><div class="seg" id="opt-rounds"><button data-v="1">1</button><button data-v="3" class="on">3</button><button data-v="5">5</button></div></div>
+      <div class="opt"><label>地图</label><div class="maps" id="opt-map"></div></div>
+      <p id="map-desc" class="desc"></p>
+      <div class="row-btns"><button class="btn" data-go="title">返回</button><button class="btn big" id="btn-start">开打!</button></div>
+    </div>
+  </div>
+
+  <!-- 操作说明 -->
+  <div id="help" class="screen">
+    <div class="panel wide">
+      <h2>操作说明</h2>
+      <div class="help-cols">
+        <table>
+          <tr><th>移动</th><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> · 鼠标转视角(<kbd>Q</kbd><kbd>E</kbd> 也可转) · 滚轮缩放</td></tr>
+          <tr><th>疾跑 / 跳</th><td><kbd>Shift</kbd> 按住 · <kbd>空格</kbd></td></tr>
+          <tr><th>出拳</th><td><kbd>左键</kbd> 点按 / <kbd>J</kbd> · 疾跑中出拳 = 重拳</td></tr>
+          <tr><th>抓取</th><td><kbd>左键</kbd> 按住 / <kbd>I</kbd> · 双手高度跟随视角上下</td></tr>
+          <tr><th>踢</th><td><kbd>右键</kbd> / <kbd>K</kbd> · 空中踢 = 飞踢</td></tr>
+          <tr><th>头槌</th><td><kbd>中键</kbd> / <kbd>L</kbd> · 按住蓄力,松开冲撞</td></tr>
+          <tr><th>投掷</th><td>抓住时按 <kbd>右键</kbd> 或 <kbd>J</kbd>/<kbd>K</kbd> · 举过头顶再扔更远</td></tr>
+          <tr><th>攀爬</th><td>抓住墙沿/栏杆时按 <kbd>空格</kbd></td></tr>
+          <tr><th>武器</th><td>抓取键拾起 · 出拳键挥舞/射击 · <kbd>F</kbd> 丢下</td></tr>
+          <tr><th>挣扎</th><td>被打晕、被抓、被冻住时 连按任意动作键</td></tr>
+          <tr><th>其他</th><td><kbd>Tab</kbd> 比分 · <kbd>Esc</kbd> 暂停 · 出局后 左键 切换观战</td></tr>
+        </table>
+        <div class="rules">
+          <h3>规则</h3>
+          <p>每次挨打都会降低意识值,降到 0 就会晕倒(头上冒星星)。晕倒的动物可以被抓起来、举过头顶,再扔出场外。</p>
+          <p>掉下高台、落进水里或在毒雾里晕倒都会出局。每回合最后存活的动物(或队伍)得 1 分,先拿到设定回合数者获胜。</p>
+          <p>回合进行 90 秒后进入<b>突然死亡</b>:每张地图的机关都会变得更凶。</p>
+          <h3>道具</h3>
+          <p>球棒、平底锅、大锤、棒棒糖可以挥打;冰冻枪能把对手冻成冰块;炸弹被抓起后开始倒计时。木箱、油桶、沙滩球都能推、能举、能扔。</p>
+        </div>
+      </div>
+      <div class="row-btns"><button class="btn" data-go="back">返回</button></div>
+    </div>
+  </div>
+
+  <!-- 设置 -->
+  <div id="settings" class="screen">
+    <div class="panel">
+      <h2>设置</h2>
+      <div class="opt"><label>鼠标灵敏度</label><input type="range" id="set-sens" min="0.3" max="2.5" step="0.05" value="1" /></div>
+      <div class="opt"><label>主音量</label><input type="range" id="set-master" min="0" max="1" step="0.05" value="0.8" /></div>
+      <div class="opt"><label>音乐</label><input type="range" id="set-music" min="0" max="1" step="0.05" value="0.35" /></div>
+      <div class="opt"><label>音效</label><input type="range" id="set-sfx" min="0" max="1" step="0.05" value="0.8" /></div>
+      <div class="opt"><label>画质</label><div class="seg" id="set-quality"><button data-v="low">流畅</button><button data-v="high" class="on">高</button></div></div>
+      <div class="row-btns"><button class="btn" data-go="back">返回</button></div>
+    </div>
+  </div>
+
+  <!-- 局内 HUD -->
+  <div id="hud" class="hidden">
+    <div id="topbar"><div id="round-info"></div><div id="timer"></div><div id="scores"></div></div>
+    <div id="roster"></div>
+    <div id="feed"></div>
+    <div id="plates"></div>
+    <div id="center-msg"><div class="t"></div><div class="s"></div></div>
+    <div id="countdown"></div>
+    <div id="toast"></div>
+    <div id="hitmark"></div>
+    <div id="crosshair"></div>
+    <div id="vitals">
+      <div class="vbar" id="v-consc"><span>意识</span><i></i></div>
+      <div class="vbar" id="v-grip"><span>握力</span><i></i></div>
+      <div id="v-weapon"></div>
+    </div>
+    <div id="hint">鼠标/Q E 转视角 · 左键 拳/按住抓 · 右键 踢 · 中键 头槌 · Shift 疾跑 · 空格 跳/攀爬 · F 丢武器 · Esc 菜单</div>
+    <div id="flash"></div>
+    <div id="lockhint">点击画面锁定鼠标(未锁定时移动鼠标或按 Q/E 也能转视角)</div>
+  </div>
+
+  <!-- 暂停 -->
+  <div id="pause" class="screen">
+    <div class="panel">
+      <h2>暂停</h2>
+      <div class="menu-btns">
+        <button class="btn big" id="btn-resume">继续</button>
+        <button class="btn" data-go="help">操作说明</button>
+        <button class="btn" data-go="settings">设置</button>
+        <button class="btn" id="btn-quit">退出到主菜单</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结算 -->
+  <div id="results" class="screen">
+    <div class="panel wide">
+      <h2 id="res-title"></h2>
+      <table id="res-table"></table>
+      <div class="row-btns"><button class="btn" id="btn-again">再来一局</button><button class="btn big" id="btn-menu">回到主菜单</button></div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

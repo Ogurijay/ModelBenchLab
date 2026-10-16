@@ -1,5 +1,5 @@
 import {chromium} from 'playwright';import fs from 'node:fs';import path from 'node:path';
-const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'docs/qa');fs.mkdirSync(out,{recursive:true});
+const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'tmp/qa');fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({channel:'msedge',headless:true});const page=await browser.newPage({viewport:{width:1600,height:1000},deviceScaleFactor:1});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 await page.goto(process.env.ASTRA_URL||'http://localhost:3059/',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.astra?.ready,{timeout:30000});

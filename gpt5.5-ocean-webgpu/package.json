@@ -5,9 +5,9 @@
   "type": "module",
   "description": "WebGPU ocean weather simulation with procedural waves, rain, clouds, fog, lightning, and a compact realtime control UI.",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 3013 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1 --port 3013 --strictPort"
   },
   "dependencies": {
     "three": "^0.184.0"

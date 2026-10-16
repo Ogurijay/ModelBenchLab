@@ -143,8 +143,10 @@ export function createController(camera, dom, collision, groundY) {
 
   function update(dt) {
     if (state.mode === 'orbit') {
-      if (state.autoOrbit) orbit.setAzimuthalAngle(orbit.getAzimuthalAngle() + state.orbitSpeed * dt);
-      orbit.update();
+      orbit.autoRotate = state.autoOrbit;
+      // OrbitControls exposes autoRotate, not setAzimuthalAngle (r185/r186).
+      orbit.autoRotateSpeed = -state.orbitSpeed * 30 / Math.PI;
+      orbit.update(dt);
       return;
     }
 

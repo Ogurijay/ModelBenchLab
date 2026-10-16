@@ -1,10 +1,10 @@
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
-import {browserOptions,isolateLiveReload,graphicsInfo} from './browser-options.mjs';
+import {browserOptions,graphicsInfo} from './browser-options.mjs';
 import {artifactsAt} from './qa-artifacts.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.BENCH_PLAYWRIGHT_MODULE||'playwright');
-const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'docs/qa/map',process.env.BENCH_QA_LABEL||'source'),artifacts=artifactsAt(out);
+const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'tmp/qa/map',process.env.BENCH_QA_LABEL||'source'),artifacts=artifactsAt(out);
 const browser=await chromium.launch(browserOptions);
 const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage(),errors=[],checks=[];
 page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -15,7 +15,6 @@ async function inspect(options){
   return page.evaluate(()=>window.__bench.getState());
 }
 try{
-  await isolateLiveReload(page);
   const url=process.env.BENCH_URL||'http://localhost:3000/gpt6.1sol-initiald-story-racing/?bench=1';
   await page.goto(url);await page.waitForFunction(()=>!!window.__bench?.inspectCourse);
   for(const id of ['downhill','uphill','rain','highway']){

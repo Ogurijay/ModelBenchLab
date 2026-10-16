@@ -5,12 +5,12 @@
   "type": "module",
   "description": "移动风暴单元驱动的 Three.js 海洋天气模拟：风暴在世界空间中生成、漂移、消散，途经之处才会起风、降雨、打雷。",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 3015 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1 --port 3015 --strictPort"
   },
   "dependencies": {
-    "three": "^0.185.0",
+    "three": "0.186.1",
     "lil-gui": "^0.21.0"
   },
   "devDependencies": {

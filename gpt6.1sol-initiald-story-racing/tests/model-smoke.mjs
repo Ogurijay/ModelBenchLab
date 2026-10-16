@@ -1,12 +1,12 @@
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {browserOptions,isolateLiveReload,graphicsInfo} from './browser-options.mjs';
+import {browserOptions,graphicsInfo} from './browser-options.mjs';
 import {artifactsAt} from './qa-artifacts.mjs';
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.BENCH_PLAYWRIGHT_MODULE||'playwright');
 const root=path.resolve(import.meta.dirname,'..');
-const out=path.join(root,'docs/qa/models',process.env.BENCH_QA_LABEL||'');
+const out=path.join(root,'tmp/qa/models',process.env.BENCH_QA_LABEL||'');
 const base=process.env.BENCH_URL||'http://localhost:3000/gpt6.1sol-initiald-story-racing/';
 const artifacts=artifactsAt(out);
 const browser=await chromium.launch(browserOptions);
@@ -14,7 +14,6 @@ const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[],m
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 try {
-  await isolateLiveReload(page);
   await page.goto(base+'?models=1');
   await page.waitForFunction(()=>window.__models?.snapshot().render.frame>=2&&getComputedStyle(document.querySelector('.model-layout')).display==='grid');
   const ids=await page.locator('[data-model]').evaluateAll(nodes=>nodes.map(n=>n.dataset.model));assert.equal(ids.length,8);

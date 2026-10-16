@@ -64,13 +64,34 @@ export function validateStructure(root) {
     const task = index.missions[p.mission];
     if (!task || task.category !== p.category || task.doc !== p.taskDoc || task.task_id !== p.task_id || task.version !== p.task_version) issue('任务映射漂移 ' + p.dir);
     if (exists(p.dir + '/index.html') && /(?:src|href)\s*=\s*["']\/[^/]/.test(text(p.dir + '/index.html'))) issue('入口使用根绝对路径 ' + p.dir);
+    const serverOptions = {};
     for (const f of fs.readdirSync(path.join(root,p.dir)).filter(f => /^vite\.config\./.test(f))) {
-      const port = text(p.dir + '/' + f).match(/\bport\s*:\s*(\d+)/);
-      if (port && +port[1] !== p.port) issue('子配置端口漂移 ' + p.dir);
+      // Only inspect configuration blocks, not comments that may quote historical ports.
+      const config = text(p.dir + '/' + f).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+      for (const mode of ['server', 'preview']) {
+        const block = config.match(new RegExp('\\b' + mode + '\\s*:\\s*\\{([^}]*)\\}'))?.[1];
+        if (!block) continue;
+        serverOptions[mode] = block;
+        const port = block.match(/\bport\s*:\s*(\d+)/);
+        if (port && +port[1] !== p.port) issue('子配置端口漂移 ' + p.dir + ':' + mode);
+        if (mode === 'server' && !/\bstrictPort\s*:\s*true\b/.test(block)) issue('子配置缺少 strictPort ' + p.dir);
+        if (/\bhmr\s*:\s*false\b/.test(block)) issue('子配置禁用 HMR ' + p.dir);
+      }
     }
     if (exists(p.dir+'/package.json')) {
-      const dev = data(p.dir+'/package.json').scripts?.dev || '';
-      const port = dev.match(/--port\s+(\d+)/); if (port && +port[1]!==p.port) issue('dev 脚本端口漂移 '+p.dir);
+      const scripts = data(p.dir+'/package.json').scripts || {};
+      for (const name of ['dev', 'preview']) {
+        const command = scripts[name] || '';
+        if (!/^vite(?:\s|$)/.test(command)) continue;
+        const mode = name === 'preview' ? 'preview' : 'server';
+        const options = serverOptions[mode] || '';
+        const port = command.match(/--port(?:\s+|=)(\d+)/)?.[1] || options.match(/\bport\s*:\s*(\d+)/)?.[1];
+        if (!port) issue(name + ' 脚本未固定登记端口 ' + p.dir);
+        else if (+port !== p.port) issue(name + ' 脚本端口漂移 ' + p.dir);
+        const strictOptions = /\bstrictPort\s*:/.test(options) ? options : mode === 'preview' ? serverOptions.server || '' : options;
+        if (!/--strictPort(?:\s|$)/.test(command) && !/\bstrictPort\s*:\s*true\b/.test(strictOptions)) issue(name + ' 脚本允许自动换端口 ' + p.dir);
+        if (/--force(?:\s|$)/.test(command)) issue(name + ' 脚本强制重建依赖缓存 ' + p.dir);
+      }
     }
     if (exists(p.dir+'/README.md')) {
       const rm=text(p.dir+'/README.md');

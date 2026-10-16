@@ -1,9 +1,10 @@
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+await mkdir(resolve(projectRoot, 'tmp/qa'), { recursive: true });
 const baseUrl = process.env.MANHATTAN_QA_URL ?? 'http://127.0.0.1:3036/';
 const consoleErrors = [];
 const pageErrors = [];
@@ -36,7 +37,7 @@ try {
     window.__BENCH__.setWeather('clear', 0);
   });
   await page.waitForTimeout(500);
-  await page.screenshot({ path: resolve(projectRoot, 'docs/qa/desktop-clear.png') });
+  await page.screenshot({ path: resolve(projectRoot, 'tmp/qa/desktop-clear.png') });
   const clearMetrics = await page.evaluate(() => window.__BENCH__.getMetrics());
 
   const seedCheck = await page.evaluate(async () => {
@@ -62,7 +63,7 @@ try {
     window.__BENCH__.forceLightning();
   });
   await page.waitForTimeout(90);
-  await page.screenshot({ path: resolve(projectRoot, 'docs/qa/desktop-storm.png') });
+  await page.screenshot({ path: resolve(projectRoot, 'tmp/qa/desktop-storm.png') });
   const stormMetrics = await page.evaluate(() => window.__BENCH__.getMetrics());
 
   await page.evaluate(() => {
@@ -115,7 +116,7 @@ try {
     pageErrors,
     externalRequests,
   };
-  await writeFile(resolve(projectRoot, 'docs/qa/browser-report.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+  await writeFile(resolve(projectRoot, 'tmp/qa/browser-report.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
   console.log(JSON.stringify(report, null, 2));
   if (!report.passed) process.exitCode = 1;
 } finally {

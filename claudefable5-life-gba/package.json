@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3041 --strictPort",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 3041 --strictPort"
   },
   "devDependencies": {
     "vite": "^8.1.2"

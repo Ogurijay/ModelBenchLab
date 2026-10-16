@@ -1,0 +1,67 @@
+{
+  "task_id": "code3d-world-miniature-001",
+  "category": "code-to-3d",
+  "mission": "world-miniature",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L4",
+  "input": {
+    "prompt": "用3d生成skill，做一个世界知名地标浓缩场景(类似深圳的世纪之窗)。 你可以规划一下，我们再往下推进",
+    "assets": []
+  },
+  "fixed_params": {
+    "skill": "3d-scene-builder",
+    "three": "0.186.1",
+    "approved_scope": "七大洲分区、18组主要地标及极地景观；已确认概念并授权实现。",
+    "implementation_plan": "gpt6-world-miniature-seven-continents/PLAN.md",
+    "layout": "gpt6-world-miniature-seven-continents/layout.json",
+    "concept_reference_paths": [
+      "shared/assets/world-miniature/concepts/overview.png",
+      "shared/assets/world-miniature/concepts/asia.png"
+    ]
+  },
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "尚未冻结完整多轮输入、环境、评判脚本和A模式三次采样",
+    "建筑为程序化微缩表达，不声称测绘复原；视觉与性能以实际验收记录为准"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/world-miniature.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

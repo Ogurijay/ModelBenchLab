@@ -1,3 +1,10 @@
+<!-- modelbenchlab-access -->
+统一预览（仓库根目录）：复用已有 3000 服务；未启动时执行 `npm run dev`，访问 http://localhost:3000/gpt6.1sol-terraria-infinite/ 。
+并行开发（仓库根目录）：`npm run dev:one -- gpt6.1sol-terraria-infinite`，访问 http://localhost:3066/ 。项目 root 和依赖缓存独立，登记端口占用时先核对进程归属，不自动换号或结束其他会话的服务。
+需要安装依赖时，在仓库根目录统一串行执行；不要在多个子项目中同时安装。截图、测试报告及生成中间产物写入项目 `tmp/`，构建产物使用 `dist/` 或 `build/`；保留正常热更新。历史归档证据仍保留原位置。
+完整约定见 [公共规则 §4.1](../RULES.md#41-并行开发与刷新隔离)。下文子目录启动说明仅用于独立调试。
+<!-- /modelbenchlab-access -->
+
 # 艾泽拉斯 · 无垠之境
 
 独立的 GPT 6.1 SOL 像素沙盒 RPG 原型。Canvas 2D 程序化绘制，无运行时外部图片、字体或网络依赖。

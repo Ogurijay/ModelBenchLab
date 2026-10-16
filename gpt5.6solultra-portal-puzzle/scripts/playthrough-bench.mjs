@@ -1,8 +1,11 @@
 import { chromium } from 'playwright';
-import { resolve } from 'node:path';
+import { resolve, dirname } from 'node:path';
+import { mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 
 const url = process.argv[2] || 'http://127.0.0.1:3035/';
-const screenshotPath = resolve(process.argv[3] || 'docs/playthrough.png');
+const screenshotPath = resolve(process.argv[3] || fileURLToPath(new URL('../tmp/qa/playthrough.png', import.meta.url)));
+await mkdir(dirname(screenshotPath), { recursive: true });
 const browser = await chromium.launch({
   headless: true,
   executablePath: process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe',

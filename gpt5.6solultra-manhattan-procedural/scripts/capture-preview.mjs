@@ -1,8 +1,10 @@
 import { dirname, resolve } from 'node:path';
+import { mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+await mkdir(resolve(root, 'tmp/qa'), { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 0.5 });
 
@@ -14,14 +16,14 @@ try {
     window.__BENCH__.setWeather('clear', 0);
   });
   await page.waitForTimeout(300);
-  await page.screenshot({ path: resolve(root, 'docs/qa/desktop-clear-preview.jpg'), type: 'jpeg', quality: 15 });
+  await page.screenshot({ path: resolve(root, 'tmp/qa/desktop-clear-preview.jpg'), type: 'jpeg', quality: 15 });
   await page.evaluate(() => {
     window.__BENCH__.setTime(16);
     window.__BENCH__.setWeather('storm', 0);
     window.__BENCH__.forceLightning();
   });
   await page.waitForTimeout(70);
-  await page.screenshot({ path: resolve(root, 'docs/qa/desktop-storm-preview.jpg'), type: 'jpeg', quality: 15 });
+  await page.screenshot({ path: resolve(root, 'tmp/qa/desktop-storm-preview.jpg'), type: 'jpeg', quality: 15 });
 } finally {
   await browser.close();
 }

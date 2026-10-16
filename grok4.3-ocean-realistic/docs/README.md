@@ -26,5 +26,5 @@ cd grok4.3-ocean-realistic
 npm install
 npm test
 npm run build
-npm run dev   # 然后用浏览器或 Playwright 访问 http://127.0.0.1:5176/
+npm run dev   # 在本项目目录执行；访问 http://127.0.0.1:3008/，端口占用时不会自动换号
 ```

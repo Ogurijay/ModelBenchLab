@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3028 --strictPort",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 3028 --strictPort"
   },
   "dependencies": {
-    "three": "^0.185.0"
+    "three": "0.186.1"
   },
   "devDependencies": {
     "vite": "^8.1.2"

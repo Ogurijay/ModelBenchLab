@@ -161,6 +161,34 @@
       "version": 1,
       "doc": "benchmark/tasks/code-to-ui/bvn-fighter.md",
       "unit": "benchmark/tasks/public/codeui-bvn-001.v1.json"
+    },
+    "partyanimals": {
+      "category": "code-to-3d",
+      "task_id": "code3d-partyanimals-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/partyanimals.md",
+      "unit": "benchmark/tasks/public/code3d-partyanimals-001.v1.json"
+    },
+    "partyanimals-local": {
+      "category": "code-to-3d",
+      "task_id": "code3d-partyanimals-local-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/partyanimals-local.md",
+      "unit": "benchmark/tasks/public/code3d-partyanimals-local-001.v1.json"
+    },
+    "stormwind-modern": {
+      "category": "code-to-3d",
+      "task_id": "code3d-stormwind-modern-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/stormwind-modern.md",
+      "unit": "benchmark/tasks/public/code3d-stormwind-modern-001.v1.json"
+    },
+    "world-miniature": {
+      "category": "code-to-3d",
+      "task_id": "code3d-world-miniature-001",
+      "version": 1,
+      "doc": "benchmark/tasks/code-to-3d/world-miniature.md",
+      "unit": "benchmark/tasks/public/code3d-world-miniature-001.v1.json"
     }
   }
 }

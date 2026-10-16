@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "engine": "OpenLF2",
+  "version": "0.9.4",
+  "source_commit": "bb335c9967adbafc6d16b130a8a26f4e984c493b",
+  "source_url": "https://github.com/OpenLF2/OpenLF2",
+  "release_url": "https://github.com/OpenLF2/OpenLF2/releases/tag/v0.9.4",
+  "license": "MIT",
+  "download_source": "https://openlf2.github.io/OpenLF2/",
+  "binary_build_commit_verified": false,
+  "notes": [
+    "Runtime files copied byte-for-byte from previously fetched official hosted browser build.",
+    "Source checkout is tagged v0.9.4; hosted binary provenance is its URL plus local SHA256, not a claim of a reproduced source build.",
+    "Original LF2 installer is read as a binary resource container; only OpenLF2 WebAssembly executes.",
+    "lf2-resources.bin is managed separately and not copied or overwritten by this operation."
+  ],
+  "files": [
+    {
+      "path": "openlf2.js",
+      "length": 212641,
+      "sha256": "45320e680a654af80e3f8a9aa27228b8f30d64eb124a7b84dd7385d2303fadbe",
+      "url": "https://openlf2.github.io/OpenLF2/openlf2.js"
+    },
+    {
+      "path": "openlf2.wasm",
+      "length": 3768709,
+      "sha256": "cf1c739b5ae60655374802352f2fca88105499197c1f528d08f35f63e52403ff",
+      "url": "https://openlf2.github.io/OpenLF2/openlf2.wasm"
+    },
+    {
+      "path": "openlf2.data",
+      "length": 578887,
+      "sha256": "27364d027c72d7003e278f2b0503742f7138cd7911479b65083675956ab77004",
+      "url": "https://openlf2.github.io/OpenLF2/openlf2.data"
+    },
+    {
+      "path": "license.txt",
+      "length": 1098,
+      "sha256": "8a40e3ff86c8ee4f1433f5dfcadcef70c9cfc6bc0d5dfb983a63b703b6544532",
+      "url": "https://github.com/OpenLF2/OpenLF2/blob/bb335c9967adbafc6d16b130a8a26f4e984c493b/LICENSE"
+    },
+    {
+      "path": "lf2-resources.bin",
+      "original_name": "LF2_v2.0a.exe",
+      "length": 29586263,
+      "sha256": "540c485547e234b0d09595f54d067aafd7176092c308aca61868f3cbc03030e1",
+      "url": "https://static.letoltokozpont.hu/letoltokozpont.hu/programok/l/LF2_v2.0a.exe",
+      "role": "Original LF2 2.0a resource container; static parsing only",
+      "expected_hash_match": true,
+      "executed": false
+    }
+  ]
+}

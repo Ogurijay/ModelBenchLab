@@ -65,7 +65,7 @@ export function buildUI({ onTogglePause, onResetView, getStats }) {
   // 左上标题
   document.body.appendChild(el('div', { id: 'firetitle' },
     '<div class="t">实体火焰 · 体积光线步进</div>' +
-    '<div class="s">Claude Fable 5 — three.js r185 / 程序化生成 · 拖拽环绕 · 滚轮缩放</div>'));
+    '<div class="s">Claude Fable 5 — three.js r186 / 程序化生成 · 拖拽环绕 · 滚轮缩放</div>'));
 
   // 控制面板
   const panel = el('div', { id: 'fireui' });

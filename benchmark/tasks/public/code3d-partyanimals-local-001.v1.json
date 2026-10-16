@@ -1,0 +1,61 @@
+{
+  "task_id": "code3d-partyanimals-local-001",
+  "category": "code-to-3d",
+  "mission": "partyanimals-local",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L4",
+  "input": {
+    "prompt": "基于threejs复刻猛兽派对，要求复刻所有功能而不是半成品",
+    "assets": []
+  },
+  "fixed_params": {
+    "three": "0.185.1",
+    "scope": "当前版本全部，除了联机和网络",
+    "browser_qa": "仅内置浏览器"
+  },
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "当前版本全功能对照需要逐项验收，不以模式入口数量替代功能完成",
+    "冻结正式评测环境、评判脚本及 A 模式三次采样"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/partyanimals-local.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

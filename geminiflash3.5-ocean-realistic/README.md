@@ -1,6 +1,10 @@
 <!-- modelbenchlab-access -->
-统一访问：在仓库根目录运行 `npm run dev`，打开 `http://localhost:3000/geminiflash3.5-ocean-realistic/`。
-独立调试：根目录运行 `npm run dev:one -- geminiflash3.5-ocean-realistic`，打开 `http://localhost:3006/`。下文子目录启动说明仅用于独立开发。
+统一预览（仓库根目录）：复用已有 3000 服务；未启动时执行 `npm run dev`，访问 http://localhost:3000/geminiflash3.5-ocean-realistic/ 。
+并行开发（仓库根目录）：`npm run dev:one -- geminiflash3.5-ocean-realistic`，访问 http://localhost:3006/ 。项目 root 和依赖缓存独立，登记端口占用时先核对进程归属，不自动换号或结束其他会话的服务。
+本项目的 `npm run preview` 在构建后使用同一登记端口；先停止自己启动的独立开发服务再切换，端口占用时不会自动换号。
+需要安装依赖时，在仓库根目录统一串行执行；不要在多个子项目中同时安装。截图、测试报告及生成中间产物写入项目 `tmp/`，构建产物使用 `dist/` 或 `build/`；保留正常热更新。历史归档证据仍保留原位置。
+完整约定见 [公共规则 §4.1](../RULES.md#41-并行开发与刷新隔离)。下文子目录启动说明仅用于独立调试。
+<!-- /modelbenchlab-access -->
 
 # Gemini 3D 写实海洋物理与渲染模拟器
 
@@ -65,7 +69,7 @@ npm run test
 ```bash
 npm run dev
 ```
-* 浏览器打开终端输出的本地地址（默认 `http://localhost:3006/` 或同等端口）。
+* 浏览器打开终端输出的本地地址（默认 `http://localhost:3006/`，端口占用时先核对进程归属）。
 * 可以在 Canvas 空白处任意点击，实时抛入小球，观察小球在海浪里随波逐流的重力浮力状态。
 * 切换天气，观察整体漫反射、次表面透光、菲涅尔反射以及高光颜色的和谐变化。
 

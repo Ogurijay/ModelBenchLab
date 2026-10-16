@@ -58,7 +58,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.domElement.setAttribute('aria-label', 'Digimon 3D rumble arena');
 gameRoot.replaceChildren(renderer.domElement);
 
@@ -216,7 +216,7 @@ function applySettings(settings = settingsService.getAll()) {
   const pixelCap = quality === 'low' ? 1 : quality === 'medium' ? 1.35 : 1.75;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, pixelCap));
   renderer.shadowMap.enabled = quality !== 'low';
-  renderer.shadowMap.type = quality === 'high' ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
+  renderer.shadowMap.type = quality === 'high' ? THREE.PCFShadowMap : THREE.PCFShadowMap;
   const shadowSize = quality === 'high' ? 2048 : 1024;
   if (keyLight.shadow.mapSize.x !== shadowSize) {
     keyLight.shadow.mapSize.set(shadowSize, shadowSize);

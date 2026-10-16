@@ -1,0 +1,70 @@
+{
+  "task_id": "code3d-stormwind-modern-001",
+  "category": "code-to-3d",
+  "mission": "stormwind-modern",
+  "axes": [
+    "adherence",
+    "fidelity",
+    "consistency",
+    "controllability",
+    "efficiency"
+  ],
+  "difficulty": "L4",
+  "input": {
+    "prompt": "用这个skill 在项目下还原魔兽的暴风城",
+    "assets": []
+  },
+  "fixed_params": {
+    "skill": "3d-scene-builder",
+    "version_choice": "现代版暴风城（推荐）",
+    "concept_plan_choice": "按这个方案直接完成（推荐）",
+    "dependency_decision": "把基础的185全部升级到186",
+    "three": "0.186.1",
+    "approved_scope": "现代版九区布局、白石蓝瓦、明亮午后风格，支持步行/俯瞰与主要建筑内景；地理和建筑识别优先对齐游戏参考。",
+    "implementation_plan": "gpt6-stormwind-modern/PLAN.md",
+    "concept_reference_paths": [
+      "shared/assets/stormwind-modern/concepts/heroes-gate.png",
+      "shared/assets/stormwind-modern/concepts/canal-cathedral.png"
+    ]
+  },
+  "samples": 3,
+  "rubric": [
+    {
+      "key": "A",
+      "weight": 0.2
+    },
+    {
+      "key": "B",
+      "weight": 0.25
+    },
+    {
+      "key": "C",
+      "weight": 0.15
+    },
+    {
+      "key": "D",
+      "weight": 0.15
+    },
+    {
+      "key": "E",
+      "weight": 0.1
+    },
+    {
+      "key": "F",
+      "weight": 0.1
+    },
+    {
+      "key": "G",
+      "weight": 0.05
+    }
+  ],
+  "version": 1,
+  "status": "draft",
+  "pending": [
+    "完成真实浏览器行走、门洞、桥面、坡道与内景验收",
+    "完成参考图对照及独立视觉评审",
+    "冻结确切环境、GPU、评判脚本与 A 模式三次采样；1080p 60fps 目前为目标"
+  ],
+  "source_doc": "benchmark/tasks/code-to-3d/stormwind-modern.md",
+  "rubric_profile": "shared/rubrics/code-to-3d.md"
+}

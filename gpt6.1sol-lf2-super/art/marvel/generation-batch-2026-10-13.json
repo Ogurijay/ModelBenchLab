@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-13",
+  "mode": "built-in imagegen only",
+  "outputs_created": 1,
+  "requested_assets": 8,
+  "attempts": [
+    {
+      "slug": "iron-man",
+      "character": "Iron Man",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Iron Man. Costume: Classic red-and-gold armor, gold faceplate with thin white eye slits, bright cyan circular arc reactor, red gauntlets and boots. Wide stable shoulder silhouette.\nEffects design vocabulary: Cyan repulsor rings, white-hot energy cores, small orange boot-jet cones, compact red-gold impact sparks. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "7a479889-33b4-4d88-a9d9-32b7335b3aa1",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 7a479889-33b4-4d88-a9d9-32b7335b3aa1.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "thor",
+      "character": "Thor",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Thor. Costume: Classic silver winged helmet, visible blond hair, red cape, dark torso armor with six silver discs, blue trousers, yellow boots. Small blocky gray Mjolnir and its leather wrist loop.\nEffects design vocabulary: Angular pale-cyan and white lightning forks, circular storm gusts, block-shaped hammer motion, pale blue impact flash. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "0e7d52ba-bd10-45f5-b1cb-57f8073cd584",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 0e7d52ba-bd10-45f5-b1cb-57f8073cd584.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "spider-man",
+      "character": "Spider-Man",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Spider-Man. Costume: Classic red-and-blue suit, black web lines restricted to red mask and torso/limbs, oversized white almond eyes and a small black chest spider. Slim elastic crouched silhouette.\nEffects design vocabulary: Thin off-white web strands and radial web knots, red-blue elastic motion arcs, light gray cocoon shapes. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "d458770a-6e34-457e-a6c5-9e5494fa2583",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID d458770a-6e34-457e-a6c5-9e5494fa2583.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "captain-america",
+      "character": "Captain America",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Captain America. Costume: Classic blue cowl with white forehead A and small white temple wings, blue torso with white chest star, red-and-white waist stripes, red gloves and boots, round red-white-blue shield with central white star.\nEffects design vocabulary: Readable spinning round shield silhouette, blue-white guard crescent, compact yellow contact spark; keep shield stars legible. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "eeb052d8-405c-465b-b56a-aafc22f21b6f",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID eeb052d8-405c-465b-b56a-aafc22f21b6f.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "quicksilver",
+      "character": "Quicksilver",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Quicksilver. Costume: Classic comic silver-white swept-back hair, cyan-blue fitted suit with one white lightning-shaped zigzag across torso, white gloves and white boots. Lean forward-running silhouette.\nEffects design vocabulary: Cyan-white parallel speed streaks, short silver afterimages, white airflow rings. Never add lightning powers; this is super-speed. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "success",
+      "date": "2026-10-13",
+      "request_id": null,
+      "saved_path": "shared/assets/lf2-super/marvel/quicksilver-design-v1.png",
+      "generated_path": "C:/Users/OguriJay/.codex/generated_images/01a13324-cc29-7400-915a-a0a9529e1a47/exec-f684a259-a2ac-4eb1-9b3e-7ba8cce66a6d.png",
+      "image_metadata": {
+        "size": [
+          1254,
+          1254
+        ],
+        "mode": "RGBA",
+        "sha256": "a7d2256c852956bcec25499ba506a126d6a60ea3851e542384ed51266e752b64",
+        "inspection": "Six views present, classic cyan costume/white hair/gloves/boots and speed afterimages recognizable. No clipped standing silhouettes. Design reference only: body proportions are taller than target LF2 runtime; alpha/edge pixels need review before sprite conversion."
+      }
+    },
+    {
+      "slug": "magneto",
+      "character": "Magneto",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Magneto. Costume: Classic crimson helmet with purple face frame, visible face, crimson suit, purple cape, purple gloves and boots. Upright dignified floating silhouette.\nEffects design vocabulary: Purple and magenta concentric magnetic rings, small gray metal fragments, metallic semicircular barriers, orbiting steel shards. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "e3d41cf0-340a-4bf5-ba7f-375253bd3b37",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID e3d41cf0-340a-4bf5-ba7f-375253bd3b37.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "wolverine",
+      "character": "Wolverine",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Wolverine. Costume: Classic yellow-and-blue costume, black pointed mask fins, exposed lower face, broad short muscular frame, blue shoulder accents and boots, blue gloves with exactly three short silver claws on each hand.\nEffects design vocabulary: Three parallel silver claw slashes per strike, small yellow impact stars, compact yellow-white recovery glint. No blood, no gore. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "1a4d0f93-af44-4138-9c03-cea31955cdec",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 1a4d0f93-af44-4138-9c03-cea31955cdec.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    },
+    {
+      "slug": "deadpool",
+      "character": "Deadpool",
+      "prompt": "Use case: stylized-concept. Asset type: character design and animation reference sheet for a classic Little Fighter 2-style 2D arcade game.\nTransparent RGBA square canvas. Compact 3-head-tall anime game sprites, dark crisp pixel outlines, restrained 3-tone cel shading, readable at 80 pixels tall. No photorealism, no actor likeness, no 3D rendering.\nNeat 3-column by 2-row layout with generous equal empty margins. Row 1: front full-body neutral stance; right-facing full-body side stance; back full-body neutral stance. Row 2: right-facing signature ability pose; right-facing defensive pose; head-and-shoulders selection portrait.\nExactly the same character identity, costume, body scale and palette in all six panels. Every figure entirely inside its cell. Keep the silhouettes distinct. No text labels, no title, no extra branding or watermarks, no environment or other characters, no floor shadows.\nCharacter: Marvel Deadpool. Costume: Classic red-and-black full suit and mask with black oval eye patches and white expressive eyes, brown utility belt and pouches, two sheathed crossed katanas on the back, compact stylized comic sidearm in appropriate action pose.\nEffects design vocabulary: Short yellow comic muzzle flash, pale silver paired sword arcs, red angular impact bursts, small white recovery glint. Non-graphic arcade action; no blood or injuries. Show effects only around the signature pose, inside its own cell.",
+      "tool": "image_gen.imagegen",
+      "result": "HTTP 400 moderation_blocked",
+      "date": "2026-10-13",
+      "request_id": "afc7b6cb-833c-4075-a88c-4660bb3853a2",
+      "stage": "output",
+      "categories": [
+        "other"
+      ],
+      "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID afc7b6cb-833c-4075-a88c-4660bb3853a2.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+    }
+  ],
+  "note": "Quicksilver design reference generated. Seven other requests blocked at output; no CLI/API used. Character runtime and full animations not implemented."
+}

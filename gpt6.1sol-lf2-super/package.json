@@ -1,0 +1,11 @@
+{
+  "name": "gpt6.1sol-lf2-super",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3068 --strictPort",
+    "build": "vite build --base=./",
+    "test": "node --test tests/*.test.mjs"
+  }
+}

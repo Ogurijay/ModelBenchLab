@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 3007 --strictPort",
     "build": "vite build",
     "build:standalone": "npm run build && node scripts/build-standalone.mjs",
-    "preview": "vite preview --host 127.0.0.1",
+    "preview": "vite preview --host 127.0.0.1 --port 3007 --strictPort",
     "test": "vitest run"
   },
   "dependencies": {

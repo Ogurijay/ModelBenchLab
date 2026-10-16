@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const artifactDir = path.resolve(__dirname, "../test-artifacts");
-const targetUrl = withPreserveBuffer(process.env.OCEAN_URL ?? "http://127.0.0.1:4173");
+const artifactDir = path.resolve(__dirname, "../tmp/test-artifacts");
+const targetUrl = withPreserveBuffer(process.env.OCEAN_URL ?? "http://127.0.0.1:3004");
 
 function withPreserveBuffer(url) {
   const parsed = new URL(url);

@@ -13,6 +13,7 @@ try{
  await page.goto(url,{waitUntil:'networkidle'});await page.waitForFunction(()=>window.astra?.ready);
  const state=await page.evaluate(()=>({models:window.astra.models.length,images:[...document.querySelectorAll('.car-card img')].map(i=>i.naturalWidth),length:window.astra.course.length}));
  assert.equal(state.models,8);assert.ok(state.images.every(w=>w>0));assert.deepEqual(errors,[]);
+ fs.mkdirSync(path.resolve(import.meta.dirname,'../tmp/qa'),{recursive:true});
  const result={url,date:new Date().toISOString(),portalEntry:true,nestedRoute:true,state,errors};
- fs.writeFileSync(path.resolve(import.meta.dirname,'../docs/qa/root-route.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+ fs.writeFileSync(path.resolve(import.meta.dirname,'../tmp/qa/root-route.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 }finally{await browser.close();}

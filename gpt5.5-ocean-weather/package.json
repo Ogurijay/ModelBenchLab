@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3002 --strictPort",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 3002 --strictPort"
   },
   "dependencies": {
     "three": "^0.160.0"

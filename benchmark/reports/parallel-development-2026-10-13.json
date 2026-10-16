@@ -1,0 +1,2270 @@
+{
+  "date": "2026-10-13",
+  "scope": "并行开发规则、登记端口与启动命令、测试临时产物位置；保留已有源码、归档证据和未提交内容",
+  "summary": {
+    "projects": 62,
+    "projectsWithStartupOrOutputIssues": 52,
+    "wrongDevPorts": 27,
+    "devScriptsFixed": 39,
+    "viteConfigsFixed": 8,
+    "previewScriptsFixed": 42,
+    "artifactOutputScriptsFixed": 23,
+    "artifactConsumerScriptsUpdated": 1,
+    "artifactProjects": 12,
+    "projectDocumentationGroupsUpdated": 62,
+    "uniqueIndependentCaches": 62,
+    "projectsWithHmrInterceptionFixed": 1
+  },
+  "validation": {
+    "policyTests": {
+      "passed": 16,
+      "failed": 0
+    },
+    "syncCheck": {
+      "projects": 62,
+      "passed": false,
+      "priorPassBeforeConcurrentAddition": true,
+      "draftTasks": 24,
+      "problems": [
+        "未知根条目 gpt6.1sol-lf2-super"
+      ],
+      "cause": "本轮扫描开始后并行新增的目录，检查时尚无 package.json/登记信息；不删除、不推断注册在建项目。"
+    },
+    "resolvedDevelopmentAndPreviewConfigurations": {
+      "projects": 62,
+      "violations": 0
+    },
+    "concurrentServiceSmoke": {
+      "started": [
+        {
+          "dir": "claudefable5-ocean-realistic",
+          "port": 3005,
+          "htmlStatus": 200,
+          "entryModules": 1,
+          "cacheDir": "claudefable5-ocean-realistic/node_modules/.vite"
+        },
+        {
+          "dir": "doubao2.1pro-sandbox-powder",
+          "port": 3021,
+          "htmlStatus": 200,
+          "entryModules": 2,
+          "cacheDir": "doubao2.1pro-sandbox-powder/node_modules/.vite"
+        },
+        {
+          "dir": "gpt6.1sol-terraria-infinite",
+          "port": 3066,
+          "htmlStatus": 200,
+          "entryModules": 1,
+          "cacheDir": "gpt6.1sol-terraria-infinite/node_modules/.vite"
+        }
+      ],
+      "rootReloads": [],
+      "portConflictRejected": true,
+      "failures": []
+    },
+    "browserInteractionTested": false,
+    "fullProjectBuildsRun": false,
+    "syntaxChecks": {
+      "passed": 34,
+      "failed": 0
+    },
+    "manifestMetadata": {
+      "packages": 46,
+      "onlyDevAndPreviewScriptsChanged": true
+    },
+    "diffCheck": {
+      "passed": true
+    }
+  },
+  "notes": [
+    "纯静态项目没有 dev 脚本本身不违规；继续通过根目录 dev:one 使用登记端口。",
+    "开发缓存原本就按项目隔离，本轮未删除缓存或修改依赖版本。",
+    "原 docs、artifacts、reconstruction 中的历史证据保留；常规测试的新产物进入 tmp，显式发布运行资产仍单独执行。",
+    "前期临时盘点与逐文件备份保存在被忽略的 tmp/parallel-rules-audit/。"
+  ],
+  "projects": [
+    {
+      "dir": "claudeopus4.8-ocean-webgpu",
+      "port": 3001,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3001 --strictPort",
+          "port": 3001,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3001 --strictPort",
+          "port": 3001,
+          "strictPort": true
+        }
+      },
+      "root": "claudeopus4.8-ocean-webgpu",
+      "cacheDir": "claudeopus4.8-ocean-webgpu/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus4.8-ocean-webgpu/package.json",
+        "claudeopus4.8-ocean-webgpu/README.md",
+        "claudeopus4.8-ocean-webgpu/HANDOVER.md",
+        "claudeopus4.8-ocean-webgpu/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-ocean-weather",
+      "port": 3002,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3002 --strictPort",
+          "port": 3002,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3002 --strictPort",
+          "port": 3002,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-ocean-weather",
+      "cacheDir": "gpt5.5-ocean-weather/node_modules/.vite",
+      "installedVite": "5.4.21",
+      "changedFiles": [
+        "gpt5.5-ocean-weather/package.json",
+        "gpt5.5-ocean-weather/vite.config.js",
+        "gpt5.5-ocean-weather/README.md",
+        "gpt5.5-ocean-weather/HANDOVER.md",
+        "gpt5.5-ocean-weather/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "doubao2.1-ocean-webgpu",
+      "port": 3003,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3003 --strictPort",
+          "port": 3003,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3003 --strictPort",
+          "port": 3003,
+          "strictPort": true
+        }
+      },
+      "root": "doubao2.1-ocean-webgpu",
+      "cacheDir": "doubao2.1-ocean-webgpu/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "doubao2.1-ocean-webgpu/package.json",
+        "doubao2.1-ocean-webgpu/README.md",
+        "doubao2.1-ocean-webgpu/HANDOVER.md",
+        "doubao2.1-ocean-webgpu/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-ocean-skill",
+      "port": 3004,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "verify": "node scripts/verify-ocean.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3004 --strictPort",
+          "port": 3004,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3004 --strictPort",
+          "port": 3004,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-ocean-skill",
+      "cacheDir": "gpt5.5-ocean-skill/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.5-ocean-skill/package.json",
+        "gpt5.5-ocean-skill/scripts/verify-ocean.mjs",
+        "gpt5.5-ocean-skill/README.md",
+        "gpt5.5-ocean-skill/HANDOVER.md",
+        "gpt5.5-ocean-skill/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-ocean-realistic",
+      "port": 3005,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3005",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 5175",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3005 --strictPort",
+          "port": 3005,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3005 --strictPort",
+          "port": 3005,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-ocean-realistic",
+      "cacheDir": "claudefable5-ocean-realistic/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "claudefable5-ocean-realistic/package.json",
+        "claudefable5-ocean-realistic/README.md",
+        "claudefable5-ocean-realistic/HANDOVER.md",
+        "claudefable5-ocean-realistic/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "geminiflash3.5-ocean-realistic",
+      "port": 3006,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3006 --strictPort",
+          "port": 3006,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3006 --strictPort",
+          "port": 3006,
+          "strictPort": true
+        }
+      },
+      "root": "geminiflash3.5-ocean-realistic",
+      "cacheDir": "geminiflash3.5-ocean-realistic/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "geminiflash3.5-ocean-realistic/package.json",
+        "geminiflash3.5-ocean-realistic/README.md",
+        "geminiflash3.5-ocean-realistic/HANDOVER.md",
+        "geminiflash3.5-ocean-realistic/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-ocean-realistic",
+      "port": 3007,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "build:standalone": "npm run build && node scripts/build-standalone.mjs",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3007 --strictPort",
+          "port": 3007,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3007 --strictPort",
+          "port": 3007,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-ocean-realistic",
+      "cacheDir": "gpt5.5-ocean-realistic/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "gpt5.5-ocean-realistic/package.json",
+        "gpt5.5-ocean-realistic/README.md",
+        "gpt5.5-ocean-realistic/HANDOVER.md",
+        "gpt5.5-ocean-realistic/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "grok4.3-ocean-realistic",
+      "port": 3008,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3008",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 5177",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3008 --strictPort",
+          "port": 3008,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3008 --strictPort",
+          "port": 3008,
+          "strictPort": true
+        }
+      },
+      "root": "grok4.3-ocean-realistic",
+      "cacheDir": "grok4.3-ocean-realistic/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "grok4.3-ocean-realistic/package.json",
+        "grok4.3-ocean-realistic/README.md",
+        "grok4.3-ocean-realistic/HANDOVER.md",
+        "grok4.3-ocean-realistic/CHANGELOG.md",
+        "grok4.3-ocean-realistic/docs/README.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-kart-circuit",
+      "port": 3009,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3009 --strictPort",
+          "port": 3009,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3009 --strictPort",
+          "port": 3009,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-kart-circuit",
+      "cacheDir": "claudefable5-kart-circuit/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "claudefable5-kart-circuit/package.json",
+        "claudefable5-kart-circuit/README.md",
+        "claudefable5-kart-circuit/HANDOVER.md",
+        "claudefable5-kart-circuit/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "geminiflash3.5-kart-circuit",
+      "port": 3010,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3010 --strictPort",
+          "port": 3010,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3010 --strictPort",
+          "port": 3010,
+          "strictPort": true
+        }
+      },
+      "root": "geminiflash3.5-kart-circuit",
+      "cacheDir": "geminiflash3.5-kart-circuit/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "geminiflash3.5-kart-circuit/package.json",
+        "geminiflash3.5-kart-circuit/README.md",
+        "geminiflash3.5-kart-circuit/HANDOVER.md",
+        "geminiflash3.5-kart-circuit/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-kart-circuit",
+      "port": 3011,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3011 --strictPort",
+          "port": 3011,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3011 --strictPort",
+          "port": 3011,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-kart-circuit",
+      "cacheDir": "gpt5.5-kart-circuit/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "gpt5.5-kart-circuit/package.json",
+        "gpt5.5-kart-circuit/README.md",
+        "gpt5.5-kart-circuit/HANDOVER.md",
+        "gpt5.5-kart-circuit/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "geminiflash3.5-ocean-storm",
+      "port": 3012,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --port 3012",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3012 --strictPort",
+          "port": 3012,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3012 --strictPort",
+          "port": 3012,
+          "strictPort": true
+        }
+      },
+      "root": "geminiflash3.5-ocean-storm",
+      "cacheDir": "geminiflash3.5-ocean-storm/node_modules/.vite",
+      "installedVite": "5.4.21",
+      "changedFiles": [
+        "geminiflash3.5-ocean-storm/package.json",
+        "geminiflash3.5-ocean-storm/vite.config.js",
+        "geminiflash3.5-ocean-storm/README.md",
+        "geminiflash3.5-ocean-storm/HANDOVER.md",
+        "geminiflash3.5-ocean-storm/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-ocean-webgpu",
+      "port": 3013,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3013 --strictPort",
+          "port": 3013,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3013 --strictPort",
+          "port": 3013,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-ocean-webgpu",
+      "cacheDir": "gpt5.5-ocean-webgpu/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.5-ocean-webgpu/package.json",
+        "gpt5.5-ocean-webgpu/README.md",
+        "gpt5.5-ocean-webgpu/HANDOVER.md",
+        "gpt5.5-ocean-webgpu/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudesonnet5-ocean-storm",
+      "port": 3015,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3015 --strictPort",
+          "port": 3015,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3015 --strictPort",
+          "port": 3015,
+          "strictPort": true
+        }
+      },
+      "root": "claudesonnet5-ocean-storm",
+      "cacheDir": "claudesonnet5-ocean-storm/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudesonnet5-ocean-storm/package.json",
+        "claudesonnet5-ocean-storm/README.md",
+        "claudesonnet5-ocean-storm/HANDOVER.md",
+        "claudesonnet5-ocean-storm/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-tank-campaign",
+      "port": 3016,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3016 --strictPort",
+          "port": 3016,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3016 --strictPort",
+          "port": 3016,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-tank-campaign",
+      "cacheDir": "gpt5.5-tank-campaign/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.5-tank-campaign/package.json",
+        "gpt5.5-tank-campaign/README.md",
+        "gpt5.5-tank-campaign/HANDOVER.md",
+        "gpt5.5-tank-campaign/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudesonnet5-tank-campaign",
+      "port": 3017,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3017 --strictPort",
+          "port": 3017,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3017 --strictPort",
+          "port": 3017,
+          "strictPort": true
+        }
+      },
+      "root": "claudesonnet5-tank-campaign",
+      "cacheDir": "claudesonnet5-tank-campaign/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudesonnet5-tank-campaign/package.json",
+        "claudesonnet5-tank-campaign/README.md",
+        "claudesonnet5-tank-campaign/HANDOVER.md",
+        "claudesonnet5-tank-campaign/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-sandbox-powder",
+      "port": 3018,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3018 --strictPort",
+          "port": 3018,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3018 --strictPort",
+          "port": 3018,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-sandbox-powder",
+      "cacheDir": "gpt5.5-sandbox-powder/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.5-sandbox-powder/package.json",
+        "gpt5.5-sandbox-powder/README.md",
+        "gpt5.5-sandbox-powder/HANDOVER.md",
+        "gpt5.5-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "mimov2.5-sandbox-powder",
+      "port": 3019,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {},
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- mimov2.5-sandbox-powder",
+          "port": 3019,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "mimov2.5-sandbox-powder",
+      "cacheDir": "mimov2.5-sandbox-powder/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "mimov2.5-sandbox-powder/README.md",
+        "mimov2.5-sandbox-powder/HANDOVER.md",
+        "mimov2.5-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-sandbox-powder",
+      "port": 3020,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3020 --strictPort",
+          "port": 3020,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3020 --strictPort",
+          "port": 3020,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-sandbox-powder",
+      "cacheDir": "claudefable5-sandbox-powder/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-sandbox-powder/package.json",
+        "claudefable5-sandbox-powder/README.md",
+        "claudefable5-sandbox-powder/HANDOVER.md",
+        "claudefable5-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "doubao2.1pro-sandbox-powder",
+      "port": 3021,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "check": "tsc -b --noEmit"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3021 --strictPort",
+          "port": 3021,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3021 --strictPort",
+          "port": 3021,
+          "strictPort": true
+        }
+      },
+      "root": "doubao2.1pro-sandbox-powder",
+      "cacheDir": "doubao2.1pro-sandbox-powder/node_modules/.vite",
+      "installedVite": "6.4.3",
+      "changedFiles": [
+        "doubao2.1pro-sandbox-powder/package.json",
+        "doubao2.1pro-sandbox-powder/vite.config.ts",
+        "doubao2.1pro-sandbox-powder/README.md",
+        "doubao2.1pro-sandbox-powder/HANDOVER.md",
+        "doubao2.1pro-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "geminiflash3.5-sandbox-powder",
+      "port": 3022,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3022 --strictPort",
+          "port": 3022,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3022 --strictPort",
+          "port": 3022,
+          "strictPort": true
+        }
+      },
+      "root": "geminiflash3.5-sandbox-powder",
+      "cacheDir": "geminiflash3.5-sandbox-powder/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "geminiflash3.5-sandbox-powder/package.json",
+        "geminiflash3.5-sandbox-powder/README.md",
+        "geminiflash3.5-sandbox-powder/HANDOVER.md",
+        "geminiflash3.5-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-ocean-pirate-ship",
+      "port": 3023,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3023",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4123",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3023 --strictPort",
+          "port": 3023,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3023 --strictPort",
+          "port": 3023,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-ocean-pirate-ship",
+      "cacheDir": "gpt5.5-ocean-pirate-ship/node_modules/.vite",
+      "installedVite": "7.3.6",
+      "changedFiles": [
+        "gpt5.5-ocean-pirate-ship/package.json",
+        "gpt5.5-ocean-pirate-ship/README.md",
+        "gpt5.5-ocean-pirate-ship/HANDOVER.md",
+        "gpt5.5-ocean-pirate-ship/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6sol-ocean-realistic",
+      "port": 3024,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3024 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4024",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3024 --strictPort",
+          "port": 3024,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3024 --strictPort",
+          "port": 3024,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.6sol-ocean-realistic",
+      "cacheDir": "gpt5.6sol-ocean-realistic/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6sol-ocean-realistic/README.md",
+        "gpt5.6sol-ocean-realistic/HANDOVER.md",
+        "gpt5.6sol-ocean-realistic/CHANGELOG.md",
+        "gpt5.6sol-ocean-realistic/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-manhattan-procedural",
+      "port": 3025,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3025 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4025",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3025 --strictPort",
+          "port": 3025,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3025 --strictPort",
+          "port": 3025,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-manhattan-procedural",
+      "cacheDir": "claudefable5-manhattan-procedural/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-manhattan-procedural/README.md",
+        "claudefable5-manhattan-procedural/HANDOVER.md",
+        "claudefable5-manhattan-procedural/CHANGELOG.md",
+        "claudefable5-manhattan-procedural/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6sol-sandbox-powder",
+      "port": 3026,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "tsc --noEmit && vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3026 --strictPort",
+          "port": 3026,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3026 --strictPort",
+          "port": 3026,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.6sol-sandbox-powder",
+      "cacheDir": "gpt5.6sol-sandbox-powder/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6sol-sandbox-powder/package.json",
+        "gpt5.6sol-sandbox-powder/README.md",
+        "gpt5.6sol-sandbox-powder/HANDOVER.md",
+        "gpt5.6sol-sandbox-powder/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-gallery-lighting",
+      "port": 3027,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3027 --strictPort",
+          "port": 3027,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3027 --strictPort",
+          "port": 3027,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-gallery-lighting",
+      "cacheDir": "claudefable5-gallery-lighting/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-gallery-lighting/package.json",
+        "claudefable5-gallery-lighting/README.md",
+        "claudefable5-gallery-lighting/HANDOVER.md",
+        "claudefable5-gallery-lighting/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-cloth-flag",
+      "port": 3028,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3028 --strictPort",
+          "port": 3028,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3028 --strictPort",
+          "port": 3028,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-cloth-flag",
+      "cacheDir": "claudefable5-cloth-flag/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-cloth-flag/package.json",
+        "claudefable5-cloth-flag/vite.config.js",
+        "claudefable5-cloth-flag/README.md",
+        "claudefable5-cloth-flag/HANDOVER.md",
+        "claudefable5-cloth-flag/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-domino-rube",
+      "port": 3029,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3029 --strictPort",
+          "port": 3029,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3029 --strictPort",
+          "port": 3029,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-domino-rube",
+      "cacheDir": "claudefable5-domino-rube/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-domino-rube/package.json",
+        "claudefable5-domino-rube/vite.config.js",
+        "claudefable5-domino-rube/README.md",
+        "claudefable5-domino-rube/HANDOVER.md",
+        "claudefable5-domino-rube/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-bowling-physics",
+      "port": 3030,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3030 --strictPort",
+          "port": 3030,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3030 --strictPort",
+          "port": 3030,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-bowling-physics",
+      "cacheDir": "claudefable5-bowling-physics/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-bowling-physics/package.json",
+        "claudefable5-bowling-physics/vite.config.js",
+        "claudefable5-bowling-physics/README.md",
+        "claudefable5-bowling-physics/HANDOVER.md",
+        "claudefable5-bowling-physics/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.5-fire-volumetric",
+      "port": 3032,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3032 --strictPort",
+          "port": 3032,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3032 --strictPort",
+          "port": 3032,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.5-fire-volumetric",
+      "cacheDir": "gpt5.5-fire-volumetric/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.5-fire-volumetric/package.json",
+        "gpt5.5-fire-volumetric/README.md",
+        "gpt5.5-fire-volumetric/HANDOVER.md",
+        "gpt5.5-fire-volumetric/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-fire-raymarch",
+      "port": 3033,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3033 --strictPort",
+          "port": 3033,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3033 --strictPort",
+          "port": 3033,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-fire-raymarch",
+      "cacheDir": "claudefable5-fire-raymarch/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-fire-raymarch/package.json",
+        "claudefable5-fire-raymarch/README.md",
+        "claudefable5-fire-raymarch/HANDOVER.md",
+        "claudefable5-fire-raymarch/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-portal-chambers",
+      "port": 3034,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3034 --strictPort",
+          "port": 3034,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3034 --strictPort",
+          "port": 3034,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-portal-chambers",
+      "cacheDir": "claudefable5-portal-chambers/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-portal-chambers/package.json",
+        "claudefable5-portal-chambers/vite.config.js",
+        "claudefable5-portal-chambers/README.md",
+        "claudefable5-portal-chambers/HANDOVER.md",
+        "claudefable5-portal-chambers/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6solultra-portal-puzzle",
+      "port": 3035,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "node --test --test-isolation=none"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3035 --strictPort",
+          "port": 3035,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3035 --strictPort",
+          "port": 3035,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.6solultra-portal-puzzle",
+      "cacheDir": "gpt5.6solultra-portal-puzzle/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6solultra-portal-puzzle/package.json",
+        "gpt5.6solultra-portal-puzzle/scripts/smoke.mjs",
+        "gpt5.6solultra-portal-puzzle/scripts/playthrough-bench.mjs",
+        "gpt5.6solultra-portal-puzzle/README.md",
+        "gpt5.6solultra-portal-puzzle/HANDOVER.md",
+        "gpt5.6solultra-portal-puzzle/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5-portal-recursive",
+      "port": 3045,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "独立 Vite 配置缺少 strictPort 或登记端口",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "node tests/run.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3045 --strictPort",
+          "port": 3045,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3045 --strictPort",
+          "port": 3045,
+          "strictPort": true
+        }
+      },
+      "root": "claudeopus5-portal-recursive",
+      "cacheDir": "claudeopus5-portal-recursive/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5-portal-recursive/package.json",
+        "claudeopus5-portal-recursive/vite.config.js",
+        "claudeopus5-portal-recursive/README.md",
+        "claudeopus5-portal-recursive/HANDOVER.md",
+        "claudeopus5-portal-recursive/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6solultra-manhattan-procedural",
+      "port": 3036,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3036 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4036",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3036 --strictPort",
+          "port": 3036,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3036 --strictPort",
+          "port": 3036,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.6solultra-manhattan-procedural",
+      "cacheDir": "gpt5.6solultra-manhattan-procedural/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6solultra-manhattan-procedural/scripts/capture-preview.mjs",
+        "gpt5.6solultra-manhattan-procedural/scripts/qa-browser.mjs",
+        "gpt5.6solultra-manhattan-procedural/README.md",
+        "gpt5.6solultra-manhattan-procedural/HANDOVER.md",
+        "gpt5.6solultra-manhattan-procedural/CHANGELOG.md",
+        "gpt5.6solultra-manhattan-procedural/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6solultra-life-gba",
+      "port": 3037,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "test": "node --test"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3037 --strictPort",
+          "port": 3037,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt5.6solultra-life-gba",
+      "cacheDir": "gpt5.6solultra-life-gba/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6solultra-life-gba/package.json",
+        "gpt5.6solultra-life-gba/README.md",
+        "gpt5.6solultra-life-gba/HANDOVER.md",
+        "gpt5.6solultra-life-gba/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6solultra-business-tycoon",
+      "port": 3038,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "test": "node --test tests/*.test.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3038 --strictPort",
+          "port": 3038,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt5.6solultra-business-tycoon",
+      "cacheDir": "gpt5.6solultra-business-tycoon/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6solultra-business-tycoon/package.json",
+        "gpt5.6solultra-business-tycoon/README.md",
+        "gpt5.6solultra-business-tycoon/HANDOVER.md",
+        "gpt5.6solultra-business-tycoon/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-life-gba",
+      "port": 3041,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3041 --strictPort",
+          "port": 3041,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3041 --strictPort",
+          "port": 3041,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-life-gba",
+      "cacheDir": "claudefable5-life-gba/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-life-gba/package.json",
+        "claudefable5-life-gba/README.md",
+        "claudefable5-life-gba/HANDOVER.md",
+        "claudefable5-life-gba/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-business-tycoon",
+      "port": 3040,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3040 --strictPort",
+          "port": 3040,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3040 --strictPort",
+          "port": 3040,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-business-tycoon",
+      "cacheDir": "claudefable5-business-tycoon/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-business-tycoon/package.json",
+        "claudefable5-business-tycoon/README.md",
+        "claudefable5-business-tycoon/HANDOVER.md",
+        "claudefable5-business-tycoon/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt5.6sol-digimon-rumble",
+      "port": 3039,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "node --test --test-isolation=none"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3039 --strictPort",
+          "port": 3039,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --port 3039 --strictPort",
+          "port": 3039,
+          "strictPort": true
+        }
+      },
+      "root": "gpt5.6sol-digimon-rumble",
+      "cacheDir": "gpt5.6sol-digimon-rumble/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt5.6sol-digimon-rumble/package.json",
+        "gpt5.6sol-digimon-rumble/README.md",
+        "gpt5.6sol-digimon-rumble/HANDOVER.md",
+        "gpt5.6sol-digimon-rumble/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudefable5-digimon-rumble",
+      "port": 3042,
+      "issuesBefore": [
+        "dev 未使用登记端口，解析为 5173",
+        "dev 允许端口占用后自动换号",
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3042 --strictPort",
+          "port": 3042,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3042 --strictPort",
+          "port": 3042,
+          "strictPort": true
+        }
+      },
+      "root": "claudefable5-digimon-rumble",
+      "cacheDir": "claudefable5-digimon-rumble/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudefable5-digimon-rumble/package.json",
+        "claudefable5-digimon-rumble/README.md",
+        "claudefable5-digimon-rumble/HANDOVER.md",
+        "claudefable5-digimon-rumble/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5-stormwind-interiors",
+      "port": 3046,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3046 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4046 --strictPort"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3046 --strictPort",
+          "port": 3046,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3046 --strictPort",
+          "port": 3046,
+          "strictPort": true
+        }
+      },
+      "root": "claudeopus5-stormwind-interiors",
+      "cacheDir": "claudeopus5-stormwind-interiors/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5-stormwind-interiors/README.md",
+        "claudeopus5-stormwind-interiors/HANDOVER.md",
+        "claudeopus5-stormwind-interiors/CHANGELOG.md",
+        "claudeopus5-stormwind-interiors/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "grok4.7-stadium-worldcup",
+      "port": 3047,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3047 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4047 --strictPort",
+        "audit": "node src/bowlMath.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3047 --strictPort",
+          "port": 3047,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3047 --strictPort",
+          "port": 3047,
+          "strictPort": true
+        }
+      },
+      "root": "grok4.7-stadium-worldcup",
+      "cacheDir": "grok4.7-stadium-worldcup/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "grok4.7-stadium-worldcup/README.md",
+        "grok4.7-stadium-worldcup/HANDOVER.md",
+        "grok4.7-stadium-worldcup/CHANGELOG.md",
+        "grok4.7-stadium-worldcup/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6-ocean-observatory",
+      "port": 3049,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --port 3049 --strictPort",
+        "build": "vite build --base=./",
+        "test": "node --test tests/waves.test.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3049 --strictPort",
+          "port": 3049,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6-ocean-observatory",
+      "cacheDir": "gpt6-ocean-observatory/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6-ocean-observatory/tests/final-smoke.mjs",
+        "gpt6-ocean-observatory/tests/browser-smoke.mjs",
+        "gpt6-ocean-observatory/README.md",
+        "gpt6-ocean-observatory/HANDOVER.md",
+        "gpt6-ocean-observatory/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6-life-gba",
+      "port": 3050,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./",
+        "test": "node --test tests/model.test.mjs",
+        "test:browser": "node tests/browser.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- gpt6-life-gba",
+          "port": 3050,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6-life-gba",
+      "cacheDir": "gpt6-life-gba/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6-life-gba/README.md",
+        "gpt6-life-gba/HANDOVER.md",
+        "gpt6-life-gba/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6-mini4wd-room-racing",
+      "port": 3051,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3051",
+        "build": "vite build --base ./",
+        "test": "node --test tests/*.test.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3051 --strictPort",
+          "port": 3051,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6-mini4wd-room-racing",
+      "cacheDir": "gpt6-mini4wd-room-racing/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6-mini4wd-room-racing/package.json",
+        "gpt6-mini4wd-room-racing/tests/browser-smoke.mjs",
+        "gpt6-mini4wd-room-racing/tests/inspect-browser.mjs",
+        "gpt6-mini4wd-room-racing/README.md",
+        "gpt6-mini4wd-room-racing/HANDOVER.md",
+        "gpt6-mini4wd-room-racing/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5-manhattan-procedural",
+      "port": 3044,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3044 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4044 --strictPort",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3044 --strictPort",
+          "port": 3044,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3044 --strictPort",
+          "port": 3044,
+          "strictPort": true
+        }
+      },
+      "root": "claudeopus5-manhattan-procedural",
+      "cacheDir": "claudeopus5-manhattan-procedural/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5-manhattan-procedural/docs/capture-server.mjs",
+        "claudeopus5-manhattan-procedural/README.md",
+        "claudeopus5-manhattan-procedural/HANDOVER.md",
+        "claudeopus5-manhattan-procedural/CHANGELOG.md",
+        "claudeopus5-manhattan-procedural/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-initiald-akina",
+      "port": 3053,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3053 --strictPort",
+        "build": "vite build",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3053 --strictPort",
+          "port": 3053,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-initiald-akina",
+      "cacheDir": "claudeopus5.5-initiald-akina/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-initiald-akina/README.md",
+        "claudeopus5.5-initiald-akina/HANDOVER.md",
+        "claudeopus5.5-initiald-akina/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6.1sol-initiald-story-racing",
+      "port": 3054,
+      "issuesBefore": [
+        "dev 允许端口占用后自动换号",
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物",
+        "浏览器验收工具丢弃所有 Vite update/full-reload 消息，掩盖正常更新与刷新问题"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3054",
+        "build": "vite build --base ./",
+        "test": "node --test tests/*.test.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3054 --strictPort",
+          "port": 3054,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6.1sol-initiald-story-racing",
+      "cacheDir": "gpt6.1sol-initiald-story-racing/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6.1sol-initiald-story-racing/package.json",
+        "gpt6.1sol-initiald-story-racing/tests/browser-smoke.mjs",
+        "gpt6.1sol-initiald-story-racing/tests/handling-smoke.mjs",
+        "gpt6.1sol-initiald-story-racing/tests/map-smoke.mjs",
+        "gpt6.1sol-initiald-story-racing/tests/model-smoke.mjs",
+        "gpt6.1sol-initiald-story-racing/README.md",
+        "gpt6.1sol-initiald-story-racing/HANDOVER.md",
+        "gpt6.1sol-initiald-story-racing/CHANGELOG.md",
+        "gpt6.1sol-initiald-story-racing/tests/browser-options.mjs"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-ocean-realistic",
+      "port": 3055,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3055 --strictPort",
+        "build": "vite build",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3055 --strictPort",
+          "port": 3055,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-ocean-realistic",
+      "cacheDir": "claudeopus5.5-ocean-realistic/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-ocean-realistic/README.md",
+        "claudeopus5.5-ocean-realistic/HANDOVER.md",
+        "claudeopus5.5-ocean-realistic/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "grok4.7-ocean-realistic",
+      "port": 3056,
+      "issuesBefore": [
+        "preview 使用默认或未登记端口，或未显式限制自动换号"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3056 --strictPort",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1 --port 4056 --strictPort",
+        "test": "node --test tests/*.test.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3056 --strictPort",
+          "port": 3056,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3056 --strictPort",
+          "port": 3056,
+          "strictPort": true
+        }
+      },
+      "root": "grok4.7-ocean-realistic",
+      "cacheDir": "grok4.7-ocean-realistic/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "grok4.7-ocean-realistic/README.md",
+        "grok4.7-ocean-realistic/HANDOVER.md",
+        "grok4.7-ocean-realistic/CHANGELOG.md",
+        "grok4.7-ocean-realistic/package.json"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6.1sol-ocean-realistic",
+      "port": 3057,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --port 3057 --strictPort",
+        "build": "vite build --base=./",
+        "test": "node --test tests/ocean.test.mjs",
+        "test:browser": "node tests/browser.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3057 --strictPort",
+          "port": 3057,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6.1sol-ocean-realistic",
+      "cacheDir": "gpt6.1sol-ocean-realistic/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6.1sol-ocean-realistic/tests/browser.mjs",
+        "gpt6.1sol-ocean-realistic/README.md",
+        "gpt6.1sol-ocean-realistic/HANDOVER.md",
+        "gpt6.1sol-ocean-realistic/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-mini4wd-replica",
+      "port": 3058,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3058 --strictPort",
+        "build": "vite build",
+        "test": "node --test tests/*.test.js"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3058 --strictPort",
+          "port": 3058,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-mini4wd-replica",
+      "cacheDir": "claudeopus5.5-mini4wd-replica/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-mini4wd-replica/tests/browser-smoke.mjs",
+        "claudeopus5.5-mini4wd-replica/tests/compare.mjs",
+        "claudeopus5.5-mini4wd-replica/README.md",
+        "claudeopus5.5-mini4wd-replica/HANDOVER.md",
+        "claudeopus5.5-mini4wd-replica/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6astra-mini4wd-aerial-racing",
+      "port": 3059,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3059 --strictPort",
+        "build": "vite build --base ./",
+        "test": "node --test tests/*.test.js",
+        "test:browser": "node scripts/browser-acceptance.mjs",
+        "preview": "vite preview --host 127.0.0.1 --port 3059 --strictPort",
+        "capture:models": "node scripts/capture-models.mjs final-review",
+        "previews": "node scripts/publish-previews.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3059 --strictPort",
+          "port": 3059,
+          "strictPort": true
+        },
+        "preview": {
+          "command": "vite preview --host 127.0.0.1 --port 3059 --strictPort",
+          "port": 3059,
+          "strictPort": true
+        }
+      },
+      "root": "gpt6astra-mini4wd-aerial-racing",
+      "cacheDir": "gpt6astra-mini4wd-aerial-racing/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6astra-mini4wd-aerial-racing/scripts/browser-smoke.mjs",
+        "gpt6astra-mini4wd-aerial-racing/scripts/browser-acceptance.mjs",
+        "gpt6astra-mini4wd-aerial-racing/scripts/verify-root-route.mjs",
+        "gpt6astra-mini4wd-aerial-racing/scripts/capture-models.mjs",
+        "gpt6astra-mini4wd-aerial-racing/scripts/publish-previews.mjs",
+        "gpt6astra-mini4wd-aerial-racing/README.md",
+        "gpt6astra-mini4wd-aerial-racing/HANDOVER.md",
+        "gpt6astra-mini4wd-aerial-racing/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-life-gba",
+      "port": 3060,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- claudeopus5.5-life-gba",
+          "port": 3060,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-life-gba",
+      "cacheDir": "claudeopus5.5-life-gba/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-life-gba/README.md",
+        "claudeopus5.5-life-gba/HANDOVER.md",
+        "claudeopus5.5-life-gba/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-terraria-infinite",
+      "port": 3062,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- claudeopus5.5-terraria-infinite",
+          "port": 3062,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-terraria-infinite",
+      "cacheDir": "claudeopus5.5-terraria-infinite/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-terraria-infinite/README.md",
+        "claudeopus5.5-terraria-infinite/HANDOVER.md",
+        "claudeopus5.5-terraria-infinite/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-fps-blackstone",
+      "port": 3061,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --host 127.0.0.1 --port 3061 --strictPort",
+        "build": "vite build",
+        "test": "vitest run"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --host 127.0.0.1 --port 3061 --strictPort",
+          "port": 3061,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-fps-blackstone",
+      "cacheDir": "claudeopus5.5-fps-blackstone/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-fps-blackstone/README.md",
+        "claudeopus5.5-fps-blackstone/HANDOVER.md",
+        "claudeopus5.5-fps-blackstone/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-lf2-replica",
+      "port": 3063,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- claudeopus5.5-lf2-replica",
+          "port": 3063,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-lf2-replica",
+      "cacheDir": "claudeopus5.5-lf2-replica/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-lf2-replica/README.md",
+        "claudeopus5.5-lf2-replica/HANDOVER.md",
+        "claudeopus5.5-lf2-replica/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-bvn-replica",
+      "port": 3064,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- claudeopus5.5-bvn-replica",
+          "port": 3064,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-bvn-replica",
+      "cacheDir": "claudeopus5.5-bvn-replica/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-bvn-replica/README.md",
+        "claudeopus5.5-bvn-replica/HANDOVER.md",
+        "claudeopus5.5-bvn-replica/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6-bvn-shinobi-soul",
+      "port": 3065,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "dev": "vite --port 3065 --strictPort",
+        "build": "vite build --base=./",
+        "test": "node --test tests/combat.test.mjs",
+        "test:browser": "node tests/browser.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "vite --port 3065 --strictPort",
+          "port": 3065,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6-bvn-shinobi-soul",
+      "cacheDir": "gpt6-bvn-shinobi-soul/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6-bvn-shinobi-soul/tests/browser.mjs",
+        "gpt6-bvn-shinobi-soul/README.md",
+        "gpt6-bvn-shinobi-soul/HANDOVER.md",
+        "gpt6-bvn-shinobi-soul/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "gpt6.1sol-terraria-infinite",
+      "port": 3066,
+      "issuesBefore": [
+        "测试/截图脚本默认向受监听目录或共享资产写入新产物"
+      ],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./",
+        "test": "node --test tests/*.test.mjs"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- gpt6.1sol-terraria-infinite",
+          "port": 3066,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "gpt6.1sol-terraria-infinite",
+      "cacheDir": "gpt6.1sol-terraria-infinite/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "gpt6.1sol-terraria-infinite/scripts/render-smoke.mjs",
+        "gpt6.1sol-terraria-infinite/README.md",
+        "gpt6.1sol-terraria-infinite/HANDOVER.md",
+        "gpt6.1sol-terraria-infinite/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    },
+    {
+      "dir": "claudeopus5.5-partyanimals-replica",
+      "port": 3067,
+      "issuesBefore": [],
+      "documentationBefore": "缺少当前并行开发和临时产物约定；已有统一入口与 dev:one 说明",
+      "previousCommands": {
+        "build": "vite build --base=./"
+      },
+      "commands": {
+        "dev": {
+          "command": "npm run dev:one -- claudeopus5.5-partyanimals-replica",
+          "port": 3067,
+          "strictPort": true
+        },
+        "preview": null
+      },
+      "root": "claudeopus5.5-partyanimals-replica",
+      "cacheDir": "claudeopus5.5-partyanimals-replica/node_modules/.vite",
+      "installedVite": "8.1.2",
+      "changedFiles": [
+        "claudeopus5.5-partyanimals-replica/README.md",
+        "claudeopus5.5-partyanimals-replica/HANDOVER.md",
+        "claudeopus5.5-partyanimals-replica/CHANGELOG.md"
+      ],
+      "remainingStartupViolations": []
+    }
+  ]
+}

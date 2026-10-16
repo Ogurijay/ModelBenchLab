@@ -1,11 +1,11 @@
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
-import {browserOptions,isolateLiveReload,graphicsInfo} from './browser-options.mjs';
+import {browserOptions,graphicsInfo} from './browser-options.mjs';
 import {artifactsAt} from './qa-artifacts.mjs';
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.BENCH_PLAYWRIGHT_MODULE||'playwright');
-const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'docs/qa',process.env.BENCH_QA_LABEL||''),artifacts=artifactsAt(out);
+const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'tmp/qa',process.env.BENCH_QA_LABEL||''),artifacts=artifactsAt(out);
 const browser=await chromium.launch(browserOptions);
 const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage(),errors=[],checks=[];
 page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -15,8 +15,7 @@ const advance=s=>page.evaluate(s=>window.__bench.advance(s),s);
 const chapter=async id=>{await page.evaluate(id=>{window.__bench.startChapter(id);for(let i=0;i<10&&window.__bench.getState().screen==='dialogue';i++)window.__bench.next();},id);};
 async function driveTo(predicate,max=260,chunk=3){for(let i=0;i<max/chunk;i++){const s=await advance(chunk);if(predicate(s))return s;}throw new Error('Drive timeout: '+JSON.stringify(await state()));}
 try{
-  await isolateLiveReload(page);
-  await page.goto(process.env.BENCH_URL||'http://127.0.0.1:3000/gpt6.1sol-initiald-story-racing/?bench=1');await page.waitForFunction(()=>!!window.__bench);assert.equal((await state()).three,'0.185.1');await artifacts.screenshot(page,'desktop-menu.png');record('Desktop WebGL menu boots');
+  await page.goto(process.env.BENCH_URL||'http://127.0.0.1:3000/gpt6.1sol-initiald-story-racing/?bench=1');await page.waitForFunction(()=>!!window.__bench);assert.equal((await state()).three,'0.186.1');await artifacts.screenshot(page,'desktop-menu.png');record('Desktop WebGL menu boots');
   await page.locator('#sound').click();assert.equal(await page.locator('#sound').textContent(),'声音 ON');await page.locator('#sound').click();record('Audio context opens and suspends by user gesture');
   await page.locator('#practice').click();await advance(3);const before=(await state()).race.player.s;await page.keyboard.down('KeyW');await page.waitForTimeout(1800);await page.keyboard.up('KeyW');const moved=await state();assert.ok(moved.race.player.s>before+1);record('Real keyboard throttle moves the rendered vehicle',{meters:moved.race.player.s-before,speed:moved.race.player.speed});
   await page.keyboard.press('KeyP');const stopped=(await state()).race.time;await page.waitForTimeout(500);assert.equal((await state()).race.time,stopped);await page.locator('#resume').click();record('Pause stops simulation and resume releases keys');

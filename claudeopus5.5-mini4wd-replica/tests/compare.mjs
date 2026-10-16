@@ -3,7 +3,7 @@
 import { chromium } from 'playwright';
 import { mkdir, writeFile, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
-const out = resolve(process.argv[2] || 'docs/reference-compare');
+const out = resolve(process.argv[2] || 'tmp/reference-compare');
 const base = process.env.MINI4WD_URL || 'http://localhost:3000/claudeopus5.5-mini4wd-replica/';
 const CARS = ['cyclone', 'hurricane', 'tridagger', 'evolution', 'cobra', 'spider', 'gigant', 'stinger'];
 await mkdir(out, { recursive: true });

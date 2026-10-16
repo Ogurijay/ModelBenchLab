@@ -7,6 +7,13 @@ dist/
 .playwright-mcp/
 tmp/
 
+# Local Stormwind concept and target images; runtime assets are code-generated.
+/shared/assets/stormwind-modern/concepts/
+
 build/
 benchmark/tasks/private/
 shared/fixtures/**/private/
+# Original LF2/Kate assets remain local pending redistribution clearance.
+shared/assets/lf2-super/chunks/
+shared/assets/lf2-super/previews/
+shared/assets/lf2-super/runtime/lf2-resources.bin

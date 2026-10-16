@@ -5,7 +5,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const outDir = resolve(dirname(fileURLToPath(import.meta.url)), 'qa');
+const outDir = resolve(dirname(fileURLToPath(import.meta.url)), '../tmp/qa');
 mkdirSync(outDir, { recursive: true });
 
 createServer((req, res) => {

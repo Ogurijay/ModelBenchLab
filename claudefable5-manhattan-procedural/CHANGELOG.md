@@ -1,5 +1,13 @@
 # CHANGELOG — claudefable5-manhattan-procedural
 
+## 2026-10-13 并行开发规则同步
+
+- 生产预览也固定登记端口 3025 并启用 strictPort，与本项目独立开发服务交替使用；先停止自己启动的旧服务再切换。
+
+- 同步统一预览、并行独立调试、服务复用与依赖安装串行约定。
+- 本轮范围为开发服务和产物路径；不新增玩法、画面或正式评测结论。核验明细见 [批量检查记录](../benchmark/reports/parallel-development-2026-10-13.json)。
+
+
 ## 2026-07-10 · v0.1.0 首版
 
 **新建**(Claude Fable 5,对照冻结规范 `benchmark/tasks/code-to-3d/manhattan.md` v1 实现):

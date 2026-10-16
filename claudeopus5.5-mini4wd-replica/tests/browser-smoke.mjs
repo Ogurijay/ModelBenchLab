@@ -1,12 +1,12 @@
 // 浏览器冒烟测试：隔离的无头 Edge 上下文，覆盖车库 → 改装 → 拆解 → 三赛道比赛 → 成绩 → 存档恢复。
-// 需根目录 `npm run dev`（:3000）运行中；截图写入 docs/screenshots/，结果写入 docs/browser-validation.json。
+// 需根目录 `npm run dev`（:3000）运行中；截图写入 tmp/screenshots/，结果写入 tmp/browser-validation.json。
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const base = process.env.MINI4WD_URL || 'http://localhost:3000/claudeopus5.5-mini4wd-replica/';
-const shots = new URL('../docs/screenshots/', import.meta.url);
+const shots = new URL('../tmp/screenshots/', import.meta.url);
 await mkdir(shots, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true, args: ['--use-angle=d3d11', '--ignore-gpu-blocklist'] });
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -89,7 +89,7 @@ try {
   ok(`车库渲染 ${s.render.calls} 次绘制调用、${s.render.triangles} 三角形（含阴影）`);
   assert.deepEqual(errors, []);
   ok('无页面异常与控制台错误');
-  await writeFile(new URL('../docs/browser-validation.json', import.meta.url), JSON.stringify({ date: new Date().toISOString(), browser: 'Microsoft Edge（无头，WebGL 2 / ANGLE D3D11）', base, checks, errors }, null, 2));
+  await writeFile(new URL('../tmp/browser-validation.json', import.meta.url), JSON.stringify({ date: new Date().toISOString(), browser: 'Microsoft Edge（无头，WebGL 2 / ANGLE D3D11）', base, checks, errors }, null, 2));
   console.log(JSON.stringify({ checks: checks.length, errors: errors.length }));
 } catch (e) {
   console.error('FAILED', e); console.error('console errors', errors);

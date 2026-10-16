@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
-const artifacts = fileURLToPath(new URL('../artifacts/', import.meta.url));
+const artifacts = fileURLToPath(new URL('../tmp/artifacts/', import.meta.url));
 await mkdir(artifacts, { recursive: true });
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 const errors = [];

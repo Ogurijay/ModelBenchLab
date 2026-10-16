@@ -1,6 +1,6 @@
 {
   "_comment": "ModelBenchLab 单一事实源。projects 登记模型实现；portalSections[].groups[] 按主题大类和项目系列组织展示，每个 mission 只归属一个系列。展示合组不改变 task_id/task_version，也不意味着可直接横向排名。新增/改名/删除项目需同步 workspaces 与 lockfile，再运行 npm run sync:check。根开发服务统一端口 3000。",
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-10-15",
   "portalTitle": "ModelBenchLab",
   "ports": {
     "portal": 3000,
@@ -72,7 +72,11 @@
     "terraria": "2D 无限世界沙盒生存",
     "fps": "Three.js 第一人称射击",
     "lf2": "LF2 式 2.5D 横版格斗",
-    "bvn": "死神vs火影式 2D 动漫格斗"
+    "bvn": "死神vs火影式 2D 动漫格斗",
+    "partyanimals": "动物派对式物理乱斗",
+    "partyanimals-local": "动物派对本地全玩法复刻",
+    "stormwind-modern": "魔兽世界 · 现代暴风城",
+    "world-miniature": "七大洲微缩地标公园"
   },
   "projects": [
     {
@@ -449,7 +453,7 @@
       "variant": "storm",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "海洋模拟 — 移动风暴单元",
@@ -508,7 +512,7 @@
       "variant": "campaign",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "3D 坦克大战 — 前 10 关",
@@ -815,7 +819,7 @@
       "variant": "lighting",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "美术馆布光 — 第一人称漫游",
@@ -843,7 +847,7 @@
       "variant": "flag",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "旗帜布料模拟 — 自写 Verlet",
@@ -871,7 +875,7 @@
       "variant": "rube",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "多米诺·鲁布戈德堡机关链",
@@ -899,7 +903,7 @@
       "variant": "physics",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "3D 保龄球 — 物理与计分双测",
@@ -927,7 +931,7 @@
       "variant": "volumetric",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "实体火焰 — 体积光焰实验台",
@@ -955,7 +959,7 @@
       "variant": "raymarch",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "实体火焰 — 夜营篝火·体积光线步进",
@@ -983,7 +987,7 @@
       "variant": "chambers",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "传送门 — 五间实验室",
@@ -1011,7 +1015,7 @@
       "variant": "puzzle",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "折跃实验场 — 第一人称空间解谜",
@@ -1039,7 +1043,7 @@
       "variant": "recursive",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "传送门 — 递归门景与实体开孔",
@@ -1067,7 +1071,7 @@
       "variant": "procedural",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "3D 曼哈顿风暴换班 — 全程序化活城",
@@ -1207,7 +1211,7 @@
       "variant": "digimon-rumble",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "数码兽大乱斗 — PS2 风格完整精选版",
@@ -1235,7 +1239,7 @@
       "variant": "rumble",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "数码宝贝大乱斗 — PS2 格斗复刻",
@@ -1263,7 +1267,7 @@
       "variant": "interiors",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "暴风王都全景 — 每栋建筑都能走进去",
@@ -1291,7 +1295,7 @@
       "variant": "worldcup",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "子午冠球场 — 8 万座世界杯露天主场",
@@ -1319,7 +1323,7 @@
       "variant": "observatory",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8.1.2",
       "workspace": true,
       "title": "PELAGIC · 海洋观测站",
@@ -1374,7 +1378,7 @@
       "variant": "room-racing",
       "api": "WebGL 2",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "疾风俱乐部 - 迷你四驱车模拟器",
@@ -1405,7 +1409,7 @@
       "variant": "procedural",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "3D 曼哈顿 — Claude Opus 5 程序化活城",
@@ -1433,7 +1437,7 @@
       "variant": "akina",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "头文字D · 秋名山 — Claude Opus 5.5",
@@ -1461,7 +1465,7 @@
       "variant": "story-racing",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "秋名山 · 再快的86 — GPT 6.1 SOL",
@@ -1489,7 +1493,7 @@
       "variant": "realistic",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "远洋 · FFT 海洋模拟 — Claude Opus 5.5",
@@ -1517,7 +1521,7 @@
       "variant": "realistic",
       "api": "WebGL",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "潮镜 · 解析海浪 — Grok 4.7",
@@ -1545,7 +1549,7 @@
       "variant": "realistic",
       "api": "WebGL 2",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8.1.2",
       "workspace": true,
       "title": "潮汐 · TIDELINE — GPT 6.1 SOL",
@@ -1573,7 +1577,7 @@
       "variant": "replica",
       "api": "WebGL 2",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "四驱兄弟 · 原型复刻赛 — Claude Opus 5.5",
@@ -1601,7 +1605,7 @@
       "variant": "aerial-racing",
       "api": "WebGL 2",
       "lang": "TypeScript / JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "ASTRA · 四驱实验室",
@@ -1687,7 +1691,7 @@
       "variant": "blackstone",
       "api": "WebGL 2",
       "lang": "JavaScript",
-      "three": "0.185.1",
+      "three": "0.186.1",
       "vite": "8",
       "workspace": true,
       "title": "黑石行动 BLACKSTONE — Claude Opus 5.5",
@@ -1845,6 +1849,146 @@
         "changelog": "CHANGELOG.md",
         "readme": "README.md"
       }
+    },
+    {
+      "dir": "claudeopus5.5-partyanimals-replica",
+      "port": 3072,
+      "model": "Claude Opus 5.5",
+      "category": "code-to-3d",
+      "mission": "partyanimals",
+      "variant": "replica",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "毛绒派对 · 动物派对玩法复刻",
+      "desc": "按 Party Animals 复刻的毛绒动物物理乱斗:Rapier 主动布娃娃(6 刚体 + 球关节,悬浮弹簧站立、速度伺服驱动姿态),原版 PC 键位的拳/重拳/踢/飞踢/蓄力头槌、双手关节抓取、举过头顶投掷、抓沿攀爬、握力与挣扎;意识值击晕(星星)→ 抓起扔出场外淘汰;五张原创机关地图(霓虹天台收缩毒雾、风暴渔船大浪与下沉、可踩歪的动态浮冰、巨扇狂风车间、会断裂的晃晃吊桥)与突然死亡;球棒/平底锅/大锤/棒棒糖/冰冻枪/炸弹与可推物件;个人混战、团队对抗、练习场,1–7 名三档难度电脑;八种动物 shell 毛绒着色,画面音效音乐全部程序化",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/partyanimals.md",
+      "task_id": "code3d-partyanimals-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6.1sol-lf2-super",
+      "port": 3068,
+      "model": "GPT 6.1 Sol",
+      "category": "code-to-ui",
+      "mission": "lf2",
+      "variant": "super-kate-port",
+      "api": "WebAssembly / SDL3",
+      "lang": "JavaScript / Lua",
+      "three": null,
+      "vite": "8",
+      "workspace": true,
+      "title": "LF2 超级大改版 · Kate",
+      "desc": "带皮卡丘 Kate 的作者原包三阶段浏览器移植；原角色精灵、招式帧、场景和音效，MIT OpenLF2 WASM 运行时；版本切换、图鉴、出招原表与本地录像。基于原数据和开源引擎，非从零独立评测实现；联网与部分特殊行为仍有兼容边界。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-ui/lf2-fighter.md",
+      "task_id": "codeui-lf2-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6-partyanimals-local",
+      "port": 3069,
+      "model": "GPT 6",
+      "category": "code-to-3d",
+      "mission": "partyanimals-local",
+      "variant": "local",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "毛球俱乐部 · 本地动物派对",
+      "desc": "Three.js 0.186.1 + Rapier 本地物理派对；经典乱斗、团队目标、能力卡、变异规则、卡丁车、列车、海盗、身份推理、小屋与训练。功能覆盖及验收状态见项目文档。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/partyanimals-local.md",
+      "task_id": "code3d-partyanimals-local-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6-stormwind-modern",
+      "port": 3070,
+      "model": "GPT 6",
+      "category": "code-to-3d",
+      "mission": "stormwind-modern",
+      "variant": "modern",
+      "api": "WebGL",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "现代暴风城 · 九区漫游",
+      "desc": "白石蓝瓦、英雄谷与运河桥梁，现代九区布局和建筑内景；程序化重建，运行验收进行中。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/stormwind-modern.md",
+      "task_id": "code3d-stormwind-modern-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
+    },
+    {
+      "dir": "gpt6-world-miniature-seven-continents",
+      "port": 3071,
+      "model": "GPT 6",
+      "category": "code-to-3d",
+      "mission": "world-miniature",
+      "variant": "seven-continents",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "世界一隅 · 七大洲微缩公园",
+      "desc": "18组程序化世界地标与极地景观；七洲花园、步道漫游、导览、观光列车、日夜切换与拍照。初版运行验收见项目文档。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/world-miniature.md",
+      "task_id": "code3d-world-miniature-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
     }
   ],
   "portalSections": [
@@ -1883,7 +2027,8 @@
           "id": "stormwind",
           "label": "奇幻王都",
           "missions": [
-            "stormwind"
+            "stormwind",
+            "stormwind-modern"
           ]
         },
         {
@@ -1898,6 +2043,13 @@
           "label": "美术馆布光",
           "missions": [
             "gallery"
+          ]
+        },
+        {
+          "id": "world-miniature",
+          "label": "世界地标 · 微缩公园",
+          "missions": [
+            "world-miniature"
           ]
         }
       ]
@@ -1994,6 +2146,14 @@
           "missions": [
             "brawler",
             "digimon"
+          ]
+        },
+        {
+          "id": "partyanimals",
+          "label": "物理派对乱斗 · 动物派对",
+          "missions": [
+            "partyanimals",
+            "partyanimals-local"
           ]
         },
         {

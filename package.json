@@ -66,7 +66,12 @@
     "claudeopus5.5-bvn-replica",
     "gpt6-bvn-shinobi-soul",
     "gpt6.1sol-terraria-infinite",
-    "claudeopus5.5-stormwind-replica"
+    "claudeopus5.5-stormwind-replica",
+    "claudeopus5.5-partyanimals-replica",
+    "gpt6.1sol-lf2-super",
+    "gpt6-partyanimals-local",
+    "gpt6-stormwind-modern",
+    "gpt6-world-miniature-seven-continents"
   ],
   "scripts": {
     "dev": "vite",
@@ -78,7 +83,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^9.1.0",
-    "three": "^0.185.1",
+    "three": "0.186.1",
     "vite": "^8.0.16",
     "ajv": "6.15.0",
     "vite-tsconfig-paths": "5.1.4"

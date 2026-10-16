@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 // 常规开发走根目录单端口 :3000,经 /claudefable5-portal-chambers/ 访问)
 export default defineConfig({
   server: {
+    strictPort: true,
     host: '127.0.0.1',
     port: 3034,
   },

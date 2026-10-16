@@ -9,7 +9,7 @@ const page=await browser.newPage({viewport:{width:1000,height:750},deviceScaleFa
 page.on('pageerror',e=>errors.push(e.message));
 await page.goto('http://localhost:3059/review.html',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__READY__);
 for(const car of CARS){
- const dir=path.join(root,'reconstruction',car.id,pass);fs.mkdirSync(dir,{recursive:true});
+ const dir=path.join(root,'tmp/reconstruction',car.id,pass);fs.mkdirSync(dir,{recursive:true});
  for(const angle of ['reference','front','right','rear','left','top']){
    const info=await page.evaluate(({id,angle,painted})=>window.astraReview.show(id,angle,painted),{id:car.id,angle,painted});
    await page.locator('#label').evaluate(e=>e.style.display='none');

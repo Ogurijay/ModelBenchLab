@@ -1,10 +1,10 @@
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {browserOptions,isolateLiveReload,graphicsInfo} from './browser-options.mjs';
+import {browserOptions,graphicsInfo} from './browser-options.mjs';
 import {artifactsAt} from './qa-artifacts.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.BENCH_PLAYWRIGHT_MODULE||'playwright');
-const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'docs/qa/handling',process.env.BENCH_QA_LABEL||'source');
+const root=path.resolve(import.meta.dirname,'..'),out=path.join(root,'tmp/qa/handling',process.env.BENCH_QA_LABEL||'source');
 const artifacts=artifactsAt(out);
 const browser=await chromium.launch(browserOptions);
 const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[],checks=[];let graphics=null;
@@ -19,9 +19,8 @@ async function start(assist=false){
   assert.ok((await state()).race.player.speed>20);
 }
 try{
-  await isolateLiveReload(page);
   await page.goto(process.env.BENCH_URL||'http://localhost:3000/gpt6.1sol-initiald-story-racing/?bench=1');
-  await page.waitForFunction(()=>!!window.__bench);assert.equal((await state()).three,'0.185.1');
+  await page.waitForFunction(()=>!!window.__bench);assert.equal((await state()).three,'0.186.1');
   graphics=await graphicsInfo(page);
   for(const [key,sign] of [['KeyD',1],['KeyA',-1],['ArrowRight',1],['ArrowLeft',-1]]){
     await start();const initial=await state(),before=initial.race.player;

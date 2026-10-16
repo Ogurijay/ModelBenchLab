@@ -262,6 +262,22 @@
         "gpt6astra-mini4wd-aerial-racing/src/main.ts"
       ],
       "source": "Rendered from this project’s procedural model in review.html; capture-models.mjs final-review. Classic shape reference sources are documented separately."
+    },
+    {
+      "path": "shared/assets/world-miniature/concepts/overview.png",
+      "sha256": "16cf0de771da452e2cf6d41e726434956d4bcac8f3eb17d1de52ed6ea7971cfb",
+      "consumers": [
+        "gpt6-world-miniature-seven-continents/PLAN.md"
+      ],
+      "source": "2026-10-15 用户已确认的内置image_gen概念参考；仅用于设计，不作为运行资产"
+    },
+    {
+      "path": "shared/assets/world-miniature/concepts/asia.png",
+      "sha256": "b485f8ae7a8ef814442785c7ab7ea01f24e301b55275a2ed469b365d259968bf",
+      "consumers": [
+        "gpt6-world-miniature-seven-continents/PLAN.md"
+      ],
+      "source": "2026-10-15 用户已确认的内置image_gen概念参考；仅用于设计，不作为运行资产"
     }
   ]
 }

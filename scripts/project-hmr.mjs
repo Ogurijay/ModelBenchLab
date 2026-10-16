@@ -2,6 +2,20 @@
 // to that project's HTML entries; shared/config changes retain Vite's defaults.
 const normalize = value => value.replaceAll('\\', '/');
 
+// Ignore generated files relative to the server root, even if that root itself
+// lives under a directory named tmp (for example, an isolated test fixture).
+export function projectWatchOptions(root) {
+  const prefix = normalize(root).replace(/\/$/, '') + '/';
+  const generated = new Set(['dist', 'build', 'tmp', 'coverage', '.agents', '.claude', '.codex', '.playwright-mcp']);
+  return {
+    ignored(file) {
+      const path = normalize(file);
+      return path.toLowerCase().startsWith(prefix.toLowerCase()) &&
+        path.slice(prefix.length).split('/').some(part => generated.has(part));
+    },
+  };
+}
+
 export function projectReloads(payload, { root, projects, pages = [], moduleGraph }) {
   if (!payload || payload.type !== 'full-reload' || (payload.path && payload.path !== '*') || !payload.triggeredBy) return [payload];
   const prefix = normalize(root).replace(/\/$/, '') + '/';
