@@ -1989,6 +1989,34 @@
         "handover": "HANDOVER.md",
         "changelog": "CHANGELOG.md"
       }
+    },
+    {
+      "dir": "gemini4-ocean-realistic",
+      "port": 3073,
+      "model": "Gemini 4",
+      "category": "code-to-3d",
+      "mission": "ocean",
+      "variant": "realistic",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8.1.2",
+      "workspace": true,
+      "title": "沧澜 · PELAGIC STORM — 写实全天候海洋模拟",
+      "desc": "24 分量 JONSWAP + 双涌浪 Gerstner 海面，CPU/GPU 同源采样；菲涅尔天穹云层反射、GGX 光路、次表面散射与五源泡沫；6 档天气风暴切换（晴/暮/雾/暴雨/雷暴龙卷）、3D 分叉闪电与合成滚雷、3D 水龙卷与旋涡力场；科考船 WASD 巡航、系泊航标 30s 波高计、灯塔岛、浮体投放与拖拽抛掷、lil-gui 面板。",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/ocean.md",
+      "task_id": "code3d-ocean-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
     }
   ],
   "portalSections": [

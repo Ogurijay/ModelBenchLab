@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>沧澜 · PELAGIC STORM — 写实全天候海洋模拟 (Gemini 4)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23071d36'/%3E%3Cpath d='M10 38c6-6 12-6 18 0s12 6 18 0 8-4 8-4' stroke='%2338bdf8' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="canvas-container" aria-label="3D 海洋模拟视口"></div>
+
+  <!-- 闪电全屏氛围辉光层 -->
+  <div id="lightning-flash" aria-hidden="true"></div>
+
+  <!-- 左上角：品牌与实时海洋气象遥测 HUD -->
+  <header id="hud-top-left" class="hud-panel">
+    <div class="brand-row">
+      <span class="status-dot" id="status-dot"></span>
+      <div>
+        <h1 class="brand-title">沧澜 · PELAGIC</h1>
+        <p class="brand-sub">JONSWAP 谱写实海面 × 极端天气风暴系统 · Gemini 4</p>
+      </div>
+    </div>
+
+    <div class="telemetry-grid">
+      <div class="metric-item">
+        <span class="metric-label">有效波高 H<sub>s</sub></span>
+        <span class="metric-val" id="val-hs">1.80 m</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">风速 / 蒲福级</span>
+        <span class="metric-val" id="val-wind">9.5 m/s · 5级</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">天气状态</span>
+        <span class="metric-val" id="val-weather">晴朗信风</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">帧率 / 浮体</span>
+        <span class="metric-val" id="val-fps">60 FPS · 5</span>
+      </div>
+    </div>
+
+    <!-- 1号航标实时波高计 -->
+    <div class="wave-gauge-box">
+      <div class="gauge-header">
+        <span>1号航标波高计 (30s 实时采样)</span>
+        <span id="val-eta" class="gauge-live">+0.00 m</span>
+      </div>
+      <canvas id="wave-chart" width="268" height="54"></canvas>
+    </div>
+  </header>
+
+  <!-- 左下角：操作指南与交互工具栏 -->
+  <section id="hud-bottom-left" class="hud-panel">
+    <div class="toolbar-section">
+      <span class="section-tag">镜头机位</span>
+      <div class="btn-group" id="camera-btns">
+        <button type="button" class="chip-btn active" data-cam="orbit">自由远眺</button>
+        <button type="button" class="chip-btn" data-cam="ship">随船航行</button>
+        <button type="button" class="chip-btn" data-cam="lighthouse">灯塔俯瞰</button>
+        <button type="button" class="chip-btn" data-cam="skim">低空掠海</button>
+      </div>
+    </div>
+
+    <div class="toolbar-section">
+      <span class="section-tag">点击海面投放 / 拖拽抛掷</span>
+      <div class="btn-group" id="spawn-btns">
+        <button type="button" class="chip-btn active" data-spawn="crate">木箱</button>
+        <button type="button" class="chip-btn" data-spawn="drum">油桶</button>
+        <button type="button" class="chip-btn" data-spawn="buoyring">救生圈</button>
+        <button type="button" class="chip-btn" data-spawn="probe">探测球</button>
+        <button type="button" class="chip-btn danger-btn" id="btn-clear-floaters" title="清空投放物 (C)">清空</button>
+      </div>
+    </div>
+
+    <div class="toolbar-section actions-row">
+      <button type="button" class="action-btn" id="btn-lightning" title="立即劈下一道分支闪电 (快捷键 L)">⚡ 触发闪电 (L)</button>
+      <button type="button" class="action-btn" id="btn-waterspout" title="切换远海龙卷水柱 (快捷键 T)">🌪️ 水龙卷: 关</button>
+      <button type="button" class="action-btn" id="btn-audio" title="开启/关闭合成海浪与风雨雷暴声">🔇 开启海浪声</button>
+      <button type="button" class="action-btn" id="btn-pause" title="暂停/继续模拟 (Space)">⏸ 暂停</button>
+      <button type="button" class="action-btn" id="btn-shot" title="保存当前海面 PNG 截图">📷 截图</button>
+    </div>
+
+    <p class="shortcut-hint">
+      <span>拖拽旋转 · 滚轮缩放 · 点击水面投物 · 拖拽浮体抛掷</span>
+      <span><code>1-6</code> 切海况 · <code>WASD</code> 驾船 · <code>L</code> 闪电 · <code>H</code> 隐藏UI</span>
+    </p>
+  </section>
+
+  <!-- 底部中央：6 档全天候海况与风暴预设栏 -->
+  <nav id="hud-presets" class="hud-panel" aria-label="海况与天气预设">
+    <button type="button" class="preset-card" data-preset="calm">
+      <span class="preset-key">1</span>
+      <span class="preset-name">玻璃晨海</span>
+      <span class="preset-meta">微风镜面 · 晨曦</span>
+    </button>
+    <button type="button" class="preset-card active" data-preset="trade">
+      <span class="preset-key">2</span>
+      <span class="preset-name">晴朗信风</span>
+      <span class="preset-meta">碧海白浪 · 散射</span>
+    </button>
+    <button type="button" class="preset-card" data-preset="sunset">
+      <span class="preset-key">3</span>
+      <span class="preset-name">落日熔金</span>
+      <span class="preset-meta">长涌晚霞 · 光路</span>
+    </button>
+    <button type="button" class="preset-card" data-preset="fog">
+      <span class="preset-key">4</span>
+      <span class="preset-name">浓雾孤航</span>
+      <span class="preset-meta">低能见度 · 灯塔</span>
+    </button>
+    <button type="button" class="preset-card" data-preset="rainstorm">
+      <span class="preset-key">5</span>
+      <span class="preset-name">暴雨狂风</span>
+      <span class="preset-meta">斜雨涟漪 · 巨浪</span>
+    </button>
+    <button type="button" class="preset-card" data-preset="superstorm">
+      <span class="preset-key">6</span>
+      <span class="preset-name">雷暴龙卷</span>
+      <span class="preset-meta">闪电雷鸣 · 水龙卷</span>
+    </button>
+  </nav>
+
+  <!-- 纯净观海模式提示条 -->
+  <button type="button" id="clean-mode-pill" class="hidden" title="点击或按 H / Esc 恢复界面">
+    纯净观海模式 · 按 H 恢复控制台
+  </button>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

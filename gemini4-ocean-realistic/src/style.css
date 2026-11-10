@@ -1,0 +1,387 @@
+:root {
+  --bg-glass: rgba(10, 18, 30, 0.72);
+  --bg-glass-hover: rgba(18, 30, 48, 0.86);
+  --border-glass: rgba(125, 185, 235, 0.22);
+  --accent-cyan: #38bdf8;
+  --accent-teal: #2dd4bf;
+  --accent-amber: #fbbf24;
+  --text-main: #f0f6fc;
+  --text-dim: #94a3b8;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #040b14;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+}
+
+#canvas-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+#canvas-container canvas:active {
+  cursor: grabbing;
+}
+
+#lightning-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 50% 25%, rgba(215, 238, 255, 0.55), rgba(130, 180, 255, 0.12) 65%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.06s ease-out;
+}
+
+.hud-panel {
+  position: fixed;
+  z-index: 10;
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+body.clean-ui .hud-panel,
+body.clean-ui .lil-gui {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(8px);
+}
+
+/* 左上遥测面板 */
+#hud-top-left {
+  top: 16px;
+  left: 16px;
+  width: 300px;
+  padding: 14px 16px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  box-shadow: 0 0 10px var(--accent-teal);
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #e0f2fe;
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.metric-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 6px 9px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+
+.metric-val {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-top: 2px;
+}
+
+.wave-gauge-box {
+  background: rgba(4, 12, 22, 0.65);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.gauge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.gauge-live {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+#wave-chart {
+  width: 100%;
+  height: 48px;
+  display: block;
+}
+
+/* 左下交互面板 */
+#hud-bottom-left {
+  left: 16px;
+  bottom: 92px;
+  width: 360px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.toolbar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.section-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip-btn,
+.action-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: #dbeafe;
+  font-size: 11.5px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.chip-btn:hover,
+.action-btn:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.chip-btn.active,
+.action-btn.active {
+  background: rgba(56, 189, 248, 0.26);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.danger-btn:hover {
+  background: rgba(248, 113, 113, 0.22);
+  border-color: #f87171;
+}
+
+.actions-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.shortcut-hint {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.shortcut-hint code {
+  font-family: var(--font-mono);
+  color: #bae6fd;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+/* 底部海况预设栏 */
+#hud-presets {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+}
+
+body.clean-ui #hud-presets {
+  transform: translate(-50%, 10px);
+}
+
+.preset-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  padding: 7px 12px;
+  min-width: 112px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-main);
+  position: relative;
+  transition: all 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.preset-card:hover {
+  background: var(--bg-glass-hover);
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+}
+
+.preset-card.active {
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.48), rgba(30, 58, 138, 0.55));
+  border-color: var(--accent-cyan);
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+}
+
+.preset-key {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.8;
+}
+
+.preset-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.preset-meta {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+#clean-mode-pill {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 20;
+  background: rgba(10, 18, 30, 0.78);
+  color: #e0f2fe;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* lil-gui 样式微调 */
+.lil-gui.root {
+  position: fixed !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 15 !important;
+  max-height: calc(100vh - 110px) !important;
+  border-radius: 12px !important;
+  overflow-y: auto !important;
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 移动端自适应 */
+@media (max-width: 768px) {
+  #hud-top-left {
+    top: 10px;
+    left: 10px;
+    width: calc(100vw - 20px);
+    padding: 10px 12px;
+  }
+  .wave-gauge-box {
+    display: none;
+  }
+  #hud-bottom-left {
+    left: 10px;
+    bottom: 78px;
+    width: calc(100vw - 20px);
+    padding: 9px 11px;
+  }
+  .shortcut-hint {
+    display: none;
+  }
+  #hud-presets {
+    bottom: 10px;
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  .preset-card {
+    min-width: 92px;
+    padding: 5px 9px;
+  }
+}
