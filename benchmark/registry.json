@@ -2017,6 +2017,34 @@
         "handover": "HANDOVER.md",
         "changelog": "CHANGELOG.md"
       }
+    },
+    {
+      "dir": "gemini4-fire-raymarch",
+      "port": 3074,
+      "model": "Gemini 4",
+      "category": "code-to-3d",
+      "mission": "fire",
+      "variant": "raymarch",
+      "api": "WebGL 2",
+      "lang": "JavaScript",
+      "three": "0.186.1",
+      "vite": "8",
+      "workspace": true,
+      "title": "炽渊 · PYRE SANCTUARY — 实体火焰·三维体积光线步进",
+      "desc": "双阶段 HDR 真·体积光线步进：深度截断遮挡、三股螺旋火舌+双级域扭曲+元胞侵蚀、核心/主焰/外焰三层黑体光谱与 4 档焰色、火烟同场积分与热浪折射；照亮玄武岩石柱/松木炭床/镂空铁火盆笼与青铜鼎釜/黑曜砂砾四类材质；旋度火星与高空烟羽、添柴鼓风爆发及中文实时控制",
+      "docs": {
+        "readme": true,
+        "handover": true,
+        "changelog": true
+      },
+      "taskDoc": "benchmark/tasks/code-to-3d/fire.md",
+      "task_id": "code3d-fire-001",
+      "task_version": 1,
+      "docPaths": {
+        "readme": "README.md",
+        "handover": "HANDOVER.md",
+        "changelog": "CHANGELOG.md"
+      }
     }
   ],
   "portalSections": [

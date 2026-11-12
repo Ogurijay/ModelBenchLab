@@ -72,7 +72,8 @@
     "gpt6-partyanimals-local",
     "gpt6-stormwind-modern",
     "gpt6-world-miniature-seven-continents",
-    "gemini4-ocean-realistic"
+    "gemini4-ocean-realistic",
+    "gemini4-fire-raymarch"
   ],
   "scripts": {
     "dev": "vite",
